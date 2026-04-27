@@ -4775,7 +4775,6 @@ __metadata:
     passport: "npm:^0.7.0"
     passport-saml: "npm:^3.2.4"
     plaiceholder: "npm:^3.0.0"
-    postcss: "npm:^8.5.10"
     prettier: "npm:^3.8.3"
     prettier-plugin-tailwindcss: "npm:^0.7.2"
     qs: "npm:^6.15.1"
@@ -7994,7 +7993,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanoid@npm:^3.3.6, nanoid@npm:^3.3.7":
+"nanoid@npm:^3.3.6":
   version: 3.3.7
   resolution: "nanoid@npm:3.3.7"
   bin:
@@ -8739,24 +8738,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.4.47":
-  version: 8.4.49
-  resolution: "postcss@npm:8.4.49"
-  dependencies:
-    nanoid: "npm:^3.3.7"
-    picocolors: "npm:^1.1.1"
-    source-map-js: "npm:^1.2.1"
-  checksum: 10c0/f1b3f17aaf36d136f59ec373459f18129908235e65dbdc3aee5eef8eba0756106f52de5ec4682e29a2eab53eb25170e7e871b3e4b52a8f1de3d344a514306be3
-  languageName: node
-  linkType: hard
-
-"postcss@npm:^8.5.10":
-  version: 8.5.10
-  resolution: "postcss@npm:8.5.10"
+  version: 8.5.12
+  resolution: "postcss@npm:8.5.12"
   dependencies:
     nanoid: "npm:^3.3.11"
     picocolors: "npm:^1.1.1"
     source-map-js: "npm:^1.2.1"
-  checksum: 10c0/c592dffa0c4873b401f01955b265538d9942f425040df5e2b8f0ad34c83773a792ea0fa5859ccc99cfb5b955b4ebff118ab7056315388dc83b107b0fa8313576
+  checksum: 10c0/5baebaf574c567bc1b3d61197f38af4ce5920b8f611c887fb6bc3dcc14af00253c169dbf19897bc889cce0b0d9818ab5eb4ea0caedf02b0bab10da8a43ce8c12
   languageName: node
   linkType: hard
 
