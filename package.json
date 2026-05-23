@@ -37,7 +37,7 @@
     "passport-saml": "^3.2.4",
     "plaiceholder": "^3.0.0",
     "postcss": "^8.5.10",
-    "qs": "^6.15.1",
+    "qs": "^6.15.2",
     "react": "19.2.5",
     "react-countup": "^6.5.3",
     "react-dom": "19.2.5",
