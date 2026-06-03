@@ -9,6 +9,7 @@ import {
   MainMenuItemClientWrapper,
 } from "@components/menu/main-menu.client"
 import Link from "@components/elements/link"
+import {MagnifyingGlassIcon} from "@heroicons/react/20/solid"
 
 const MainMenu = async () => {
   const menuItems = await getMenu(MenuAvailable.Main, 3)
@@ -35,6 +36,12 @@ const MainMenu = async () => {
         {menuItems.map(item => (
           <MenuItem key={item.id} {...item} level={0} />
         ))}
+        <li>
+          <button type="submit" className="hidden px-10 py-5 lg:block lg:justify-self-end">
+            <MagnifyingGlassIcon width={25} className="text-digital-red" />
+            <span className="sr-only">Submit Search</span>
+          </button>
+        </li>
       </ul>
     </MainMenuClientWrapper>
   )

@@ -46,11 +46,10 @@ const PageHeader = async ({...props}: Props) => {
             <Lockup />
             <div>
               <UtilityNav />
-              <SiteSearchForm className="hidden lg:block" />
+              <SiteSearchForm className="hidden lg:hidden" />
             </div>
           </div>
         </div>
-
         <MainMenu />
       </div>
     </header>
