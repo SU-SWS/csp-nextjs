@@ -27,7 +27,7 @@ const UtilityNav = async () => {
             <li key={`utility-link-${i}`} className="mb-0">
               <Link className="text-17 font-normal text-stone-dark no-underline hocus:underline" href={link.url || "#"}>
                 {link.title}
-                <Icon width={16} className="ml-2 inline text-stone-dark" />
+                <Icon width={16} className="ml-2 inline hocus:text-digital-red" />
               </Link>
             </li>
           )
