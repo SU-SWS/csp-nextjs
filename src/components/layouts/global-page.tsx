@@ -7,7 +7,7 @@ import twMerge from "@lib/utils/twMerge"
 type Props = HTMLAttributes<HTMLDivElement>
 const GlobalPage = ({children, ...props}: Props) => {
   return (
-    <div {...props} className={twMerge("flex min-h-screen flex-col", props.className)}>
+    <div {...props} className={twMerge("flex min-h-screen flex-col bg-[#FCF9F5]", props.className)}>
       <PageHeader data-nosnippet="true" />
 
       <main id="main-content" className="flex-grow">

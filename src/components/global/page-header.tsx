@@ -18,7 +18,7 @@ const PageHeader = async ({...props}: Props) => {
   >("StanfordBasicSiteSetting", "suSiteHeaderButton")
 
   return (
-    <header {...props} className={twMerge("bg-[#FCF9F5]", props.className)}>
+    <header {...props} className={twMerge("", props.className)}>
       <div className="bg-cardinal-red">
         <div className="centered flex items-center justify-between py-3">
           <Link
@@ -40,7 +40,7 @@ const PageHeader = async ({...props}: Props) => {
         </div>
       </div>
       <GlobalMessage />
-      <div className="relative mx-auto max-w-[1500px] bg-[#FCF9F5]">
+      <div className="relative mx-auto max-w-[1500px]">
         <div className="min-h-50 centered pr-24 lg:pr-0">
           <div className="flex w-full items-center justify-between">
             <Lockup />
