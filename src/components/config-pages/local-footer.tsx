@@ -93,21 +93,6 @@ const LocalFooter = async ({...props}: Props) => {
 
             {/* Address */}
             {localFooterConfig.suLocalFootAddress && <Address {...localFooterConfig.suLocalFootAddress} />}
-            {/* Action Links */}
-            {localFooterConfig.suLocalFootAction && (
-              <ul className="list-unstyled">
-                {localFooterConfig.suLocalFootAction.map((link, index) => {
-                  if (!link.url) return
-                  return (
-                    <li key={`footer-action-link-${index}`} className="m-0 p-0">
-                      <ActionLink href={link.url} className="text-2xl">
-                        {link.title}
-                      </ActionLink>
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
 
             {/* First Content block */}
             <Wysiwyg
@@ -200,6 +185,23 @@ const LocalFooter = async ({...props}: Props) => {
                 })}
               </ul>
             )}
+
+            {/* Action Links */}
+            {localFooterConfig.suLocalFootAction && (
+              <ul className="list-unstyled">
+                {localFooterConfig.suLocalFootAction.map((link, index) => {
+                  if (!link.url) return
+                  return (
+                    <li key={`footer-action-link-${index}`} className="m-0 p-0">
+                      <ActionLink href={link.url} className="text-2xl">
+                        {link.title}
+                      </ActionLink>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
+
             <Wysiwyg
               html={localFooterConfig.suLocalFootTrCo?.processed}
               className="[&_.btn--secondary]:bg-white[&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase"

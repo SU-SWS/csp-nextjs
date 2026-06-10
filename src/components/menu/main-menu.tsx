@@ -82,7 +82,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
           >
             {title}
           </MainMenuItemClientLink>
-          {level === 0 && <span className="h-[25px]lg:block mb-[6px] ml-5 hidden" />}
+          {level === 0 && <span className="mb-[6px] ml-5 hidden h-[25px] lg:block" />}
         </>
       }
     >
