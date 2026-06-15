@@ -70,7 +70,7 @@ const LocalFooter = async ({...props}: Props) => {
         </div>
 
         <div className="grid gap-32 md:grid-cols-2 lg:grid-cols-4 [&_a:focus]:text-black [&_a:focus]:underline [&_a:hover]:text-black [&_a:hover]:underline [&_a]:font-normal [&_a]:no-underline [&_a]:transition">
-          <div className="space-y-12">
+          <div className="grow-3 space-y-12">
             {/* Column 1 */}
             {/* Primary Links */}
             {localFooterConfig.suLocalFootPrimeH && (
@@ -82,7 +82,7 @@ const LocalFooter = async ({...props}: Props) => {
                   if (!link.url) return
                   return (
                     <li key={`footer-primary-link-${index}`} className="m-0 p-0">
-                      <Link href={link.url} className="text-3xl">
+                      <Link href={link.url} className="text-16 text-digital-red">
                         {link.title}
                       </Link>
                     </li>
@@ -92,16 +92,18 @@ const LocalFooter = async ({...props}: Props) => {
             )}
 
             {/* Address */}
-            {localFooterConfig.suLocalFootAddress && <Address {...localFooterConfig.suLocalFootAddress} />}
+            {localFooterConfig.suLocalFootAddress && (
+              <Address {...localFooterConfig.suLocalFootAddress} className="text-16" />
+            )}
 
             {/* First Content block */}
             <Wysiwyg
               html={localFooterConfig.suLocalFootPrCo?.processed}
-              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase"
+              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
             />
           </div>
 
-          <div>
+          <div className="grow-3">
             {/* Secondary Links */}
             {localFooterConfig.suLocalFootSecondH && (
               <H2 className="type-1 font-regular uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
@@ -113,7 +115,7 @@ const LocalFooter = async ({...props}: Props) => {
                   if (!link.url) return
                   return (
                     <li key={`footer-second-link-${index}`} className="m-0 p-0">
-                      <Link href={link.url} className="text-3xl">
+                      <Link href={link.url} className="text-16 text-digital-red">
                         {link.title}
                       </Link>
                     </li>
@@ -125,25 +127,26 @@ const LocalFooter = async ({...props}: Props) => {
             {/* Second Content block */}
             <Wysiwyg
               html={localFooterConfig.suLocalFootSeCo?.processed}
-              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase"
+              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
             />
-          </div>
 
-          <div>
+            {/* Third Content block */}
             <Wysiwyg
               html={localFooterConfig.suLocalFootTr2Co?.processed}
-              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase"
+              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
             />
           </div>
 
-          <div>
+          <div className="shrink"></div>
+
+          <div className="grow-7 space-y-12">
             <div>
               {(localFooterConfig.suLocalFootFIntro || localFooterConfig.suLocalFootFButton) && (
                 <div className="local-footer__signup">
                   {localFooterConfig.suLocalFootFIntro?.processed && (
                     <Wysiwyg
                       html={localFooterConfig.suLocalFootFIntro.processed}
-                      className="[&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase"
+                      className="[&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase [&_p]:text-24 [&_p]:font-normal"
                     />
                   )}
 
@@ -152,12 +155,18 @@ const LocalFooter = async ({...props}: Props) => {
                       action={localFooterConfig.suLocalFootFUrl.url}
                       method={localFooterConfig.suLocalFootFMethod ?? "get"}
                     >
-                      <input type="email" name="email" placeholder="Enter your email" required />
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        className="w-full rounded-xl border border-black-30 bg-white px-4 py-3 text-16 text-black placeholder:text-black-30 focus:border-digital-red focus:outline-none"
+                        required
+                      />
 
                       {localFooterConfig.suLocalFootFButton && (
                         <button
                           type="submit"
-                          className="btn block w-fit bg-digital-red px-8 py-4 text-center font-normal text-white no-underline transition hocus:bg-black hocus:text-white hocus:underline"
+                          className="btn btn--secondary mt-3 block w-fit bg-digital-red px-8 py-4 text-center font-normal text-white no-underline transition hocus:bg-black hocus:text-white hocus:underline"
                         >
                           {localFooterConfig.suLocalFootFButton}
                         </button>
@@ -193,7 +202,7 @@ const LocalFooter = async ({...props}: Props) => {
                   if (!link.url) return
                   return (
                     <li key={`footer-action-link-${index}`} className="m-0 p-0">
-                      <ActionLink href={link.url} className="text-2xl">
+                      <ActionLink href={link.url} className="text-16 text-digital-red">
                         {link.title}
                       </ActionLink>
                     </li>
@@ -204,7 +213,7 @@ const LocalFooter = async ({...props}: Props) => {
 
             <Wysiwyg
               html={localFooterConfig.suLocalFootTrCo?.processed}
-              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase"
+              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
             />
           </div>
         </div>
