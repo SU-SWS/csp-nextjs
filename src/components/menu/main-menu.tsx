@@ -8,15 +8,10 @@ import {
   MainMenuItemClientLink,
   MainMenuItemClientWrapper,
 } from "@components/menu/main-menu.client"
-import Link from "@components/elements/link"
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid"
 
 const MainMenu = async () => {
   const menuItems = await getMenu(MenuAvailable.Main, 3)
-  const headerLinks = await getConfigPageField<StanfordBasicSiteSetting, StanfordBasicSiteSetting["suSiteHeaderLinks"]>(
-    "StanfordBasicSiteSetting",
-    "suSiteHeaderLinks"
-  )
 
   return (
     <MainMenuClientWrapper aria-label="Main Navigation" className="lg:centered">
