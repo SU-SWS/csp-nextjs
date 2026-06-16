@@ -69,77 +69,77 @@ const LocalFooter = async ({...props}: Props) => {
           )}
         </div>
 
-        <div className="grid gap-32 md:grid-cols-2 lg:grid-cols-4 [&_a:focus]:text-black [&_a:focus]:underline [&_a:hover]:text-black [&_a:hover]:underline [&_a]:font-normal [&_a]:no-underline [&_a]:transition">
-          <div className="grow-3 space-y-12">
-            {/* Column 1 */}
-            {/* Primary Links */}
-            {localFooterConfig.suLocalFootPrimeH && (
-              <H2 className="type-1 font-regular uppercase">{localFooterConfig.suLocalFootPrimeH}</H2>
-            )}
-            {localFooterConfig.suLocalFootPrimary && (
-              <ul className="list-unstyled">
-                {localFooterConfig.suLocalFootPrimary.map((link, index) => {
-                  if (!link.url) return
-                  return (
-                    <li key={`footer-primary-link-${index}`} className="m-0 p-0">
-                      <Link href={link.url} className="text-16 text-digital-red">
-                        {link.title}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
+        <div className="grid justify-between gap-32 md:grid-cols-2 lg:grid-cols-2 [&_a:focus]:text-black [&_a:focus]:underline [&_a:hover]:text-black [&_a:hover]:underline [&_a]:font-normal [&_a]:no-underline [&_a]:transition">
+          <div className="flex flex-col gap-32 self-start md:flex-row">
+            <div className="max-w-1/2">
+              {/* Column 1 */}
+              {/* Primary Links */}
+              {localFooterConfig.suLocalFootPrimeH && (
+                <H2 className="type-1 font-regular uppercase">{localFooterConfig.suLocalFootPrimeH}</H2>
+              )}
+              {localFooterConfig.suLocalFootPrimary && (
+                <ul className="list-unstyled">
+                  {localFooterConfig.suLocalFootPrimary.map((link, index) => {
+                    if (!link.url) return
+                    return (
+                      <li key={`footer-primary-link-${index}`} className="m-0 p-0">
+                        <Link href={link.url} className="text-16 text-digital-red">
+                          {link.title}
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
 
-            {/* Address */}
-            {localFooterConfig.suLocalFootAddress && (
-              <Address {...localFooterConfig.suLocalFootAddress} className="text-16" />
-            )}
+              {/* Address */}
+              {localFooterConfig.suLocalFootAddress && (
+                <Address {...localFooterConfig.suLocalFootAddress} className="text-16" />
+              )}
 
-            {/* First Content block */}
-            <Wysiwyg
-              html={localFooterConfig.suLocalFootPrCo?.processed}
-              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
-            />
+              {/* First Content block */}
+              <Wysiwyg
+                html={localFooterConfig.suLocalFootPrCo?.processed}
+                className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
+              />
+            </div>
+
+            <div className="max-w-1/2">
+              {/* Secondary Links */}
+              {localFooterConfig.suLocalFootSecondH && (
+                <H2 className="type-1 font-regular uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
+              )}
+
+              {localFooterConfig.suLocalFootSecond && (
+                <ul className="list-unstyled">
+                  {localFooterConfig.suLocalFootSecond.map((link, index) => {
+                    if (!link.url) return
+                    return (
+                      <li key={`footer-second-link-${index}`} className="m-0 p-0">
+                        <Link href={link.url} className="text-16 text-digital-red">
+                          {link.title}
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
+
+              {/* Second Content block */}
+              <Wysiwyg
+                html={localFooterConfig.suLocalFootSeCo?.processed}
+                className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
+              />
+
+              {/* Third Content block */}
+              <Wysiwyg
+                html={localFooterConfig.suLocalFootTr2Co?.processed}
+                className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
+              />
+            </div>
           </div>
 
-          <div className="grow-3">
-            {/* Secondary Links */}
-            {localFooterConfig.suLocalFootSecondH && (
-              <H2 className="type-1 font-regular uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
-            )}
-
-            {localFooterConfig.suLocalFootSecond && (
-              <ul className="list-unstyled">
-                {localFooterConfig.suLocalFootSecond.map((link, index) => {
-                  if (!link.url) return
-                  return (
-                    <li key={`footer-second-link-${index}`} className="m-0 p-0">
-                      <Link href={link.url} className="text-16 text-digital-red">
-                        {link.title}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            )}
-
-            {/* Second Content block */}
-            <Wysiwyg
-              html={localFooterConfig.suLocalFootSeCo?.processed}
-              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
-            />
-
-            {/* Third Content block */}
-            <Wysiwyg
-              html={localFooterConfig.suLocalFootTr2Co?.processed}
-              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
-            />
-          </div>
-
-          <div className="shrink"></div>
-
-          <div className="grow-7 space-y-12">
+          <div className="xl:w-1/2 xl:justify-self-end">
             <div>
               {(localFooterConfig.suLocalFootFIntro || localFooterConfig.suLocalFootFButton) && (
                 <div className="local-footer__signup">
@@ -158,8 +158,8 @@ const LocalFooter = async ({...props}: Props) => {
                       <input
                         type="email"
                         name="email"
-                        placeholder="Enter your email"
-                        className="w-full rounded-xl border border-black-30 bg-white px-4 py-3 text-16 text-black placeholder:text-black-30 focus:border-digital-red focus:outline-none"
+                        placeholder="Email address"
+                        className="rs-py-0 rs-px-1 w-full rounded-xl border border-black-30 bg-white text-16 text-black placeholder:text-black-30 focus:border-digital-red focus:outline-none"
                         required
                       />
 
@@ -177,14 +177,14 @@ const LocalFooter = async ({...props}: Props) => {
               )}
             </div>
             {localFooterConfig.suLocalFootSocial && (
-              <ul className="list-unstyled flex flex-wrap gap-3">
+              <ul className="list-unstyled rs-mt-neg2 flex flex-wrap justify-end gap-3">
                 {localFooterConfig.suLocalFootSocial.map((link, index) => {
                   if (!link.url) return
                   return (
                     <li key={`footer-action-link-${index}`}>
                       <Link
                         href={link.url}
-                        className="block rounded-full border border-transparent p-2 hocus:border-digital-blue [&_svg]:fill-black hocus:[&_svg]:fill-digital-blue"
+                        className="block rounded-full border border-transparent p-2 hocus:border-digital-blue [&_svg]:fill-black-60 hocus:[&_svg]:fill-digital-blue"
                       >
                         <SocialIcon url={link.url} />
                         <span className="sr-only">{link.title}</span>
