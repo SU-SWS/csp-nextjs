@@ -17,7 +17,7 @@ const UtilityNav = async () => {
   if (!headerButton && !headerLinks) return
 
   return (
-    <nav aria-label="Site utility navigation" className="mt-5 hidden lg:block">
+    <nav aria-label="Site utility navigation" className="mt-5 block">
       <ul className="list-unstyled flex items-center gap-10">
         {headerLinks?.map((link, i) => {
           const isCart = link.url?.includes("cart") || link.title?.toLowerCase().includes("cart")
@@ -25,9 +25,12 @@ const UtilityNav = async () => {
 
           return (
             <li key={`utility-link-${i}`} className="mb-0">
-              <Link className="text-17 font-normal text-stone-dark no-underline hocus:underline" href={link.url || "#"}>
+              <Link
+                className="text-17 font-normal text-archway-light no-underline hocus:underline [&_svg]:hocus:text-digital-red"
+                href={link.url || "#"}
+              >
                 {link.title}
-                <Icon width={16} className="ml-2 inline hocus:text-digital-red" />
+                <Icon width={16} className="ml-2 inline text-stone-dark" />
               </Link>
             </li>
           )

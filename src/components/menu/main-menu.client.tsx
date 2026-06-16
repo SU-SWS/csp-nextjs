@@ -36,15 +36,15 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
     <nav {...props} ref={menuRef}>
       <button
         ref={buttonRef}
-        className="group absolute right-10 top-5 flex flex-col items-center lg:hidden"
+        className="group absolute right-10 top-[5rem] flex flex-row-reverse items-center md:top-[5.4rem] lg:hidden"
         onClick={toggleMenu}
         aria-expanded={menuOpen}
         aria-label={menuOpen ? "Close Main Navigation Menu" : "Open Main Navigation Menu"}
       >
-        <span className="flex h-[30px] w-[30px] flex-col items-center justify-center">
+        <span className="flex h-[20px] w-[20px] flex-col items-center justify-center">
           <span
             className={twMerge(
-              "block h-[3px] w-full rounded-sm bg-black-true transition-all duration-300 ease-out",
+              "block h-[3px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out",
               clsx({
                 "translate-y-4 rotate-45": menuOpen,
                 "-translate-y-0.5": !menuOpen,
@@ -53,7 +53,7 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
           />
           <span
             className={twMerge(
-              "my-3 block h-[3px] w-full rounded-sm bg-black-true transition-all duration-300 ease-out",
+              "my-3 block h-[3px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out",
               clsx({
                 "opacity-0": menuOpen,
                 "opacity-100": !menuOpen,
@@ -62,7 +62,7 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
           />
           <span
             className={twMerge(
-              "block h-[3px] w-full rounded-sm bg-black-true transition-all duration-300 ease-out",
+              "block h-[3px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out",
               clsx({
                 "-translate-y-4 -rotate-45": menuOpen,
                 "translate-y-0.5": !menuOpen,
@@ -70,7 +70,7 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
             )}
           />
         </span>
-        <span className="group-hocus-visible:underline" aria-hidden="true">
+        <span className="mr-4 text-17 text-archway-light group-hocus-visible:underline" aria-hidden="true">
           {menuOpen ? "Close" : "Menu"}
         </span>
       </button>
@@ -123,7 +123,7 @@ export const MainMenuItemClientWrapper = ({id, level, link, children, ...props}:
         <>
           <button
             aria-labelledby={id}
-            className="group relative right-10 col-start-10 w-fit shrink-0 rounded-full border-b border-transparent bg-digital-red text-white hocus-visible:border-black hocus-visible:bg-transparent lg:right-0 lg:mt-2 lg:rounded-full lg:bg-transparent lg:text-archway-light lg:hocus:bg-white lg:hocus:text-archway-light lg:hocus-visible:border-transparent"
+            className="group relative right-10 col-start-10 w-fit shrink-0 rounded-full border-b border-transparent bg-white text-black active:text-black hocus:bg-white hocus:text-black hocus-visible:border-black lg:right-0 lg:mt-2 lg:rounded-full lg:bg-transparent lg:text-archway-light lg:hocus:bg-white lg:hocus:text-archway-light lg:hocus-visible:border-transparent"
             ref={buttonRef}
             onClick={toggleSubmenu}
             aria-expanded={submenuOpen}

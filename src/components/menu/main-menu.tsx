@@ -21,17 +21,6 @@ const MainMenu = async () => {
   return (
     <MainMenuClientWrapper aria-label="Main Navigation" className="lg:centered">
       <SiteSearchForm className="px-10 lg:hidden" />
-      {headerLinks?.[0].url && (
-        <ul className="list-unstyled mx-auto flex w-fit flex-wrap gap-10 pl-16 pt-5 lg:hidden">
-          {headerLinks.map((link, i) => (
-            <li key={`utility-link-${i}`}>
-              <Link className="text-white no-underline hocus:text-white hocus:underline" href={link.url as string}>
-                {link.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
       <ul className="list-unstyled mb-9 flex-wrap p-0 lg:flex lg:justify-start">
         {menuItems.map(item => (
           <MenuItem key={item.id} {...item} level={0} />
@@ -39,7 +28,7 @@ const MainMenu = async () => {
         <li>
           <button
             type="submit"
-            className="relative top-2 rounded-full border border-foggy-dark p-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white lg:block lg:justify-self-end"
+            className="relative top-2 hidden rounded-full border border-foggy-dark p-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white lg:block lg:justify-self-end"
           >
             <MagnifyingGlassIcon width={18} className="" />
             <span className="sr-only">Submit Search</span>
