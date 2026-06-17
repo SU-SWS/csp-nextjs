@@ -44,9 +44,14 @@ const PageHeader = async ({...props}: Props) => {
         <div className="min-h-50 centered pr-32 md:pr-24 lg:pr-0">
           <div className="flex w-full items-center justify-between">
             <Lockup />
-            <div>
+            <div className="flex items-center justify-end gap-6">
               <UtilityNav />
               <SiteSearchForm className="hidden lg:hidden" />
+              {/* This needs to be replaced with the BE work */}
+              <div className="rs-pt-0 rs-pb-2 rs-px-2 max-w-[24rem] rounded-b-3xl border-lagunita bg-lagunita text-left text-14 font-normal leading-none text-white">
+                <h2 className="text-18 font-normal uppercase">Winter Quarter</h2>
+                <p className="text-17">Winter courses are open for enrollment until February 9th.</p>
+              </div>
             </div>
           </div>
         </div>
