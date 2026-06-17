@@ -23,7 +23,7 @@ const MainMenu = async () => {
         <li>
           <button
             type="submit"
-            className="relative top-2 hidden rounded-full border border-foggy-dark p-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white lg:block lg:justify-self-end"
+            className="relative top-2 hidden rounded-full border border-fog-dark p-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white lg:block lg:justify-self-end"
           >
             <MagnifyingGlassIcon width={18} className="" />
             <span className="sr-only">Submit Search</span>
@@ -55,7 +55,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
             className={twMerge(
               "col-start-1 col-end-9 border-l-[6px] border-transparent py-5 text-white no-underline transition-all hocus:text-white hocus-visible:border-white hocus-visible:underline lg:gap-3 lg:text-17 lg:font-normal lg:text-stone-dark lg:active:text-cardinal-red lg:hocus:text-stone-dark",
               clsx({
-                "ml-5 pl-10 aria-current-page:text-white data-intrail:border-transparent lg:ml-0 lg:border-l-0 lg:pb-2 lg:pl-0 lg:aria-current-page:text-cardinal-red lg:data-intrail:border-foggy-dark":
+                "ml-5 pl-10 aria-current-page:text-white data-intrail:border-transparent lg:ml-0 lg:border-l-0 lg:pb-2 lg:pl-0 lg:aria-current-page:text-cardinal-red lg:data-intrail:border-fog-dark":
                   level === 0,
                 "pl-20 aria-current-page:border-digital-red lg:pl-5 lg:hocus-visible:border-black-true": level === 1,
                 "pl-28 aria-current-page:border-digital-red lg:pl-10 lg:hocus-visible:border-black-true": level === 2,

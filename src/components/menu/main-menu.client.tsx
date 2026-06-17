@@ -46,7 +46,7 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
             className={twMerge(
               "block h-[3px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out",
               clsx({
-                "translate-y-4 rotate-45": menuOpen,
+                "translate-y-[.8rem] rotate-45": menuOpen,
                 "-translate-y-0.5": !menuOpen,
               })
             )}
