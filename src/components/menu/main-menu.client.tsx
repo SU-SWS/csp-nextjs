@@ -36,7 +36,7 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
     <nav {...props} ref={menuRef}>
       <button
         ref={buttonRef}
-        className="group absolute right-10 top-[5rem] flex flex-row-reverse items-center md:top-[5.4rem] lg:hidden"
+        className="group absolute right-10 top-[5rem] flex flex-row-reverse items-center md:right-[7rem] md:top-[5.4rem] lg:hidden"
         onClick={toggleMenu}
         aria-expanded={menuOpen}
         aria-label={menuOpen ? "Close Main Navigation Menu" : "Open Main Navigation Menu"}

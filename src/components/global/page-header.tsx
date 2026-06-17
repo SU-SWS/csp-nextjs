@@ -44,11 +44,11 @@ const PageHeader = async ({...props}: Props) => {
         <div className="min-h-50 centered pr-32 md:pr-24 lg:pr-0">
           <div className="flex w-full items-center justify-between">
             <Lockup />
-            <div className="flex items-center justify-end gap-6">
+            <div className="flex items-center justify-end gap-6 md:mr-20 lg:mr-0">
               <UtilityNav />
               <SiteSearchForm className="hidden lg:hidden" />
-              {/* This needs to be replaced with the BE work */}
-              <div className="rs-pt-0 rs-pb-2 rs-px-2 max-w-[24rem] rounded-b-3xl border-lagunita bg-lagunita text-left text-14 font-normal leading-none text-white">
+              {/* This needs to be replaced with the BE work. This only appears <1200px */}
+              <div className="rs-pt-0 rs-pb-2 rs-px-2 hidden max-w-[24rem] rounded-b-3xl border-2 border-lagunita-dark bg-lagunita text-left text-14 font-normal leading-none text-white xl:block">
                 <h2 className="text-18 font-normal uppercase">Winter Quarter</h2>
                 <p className="text-17">Winter courses are open for enrollment until February 9th.</p>
               </div>
@@ -56,6 +56,13 @@ const PageHeader = async ({...props}: Props) => {
           </div>
         </div>
         <MainMenu />
+        {/* This needs to be replaced with the BE work. This only appears >1200px */}
+        <div className="rs-px-2 rs-mb-neg2 rs-py-neg2 mx-[3rem] flex flex-col gap-8 rounded-3xl border-2 border-lagunita-dark bg-lagunita pr-32 text-white md:mx-24 md:flex-row lg:mr-24 lg:max-w-[65rem] lg:justify-self-end xl:hidden">
+          <h2 className="mb-0 text-18 font-normal uppercase leading-none">Winter Quarter</h2>
+          <p className="mb-0 text-16 font-semibold leading-none">
+            Winter courses are open for enrollment until February 9th.
+          </p>
+        </div>
       </div>
     </header>
   )
