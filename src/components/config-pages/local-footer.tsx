@@ -62,7 +62,7 @@ const LocalFooter = async ({...props}: Props) => {
           {localFooterConfig.suLocalFootSunetT && (
             <Link
               href="/login"
-              className="not-sr-only inline-flex items-center pr-2 text-16 font-normal text-archway hocus:text-archway-dark hocus:underline"
+              className="not-sr-only inline-flex items-center pr-2 text-16 font-normal text-archway no-underline hocus:text-archway-dark hocus:underline"
             >
               {localFooterConfig.suLocalFootSunetT} {<UsersIcon width={16} className="ml-2" />}
             </Link>
@@ -139,14 +139,14 @@ const LocalFooter = async ({...props}: Props) => {
             </div>
           </div>
 
-          <div className="xl:w-1/2 xl:justify-self-end">
-            <div>
+          <div className="justify-self-end">
+            <div className="w-full md:max-w-500">
               {(localFooterConfig.suLocalFootFIntro || localFooterConfig.suLocalFootFButton) && (
                 <div className="local-footer__signup">
                   {localFooterConfig.suLocalFootFIntro?.processed && (
                     <Wysiwyg
                       html={localFooterConfig.suLocalFootFIntro.processed}
-                      className="[&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase [&_p]:text-24 [&_p]:font-normal"
+                      className="[&_p]:text-type-1 [&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase [&_p]:font-normal"
                     />
                   )}
 

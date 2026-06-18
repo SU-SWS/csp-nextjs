@@ -61,6 +61,21 @@ module.exports = {
         "lower-roman": "lower-roman",
         "upper-roman": "upper-roman",
       },
+      colors: {
+        ...(decanter.theme?.extend?.colors ?? {}),
+        "csp-cream": "#FCF9F5",
+        "csp-apricot": "#DAA67F",
+        "csp-archway": {
+          DEFAULT: "#5D4B3C",
+          dark80: "#2F242480",
+          meddark: "#4F3527",
+          xdark: "#2F2020",
+        },
+        "csp-lagunita": {
+          DEFAULT: "#007C92",
+          xdark: "#00637A",
+        },
+      },
     },
   },
   plugins: [

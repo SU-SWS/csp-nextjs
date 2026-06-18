@@ -48,7 +48,7 @@ const PageHeader = async ({...props}: Props) => {
               <UtilityNav />
               <SiteSearchForm className="hidden lg:hidden" />
               {/* This needs to be replaced with the BE work. This only appears <1200px */}
-              <div className="rs-pt-0 rs-pb-2 rs-px-2 hidden max-w-[24rem] rounded-b-3xl border-2 border-lagunita-dark bg-lagunita text-left text-14 font-normal leading-none text-white xl:block">
+              <div className="rs-pt-0 rs-pb-2 rs-px-2 hidden max-w-[24rem] rounded-b-3xl border-2 border-t-0 border-csp-lagunita-xdark bg-lagunita text-left text-14 font-normal leading-none text-white xl:block">
                 <h2 className="text-18 font-normal uppercase">Winter Quarter</h2>
                 <p className="text-17">Winter courses are open for enrollment until February 9th.</p>
               </div>
@@ -57,7 +57,7 @@ const PageHeader = async ({...props}: Props) => {
         </div>
         <MainMenu />
         {/* This needs to be replaced with the BE work. This only appears >1200px */}
-        <div className="rs-px-2 rs-mb-neg2 rs-py-neg2 mx-[3rem] flex flex-col gap-8 rounded-3xl border-2 border-lagunita-dark bg-lagunita pr-32 text-white md:mx-24 md:flex-row lg:mr-24 lg:max-w-[65rem] lg:justify-self-end xl:hidden">
+        <div className="rs-px-2 rs-mb-neg2 rs-py-neg2 mx-[3rem] flex flex-col gap-8 rounded-3xl border-2 border-csp-lagunita-xdark bg-lagunita pr-32 text-white md:mx-24 md:flex-row lg:mr-24 lg:max-w-[65rem] lg:justify-self-end xl:hidden">
           <h2 className="mb-0 text-18 font-normal uppercase leading-none">Winter Quarter</h2>
           <p className="mb-0 text-16 font-semibold leading-none">
             Winter courses are open for enrollment until February 9th.
