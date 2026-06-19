@@ -71,6 +71,7 @@ module.exports = {
         ...(decanter.theme?.extend?.colors ?? {}),
         "csp-cream": "#FCF9F5",
         "csp-apricot": "#DAA67F",
+        "csp-digital-red-xdark": "#7A0000",
         "csp-archway": {
           DEFAULT: "#5D4B3C",
           dark80: "#2F242480",
