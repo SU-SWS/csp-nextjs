@@ -12,23 +12,26 @@ import Link from "@components/elements/link"
 type Props = HTMLAttributes<HTMLElement>
 
 const PageHeader = async ({...props}: Props) => {
-  const headerButton = await getConfigPageField<
-    StanfordBasicSiteSetting,
-    StanfordBasicSiteSetting["suSiteHeaderButton"]
-  >("StanfordBasicSiteSetting", "suSiteHeaderButton")
+  const headerButton = await getConfigPageField<(typeof StanfordBasicSiteSetting)["suSiteHeaderButton"]>(
+    "StanfordBasicSiteSetting",
+    "suSiteHeaderButton"
+  )
+  const hideSearch =
+    (await getConfigPageField<StanfordBasicSiteSetting, StanfordBasicSiteSetting["suHideSiteSearch"]>(
+      "StanfordBasicSiteSetting",
+      "suHideSiteSearch"
+    )) === true
 
   return (
     <header {...props} className={twMerge("", props.className)}>
       <div className="bg-cardinal-red">
         <div className="centered flex items-center justify-between py-3">
           <Link
-            prefetch={false}
             className="font-stanford text-20 font-regular leading-none text-white no-underline hocus:text-white hocus:underline"
             href="https://www.stanford.edu"
           >
             Stanford University
           </Link>
-
           {headerButton?.url && (
             <Link
               className="text-white no-underline hocus:text-white hocus:underline lg:hidden"
@@ -46,8 +49,9 @@ const PageHeader = async ({...props}: Props) => {
             <Lockup />
             <div className="flex items-center justify-end gap-6 md:mr-20 lg:mr-0">
               <UtilityNav />
-              <SiteSearchForm className="hidden lg:hidden" />
-              {/* This needs to be replaced with the BE work. This only appears <1200px */}
+              {/* TODO: className was `hidden lg:block` in 1.x — review once Winter Quarter banner is replaced with BE work */}
+              {!hideSearch && <SiteSearchForm className="hidden lg:hidden" />}
+              {/* This needs to be replaced with the BE work. This only appears <1280px */}
               <div className="rs-pt-0 rs-pb-2 rs-px-2 hidden max-w-[24rem] rounded-b-3xl border-2 border-t-0 border-csp-lagunita-xdark bg-lagunita text-left text-14 font-normal leading-none text-white xl:block">
                 <h2 className="text-18 font-normal uppercase">Winter Quarter</h2>
                 <p className="text-17">Winter courses are open for enrollment until February 9th.</p>
@@ -55,8 +59,8 @@ const PageHeader = async ({...props}: Props) => {
             </div>
           </div>
         </div>
-        <MainMenu />
-        {/* This needs to be replaced with the BE work. This only appears >1200px */}
+        <MainMenu hideSearch={hideSearch} />
+        {/* This needs to be replaced with the BE work. This only appears ≥1280px */}
         <div className="rs-px-2 rs-mb-neg2 rs-py-neg2 mx-[3rem] flex flex-col gap-8 rounded-3xl border-2 border-csp-lagunita-xdark bg-lagunita pr-32 text-white md:mx-24 md:flex-row lg:mr-24 lg:max-w-[65rem] lg:justify-self-end xl:hidden">
           <h2 className="mb-0 text-18 font-normal uppercase leading-none">Winter Quarter</h2>
           <p className="mb-0 text-16 font-semibold leading-none">
@@ -67,4 +71,5 @@ const PageHeader = async ({...props}: Props) => {
     </header>
   )
 }
+
 export default PageHeader

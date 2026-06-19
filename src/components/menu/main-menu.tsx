@@ -1,7 +1,8 @@
-import {getMenu} from "@lib/gql/gql-queries"
-import {MenuAvailable, MenuItem as MenuItemType} from "@lib/gql/__generated__/graphql"
+import {getConfigPageField, getMenu} from "@lib/gql/gql-queries"
+import {MenuAvailable, MenuItem as MenuItemType, StanfordBasicSiteSetting} from "@lib/gql/__generated__/graphql"
 import twMerge from "@lib/utils/twMerge"
 import {clsx} from "clsx"
+import Link from "@components/elements/link"
 import SiteSearchForm from "@components/search/site-search-form"
 import {
   MainMenuClientWrapper,
@@ -10,12 +11,21 @@ import {
 } from "@components/menu/main-menu.client"
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid"
 
-const MainMenu = async () => {
-  const menuItems = await getMenu(MenuAvailable.Main, 3)
+type Props = {
+  hideSearch?: boolean
+}
 
+const MainMenu = async ({hideSearch}: Props) => {
+  const menuItems = await getMenu(MenuAvailable.Main, 3)
+  const headerLinks = await getConfigPageField<StanfordBasicSiteSetting, StanfordBasicSiteSetting["suSiteHeaderLinks"]>(
+    "StanfordBasicSiteSetting",
+    "suSiteHeaderLinks"
+  )
+  if (!menuItems.length && !headerLinks?.length && hideSearch) return null
   return (
     <MainMenuClientWrapper aria-label="Main Navigation" className="lg:centered">
-      <SiteSearchForm className="px-10 lg:hidden" />
+      {!hideSearch && <SiteSearchForm className="px-10 lg:hidden" />}
+      {/* mb-9 and lg:justify-start are design changes from CSP-48--menu */}
       <ul className="list-unstyled mb-9 flex-wrap p-0 lg:flex lg:justify-start">
         {menuItems.map(item => (
           <MenuItem key={item.id} {...item} level={0} />
@@ -50,6 +60,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
       link={
         <>
           <MainMenuItemClientLink
+            prefetch={level === 0}
             id={id}
             href={url || "#"}
             className={twMerge(

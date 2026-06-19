@@ -4,13 +4,10 @@ import {vaultEnvVars} from "./vault-envars"
 
 const drupalUrl = new URL(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL as string)
 
-module.exports = async (_phase: string, {defaultConfig}: {defaultConfig: NextConfig}) => {
+module.exports = async (_phase: string) => {
   const nextConfig: NextConfig = {
-    ...defaultConfig,
     env: {...(await vaultEnvVars())},
-    experimental: {
-      useCache: true,
-    },
+    cacheComponents: true,
     cacheLife: {
       default: {
         stale: undefined,
@@ -90,6 +87,7 @@ module.exports = async (_phase: string, {defaultConfig}: {defaultConfig: NextCon
       ]
     },
     async rewrites() {
+      // Rewrite document urls so the user doesn't change domains. They will stay on the FE.
       return [
         {
           source: "/files/:site(\\w+)/:slug(.*[txt|rtf|doc|docx|ppt|pptx|xls|xlsx|pdf]$)",

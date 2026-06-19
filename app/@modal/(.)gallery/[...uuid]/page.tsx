@@ -4,6 +4,7 @@ import Link from "@components/elements/link"
 import {ParagraphDocument, ParagraphQuery, ParagraphStanfordGallery} from "@lib/gql/__generated__/graphql"
 import {graphqlClient} from "@lib/gql/gql-client"
 import {notFound} from "next/navigation"
+import {INFINITE_CACHE} from "next/dist/lib/constants"
 
 type Props = {
   params: Promise<{uuid: string[]}>
@@ -13,12 +14,15 @@ type Props = {
 export const maxDuration = 30
 
 const Page = async (props: Props) => {
-  "use cache"
+  "use cache: remote"
 
   const params = await props.params
   const [paragraphId, mediaUuid] = params.uuid
 
-  const paragraphQuery = await graphqlClient().request<ParagraphQuery>(ParagraphDocument, {uuid: paragraphId})
+  const paragraphQuery = await graphqlClient({next: {revalidate: INFINITE_CACHE}}).request<ParagraphQuery>(
+    ParagraphDocument,
+    {uuid: paragraphId}
+  )
   if (paragraphQuery.paragraph?.__typename !== "ParagraphStanfordGallery") notFound()
 
   const paragraph = paragraphQuery.paragraph as ParagraphStanfordGallery
@@ -91,6 +95,10 @@ const Page = async (props: Props) => {
       })}
     </InterceptionModal>
   )
+}
+
+export const generateStaticParams = async (): Promise<Array<{uuid: string[]}>> => {
+  return [{uuid: ["none"]}]
 }
 
 export default Page
