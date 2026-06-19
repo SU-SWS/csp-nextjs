@@ -12,10 +12,6 @@ import Link from "@components/elements/link"
 type Props = HTMLAttributes<HTMLElement>
 
 const PageHeader = async ({...props}: Props) => {
-  const headerButton = await getConfigPageField<(typeof StanfordBasicSiteSetting)["suSiteHeaderButton"]>(
-    "StanfordBasicSiteSetting",
-    "suSiteHeaderButton"
-  )
   const hideSearch =
     (await getConfigPageField<StanfordBasicSiteSetting, StanfordBasicSiteSetting["suHideSiteSearch"]>(
       "StanfordBasicSiteSetting",
@@ -32,14 +28,6 @@ const PageHeader = async ({...props}: Props) => {
           >
             Stanford University
           </Link>
-          {headerButton?.url && (
-            <Link
-              className="text-white no-underline hocus:text-white hocus:underline lg:hidden"
-              href={headerButton.url}
-            >
-              {headerButton.title}
-            </Link>
-          )}
         </div>
       </div>
       <GlobalMessage />

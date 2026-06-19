@@ -61,6 +61,12 @@ module.exports = {
         "lower-roman": "lower-roman",
         "upper-roman": "upper-roman",
       },
+      borderRadius: {
+        "csp-xs": "var(--radius-xs)",
+        "csp-sm": "var(--radius-sm)",
+        "csp-md": "var(--radius-md)",
+        "csp-lg": "var(--radius-lg)",
+      },
       colors: {
         ...(decanter.theme?.extend?.colors ?? {}),
         "csp-cream": "#FCF9F5",

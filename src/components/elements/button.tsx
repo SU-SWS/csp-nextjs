@@ -24,6 +24,10 @@ export type ButtonProps = HtmlHTMLAttributes<HTMLAnchorElement | HTMLButtonEleme
    */
   secondary?: boolean
   /**
+   * Display a ghost styled button.
+   */
+  ghost?: boolean
+  /**
    * Center the button in the container.
    */
   centered?: boolean
@@ -50,6 +54,7 @@ export const Button = ({
   buttonElem = false,
   big = false,
   secondary = false,
+  ghost = false,
   centered = false,
   children,
   className,
@@ -58,14 +63,29 @@ export const Button = ({
   const standardClasses = clsx({
     "flex items-center w-fit mx-auto": centered,
     "inline-block text-center w-fit": !centered,
+    // Primary (existing)
     "btn btn--big transition text-5xl text-white hocus:text-white bg-digital-red hocus:bg-black no-underline hocus:underline py-6 px-12 font-normal":
-      big && !secondary,
+      big && !secondary && !ghost,
+
+    // Secondary (existing)
     "btn btn--secondary transition text-digital-red border-2 border-digital-red hocus:border-black no-underline hocus:underline py-4 px-8 font-normal":
-      !big && secondary,
-    "btn  btn--big btn--secondary transition text-5xl text-digital-red border-2 border-digital-red hocus:border-black no-underline hocus:underline py-6 px-12 font-normal":
-      big && secondary,
+      !big && secondary && !ghost,
+
+    // Big secondary (existing)
+    "btn btn--big btn--secondary transition text-5xl text-digital-red border-2 border-digital-red hocus:border-black no-underline hocus:underline py-6 px-12 font-normal":
+      big && secondary && !ghost,
+
+    // Default primary (existing)
     "btn bg-digital-red font-normal text-white hocus:bg-black hocus:text-white py-4 px-8 no-underline hocus:underline transition":
-      !big && !secondary,
+      !big && !secondary && !ghost,
+
+    // NEW: Ghost small -- transparent bg, white border, white text, fills on hover
+    "btn btn--ghost transition text-archway-dark border border-stone hocus:bg-archway-dark hocus:text-csp-cream no-underline hocus:underline py-4 px-8 font-normal text-18 rounded-csp-sm":
+      !big && ghost,
+
+    // NEW: Ghost big -- same treatment at large scale
+    "btn btn--ghost btn--big transition text-5xl text-archway-dark border rounded-csp-sm border-stone hocus:bg-archway-dark hocus:text-csp-cream no-underline hocus:underline py-7 px-12 font-normal":
+      big && ghost,
   })
 
   if (!href || buttonElem) {
