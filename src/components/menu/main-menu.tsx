@@ -2,7 +2,6 @@ import {getConfigPageField, getMenu} from "@lib/gql/gql-queries"
 import {MenuAvailable, MenuItem as MenuItemType, StanfordBasicSiteSetting} from "@lib/gql/__generated__/graphql"
 import twMerge from "@lib/utils/twMerge"
 import {clsx} from "clsx"
-import Link from "@components/elements/link"
 import SiteSearchForm from "@components/search/site-search-form"
 import {
   MainMenuClientWrapper,
