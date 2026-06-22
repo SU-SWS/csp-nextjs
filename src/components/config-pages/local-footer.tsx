@@ -63,7 +63,7 @@ const LocalFooter = async ({...props}: Props) => {
           {localFooterConfig.suLocalFootSunetT && (
             <Link
               href="/login"
-              className="not-sr-only inline-flex items-center pr-2 text-16 font-normal text-archway no-underline hocus:text-archway-dark hocus:underline"
+              className="not-sr-only inline-flex items-center pr-2 text-16 font-normal text-archway no-underline hocus:text-archway-dark hocus:underline [&_svg]:hocus:text-digital-red"
             >
               {localFooterConfig.suLocalFootSunetT} {<UsersIcon width={16} className="ml-2" />}
             </Link>
