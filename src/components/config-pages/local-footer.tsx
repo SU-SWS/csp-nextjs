@@ -165,7 +165,7 @@ const LocalFooter = async ({...props}: Props) => {
                       />
 
                       {localFooterConfig.suLocalFootFButton && (
-                        <Button type="submit" cardinal80 className="mt-3 block w-fit text-center transition">
+                        <Button type="submit" digitalred80 className="mt-3 block w-fit text-center transition">
                           {localFooterConfig.suLocalFootFButton}
                         </Button>
                       )}
