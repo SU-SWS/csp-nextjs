@@ -182,7 +182,7 @@ const LocalFooter = async ({...props}: Props) => {
                     <li key={`footer-action-link-${index}`}>
                       <Link
                         href={link.url}
-                        className="block rounded-full border border-transparent p-2 hocus:border-digital-blue [&_svg]:fill-black-60 hocus:[&_svg]:fill-digital-blue"
+                        className="block rounded-full border border-transparent p-2 [&_svg]:fill-csp-dark-66 hocus:[&_svg]:fill-csp-digital-red-xdark"
                       >
                         <SocialIcon url={link.url} />
                         <span className="sr-only">{link.title}</span>

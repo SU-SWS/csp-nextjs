@@ -73,6 +73,7 @@ const config: Config = {
         "csp-cream": "#FCF9F5",
         "csp-apricot": "#DAA67F",
         "csp-digital-red-xdark": "#7A0000",
+        "csp-dark-66": "#2F2424A8",
         "csp-archway": {
           DEFAULT: "#5D4B3C",
           dark80: "#2F242480",
