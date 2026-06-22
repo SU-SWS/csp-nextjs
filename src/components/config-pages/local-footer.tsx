@@ -160,12 +160,12 @@ const LocalFooter = async ({...props}: Props) => {
                         type="email"
                         name="email"
                         placeholder="Email address"
-                        className="rs-py-0 rs-px-1 w-full rounded-xl border border-black-30 bg-white text-16 text-black placeholder:text-black-30 focus:border-digital-red focus:outline-none"
+                        className="rs-mt-0 rs-py-0 rs-px-1 w-full rounded-xl border border-black-30 bg-white text-16 text-black placeholder:text-black-30 focus:border-digital-red focus:outline-none"
                         required
                       />
 
                       {localFooterConfig.suLocalFootFButton && (
-                        <Button type="submit" digitalred80 className="mt-3 block w-fit text-center transition">
+                        <Button type="submit" ghost className="rs-mt-0 block w-fit text-center transition">
                           {localFooterConfig.suLocalFootFButton}
                         </Button>
                       )}
