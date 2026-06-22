@@ -20,7 +20,7 @@ for (i = 1; i <= 4; i++) {
   threeColumn[`1-1-${i}`] = `minmax(0, 1fr) minmax(0, 1fr) minmax(0, ${i}fr)`
 }
 
-module.exports = {
+const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     fontFamily: decanter.theme?.fontFamily,
@@ -54,6 +54,7 @@ module.exports = {
       },
       fontFamily: {
         stanford: ["var(--font-stanford)", "sans-serif"],
+        serif: ["var(--font-serif)", "serif"],
       },
       listStyleType: {
         "lower-alpha": "lower-alpha",
@@ -95,3 +96,5 @@ module.exports = {
     centeredContainerStyles,
   ],
 } satisfies Config
+
+export default config

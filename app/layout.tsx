@@ -1,6 +1,6 @@
 import "../src/styles/index.css"
 import {Icon} from "next/dist/lib/metadata/types/metadata-types"
-import {sourceSans3, stanford} from "../src/styles/typography/fonts"
+import {sourceSans3, sourceSerif4, stanford} from "../src/styles/typography/fonts"
 import DrupalWindowSync from "@components/elements/drupal-window-sync"
 import UserAnalytics from "@components/elements/user-analytics"
 import {twJoin} from "tailwind-merge"
@@ -39,7 +39,7 @@ const RootLayout = async ({children, modal}: {children: React.ReactNode; modal: 
 
   const homePath = await getHomePagePath()
   return (
-    <html lang="en" className={twJoin(sourceSans3.className, stanford.variable)}>
+    <html lang="en" className={twJoin(sourceSans3.className, sourceSerif4.variable, stanford.variable)}>
       <UserAnalytics />
       <DrupalWindowSync homePath={homePath} />
       <body>

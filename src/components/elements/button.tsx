@@ -5,6 +5,7 @@ import {clsx} from "clsx"
 import {LinkProps} from "next/dist/client/link"
 import Link from "next/link"
 import {getLinkHref} from "@components/elements/link"
+import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 export type ButtonProps = HtmlHTMLAttributes<HTMLAnchorElement | HTMLButtonElement> & {
   /**
@@ -30,7 +31,7 @@ export type ButtonProps = HtmlHTMLAttributes<HTMLAnchorElement | HTMLButtonEleme
   /**
    * Display a cardinal styled button.
    */
-  cardinal?: boolean
+  cardinal80?: boolean
   /**
    * Display an archway styled button.
    */
@@ -64,7 +65,7 @@ export const Button = ({
   secondary = false,
   ghost = false,
   archway = false,
-  cardinal = false,
+  cardinal80 = false,
   centered = false,
   children,
   className,
@@ -74,20 +75,20 @@ export const Button = ({
     "flex items-center w-fit mx-auto": centered,
     "inline-block text-center w-fit": !centered,
     // Big Primary (existing)
-    "btn btn--big transition text-5xl text-white border-csp-digital-red-xdark border rounded-csp-smhocus:text-white bg-digital-red/80 hocus:bg-black no-underline hocus:underline py-6 px-12 font-normal border-digital-red-xdark":
-      big && !secondary && !ghost && !cardinal && !archway,
+    "btn btn--big transition text-5xl text-white border-csp-digital-red-xdark border rounded-csp-sm hocus:text-white bg-cardinal-red font-serif hocus:bg-black no-underline hocus:underline py-6 px-12 font-normal border-digital-red-xdark":
+      big && !secondary && !ghost && !cardinal80 && !archway,
 
     // Secondary (existing)
     "btn btn--secondary transition text-digital-red border-2 border-digital-red hocus:border-black no-underline hocus:underline py-4 px-8 font-normal":
-      !big && secondary && !ghost && !cardinal && !archway,
+      !big && secondary && !ghost && !cardinal80 && !archway,
 
     // Big secondary (existing)
-    "btn btn--big btn--secondary transition text-5xl text-digital-red border-2 border-digital-red hocus:border-black no-underline hocus:underline py-6 px-12 font-normal":
-      big && secondary && !ghost && !cardinal && !archway,
+    "btn btn--big btn--secondary transition text-5xl text-digital-red border-2 border-digital-red hocus:border-black no-underline hocus:underline py-6 px-12 font-normal font-serif":
+      big && secondary && !ghost && !cardinal80 && !archway,
 
     // Default primary (existing)
-    "btn bg-digital-red/80 border-csp-digital-red-xdark border rounded-csp-sm font-normal text-white hocus:bg-digital-red hocus:text-white py-4 px-8 no-underline hocus:underline transition":
-      !big && !secondary && !ghost && !cardinal && !archway,
+    "btn bg-cardinal-red border-csp-digital-red-xdark border rounded-csp-sm font-normal text-white hocus:bg-digital-red hocus:text-white py-4 px-8 no-underline hocus:underline transition":
+      !big && !secondary && !ghost && !cardinal80 && !archway,
 
     // NEW: Ghost small -- transparent bg, white border, white text, fills on hover
     "btn btn--ghost transition text-archway-dark border border-stone hocus:bg-archway-dark hocus:text-csp-cream no-underline hocus:underline py-4 px-8 font-normal text-18 rounded-csp-sm":
@@ -98,12 +99,12 @@ export const Button = ({
       big && ghost,
 
     // NEW: Cardinal small -- transparent bg, white border, white text, fills on hover
-    "btn btn--cardinal transition bg-cardinal-red text-csp-cream border-csp-digital-red-xdark border hocus:bg-digital-red hocus:text-csp-cream no-underline hocus:underline py-4 px-8 font-normal text-18 rounded-csp-sm":
-      !big && cardinal,
+    "btn btn--cardinal80 transition bg-digital-red/80 text-csp-cream border-csp-digital-red-xdark border hocus:bg-digital-red hocus:text-csp-cream no-underline hocus:underline py-4 px-8 font-normal text-18 rounded-csp-sm":
+      !big && cardinal80,
 
     // NEW: Cardinal big -- same treatment at large scale
-    "btn btn--cardinal btn--big bg-cardinal-red transition text-5xl text-csp-cream border-csp-digital-red-xdark border rounded-csp-sm hocus:bg-digital-red hocus:text-csp-cream no-underline hocus:underline py-7 px-12 font-normal":
-      big && cardinal,
+    "btn btn--cardinal80 btn--big bg-digital-red/80 transition text-5xl text-csp-cream border-csp-digital-red-xdark border rounded-csp-sm hocus:bg-digital-red hocus:text-csp-cream no-underline hocus:underline py-7 px-12 font-normal font-serif":
+      big && cardinal80,
 
     // NEW: Archway small -- transparent bg, white border, white text, fills on hover
     "btn btn--archway transition bg-archway-dark/80 text-csp-cream border-stone border hocus:bg-archway-dark hocus:text-csp-cream no-underline hocus:underline py-4 px-8 font-normal text-18 rounded-csp-sm":
@@ -118,6 +119,10 @@ export const Button = ({
     return (
       <button className={twMerge(standardClasses, className)} type="button" {...props}>
         {children}
+        <ArrowRightIcon
+          height={25}
+          className="ml-2 inline-block fill-csp-cream transition-all group-hocus-visible:translate-x-1"
+        />
       </button>
     )
   }
@@ -125,6 +130,10 @@ export const Button = ({
   return (
     <Link href={getLinkHref(href)} className={twMerge(standardClasses, className)} {...props}>
       {children}
+      <ArrowRightIcon
+        height={25}
+        className="ml-2 inline-block fill-csp-cream transition-all group-hocus-visible:translate-x-1"
+      />
     </Link>
   )
 }
