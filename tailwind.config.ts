@@ -36,6 +36,7 @@ const config: Config = {
         intrail: "intrail='true'",
       },
       screens: {
+        "3sm": "728px",
         "3xl": "1600px",
       },
       gridTemplateColumns: {...twoColumn, ...threeColumn},
