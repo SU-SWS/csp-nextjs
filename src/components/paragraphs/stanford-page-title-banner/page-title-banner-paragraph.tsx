@@ -15,9 +15,8 @@ const PageTitleBannerParagraph = ({paragraph, pageTitle, ...props}: Props) => {
       imageUrl={paragraph.suTitleBannerImage?.mediaImage.url}
       imageAlt={paragraph.suTitleBannerImage?.mediaImage.alt}
       eagerLoadImage
-      overlayAtMd
       overlayClassName="bg-gradient-to-b from-transparent to-csp-archway-xdark/95 md:bg-gradient-to-r md:from-csp-archway-xdark/95 md:to-transparent"
-      childrenClassName="@6xl:!bg-transparent @6xl:shadow-none shadow-none"
+      childrenClassName="!bg-archway-dark md:!bg-transparent"
       className="mx-[.4rem] overflow-hidden rounded-[20px] 3xl:mx-auto 3xl:max-w-[160rem]"
     >
       <span className="order-1 block h-[.4rem] w-[5rem] bg-cardinal-red" aria-hidden="true" />
