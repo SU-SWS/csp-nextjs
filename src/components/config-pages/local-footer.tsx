@@ -33,7 +33,7 @@ import MastodonIcon from "@components/elements/icons/MastodonIcon"
 import ThreadsIcon from "@components/elements/icons/ThreadsIcon"
 import ActionLink from "@components/elements/action-link"
 import {UsersIcon} from "@heroicons/react/24/solid"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 
 type Props = HTMLAttributes<HTMLDivElement>
 
@@ -165,7 +165,12 @@ const LocalFooter = async ({...props}: Props) => {
                       />
 
                       {localFooterConfig.suLocalFootFButton && (
-                        <Button type="submit" ghost className="rs-mt-0 block w-fit text-center transition">
+                        <Button
+                          type="submit"
+                          variant="ghost"
+                          size="default"
+                          className="rs-mt-0 block w-fit text-center transition"
+                        >
                           {localFooterConfig.suLocalFootFButton}
                         </Button>
                       )}

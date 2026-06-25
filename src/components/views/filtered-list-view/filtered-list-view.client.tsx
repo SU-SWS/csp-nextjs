@@ -7,7 +7,7 @@ import useFocusOnRender from "@hooks/useFocusOnRender"
 import useServerAction from "@hooks/useServerAction"
 import twMerge from "@lib/utils/twMerge"
 import {ArrowPathIcon} from "@heroicons/react/20/solid"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import InputGroup from "@components/elements/inputs/input-group"
 import RadioButton from "@components/elements/inputs/radio-button"
 

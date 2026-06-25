@@ -4,7 +4,7 @@ import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behavi
 import {H2, H3, H4} from "@components/elements/headers"
 import Wysiwyg from "@components/elements/wysiwyg"
 import ActionLink from "@components/elements/action-link"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import ImageCard from "@components/patterns/image-card"
 import {CardParagraphBehaviors} from "drupal"
 import {clsx} from "clsx"

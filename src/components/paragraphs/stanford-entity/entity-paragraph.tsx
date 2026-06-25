@@ -1,6 +1,6 @@
 import Wysiwyg from "@components/elements/wysiwyg"
 import NodeCard from "@components/nodes/cards/node-card"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import {H2} from "@components/elements/headers"
 import {ElementType, HtmlHTMLAttributes} from "react"
 import {NodeUnion, ParagraphStanfordEntity} from "@lib/gql/__generated__/graphql"

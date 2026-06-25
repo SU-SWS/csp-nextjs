@@ -1,6 +1,6 @@
 "use client"
 
-import Button, {ButtonProps} from "@components/elements/button"
+import Button, {ButtonProps} from "@components/elements/button/button"
 import {usePathname} from "next/navigation"
 
 const LoginButton = ({children, ...props}: ButtonProps) => {

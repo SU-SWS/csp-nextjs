@@ -8,7 +8,7 @@ import NodePageMetadata from "@components/nodes/pages/node-page-metadata"
 import {getCleanDescription, getFirstText} from "@lib/utils/text-tools"
 import Link from "@components/elements/link"
 import Telephone from "@components/elements/telephone"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import {getFilterTerms} from "@lib/gql/gql-queries"
 import {FilterVocabs} from "@lib/gql/filter-vocabs"
 
