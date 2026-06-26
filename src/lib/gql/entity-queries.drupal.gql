@@ -414,6 +414,18 @@ query ConfigPages {
             suUseThemeLogo
         }
     }
+    cspQuarterAlerts(first: 1) {
+        nodes {
+            __typename
+            uuid
+            cspQaEnabled
+            cspQaLabel
+            cspQaText {
+                processed
+            }
+            cspQaColor
+        }
+    }
 }
 
 

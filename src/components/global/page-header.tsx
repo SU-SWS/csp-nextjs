@@ -1,6 +1,7 @@
 import SiteSearchForm from "@components/search/site-search-form"
 import MainMenu from "@components/menu/main-menu"
 import GlobalMessage from "@components/config-pages/global-message"
+import QuarterAlert from "@components/config-pages/quarter-alert"
 import Lockup from "@components/elements/lockup/lockup"
 import {HTMLAttributes} from "react"
 import twMerge from "@lib/utils/twMerge"
@@ -44,6 +45,7 @@ const PageHeader = async ({...props}: Props) => {
         </div>
       </div>
       <GlobalMessage />
+      <QuarterAlert />
       <div className="relative shadow">
         <div className="min-h-50 centered pr-24 lg:pr-0">
           <div className="flex w-full items-center justify-between">
