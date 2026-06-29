@@ -119,7 +119,7 @@ const SearchBox = (props?: UseSearchBoxProps) => {
       </div>
       <div className="flex gap-10">
         <Button type="submit">Submit</Button>
-        <Button secondary type="reset" className={query.length === 0 ? "hidden" : undefined}>
+        <Button variant="secondary" size="default" type="reset" className={query.length === 0 ? "hidden" : undefined}>
           Reset
         </Button>
       </div>

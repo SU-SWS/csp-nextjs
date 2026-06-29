@@ -84,7 +84,7 @@ const StanfordMediaPage = async ({node, ...props}: Props) => {
               )}
 
               {node.suMediaTranscript && (
-                <Button href="#" secondary>
+                <Button href="#" variant="secondary" size="default">
                   Read Transcript
                 </Button>
               )}

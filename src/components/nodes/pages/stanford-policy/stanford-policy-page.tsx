@@ -46,13 +46,13 @@ const StanfordPolicyPage = async ({node, ...props}: Props) => {
         <H1 className="flex-grow">{node.title}</H1>
         <div className="flex h-fit gap-5">
           {prevPage && (
-            <Button href={prevPage.url} secondary className="flex items-center">
+            <Button href={prevPage.url} variant="secondary" size="default" className="flex items-center">
               <ChevronLeftIcon width={20} />
               Previous
             </Button>
           )}
           {nextPage && (
-            <Button href={nextPage.url} secondary className="flex items-center">
+            <Button href={nextPage.url} variant="secondary" size="default" className="flex items-center">
               Next
               <ChevronRightIcon width={20} />
             </Button>
