@@ -9,6 +9,7 @@ import {
   MainMenuItemClientWrapper,
 } from "@components/menu/main-menu.client"
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid"
+import {Button} from "@components/elements/button/button"
 
 type Props = {
   hideSearch?: boolean
@@ -21,6 +22,7 @@ const MainMenu = async ({hideSearch}: Props) => {
     "suSiteHeaderLinks"
   )
   if (!menuItems.length && !headerLinks?.length && hideSearch) return null
+
   return (
     <MainMenuClientWrapper aria-label="Main Navigation" className="lg:centered">
       {!hideSearch && <SiteSearchForm className="px-10 lg:hidden" />}
@@ -30,13 +32,16 @@ const MainMenu = async ({hideSearch}: Props) => {
           <MenuItem key={item.id} {...item} level={0} />
         ))}
         <li>
-          <button
+          <Button
             type="submit"
-            className="relative top-2 hidden rounded-full border border-fog-dark p-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white lg:block lg:justify-self-end"
+            showIcon={false}
+            variant="search"
+            size="round"
+            className="relative top-2 hidden lg:block lg:justify-self-end"
           >
-            <MagnifyingGlassIcon width={18} className="" />
+            <MagnifyingGlassIcon width={20} className="" />
             <span className="sr-only">Submit Search</span>
-          </button>
+          </Button>
         </li>
       </ul>
     </MainMenuClientWrapper>
@@ -80,7 +85,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
         </>
       }
     >
-      {children.length > 0 && (
+      {!!children.length && (
         <ul
           className={twMerge(
             "list-unstyled col-span-10 w-full min-w-[300px] px-0 lg:bg-white",

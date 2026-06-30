@@ -123,7 +123,7 @@ export const MainMenuItemClientWrapper = ({id, level, link, children, ...props}:
         <>
           <button
             aria-labelledby={id}
-            className="group relative right-10 col-start-10 w-fit shrink-0 rounded-full border-b border-transparent bg-white text-black active:text-black hocus:bg-white hocus:text-black hocus-visible:border-black lg:right-0 lg:mt-2 lg:rounded-full lg:bg-transparent lg:text-archway-light lg:hocus:bg-white lg:hocus:text-archway-light lg:hocus-visible:border-transparent"
+            className="group relative right-10 col-start-10 w-fit shrink-0 rounded-full border-b border-transparent bg-white text-black active:text-black hocus:bg-white hocus:text-black hocus-visible:border-black lg:right-0 lg:mt-2 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light lg:aria-current-page:text-cardinal-red lg:hocus:bg-transparent lg:hocus:text-archway-light lg:hocus-visible:border lg:hocus-visible:border-fog-dark"
             ref={buttonRef}
             onClick={toggleSubmenu}
             aria-expanded={submenuOpen}
@@ -131,7 +131,7 @@ export const MainMenuItemClientWrapper = ({id, level, link, children, ...props}:
             <ChevronDownIcon
               height={20}
               className={twMerge(
-                "ml-auto transition duration-150 ease-in-out group-hocus-visible:scale-125 group-hocus-visible:text-black",
+                "ml-auto transition duration-150 ease-in-out group-hocus-visible:scale-125 group-hocus-visible:text-csp-digital-red-xdark",
                 clsx({"rotate-180": submenuOpen})
               )}
             />

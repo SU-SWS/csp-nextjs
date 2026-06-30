@@ -1,6 +1,6 @@
 import {getConfigPageField} from "@lib/gql/gql-queries"
 import {StanfordBasicSiteSetting} from "@lib/gql/__generated__/graphql"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import Link from "@components/elements/link"
 import {UserIcon, ShoppingCartIcon} from "@heroicons/react/20/solid"
 

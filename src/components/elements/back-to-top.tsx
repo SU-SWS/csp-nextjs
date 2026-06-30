@@ -1,6 +1,6 @@
 "use client"
 
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import {ChevronUpIcon} from "@heroicons/react/20/solid"
 import {useBoolean, useDebounceCallback, useEventListener} from "usehooks-ts"
 import {useCallback} from "react"

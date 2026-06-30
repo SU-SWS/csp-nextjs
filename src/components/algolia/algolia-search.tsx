@@ -4,7 +4,7 @@ import {liteClient} from "algoliasearch/lite"
 import {useHits, useSearchBox} from "react-instantsearch"
 import {InstantSearchNext} from "react-instantsearch-nextjs"
 import {useRef} from "react"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import {UseSearchBoxProps} from "react-instantsearch"
 import DefaultHit, {DefaultAlgoliaHit} from "@components/algolia/hits/default"
 import {usePathname} from "next/navigation"
@@ -119,7 +119,7 @@ const SearchBox = (props?: UseSearchBoxProps) => {
       </div>
       <div className="flex gap-10">
         <Button type="submit">Submit</Button>
-        <Button secondary type="reset" className={query.length === 0 ? "hidden" : undefined}>
+        <Button variant="secondary" size="default" type="reset" className={query.length === 0 ? "hidden" : undefined}>
           Reset
         </Button>
       </div>

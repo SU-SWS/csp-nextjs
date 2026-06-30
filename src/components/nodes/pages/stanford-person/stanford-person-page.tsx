@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Wysiwyg from "@components/elements/wysiwyg"
 import Rows from "@components/paragraphs/rows/rows"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import {LinkIcon, MapPinIcon, PhoneIcon} from "@heroicons/react/20/solid"
 import Telephone from "@components/elements/telephone"
 import Email from "@components/elements/email"

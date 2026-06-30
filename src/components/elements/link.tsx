@@ -2,7 +2,7 @@ import {HtmlHTMLAttributes} from "react"
 import Link from "next/link"
 import {EnvelopeIcon} from "@heroicons/react/24/outline"
 import ActionLink from "@components/elements/action-link"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import {LinkProps as NextLinkProps} from "next/dist/client/link"
 import {ArrowUpRightIcon} from "@heroicons/react/16/solid"
 import twMerge from "@lib/utils/twMerge"
@@ -62,13 +62,23 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
   }
 
   if (className?.includes("button")) {
+    const variant = className.includes("--secondary")
+      ? "secondary"
+      : className.includes("--ghost")
+        ? "ghost"
+        : className.includes("--digitalred")
+          ? "digitalred"
+          : className.includes("--archway")
+            ? "archway"
+            : "primary"
+
     return (
       <Button
         prefetch={false}
         href={href}
-        big={className.includes("--big")}
-        secondary={className.includes("--secondary")}
-        className={className?.replaceAll("button", "")}
+        variant={variant}
+        size={className.includes("--big") ? "big" : "default"}
+        className={className?.replace(/\bbutton(--(secondary|ghost|digitalred|archway|big))?\b/g, "").trim()}
         {...props}
       >
         {children}
@@ -83,17 +93,22 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
     )
   }
 
-  return (
-    <Link prefetch={false} href={href} className={twMerge("group", className)} {...props}>
-      {children}
-      {href.startsWith("mailto") && <EnvelopeIcon width={20} className="ml-4 inline-block" />}
-
-      {externalLink && (
+  if (externalLink) {
+    return (
+      <a href={href} className={twMerge("group", className)} target="_blank" rel="noopener noreferrer" {...props}>
+        {children}
         <ArrowUpRightIcon
           height={20}
           className="ml-2 inline-block transition-all group-hocus-visible:-translate-y-1 group-hocus-visible:translate-x-1"
         />
-      )}
+      </a>
+    )
+  }
+
+  return (
+    <Link prefetch={false} href={href} className={twMerge("group", className)} {...props}>
+      {children}
+      {href.startsWith("mailto") && <EnvelopeIcon width={20} className="ml-4 inline-block" />}
     </Link>
   )
 }

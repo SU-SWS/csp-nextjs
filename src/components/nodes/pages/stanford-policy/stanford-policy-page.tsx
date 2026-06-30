@@ -6,7 +6,7 @@ import {H1, H2, H3} from "@components/elements/headers"
 import {BookLink, NodeInterface, NodeStanfordPolicy} from "@lib/gql/__generated__/graphql"
 import {getEntityFromPath} from "@lib/gql/gql-queries"
 import InteriorPage from "@components/layouts/interior-page"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import {ChevronLeftIcon} from "@heroicons/react/16/solid"
 import {ChevronRightIcon} from "@heroicons/react/20/solid"
 import StanfordPolicyListItem from "@components/nodes/list-item/stanford-policy/stanford-policy-list-item"
@@ -46,13 +46,13 @@ const StanfordPolicyPage = async ({node, ...props}: Props) => {
         <H1 className="flex-grow">{node.title}</H1>
         <div className="flex h-fit gap-5">
           {prevPage && (
-            <Button href={prevPage.url} secondary className="flex items-center">
+            <Button href={prevPage.url} variant="secondary" size="default" className="flex items-center">
               <ChevronLeftIcon width={20} />
               Previous
             </Button>
           )}
           {nextPage && (
-            <Button href={nextPage.url} secondary className="flex items-center">
+            <Button href={nextPage.url} variant="secondary" size="default" className="flex items-center">
               Next
               <ChevronRightIcon width={20} />
             </Button>
