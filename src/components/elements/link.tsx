@@ -66,8 +66,8 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
       ? "secondary"
       : className.includes("--ghost")
         ? "ghost"
-        : className.includes("--digitalred80")
-          ? "digitalred80"
+        : className.includes("--digitalred")
+          ? "digitalred"
           : className.includes("--archway")
             ? "archway"
             : "primary"
@@ -78,7 +78,7 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
         href={href}
         variant={variant}
         size={className.includes("--big") ? "big" : "default"}
-        className={className?.replace(/\bbutton(--(secondary|ghost|digitalred80|archway|big))?\b/g, "").trim()}
+        className={className?.replace(/\bbutton(--(secondary|ghost|digitalred|archway|big))?\b/g, "").trim()}
         {...props}
       >
         {children}
