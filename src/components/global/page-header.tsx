@@ -24,7 +24,7 @@ const PageHeader = async ({...props}: Props) => {
       <div className="bg-cardinal-red">
         <div className="centered flex items-center justify-between py-3">
           <Link
-            className="font-stanford text-20 font-regular leading-none text-white no-underline hocus:text-white hocus:underline"
+            className="logo font-stanford text-20 font-regular leading-none text-white no-underline hocus:text-white"
             href="https://www.stanford.edu"
           >
             Stanford University
@@ -43,10 +43,10 @@ const PageHeader = async ({...props}: Props) => {
               <QuarterAlert className="hidden xl:block" />
             </div>
           </div>
+          <MainMenu hideSearch={hideSearch} />
+          {/* This needs to be replaced with the BE work. This only appears ≥1280px */}
+          <QuarterAlert className="flex flex-row xl:hidden" />
         </div>
-        <MainMenu hideSearch={hideSearch} />
-        {/* This needs to be replaced with the BE work. This only appears ≥1280px */}
-        <QuarterAlert className="flex flex-row xl:hidden" />
       </div>
     </header>
   )
