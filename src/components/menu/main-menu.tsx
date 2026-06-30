@@ -36,6 +36,7 @@ const MainMenu = async ({hideSearch}: Props) => {
             type="submit"
             showIcon={false}
             variant="search"
+            size="round"
             className="relative top-2 hidden lg:block lg:justify-self-end"
           >
             <MagnifyingGlassIcon width={20} className="" />
