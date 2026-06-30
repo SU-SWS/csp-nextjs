@@ -184,7 +184,7 @@ const LocalFooter = async ({...props}: Props) => {
                 {localFooterConfig.suLocalFootSocial.map((link, index) => {
                   if (!link.url) return
                   return (
-                    <li key={`footer-action-link-${index}`}>
+                    <li key={`footer-social-link-${index}`}>
                       <Link
                         href={link.url}
                         className="block rounded-full border border-transparent p-2 [&_svg]:fill-csp-dark-66 hocus:[&_svg]:fill-csp-digital-red-xdark"

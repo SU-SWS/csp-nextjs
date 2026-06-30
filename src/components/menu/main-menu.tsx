@@ -9,6 +9,7 @@ import {
   MainMenuItemClientWrapper,
 } from "@components/menu/main-menu.client"
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid"
+import {Button} from "@components/elements/button/button"
 
 type Props = {
   hideSearch?: boolean
@@ -30,13 +31,13 @@ const MainMenu = async ({hideSearch}: Props) => {
           <MenuItem key={item.id} {...item} level={0} />
         ))}
         <li>
-          <button
+          <Button
             type="submit"
             className="relative top-2 hidden rounded-full border border-fog-dark p-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white lg:block lg:justify-self-end"
           >
             <MagnifyingGlassIcon width={18} className="" />
             <span className="sr-only">Submit Search</span>
-          </button>
+          </Button>
         </li>
       </ul>
     </MainMenuClientWrapper>
