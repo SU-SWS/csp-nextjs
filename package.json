@@ -1,6 +1,6 @@
 {
   "name": "decoupled-cardinalsites",
-  "version": "0.1.0",
+  "version": "0.1.0-test",
   "private": true,
   "scripts": {
     "dev": "DEV=true next dev --webpack",
