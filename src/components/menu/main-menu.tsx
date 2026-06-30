@@ -33,9 +33,11 @@ const MainMenu = async ({hideSearch}: Props) => {
         <li>
           <Button
             type="submit"
-            className="relative top-2 hidden rounded-full border border-fog-dark p-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white lg:block lg:justify-self-end"
+            showIcon={false}
+            variant="search"
+            className="relative top-2 hidden lg:block lg:justify-self-end"
           >
-            <MagnifyingGlassIcon width={18} className="" />
+            <MagnifyingGlassIcon width={20} className="" />
             <span className="sr-only">Submit Search</span>
           </Button>
         </li>

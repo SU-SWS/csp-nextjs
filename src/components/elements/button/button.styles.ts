@@ -1,4 +1,4 @@
-export type ButtonVariantType = "primary" | "secondary" | "ghost" | "digitalred" | "archway"
+export type ButtonVariantType = "primary" | "secondary" | "ghost" | "digitalred" | "archway" | "search"
 export type ButtonSizeType = "default" | "big"
 
 export const buttonBase = "btn w-fit font-normal no-underline transition rounded-csp-sm hocus:underline"
@@ -10,6 +10,8 @@ export const buttonVariants: Record<ButtonVariantType, string> = {
   digitalred:
     "bg-digital-red/80 border border-csp-digital-red-xdark text-csp-cream hocus:bg-digital-red hocus:text-csp-cream",
   archway: "bg-archway-dark/80 border border-stone text-csp-cream hocus:bg-archway-dark hocus:text-csp-cream",
+  search:
+    "rounded-full border border-fog-dark p-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white",
 }
 
 export const buttonSizes: Record<ButtonSizeType, string> = {

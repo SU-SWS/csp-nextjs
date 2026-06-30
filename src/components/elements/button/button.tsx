@@ -51,6 +51,10 @@ export type ButtonProps = HtmlHTMLAttributes<HTMLAnchorElement | HTMLButtonEleme
    * Disabled button element.
    */
   disabled?: boolean
+  /**
+   * Show arrow on button.
+   */
+  showIcon?: boolean
 }
 
 export const Button = ({
@@ -59,6 +63,7 @@ export const Button = ({
   variant = "primary",
   size = "default",
   centered = false,
+  showIcon = true,
   children,
   className,
   ...props
@@ -73,11 +78,15 @@ export const Button = ({
     className
   )
 
+  const icon = showIcon && (
+    <ArrowRightIcon height={25} className="ml-2 inline-block transition-all group-hocus-visible:translate-x-1" />
+  )
+
   if (!href || buttonElem) {
     return (
       <button className={classes} type="button" {...props}>
         {children}
-        <ArrowRightIcon height={25} className="ml-2 inline-block transition-all group-hocus-visible:translate-x-1" />
+        {icon}
       </button>
     )
   }
@@ -85,7 +94,7 @@ export const Button = ({
   return (
     <Link href={getLinkHref(href)} className={classes} {...props}>
       {children}
-      <ArrowRightIcon height={25} className="ml-2 inline-block transition-all group-hocus-visible:translate-x-1" />
+      {icon}
     </Link>
   )
 }
