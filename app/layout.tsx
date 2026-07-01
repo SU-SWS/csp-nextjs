@@ -4,6 +4,7 @@ import {sourceSans3, sourceSerif4, stanford} from "../src/styles/typography/font
 import UserAnalytics from "@components/elements/user-analytics"
 import {twJoin} from "tailwind-merge"
 import GlobalPage from "@components/layouts/global-page"
+import {SpeedInsights} from "@vercel/speed-insights/next"
 
 // Vercel max execution. See https://vercel.com/docs/functions/configuring-functions/duration
 export const maxDuration = 30
@@ -38,6 +39,7 @@ export const dynamic = "force-static"
 const RootLayout = async ({children, modal}: {children: React.ReactNode; modal: React.ReactNode}) => {
   return (
     <html lang="en" className={twJoin(sourceSans3.className, sourceSerif4.variable, stanford.variable)}>
+      <SpeedInsights />
       <UserAnalytics />
       <body>
         <nav aria-label="Skip Links">
