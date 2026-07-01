@@ -101,7 +101,7 @@ const LocalFooter = async ({...props}: Props) => {
               {/* First Content block */}
               <Wysiwyg
                 html={localFooterConfig.suLocalFootPrCo?.processed}
-                className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
+                className="mt-12 [&_h2]:type-1 [&_.btn--secondary]:bg-white [&_h2]:font-regular [&_h2]:uppercase"
               />
             </div>
 
@@ -129,13 +129,13 @@ const LocalFooter = async ({...props}: Props) => {
               {/* Second Content block */}
               <Wysiwyg
                 html={localFooterConfig.suLocalFootSeCo?.processed}
-                className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
+                className="mt-12 [&_h2]:type-1 [&_.btn--secondary]:bg-white [&_h2]:font-regular [&_h2]:uppercase"
               />
 
               {/* Third Content block */}
               <Wysiwyg
                 html={localFooterConfig.suLocalFootTr2Co?.processed}
-                className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
+                className="mt-12 [&_h2]:type-1 [&_.btn--secondary]:bg-white [&_h2]:font-regular [&_h2]:uppercase"
               />
             </div>
           </div>
