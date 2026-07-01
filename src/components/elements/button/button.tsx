@@ -1,10 +1,18 @@
 import twMerge from "@lib/utils/twMerge"
 import {HtmlHTMLAttributes, MouseEventHandler} from "react"
 import {Maybe} from "@lib/gql/__generated__/graphql"
-import {clsx} from "clsx"
 import {LinkProps} from "next/dist/client/link"
 import Link from "next/link"
 import {getLinkHref} from "@components/elements/link"
+import {ArrowRightIcon} from "@heroicons/react/20/solid"
+import {
+  buttonBase,
+  buttonVariants,
+  buttonSizes,
+  buttonSecondarySizes,
+  type ButtonVariantType,
+  type ButtonSizeType,
+} from "./button.styles"
 
 export type ButtonProps = HtmlHTMLAttributes<HTMLAnchorElement | HTMLButtonElement> & {
   /**
@@ -16,13 +24,13 @@ export type ButtonProps = HtmlHTMLAttributes<HTMLAnchorElement | HTMLButtonEleme
    */
   buttonElem?: boolean
   /**
-   * Display a larger button.
+   * Visual style variant.
    */
-  big?: boolean
+  variant?: ButtonVariantType
   /**
-   * Display a secondary styled button.
+   * Size variant.
    */
-  secondary?: boolean
+  size?: ButtonSizeType
   /**
    * Center the button in the container.
    */
@@ -43,42 +51,50 @@ export type ButtonProps = HtmlHTMLAttributes<HTMLAnchorElement | HTMLButtonEleme
    * Disabled button element.
    */
   disabled?: boolean
+  /**
+   * Show arrow on button.
+   */
+  showIcon?: boolean
 }
 
 export const Button = ({
   href,
   buttonElem = false,
-  big = false,
-  secondary = false,
+  variant = "primary",
+  size = "default",
   centered = false,
+  showIcon = true,
   children,
   className,
   ...props
 }: ButtonProps) => {
-  const standardClasses = clsx({
-    "flex items-center w-fit mx-auto": centered,
-    "inline-block text-center w-fit": !centered,
-    "btn btn--big transition text-5xl text-white hocus:text-white bg-digital-red hocus:bg-black no-underline hocus:underline py-6 px-12 font-normal":
-      big && !secondary,
-    "btn btn--secondary transition text-digital-red border-2 border-digital-red hocus:border-black no-underline hocus:underline py-4 px-8 font-normal":
-      !big && secondary,
-    "btn  btn--big btn--secondary transition text-5xl text-digital-red border-2 border-digital-red hocus:border-black no-underline hocus:underline py-6 px-12 font-normal":
-      big && secondary,
-    "btn bg-digital-red font-normal text-white hocus:bg-black hocus:text-white py-4 px-8 no-underline hocus:underline transition":
-      !big && !secondary,
-  })
+  const isSecondary = variant === "secondary"
+
+  const classes = twMerge(
+    buttonBase,
+    buttonVariants[variant],
+    isSecondary ? buttonSecondarySizes[size] : buttonSizes[size],
+    centered ? "flex items-center mx-auto" : "inline-block text-center",
+    className
+  )
+
+  const icon = showIcon && (
+    <ArrowRightIcon height={25} className="ml-2 inline-block transition-all group-hocus-visible:translate-x-1" />
+  )
 
   if (!href || buttonElem) {
     return (
-      <button className={twMerge(standardClasses, className)} type="button" {...props}>
+      <button className={classes} type="button" {...props}>
         {children}
+        {icon}
       </button>
     )
   }
 
   return (
-    <Link href={getLinkHref(href)} className={twMerge(standardClasses, className)} {...props}>
+    <Link href={getLinkHref(href)} className={classes} {...props}>
       {children}
+      {icon}
     </Link>
   )
 }

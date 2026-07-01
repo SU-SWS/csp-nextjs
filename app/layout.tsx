@@ -1,6 +1,6 @@
 import "../src/styles/index.css"
 import {Icon} from "next/dist/lib/metadata/types/metadata-types"
-import {sourceSans3, stanford} from "../src/styles/typography/fonts"
+import {sourceSans3, sourceSerif4, stanford} from "../src/styles/typography/fonts"
 import UserAnalytics from "@components/elements/user-analytics"
 import {twJoin} from "tailwind-merge"
 import GlobalPage from "@components/layouts/global-page"
@@ -37,7 +37,7 @@ export const dynamic = "force-static"
 
 const RootLayout = async ({children, modal}: {children: React.ReactNode; modal: React.ReactNode}) => {
   return (
-    <html lang="en" className={twJoin(sourceSans3.className, stanford.variable)}>
+    <html lang="en" className={twJoin(sourceSans3.className, sourceSerif4.variable, stanford.variable)}>
       <UserAnalytics />
       <body>
         <nav aria-label="Skip Links">

@@ -10,7 +10,7 @@ import {
 } from "@lib/gql/__generated__/graphql"
 import Oembed from "@components/elements/ombed"
 import {H1} from "@components/elements/headers"
-import Button from "@components/elements/button"
+import Button from "@components/elements/button/button"
 import {INFINITE_CACHE} from "next/dist/lib/constants"
 
 export const metadata: Metadata = {

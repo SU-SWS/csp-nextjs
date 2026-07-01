@@ -20,7 +20,7 @@ for (i = 1; i <= 4; i++) {
   threeColumn[`1-1-${i}`] = `minmax(0, 1fr) minmax(0, 1fr) minmax(0, ${i}fr)`
 }
 
-module.exports = {
+const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     fontFamily: decanter.theme?.fontFamily,
@@ -54,12 +54,36 @@ module.exports = {
       },
       fontFamily: {
         stanford: ["var(--font-stanford)", "sans-serif"],
+        serif: ["var(--font-serif)", "serif"],
       },
       listStyleType: {
         "lower-alpha": "lower-alpha",
         "upper-alpha": "upper-alpha",
         "lower-roman": "lower-roman",
         "upper-roman": "upper-roman",
+      },
+      borderRadius: {
+        "csp-xs": "var(--radius-xs)",
+        "csp-sm": "var(--radius-sm)",
+        "csp-md": "var(--radius-md)",
+        "csp-lg": "var(--radius-lg)",
+      },
+      colors: {
+        ...(decanter.theme?.extend?.colors ?? {}),
+        "csp-cream": "#FCF9F5",
+        "csp-apricot": "#DAA67F",
+        "csp-digital-red-xdark": "#7A0000",
+        "csp-dark-66": "#2F2424A8",
+        "csp-archway": {
+          DEFAULT: "#5D4B3C",
+          dark80: "#2F242480",
+          meddark: "#4F3527",
+          xdark: "#2F2020",
+        },
+        "csp-lagunita": {
+          DEFAULT: "#007C92",
+          xdark: "#00637A",
+        },
       },
     },
   },
@@ -73,3 +97,5 @@ module.exports = {
     centeredContainerStyles,
   ],
 } satisfies Config
+
+export default config

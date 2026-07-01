@@ -23,7 +23,7 @@ const GlobalMessage = async () => {
           "bg-digital-blue-dark text-white": globalMessageConfig.suGlobalMsgType === "info",
           "bg-illuminating-dark": globalMessageConfig.suGlobalMsgType === "warning",
           "bg-digital-green text-white": globalMessageConfig.suGlobalMsgType === "success",
-          "bg-foggy-light": globalMessageConfig.suGlobalMsgType === "plain",
+          "bg-fog-light": globalMessageConfig.suGlobalMsgType === "plain",
           "bg-digital-red text-white": globalMessageConfig.suGlobalMsgType === "error",
         })
       )}

@@ -8,7 +8,8 @@ import {
   MainMenuItemClientLink,
   MainMenuItemClientWrapper,
 } from "@components/menu/main-menu.client"
-import Link from "@components/elements/link"
+import {MagnifyingGlassIcon} from "@heroicons/react/20/solid"
+import {Button} from "@components/elements/button/button"
 
 type Props = {
   hideSearch?: boolean
@@ -25,21 +26,23 @@ const MainMenu = async ({hideSearch}: Props) => {
   return (
     <MainMenuClientWrapper aria-label="Main Navigation" className="lg:centered">
       {!hideSearch && <SiteSearchForm className="px-10 lg:hidden" />}
-      {headerLinks?.[0].url && (
-        <ul className="list-unstyled mx-auto flex w-fit flex-wrap gap-10 pl-16 pt-5 lg:hidden">
-          {headerLinks.map((link, i) => (
-            <li key={`utility-link-${i}`}>
-              <Link className="text-white no-underline hocus:text-white hocus:underline" href={link.url as string}>
-                {link.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-      <ul className="list-unstyled m-0 flex-wrap p-0 lg:flex lg:justify-end">
+      {/* mb-9 and lg:justify-start are design changes from CSP-48--menu */}
+      <ul className="list-unstyled mb-9 flex-wrap p-0 lg:flex lg:justify-start">
         {menuItems.map(item => (
           <MenuItem key={item.id} {...item} level={0} />
         ))}
+        <li>
+          <Button
+            type="submit"
+            showIcon={false}
+            variant="search"
+            size="round"
+            className="relative top-2 hidden lg:block lg:justify-self-end"
+          >
+            <MagnifyingGlassIcon width={20} className="" />
+            <span className="sr-only">Submit Search</span>
+          </Button>
+        </li>
       </ul>
     </MainMenuClientWrapper>
   )
@@ -55,7 +58,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
       id={id}
       level={level}
       className={twMerge(
-        "relative m-0 grid grid-cols-10 items-center justify-between border-b border-cool-grey py-2 first:border-t last:border-0 lg:relative lg:border-black-20 lg:py-0 lg:pr-5",
+        "relative m-0 grid grid-cols-10 items-center justify-between border-b border-cool-grey py-2 first:border-t last:border-0 lg:relative lg:border-black-20 lg:py-0 lg:pr-11",
         clsx({"first:border-t-0 lg:flex lg:border-b-0 last:lg:pr-0": level === 0, "lg:first:border-t-0": level === 1})
       )}
       link={
@@ -65,9 +68,9 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
             id={id}
             href={url || "#"}
             className={twMerge(
-              "col-start-1 col-end-9 border-l-[6px] border-transparent py-5 text-white no-underline transition-all hocus:text-white hocus-visible:border-white hocus-visible:underline lg:text-digital-red lg:hocus:text-black",
+              "col-start-1 col-end-9 border-l-[6px] border-transparent py-5 text-white no-underline transition-all hocus:text-white hocus-visible:border-white hocus-visible:underline lg:gap-3 lg:text-17 lg:font-normal lg:text-stone-dark lg:active:text-cardinal-red lg:hocus:text-stone-dark",
               clsx({
-                "ml-5 pl-10 aria-current-page:border-digital-red data-intrail:border-transparent lg:ml-0 lg:border-b-[6px] lg:border-l-0 lg:pb-2 lg:pl-0 lg:aria-current-page:border-black lg:data-intrail:border-foggy-dark":
+                "ml-5 pl-10 aria-current-page:text-white data-intrail:border-transparent lg:ml-0 lg:border-l-0 lg:pb-2 lg:pl-0 lg:aria-current-page:text-cardinal-red lg:data-intrail:border-fog-dark lg:hocus:aria-current-page:text-cardinal-red":
                   level === 0,
                 "pl-20 aria-current-page:border-digital-red lg:pl-5 lg:hocus-visible:border-black-true": level === 1,
                 "pl-28 aria-current-page:border-digital-red lg:pl-10 lg:hocus-visible:border-black-true": level === 2,
@@ -78,9 +81,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
           >
             {title}
           </MainMenuItemClientLink>
-          {level === 0 && !!children.length && (
-            <span className="mb-[6px] ml-5 hidden h-[25px] w-[1px] bg-archway-light lg:block" />
-          )}
+          {level === 0 && <span className="mb-[6px] ml-5 hidden h-[25px] lg:block" />}
         </>
       }
     >
@@ -89,7 +90,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
           className={twMerge(
             "list-unstyled col-span-10 w-full min-w-[300px] px-0 lg:bg-white",
             clsx({
-              "lg:absolute lg:right-0 lg:top-full lg:shadow-2xl": level === 0,
+              "lg:absolute lg:left-0 lg:top-full lg:shadow-2xl": level === 0,
               "lg:top-0": level !== 0,
             })
           )}

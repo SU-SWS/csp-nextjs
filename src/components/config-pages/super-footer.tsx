@@ -14,7 +14,7 @@ const SuperFooter = async ({...props}: Props) => {
   if (!superFooterConfig?.suSuperFootEnabled) return
 
   return (
-    <div {...props} className={twMerge("border-b border-black-20 bg-foggy-light py-20", props.className)}>
+    <div {...props} className={twMerge("border-b border-black-20 bg-fog-light py-20", props.className)}>
       <div className="centered flex justify-between">
         <div className="flex-1">
           {superFooterConfig.suSuperFootTitle && <H2 className="type-3">{superFooterConfig.suSuperFootTitle}</H2>}
