@@ -56,7 +56,10 @@ const HeroBanner = async ({
   const BannerWrapper: ElementType = isSection ? "section" : "div"
 
   return (
-    <BannerWrapper {...props} className={twMerge("rs-mb-5 relative @container", props.className)}>
+    <BannerWrapper
+      {...props}
+      className={twMerge("rs-mb-5 relative min-h-[400px] @container @6xl:min-h-[600px]", props.className)}
+    >
       <div
         className={clsx("w-full bg-cool-grey", {
           "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full": overlayPosition !== "center",
