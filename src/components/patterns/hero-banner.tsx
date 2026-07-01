@@ -62,8 +62,7 @@ const HeroBanner = async ({
     >
       <div
         className={clsx("w-full bg-cool-grey", {
-          "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full": overlayPosition !== "center",
-          "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full md:absolute md:h-full":
+          [`@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full md:absolute md:h-full`]:
             overlayPosition !== "center",
           "aspect-auto absolute h-full": overlayPosition === "center",
         })}

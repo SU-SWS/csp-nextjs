@@ -17,7 +17,7 @@ const PageTitleBannerParagraph = ({paragraph, pageTitle, ...props}: Props) => {
       eagerLoadImage
       overlayClassName="bg-gradient-to-b from-transparent to-csp-archway-xdark/95 md:bg-gradient-to-r md:from-csp-archway-xdark/95 md:to-transparent"
       childrenClassName="!bg-archway-dark 3sm:!bg-transparent"
-      className="mx-[.4rem] overflow-hidden rounded-[20px] 3xl:mx-auto 3xl:max-w-[160rem]"
+      className="mx-[.4rem] overflow-hidden rounded-[2rem] 3xl:mx-auto 3xl:max-w-[160rem]"
     >
       <span className="order-1 block h-[.4rem] w-[5rem] bg-cardinal-red" aria-hidden="true" />
       <H1 className="type-3 order-2 m-0 mb-[-10px] p-0 font-serif font-normal text-csp-cream">{pageTitle}</H1>
