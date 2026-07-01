@@ -1,5 +1,5 @@
 import Wysiwyg from "@components/elements/wysiwyg"
-import Button from "@components/elements/button/button"
+import Button from "@components/elements/button"
 import View, {loadViewPage} from "@components/views/view"
 import {H2} from "@components/elements/headers"
 import {ElementType, HtmlHTMLAttributes} from "react"

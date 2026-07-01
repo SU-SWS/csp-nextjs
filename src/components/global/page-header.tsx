@@ -4,7 +4,6 @@ import GlobalMessage from "@components/config-pages/global-message"
 import QuarterAlert from "@components/config-pages/quarter-alert"
 import Lockup from "@components/elements/lockup/lockup"
 import {HTMLAttributes} from "react"
-import twMerge from "@lib/utils/twMerge"
 import UtilityNav from "@components/menu/utility-nav"
 import {getConfigPageField} from "@lib/gql/gql-queries"
 import {StanfordBasicSiteSetting} from "@lib/gql/__generated__/graphql"
@@ -20,7 +19,7 @@ const PageHeader = async ({...props}: Props) => {
     )) === true
 
   return (
-    <header {...props} className={twMerge("", props.className)}>
+    <header {...props}>
       <div className="bg-cardinal-red">
         <div className="centered flex items-center justify-between py-3">
           <Link

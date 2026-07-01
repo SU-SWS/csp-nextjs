@@ -9,7 +9,7 @@ import {
   MainMenuItemClientWrapper,
 } from "@components/menu/main-menu.client"
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid"
-import {Button} from "@components/elements/button/button"
+import Button from "@components/elements/button"
 
 type Props = {
   hideSearch?: boolean

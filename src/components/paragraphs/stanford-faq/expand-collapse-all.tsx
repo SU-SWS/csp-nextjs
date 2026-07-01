@@ -1,6 +1,6 @@
 "use client"
 
-import Button from "@components/elements/button/button"
+import Button from "@components/elements/button"
 import {useBoolean} from "usehooks-ts"
 import {HTMLAttributes, useEffect, useRef} from "react"
 import {MinusIcon, PlusIcon} from "@heroicons/react/16/solid"
