@@ -1,6 +1,6 @@
 "use client"
 
-import Button from "@components/elements/button/button"
+import Button from "@components/elements/button"
 
 const ErrorPage = ({error, reset}: {error: Error; reset: () => void}) => {
   console.warn(error.message)

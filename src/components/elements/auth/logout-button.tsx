@@ -1,6 +1,6 @@
 "use client"
 
-import Button, {ButtonProps} from "@components/elements/button/button"
+import Button, {ButtonProps} from "@components/elements/button"
 
 const LogoutButton = ({children, ...props}: ButtonProps) => {
   return (

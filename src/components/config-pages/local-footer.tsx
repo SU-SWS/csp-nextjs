@@ -33,7 +33,7 @@ import MastodonIcon from "@components/elements/icons/MastodonIcon"
 import ThreadsIcon from "@components/elements/icons/ThreadsIcon"
 import ActionLink from "@components/elements/action-link"
 import {UsersIcon} from "@heroicons/react/24/solid"
-import Button from "@components/elements/button/button"
+import Button from "@components/elements/button"
 
 type Props = HTMLAttributes<HTMLDivElement>
 

@@ -12,6 +12,9 @@ const twMerge = extendTailwindMerge({
     classGroups: {
       "font-size": typographyClasses,
     },
+    theme: {
+      colors: ["csp-cream", "csp-apricot", "csp-digital-red-xdark", "csp-dark-66", "csp-archway", "csp-lagunita"],
+    },
   },
 })
 

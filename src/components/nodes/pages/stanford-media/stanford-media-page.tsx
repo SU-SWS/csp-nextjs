@@ -5,7 +5,7 @@ import {NodeStanfordMedia, StanfordMediaDocument, StanfordMediaQuery} from "@lib
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
 import NodePageMetadata from "@components/nodes/pages/node-page-metadata"
 import Wysiwyg from "@components/elements/wysiwyg"
-import Button from "@components/elements/button/button"
+import Button from "@components/elements/button"
 import Link from "@components/elements/link"
 import Oembed from "@components/elements/ombed"
 import {graphqlClient} from "@lib/gql/gql-client"

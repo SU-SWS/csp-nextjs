@@ -1,6 +1,6 @@
 import Rows from "@components/paragraphs/rows/rows"
 import Citation from "@components/nodes/pages/stanford-publication/citation"
-import Button from "@components/elements/button/button"
+import Button from "@components/elements/button"
 import {H1} from "@components/elements/headers"
 import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordPublication} from "@lib/gql/__generated__/graphql"
