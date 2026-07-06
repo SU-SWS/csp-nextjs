@@ -37,13 +37,16 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
       overlayPosition={behaviors.hero_pattern?.overlay_position}
       overlayColor={behaviors.hero_pattern?.overlay_color}
       eagerLoadImage={eagerLoadImage}
+      overlayClassName="bg-gradient-to-b from-transparent to-csp-archway-xdark/95 md:bg-gradient-to-r md:from-csp-archway-xdark/95 md:to-transparent"
+      childrenClassName="!bg-archway-dark 3sm:!bg-transparent"
+      className="mx-[.4rem] overflow-hidden rounded-[2rem] 3xl:mx-auto 3xl:max-w-[160rem]"
     >
       {hasCard && (
         <>
           {paragraph.suBannerHeader && (
             <>
               {headerTag === "h2" && (
-                <H2 id={id} className={twMerge(headerClasses, "type-2 mb-0")}>
+                <H2 id={id} className={twMerge(headerClasses, "type-2 mb-0 font-serif font-normal text-csp-cream")}>
                   {paragraph.suBannerHeader}
                 </H2>
               )}
@@ -62,10 +65,10 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
           )}
 
           {paragraph.suBannerSupHeader && (
-            <div className="order-first text-09em font-semibold">{paragraph.suBannerSupHeader}</div>
+            <div className="order-first text-09em font-semibold text-fog-dark">{paragraph.suBannerSupHeader}</div>
           )}
 
-          <Wysiwyg html={paragraph.suBannerBody?.processed} className="type-0" />
+          <Wysiwyg html={paragraph.suBannerBody?.processed} className="type-0 text-csp-cream" />
 
           {paragraph.suBannerButton?.url && (
             <Button href={paragraph.suBannerButton.url}>{paragraph.suBannerButton.title}</Button>

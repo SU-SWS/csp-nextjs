@@ -31,6 +31,14 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
    * Position of the text over the image.
    */
   overlayColor?: OverlayColors
+  /**
+   * Target the card.
+   */
+  childrenClassName?: string
+  /**
+   * Override overlay classname.
+   */
+  overlayClassName?: string
 }
 
 const HeroBanner = async ({
@@ -41,15 +49,21 @@ const HeroBanner = async ({
   overlayPosition,
   overlayColor,
   children,
+  childrenClassName,
+  overlayClassName,
   ...props
 }: Props) => {
   const BannerWrapper: ElementType = isSection ? "section" : "div"
 
   return (
-    <BannerWrapper {...props} className={twMerge("md:min-h-400 rs-mb-5 relative @container", props.className)}>
+    <BannerWrapper
+      {...props}
+      className={twMerge("rs-mb-5 relative min-h-[400px] @container @6xl:min-h-[600px]", props.className)}
+    >
       <div
         className={clsx("w-full bg-cool-grey", {
-          "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full": overlayPosition !== "center",
+          [`@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full md:absolute md:h-full`]:
+            overlayPosition !== "center",
           "aspect-auto absolute h-full": overlayPosition === "center",
         })}
       >
@@ -76,6 +90,7 @@ const HeroBanner = async ({
             {...await getImagePlaceholder(imageUrl)}
           />
         )}
+        {overlayClassName && <div className={twMerge("absolute inset-0 z-10", overlayClassName)} aria-hidden="true" />}
       </div>
 
       {children && (
@@ -85,10 +100,11 @@ const HeroBanner = async ({
             clsx({
               "cc rs-py-4 items-center justify-center text-center text-white @6xl:max-w-800":
                 overlayPosition === "center",
-              "rs-p-2 shadow-lg @6xl:z-10 @6xl:my-24 @6xl:max-w-[550px] @6xl:bg-white": overlayPosition !== "center",
+              "rs-p-2 @6xl:z-10 @6xl:my-24 @6xl:max-w-[550px] @6xl:bg-transparent": overlayPosition !== "center",
               "@6xl:ml-auto @6xl:mr-20": overlayPosition === "right",
               "@6xl:ml-20 @6xl:mr-auto": overlayPosition === "left",
-            })
+            }),
+            childrenClassName
           )}
         >
           {children}
