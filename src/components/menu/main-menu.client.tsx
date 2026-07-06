@@ -123,7 +123,7 @@ export const MainMenuItemClientWrapper = ({id, level, link, children, ...props}:
         <>
           <button
             aria-labelledby={id}
-            className="group relative right-10 col-start-10 w-fit shrink-0 rounded-full border border-transparent bg-white text-black active:text-black hocus:bg-white hocus:text-black hocus-visible:border-black lg:right-0 lg:mt-2 lg:border-spacing-0 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light lg:aria-current-page:text-cardinal-red lg:hocus:bg-transparent lg:hocus:text-archway-light lg:hocus-visible:border lg:hocus-visible:border-fog-dark"
+            className="group relative right-10 col-start-10 w-fit shrink-0 rounded-full border border-transparent bg-white text-black active:text-black hocus:bg-white hocus:text-black hocus-visible:border-black lg:right-0 lg:mt-2 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light lg:aria-current-page:text-cardinal-red lg:hocus:bg-transparent lg:hocus:text-archway-light lg:hocus-visible:border lg:hocus-visible:border-fog-dark"
             ref={buttonRef}
             onClick={toggleSubmenu}
             aria-expanded={submenuOpen}
