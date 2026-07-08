@@ -38,7 +38,7 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
       overlayColor={behaviors.hero_pattern?.overlay_color}
       eagerLoadImage={eagerLoadImage}
       overlayClassName="bg-gradient-to-b from-transparent to-csp-archway-xdark/95 md:bg-gradient-to-r md:from-csp-archway-xdark/95 md:to-transparent"
-      childrenClassName="!bg-archway-dark 3sm:!bg-transparent"
+      childrenClassName="bg-archway-dark"
       className="mx-[.4rem] overflow-hidden rounded-[2rem] 3xl:mx-auto 3xl:max-w-[160rem]"
     >
       {hasCard && (
