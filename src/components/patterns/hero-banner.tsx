@@ -35,10 +35,6 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
    * Target the card.
    */
   childrenClassName?: string
-  /**
-   * Override overlay classname.
-   */
-  overlayClassName?: string
 }
 
 const HeroBanner = async ({
@@ -50,7 +46,6 @@ const HeroBanner = async ({
   overlayColor,
   children,
   childrenClassName,
-  overlayClassName,
   ...props
 }: Props) => {
   const BannerWrapper: ElementType = isSection ? "section" : "div"
@@ -61,11 +56,14 @@ const HeroBanner = async ({
       className={twMerge("rs-mb-5 relative min-h-[400px] @container @6xl:min-h-[600px]", props.className)}
     >
       <div
-        className={clsx("w-full bg-cool-grey", {
-          [`@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full md:absolute md:h-full`]:
-            overlayPosition !== "center",
-          "aspect-auto absolute h-full": overlayPosition === "center",
-        })}
+        className={twMerge(
+          "w-full bg-cool-grey",
+          clsx({
+            "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full md:absolute md:h-full":
+              overlayPosition !== "center",
+            "aspect-auto absolute h-full": overlayPosition === "center",
+          })
+        )}
       >
         {overlayPosition === "center" && (
           <div
@@ -90,7 +88,12 @@ const HeroBanner = async ({
             {...await getImagePlaceholder(imageUrl)}
           />
         )}
-        {overlayClassName && <div className={twMerge("absolute inset-0 z-10", overlayClassName)} aria-hidden="true" />}
+        {overlayPosition !== "center" && (
+          <div
+            className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-csp-archway-xdark/95 md:bg-gradient-to-r md:from-csp-archway-xdark/95 md:to-transparent"
+            aria-hidden="true"
+          />
+        )}
       </div>
 
       {children && (
