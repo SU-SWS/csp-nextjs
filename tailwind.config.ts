@@ -61,6 +61,8 @@ const config: Config = {
         "upper-alpha": "upper-alpha",
         "lower-roman": "lower-roman",
         "upper-roman": "upper-roman",
+        circle: "circle",
+        square: "square",
       },
       borderRadius: {
         "csp-xs": "var(--radius-xs)",

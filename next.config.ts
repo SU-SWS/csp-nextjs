@@ -7,6 +7,7 @@ const drupalUrl = new URL(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL as string)
 module.exports = async (_phase: string) => {
   const nextConfig: NextConfig = {
     env: {...(await vaultEnvVars())},
+    cacheComponents: true,
     cacheLife: {
       default: {
         stale: undefined,
@@ -34,9 +35,6 @@ module.exports = async (_phase: string) => {
         {
           protocol: "https",
           hostname: "localist-images.azureedge.net",
-        },
-        {
-          hostname: "**.gitpod.io",
         },
       ],
     },

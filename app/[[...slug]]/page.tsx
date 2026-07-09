@@ -2,15 +2,15 @@ import NodePage from "@components/nodes/pages/node-page"
 import {NodeUnion} from "@lib/gql/__generated__/graphql"
 import {getAllNodes, getEntityFromPath, getHomePagePath} from "@lib/gql/gql-queries"
 import {notFound, redirect} from "next/navigation"
-import {getPathFromContext, PageProps, Slug} from "@lib/utils/utils"
+import {getPathFromContext} from "@lib/utils/utils"
+import type {Slug, PageProps} from "@lib/@types/types"
 
 // Vercel max execution. See https://vercel.com/docs/functions/configuring-functions/duration
 export const maxDuration = 30
-export const dynamic = "force-static"
 
 const Page = async (props: PageProps) => {
   const params = await props.params
-  const path = getPathFromContext(params.slug || "/")
+  const path = getPathFromContext(params.slug || "")
   const homePath = await getHomePagePath()
   if (path === homePath) redirect("/")
 

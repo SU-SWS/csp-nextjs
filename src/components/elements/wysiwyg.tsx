@@ -5,10 +5,9 @@ import Image from "next/image"
 import Oembed from "@components/elements/ombed"
 import React, {HtmlHTMLAttributes, ReactElement} from "react"
 import {H2, H3, H4, H5, H6} from "@components/elements/headers"
-import twMerge from "@lib/utils/twMerge"
+import cn from "@lib/utils/className"
 import {Maybe} from "@lib/gql/__generated__/graphql"
 import Mathjax from "@components/tools/mathjax"
-import clsx from "clsx"
 import Script from "next/script"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
@@ -25,11 +24,19 @@ const Wysiwyg = ({html, className, ...props}: Props): ReactElement | undefined =
 
   const addMathJax = html.match(/\$\$.*\$\$/) || html.match(/\\\[.*\\\]/) || html.match(/\\\(.*\\\)/)
   return (
-    <div className={twMerge("wysiwyg", className)} {...props}>
+    <div className={cn("wysiwyg", className)} {...props}>
       {addMathJax && <Mathjax />}
       {formatHtml(html)}
     </div>
   )
+}
+
+const fixProps = (props: Record<PropertyKey, string | boolean>) => {
+  if (!props.className) delete props.className
+
+  delete props["data-entity-substitution"]
+  delete props["data-entity-type"]
+  delete props["data-entity-uuid"]
 }
 
 const options: HTMLReactParserOptions = {
@@ -37,16 +44,13 @@ const options: HTMLReactParserOptions = {
     if (domNode instanceof Element) {
       const nodeProps = attributesToProps(domNode.attribs)
       nodeProps.className = fixClasses(nodeProps.className)
+      fixProps(nodeProps)
 
       const NodeName = domNode.name as React.ElementType
       const children: DOMNode[] = domNode.children as DOMNode[]
 
       switch (domNode.name) {
         case "a":
-          delete nodeProps["data-entity-substitution"]
-          delete nodeProps["data-entity-type"]
-          delete nodeProps["data-entity-uuid"]
-
           return (
             <Link href={nodeProps.href as string} {...nodeProps}>
               {domToReact(children, options)}
@@ -65,7 +69,7 @@ const options: HTMLReactParserOptions = {
           return cleanMediaMarkup(domNode)
 
         case "p":
-          nodeProps.className = twMerge("max-w-[100ch] leading-[1.7] text-21", nodeProps.className)
+          nodeProps.className = cn("max-w-[100ch] text-21 leading-[1.7]", nodeProps.className)
           return <NodeName {...nodeProps}>{domToReact(children, options)}</NodeName>
 
         case "script":
@@ -93,31 +97,37 @@ const options: HTMLReactParserOptions = {
           return <Td {...nodeProps}>{domToReact(children, options)}</Td>
         case "tr":
           return <Tr {...nodeProps}>{domToReact(children, options)}</Tr>
+        case "ul":
+          // https://v3.tailwindcss.com/docs/preflight#lists-are-unstyled
+          nodeProps.className = cn(nodeProps.className, {
+            "list-circle": nodeProps?.type === "circle",
+            "list-square": nodeProps?.type === "square",
+          })
+          fixProps(nodeProps)
+          return <ul {...nodeProps}>{domToReact(children, options)}</ul>
         case "ol":
           // https://v3.tailwindcss.com/docs/preflight#lists-are-unstyled
-          nodeProps.className = twMerge(
-            nodeProps.className,
-            clsx({
-              "list-lower-alpha": nodeProps?.type === "a",
-              "list-upper-alpha": nodeProps?.type === "A",
-              "list-lower-roman": nodeProps?.type === "i",
-              "list-upper-roman": nodeProps?.type === "I",
-            })
-          )
+          nodeProps.className = cn(nodeProps.className, {
+            "list-lower-alpha": nodeProps?.type === "a",
+            "list-upper-alpha": nodeProps?.type === "A",
+            "list-lower-roman": nodeProps?.type === "i",
+            "list-upper-roman": nodeProps?.type === "I",
+          })
+          fixProps(nodeProps)
           return <ol {...nodeProps}>{domToReact(children, options)}</ol>
         case "hr":
           return <hr className="border-black" />
-        case "code":
-          nodeProps.className = twMerge(
+        case "pre":
+          nodeProps.className = cn(
             nodeProps.className,
-            "bg-black-10 border border-black-20 text-black text-wrap block p-10 mb-5 rounded"
+            "[&_code]:mb-5 [&_code]:block [&_code]:text-wrap [&_code]:rounded [&_code]:border [&_code]:border-black-20 [&_code]:bg-black-10 [&_code]:p-10 [&_code]:text-black"
           )
           return <NodeName {...nodeProps}>{domToReact(children, options)}</NodeName>
+        case "code":
         case "tfoot":
         case "b":
         case "cite":
         case "dt":
-        case "pre":
         case "dl":
         case "dd":
         case "i":
@@ -125,7 +135,6 @@ const options: HTMLReactParserOptions = {
         case "abbr":
         case "span":
         case "blockquote":
-        case "ul":
         case "li":
         case "strong":
         case "em":
@@ -167,7 +176,7 @@ const fixClasses = (classes?: string | boolean): string => {
       " type-2 first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-2 first-letter:mr-4 "
     )
     .replaceAll(/ tablesaw[\w-] /g, " ")
-  return twMerge(classes)
+  return cn(classes)
 }
 
 const cleanMediaMarkup = (node: Element) => {
@@ -241,7 +250,7 @@ const cleanMediaMarkup = (node: Element) => {
     const figCaption = getFigCaption(node)
 
     if (figCaption) {
-      nodeProps.className = twMerge("table", nodeProps.className)
+      nodeProps.className = cn("table", nodeProps.className)
       if (nodeProps.className?.includes("mx-auto")) nodeProps.className += " w-full"
       delete nodeProps.role
       return (
@@ -275,7 +284,7 @@ const WysiwygImage = ({
   if (width && height) {
     return (
       <Image
-        className={twMerge(fixClasses(className), "mb-10")}
+        className={cn(fixClasses(className), "mb-10")}
         src={src.trim()}
         alt={alt ? alt.trim() : ""}
         height={parseInt(`${height}`)}
