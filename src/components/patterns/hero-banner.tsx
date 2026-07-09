@@ -31,10 +31,6 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
    * Position of the text over the image.
    */
   overlayColor?: OverlayColors
-  /**
-   * Target the card.
-   */
-  childrenClassName?: string
 }
 
 const HeroBanner = async ({
@@ -45,7 +41,6 @@ const HeroBanner = async ({
   overlayPosition,
   overlayColor,
   children,
-  childrenClassName,
   ...props
 }: Props) => {
   const BannerWrapper: ElementType = isSection ? "section" : "div"
@@ -106,8 +101,7 @@ const HeroBanner = async ({
               "rs-p-2 @6xl:z-10 @6xl:my-24 @6xl:max-w-[550px] @6xl:bg-transparent": overlayPosition !== "center",
               "@6xl:ml-auto @6xl:mr-20": overlayPosition === "right",
               "@6xl:ml-20 @6xl:mr-auto": overlayPosition === "left",
-            }),
-            childrenClassName
+            })
           )}
         >
           {children}

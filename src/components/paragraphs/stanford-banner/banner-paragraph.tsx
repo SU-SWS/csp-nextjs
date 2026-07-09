@@ -37,15 +37,14 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
       overlayPosition={behaviors.hero_pattern?.overlay_position}
       overlayColor={behaviors.hero_pattern?.overlay_color}
       eagerLoadImage={eagerLoadImage}
-      childrenClassName="bg-archway-dark"
-      className="mx-[.4rem] overflow-hidden rounded-[2rem] 3xl:mx-auto 3xl:max-w-[160rem]"
+      className="mx-[.4rem] overflow-hidden rounded-[2rem] bg-archway-dark 3xl:mx-auto 3xl:max-w-[160rem]"
     >
       {hasCard && (
         <>
           {paragraph.suBannerHeader && (
             <>
               {headerTag === "h2" && (
-                <H2 id={id} className={twMerge(headerClasses, "!type-3 mb-0 font-serif font-normal text-csp-cream")}>
+                <H2 id={id} className={twMerge(headerClasses, "type-3 mb-0 font-serif font-normal text-csp-cream")}>
                   {paragraph.suBannerHeader}
                 </H2>
               )}
