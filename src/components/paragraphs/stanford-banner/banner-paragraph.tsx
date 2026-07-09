@@ -46,7 +46,7 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
           {paragraph.suBannerHeader && (
             <>
               {headerTag === "h2" && (
-                <H2 id={id} className={twMerge(headerClasses, "type-2 mb-0 font-serif font-normal text-csp-cream")}>
+                <H2 id={id} className={twMerge(headerClasses, "!type-3 mb-0 font-serif font-normal text-csp-cream")}>
                   {paragraph.suBannerHeader}
                 </H2>
               )}
@@ -65,10 +65,13 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
           )}
 
           {paragraph.suBannerSupHeader && (
-            <div className="order-first text-09em font-semibold text-fog-dark">{paragraph.suBannerSupHeader}</div>
+            <div className="type-2 order-first font-normal text-fog-dark">{paragraph.suBannerSupHeader}</div>
           )}
 
-          <Wysiwyg html={paragraph.suBannerBody?.processed} className="type-0 text-csp-cream" />
+          <Wysiwyg
+            html={paragraph.suBannerBody?.processed}
+            className="type-0 font-normal text-csp-cream [&_p]:!type-0"
+          />
 
           {paragraph.suBannerButton?.url && (
             <Button href={paragraph.suBannerButton.url}>{paragraph.suBannerButton.title}</Button>

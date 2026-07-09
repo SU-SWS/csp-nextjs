@@ -20,7 +20,7 @@ const PageTitleBannerParagraph = ({paragraph, pageTitle, ...props}: Props) => {
       className="mx-[.4rem] overflow-hidden rounded-[2rem] 3xl:mx-auto 3xl:max-w-[160rem]"
     >
       <span className="order-1 block h-[.4rem] w-[5rem] bg-cardinal-red" aria-hidden="true" />
-      <H1 className="type-3 order-2 m-0 mb-[-10px] p-0 font-serif font-normal text-csp-cream">{pageTitle}</H1>
+      <H1 className="!type-5 order-2 m-0 mb-[-10px] p-0 font-serif font-normal text-csp-cream">{pageTitle}</H1>
     </HeroBanner>
   )
 }
