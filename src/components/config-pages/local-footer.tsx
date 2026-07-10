@@ -76,7 +76,7 @@ const LocalFooter = async ({...props}: Props) => {
               {/* Column 1 */}
               {/* Primary Links */}
               {localFooterConfig.suLocalFootPrimeH && (
-                <H2 className="type-1 font-regular uppercase">{localFooterConfig.suLocalFootPrimeH}</H2>
+                <H2 className="type-1 mt-0 font-regular uppercase">{localFooterConfig.suLocalFootPrimeH}</H2>
               )}
               {localFooterConfig.suLocalFootPrimary && (
                 <ul className="list-unstyled">
@@ -108,7 +108,7 @@ const LocalFooter = async ({...props}: Props) => {
             <div className="max-w-1/2">
               {/* Secondary Links */}
               {localFooterConfig.suLocalFootSecondH && (
-                <H2 className="type-1 font-regular uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
+                <H2 className="type-1 mt-0 font-regular uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
               )}
 
               {localFooterConfig.suLocalFootSecond && (
@@ -147,7 +147,7 @@ const LocalFooter = async ({...props}: Props) => {
                   {localFooterConfig.suLocalFootFIntro?.processed && (
                     <Wysiwyg
                       html={localFooterConfig.suLocalFootFIntro.processed}
-                      className="[&_p]:text-type-1 [&_h2]:type-1 [&_h2]:font-regular [&_h2]:uppercase [&_p]:font-normal"
+                      className="[&_p]:text-type-1 [&_h2]:!mt-0 [&_h2]:font-sans [&_h2]:uppercase [&_p]:font-serif [&_p]:font-normal"
                     />
                   )}
 
@@ -216,7 +216,7 @@ const LocalFooter = async ({...props}: Props) => {
 
             <Wysiwyg
               html={localFooterConfig.suLocalFootTrCo?.processed}
-              className="[&_.btn--secondary]:bg-white[&_h2]:type-1 mt-12 [&_h2]:font-regular [&_h2]:uppercase"
+              className="mt-12 [&_.btn--secondary]:bg-white [&_h2]:font-regular [&_h2]:uppercase"
             />
           </div>
         </div>

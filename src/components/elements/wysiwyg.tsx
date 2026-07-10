@@ -166,14 +166,14 @@ const fixClasses = (classes?: string | boolean): string => {
     .replaceAll(" align-left ", " float-left mr-10 mb-10 ")
     .replaceAll(" align-right ", " float-right ml-10 mb-10 ")
     .replaceAll(" visually-hidden ", " sr-only ")
-    .replaceAll(" font-splash ", " font-bold type-4 ")
-    .replaceAll(" callout-text ", " font-bold type-2 ")
-    .replaceAll(" related-text ", " shadow-lg border border-black-20 p-16 ")
-    .replaceAll(" intro-text ", " type-2 ")
+    .replaceAll(" font-splash ", " type-4 font-normal font-sans ")
+    .replaceAll(" callout-text ", " font-normal type-2 font-sans ")
+    .replaceAll(" related-text ", " shadow-lg border border-black-20 p-16 font-normal ")
+    .replaceAll(" intro-text ", " type-2 font-normal font-sans ")
     .replaceAll(" quote-text ", " px-24 py-16 ml-32 type-3 border-l-3 border-black ")
     .replaceAll(
       " drop-cap ",
-      " type-2 first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-2 first-letter:mr-4 "
+      " type-2 font-normal font-sans first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-2 first-letter:mr-4 "
     )
     .replaceAll(/ tablesaw[\w-] /g, " ")
   return cn(classes)

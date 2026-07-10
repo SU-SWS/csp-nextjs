@@ -78,7 +78,7 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
         href={href}
         variant={variant}
         size={className.includes("--big") ? "big" : "default"}
-        className={className?.replace(/\bbutton(--(secondary|ghost|digitalred|archway|big))?\b/g, "").trim()}
+        className={`"font-normal", ${className?.replace(/\bbutton(--(secondary|ghost|digitalred|archway|big))?\b/g, "").trim()}`}
         {...props}
       >
         {children}
@@ -95,7 +95,13 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
 
   if (externalLink) {
     return (
-      <a href={href} className={cn("group", className)} target="_blank" rel="noopener noreferrer" {...props}>
+      <a
+        href={href}
+        className={cn("group font-normal", className)}
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      >
         {children}
         <ArrowUpRightIcon
           height={20}
@@ -106,7 +112,7 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
   }
 
   return (
-    <Link prefetch={false} href={href} className={cn("group", className)} {...props}>
+    <Link prefetch={false} href={href} className={cn("group font-normal", className)} {...props}>
       {children}
       {href.startsWith("mailto") && <EnvelopeIcon width={20} className="ml-4 inline-block" />}
     </Link>
