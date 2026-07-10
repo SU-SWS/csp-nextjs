@@ -51,8 +51,7 @@ const HeroBanner = async ({
     >
       <div
         className={cn("w-full bg-cool-grey", {
-          "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full md:absolute md:h-full":
-            overlayPosition !== "center",
+          "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full": overlayPosition !== "center",
           "aspect-auto absolute h-full": overlayPosition === "center",
         })}
       >
@@ -92,7 +91,7 @@ const HeroBanner = async ({
           className={cn("relative z-[11] flex size-full flex-col gap-10", {
             "cc rs-py-4 items-center justify-center text-center text-white @6xl:max-w-800":
               overlayPosition === "center",
-            "rs-p-2 @6xl:z-10 @6xl:my-24 @6xl:max-w-[550px] @6xl:bg-transparent": overlayPosition !== "center",
+            "rs-p-2 @6xl:z-10 @6xl:my-24 @6xl:max-w-[600px] @6xl:bg-transparent": overlayPosition !== "center",
             "@6xl:ml-auto @6xl:mr-20": overlayPosition === "right",
             "@6xl:ml-20 @6xl:mr-auto": overlayPosition === "left",
           })}
