@@ -3,14 +3,16 @@ import EditorAlert from "@components/elements/editor-alert"
 import {NodeUnion} from "@lib/gql/__generated__/graphql"
 import {getEntityFromPath, getHomePagePath} from "@lib/gql/gql-queries"
 import {notFound} from "next/navigation"
-import {getPathFromContext, PageProps, Slug} from "@lib/utils/utils"
+import {getPathFromContext} from "@lib/utils/utils"
 import DrupalWindowSync from "@components/elements/drupal-window-sync"
 import Editorially from "@components/tools/editorially"
+import type {Slug, PageProps} from "@lib/@types/types"
 
 // Vercel max execution. See https://vercel.com/docs/functions/configuring-functions/duration
 export const maxDuration = 30
 
 const PreviewPage = async (props: PageProps) => {
+  "use cache: remote"
   const params = await props.params
 
   const path = getPathFromContext(params.slug || [])
@@ -30,8 +32,6 @@ const PreviewPage = async (props: PageProps) => {
   )
 }
 
-export const generateStaticParams = async (): Promise<Array<Slug>> => {
-  return [{slug: ["home"]}]
-}
+export const generateStaticParams = async (): Promise<Array<Slug>> => [{slug: ["home"]}]
 
 export default PreviewPage

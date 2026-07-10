@@ -1,11 +1,10 @@
-import twMerge from "@lib/utils/twMerge"
+import cn from "@lib/utils/className"
 import {HtmlHTMLAttributes, MouseEventHandler} from "react"
 import {Maybe} from "@lib/gql/__generated__/graphql"
 import {LinkProps} from "next/dist/client/link"
 import Link from "next/link"
 import {getLinkHref} from "@components/elements/link"
 import {ArrowRightIcon} from "@heroicons/react/20/solid"
-import {clsx} from "clsx"
 
 export type ButtonVariantType = "primary" | "secondary" | "ghost" | "digitalred" | "archway" | "search"
 export type ButtonSizeType = "default" | "big" | "round"
@@ -66,28 +65,28 @@ const Button = ({
 }: ButtonProps) => {
   const isSecondary = variant === "secondary"
 
-  const classes = twMerge(
-    "group btn w-fit font-normal no-underline transition rounded-csp-sm hocus:underline",
-    clsx({
-      "bg-cardinal-red border border-csp-digital-red-xdark text-white hocus:bg-digital-red hocus:text-white":
+  const classes = cn(
+    "btn group w-fit rounded-csp-sm font-normal no-underline transition hocus:underline",
+    {
+      "border border-csp-digital-red-xdark bg-cardinal-red text-white hocus:bg-digital-red hocus:text-white":
         variant === "primary",
       "border-2 border-digital-red text-digital-red hocus:border-black": variant === "secondary",
-      "border border-stone text-archway-dark bg-transparent hocus:bg-archway-dark hocus:text-csp-cream":
+      "border border-stone bg-transparent text-archway-dark hocus:bg-archway-dark hocus:text-csp-cream":
         variant === "ghost",
-      "bg-digital-red/80 border border-csp-digital-red-xdark text-csp-cream hocus:bg-digital-red hocus:text-csp-cream":
+      "border border-csp-digital-red-xdark bg-digital-red/80 text-csp-cream hocus:bg-digital-red hocus:text-csp-cream":
         variant === "digitalred",
-      "bg-archway-dark/80 border border-stone text-csp-cream hocus:bg-archway-dark hocus:text-csp-cream":
+      "border border-stone bg-archway-dark/80 text-csp-cream hocus:bg-archway-dark hocus:text-csp-cream":
         variant === "archway",
-      "rounded-full border border-fog-dark text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white py-4 px-4":
+      "rounded-full border border-fog-dark px-4 py-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white":
         variant === "search",
-      "py-4 px-6 text-18": !isSecondary && size === "default",
-      "pt-4 pb-5 px-7": isSecondary && size === "default",
-      "pt-7 pb-8 px-12 text-5xl font-serif": !isSecondary && size === "big",
-      "pt-7 pb-8 px-12 font-serif": isSecondary && size === "big",
+      "px-6 py-4 text-18": !isSecondary && size === "default",
+      "px-7 pb-5 pt-4": isSecondary && size === "default",
+      "px-12 pb-8 pt-7 font-serif text-5xl": !isSecondary && size === "big",
+      "px-12 pb-8 pt-7 font-serif": isSecondary && size === "big",
       "py-4": size === "round",
-      "flex items-center mx-auto": centered,
+      "mx-auto flex items-center": centered,
       "inline-block text-center": !centered,
-    }),
+    },
     className
   )
 
