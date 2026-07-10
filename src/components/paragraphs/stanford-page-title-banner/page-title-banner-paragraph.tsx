@@ -17,7 +17,7 @@ const PageTitleBannerParagraph = ({paragraph, pageTitle, ...props}: Props) => {
       eagerLoadImage
       className="mx-[.4rem] overflow-hidden rounded-[2rem] bg-archway-dark 3xl:mx-auto 3xl:max-w-[160rem]"
     >
-      <span className="order-1 block h-[.4rem] w-[5rem] rounded-md bg-cardinal-red" aria-hidden="true" />
+      <span className="order-1 block h-[.4rem] w-[5rem] rounded-md bg-cardinal-red" />
       <H1 className="type-5 order-2 m-0 mb-[-10px] p-0 font-serif font-normal text-csp-cream">{pageTitle}</H1>
     </HeroBanner>
   )
