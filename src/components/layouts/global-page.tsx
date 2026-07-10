@@ -10,7 +10,7 @@ const GlobalPage = ({children, ...props}: Props) => {
     <div {...props} className={cn("flex min-h-screen flex-col bg-csp-cream", props.className)}>
       <PageHeader data-nosnippet="true" />
 
-      <main id="main-content" className="flex-grow" tabIndex={-1}>
+      <main id="main-content" className="flex-grow font-serif" tabIndex={-1}>
         {children}
         <BackToTop />
       </main>

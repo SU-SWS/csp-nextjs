@@ -32,6 +32,7 @@ const BackToTop = () => {
         "visible opacity-100": value,
         "invisible opacity-0": !value,
       })}
+      showIcon={false}
       onClick={onButtonClick}
     >
       <span className="flex items-center gap-2">
