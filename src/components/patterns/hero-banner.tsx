@@ -47,7 +47,7 @@ const HeroBanner = async ({
   return (
     <BannerWrapper
       {...props}
-      className={cn("md:min-h-400 rs-mb-5 relative min-h-[400px] @container @6xl:min-h-[600px]", props.className)}
+      className={cn("rs-mb-5 relative min-h-[400px] @container @6xl:min-h-[600px]", props.className)}
     >
       <div
         className={cn("w-full bg-cool-grey", {
