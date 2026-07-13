@@ -35,6 +35,7 @@ This is a Next.js application that serves as a frontend for a Drupal backend CMS
 **Routing Strategy**: App Router
 
 **Rendering Strategy**:
+
 - Incremental Static Regeneration (ISR)
 - Revalidation interval: INFINITE & on demand
 
@@ -45,6 +46,7 @@ This is a Next.js application that serves as a frontend for a Drupal backend CMS
 **Authentication**: JWT / API Key
 
 **Content Types**:
+
 - stanford_course: A course includes information such as title, year, quarter, day(s) and time(s), etc.
 - stanford_event: An event content type with integration with events-legacy.stanford.edu
 - stanford_event_series: A collection of events. (Deprecated)
@@ -57,6 +59,7 @@ This is a Next.js application that serves as a frontend for a Drupal backend CMS
 - stanford_publication: Book/article/thesis/etc publication content type with author information.
 
 **Paragraph Types**:
+
 - stanford_banner: Wide image with overlay text of heading, superhead, wysiwyg, and link.
 - stanford_card: General image card with a heading, superhead, wysiwyg and link.
 - stanford_entity: List of teaser nodes, accompanied by a heading, wysiwyg and link.
@@ -88,26 +91,29 @@ src/components/paragraphs/
 ```
 
 **Paragraph Renderer Pattern**:
+
 ```typescript
 // This component maps Drupal paragraph types to React components
-src/components/paragraphs/paragraph.tsx
+src / components / paragraphs / paragraph.tsx
 ```
 
 ### GraphQL Queries
 
 **Query Organization**:
+
 - Location: `src/lib/gql/`
 - Naming convention:
   - fragments-[type].drupal.gql
   - [type]-query.drupal.gql
 
 **Common Queries**:
+
 - `Route`: Fetches any Drupal node, redirect, or other entity for the provided path url.
 - `Menu`: Fetches the menu links for the desired menu.
 
 **GraphQL Client**: graphql-request
 
-**GraphQL Compiler Command**: `yarn graphql` 
+**GraphQL Compiler Command**: `yarn graphql`
 
 ## Data Flow
 
@@ -126,7 +132,9 @@ NEXT_PUBLIC_DRUPAL_BASE_URL=[Drupal site base URL]
 DRUPAL_BASIC_AUTH=[Basic authentication credentials for authenticated user]
 DRUPAL_BASIC_AUTH_ADMIN=[Basic authentication credentials for an content administrator for content previews]
 ```
+
 Optional environment variables:
+
 ```bash
 BUILD_PAGES=[Number of pages to build during `yarn build`]
 NEXT_PUBLIC_GTM=[Google tag manager code]
@@ -198,6 +206,7 @@ yarn lint
 **TailwindCSS Configuration**: `tailwind.config.ts`
 
 **Custom Theme Extensions**:
+
 - Colors:
   - Colors provided by decanter library
 - Typography:
@@ -209,6 +218,49 @@ yarn lint
   - Example: `className={cn("text-black", {"text-blue": blueText}, props.className)}`
 
 **Component Styling Pattern**: Utility-first
+
+## Code style
+
+Only deltas from framework defaults are listed; standard React, TypeScript, and Tailwind conventions apply otherwise.
+
+- TypeScript strict. No `any` without a written reason.
+- Class merging: use the repo's `cn` helper at `src/lib/utils/className`. It wraps `clsx` and `tailwind-merge`, so later classes win over earlier conflicting ones (put overrides last). Object syntax is supported: `cn("text-black", {"text-blue": blueText}, props.className)`. Do not import `clsx` or `tailwind-merge` directly.
+- Formatting is Prettier with `prettier-plugin-tailwindcss`, which auto-sorts class order. Do not manually reorder utility classes.
+- Do not write raw CSS or inline `style` for anything Decanter can express as a utility class.
+- Never hardcode hex colors or arbitrary pixel values. Resolve to a Decanter or CSP token (see Design system).
+- No em dashes in user-facing copy or generated docs.
+
+## Design system (Decanter)
+
+Decanter v7 provides Tailwind tokens that surface as normal utility classes. This repo imports Decanter into `tailwind.config.ts` (`import decanter from "decanter"`), spreads `decanter.theme?.extend` and `decanter.plugins`, then layers CSP tokens and plugins on top. It is not used as a preset.
+
+- Config source of truth: `tailwind.config.ts`. Read it before choosing values.
+- Full palette and class catalog: `docs/DECANTER.md`.
+- Decanter overrides Tailwind's default `black`, `sky`, and `stone` spectrums; do not assume stock Tailwind values for those.
+
+### Root font size: 10px, not 16px
+
+Highest-priority rule. Decanter sets `html { font-size: 62.5% }`, so the root is 10px and `1rem = 10px`, not the Tailwind default of 16px. Convert px to rem by dividing by 10 (a 20px value is `2rem`). `text-16` is `1.6rem`, and sizes under 10px are not recommended. Getting this wrong silently miscalculates every rem-based size.
+
+### Colors
+
+Use utility classes, never hex. Two layers:
+
+- Decanter core, e.g. `text-cardinal-red`, `bg-cardinal-red`, `focus:text-lagunita`.
+- CSP-specific, prefixed `csp-`: `csp-cream`, `csp-apricot`, `csp-digital-red-xdark`, `csp-dark-66`, `csp-archway` (with `-dark80`, `-meddark`, `-xdark`), and `csp-lagunita` (with `-xdark`). Example classes: `bg-csp-cream`, `text-csp-archway-xdark`, `border-csp-lagunita`.
+  There is both a Decanter `lagunita` and a CSP `csp-lagunita`, and they differ, so match the one the design references. If a design color has no matching token, stop and ask rather than inventing a hex. Full palette with hex values: `docs/DECANTER.md`.
+
+### Typography
+
+- Font families: `font-sans` (Source Sans 3), `font-serif` (Source Serif 4), `font-slab` (Roboto Slab), `font-stanford` (Stanford ligature, logo only), and the mono stack. `font-stanford` and `font-serif` are wired to `next/font` CSS variables (`--font-stanford`, `--font-serif`) in `tailwind.config.ts`. <!-- TODO: point to where next/font is configured, likely the root layout. -->
+- Modular scale: `type-0` (1em base) through `type-9`, responsive and em-based, growing about 1.15x on mobile, 1.2x at `md`, 1.25x at `lg`, with proportional letter spacing. The body has a sensible base, so `type-N` works with no extra setup. Optional `basefont-19` to `basefont-23` bump a section's base. Headings h1 to h6 already map to type-5 down to type-0, so prefer semantic headings.
+- Fluid sizing: `fluid-type-0` through `fluid-type-10`.
+
+### Layout and spacing
+
+- Centered container: use `cc` (or `centered-container`) for fluid, breakpoint-aware content width. Do not recreate with `max-w-*` plus padding. Provided by the `centeredContainerStyles` plugin (`src/styles/centered-container`).
+- Responsive spacing: prefer Decanter's `rs-*` utilities (`rs-p-*`, `rs-m-*`, and side and axis variants like `rs-py-*`, `rs-mt-*`) over hand-tuning per breakpoint.
+- Images: rendered with `next/image` from the Drupal source, using default Next optimization. <!-- TODO: note any responsive image container constraint pattern this repo standardizes on. -->
 
 ## Common Patterns
 
@@ -245,17 +297,20 @@ graphqlClient().request<TypescriptType>(QueryDocument, {variables})
 ### Common Issues
 
 **GraphQL Query Failures**:
+
 - Verify Drupal GraphQL module is enabled
 - Check endpoint URL in environment variables
 - Check authentication credentials match Drupal user credentials
 - Ensure Drupal's `flood` table is not blocking requests
 
 **Paragraph Rendering Issues**:
+
 - Ensure paragraph type name matches exactly
 - Check Paragraph Renderer has case for new type
 - Verify paragraph component is exported correctly
 
 **Styling Issues**:
+
 - Run `yarn build` to rebuild TailwindCSS
 - Check purge/content configuration in tailwind.config.js
 - Verify class names are not dynamically constructed
@@ -284,6 +339,6 @@ When working with this codebase, AI agents should ask:
 
 ---
 
-**Last Updated**: 2026-06-08
+**Last Updated**: 2026-07-13
 
 **Maintained By**: pookmish
