@@ -154,7 +154,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
     <div ref={navRef} {...props} className={cn("mb-20 text-16", props.className)}>
       <nav
         aria-labelledby="anchor-nav"
-        className={cn("relative mx-auto w-fit items-center rounded border border-black-40 bg-black-10", {
+        className={cn("relative mx-auto w-fit items-center rounded border border-fog-dark bg-csp-cream font-sans", {
           "flex rounded-full": horizontal,
         })}
       >
@@ -162,7 +162,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           <button
             ref={mobileButtonRef}
             id="anchor-nav"
-            className="no-anchor m-0 flex items-center gap-4 whitespace-nowrap p-5 pr-4 text-16 font-normal hocus:underline"
+            className="no-anchor m-0 flex items-center gap-4 whitespace-nowrap p-5 pr-4 text-16 font-normal text-archway-dark hocus:underline"
             aria-expanded={mobileMenuOpen}
             aria-controls={mobilePanelId}
             onClick={toggleMobileMenu}
@@ -180,7 +180,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           <div
             ref={headingRef}
             id="anchor-nav"
-            className="m-0 flex items-center gap-4 whitespace-nowrap p-5 pr-4 text-16 font-normal"
+            className="m-0 flex items-center gap-4 whitespace-nowrap p-5 pr-4 text-16 font-normal text-archway-dark"
           >
             <OnThisPageIcon className="w-10 text-black-40" />
             On This Page
