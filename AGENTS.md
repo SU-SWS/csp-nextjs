@@ -235,7 +235,6 @@ Only deltas from framework defaults are listed; standard React, TypeScript, and 
 Decanter v7 provides Tailwind tokens that surface as normal utility classes. This repo imports Decanter into `tailwind.config.ts` (`import decanter from "decanter"`), spreads `decanter.theme?.extend` and `decanter.plugins`, then layers CSP tokens and plugins on top. It is not used as a preset.
 
 - Config source of truth: `tailwind.config.ts`. Read it before choosing values.
-- Full palette and class catalog: `docs/DECANTER.md`.
 - Decanter overrides Tailwind's default `black`, `sky`, and `stone` spectrums; do not assume stock Tailwind values for those.
 
 ### Root font size: 10px, not 16px
@@ -248,7 +247,7 @@ Use utility classes, never hex. Two layers:
 
 - Decanter core, e.g. `text-cardinal-red`, `bg-cardinal-red`, `focus:text-lagunita`.
 - CSP-specific, prefixed `csp-`: `csp-cream`, `csp-apricot`, `csp-digital-red-xdark`, `csp-dark-66`, `csp-archway` (with `-dark80`, `-meddark`, `-xdark`), and `csp-lagunita` (with `-xdark`). Example classes: `bg-csp-cream`, `text-csp-archway-xdark`, `border-csp-lagunita`.
-  There is both a Decanter `lagunita` and a CSP `csp-lagunita`, and they differ, so match the one the design references. If a design color has no matching token, stop and ask rather than inventing a hex. Full palette with hex values: `docs/DECANTER.md`.
+  There is both a Decanter `lagunita` and a CSP `csp-lagunita`, and they differ, so match the one the design references. If a design color has no matching token, stop and ask rather than inventing a hex.
 
 ### Typography
 
