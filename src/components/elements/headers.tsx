@@ -18,7 +18,7 @@ export const H1 = ({children, className, showTopBorder = true, ...props}: H1Prop
       className={cn(
         "type-4 font-serif font-normal",
         {
-          "before:rs-mb-1 before:block before:h-1 before:w-full before:max-w-[6rem] before:rounded before:bg-cardinal-red before:content-['']":
+          "before:rs-mb-1 before:block before:h-2 before:w-full before:max-w-[5rem] before:rounded-md before:bg-cardinal-red before:content-['']":
             showTopBorder,
         },
         className
