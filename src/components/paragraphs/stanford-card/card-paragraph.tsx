@@ -43,7 +43,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       {paragraph.suCardHeader && (
         <>
           {headerTag === "h2" && (
-            <H2 id={id} className={headerClasses}>
+            <H2 id={id} className={cn("type-2", headerClasses)}>
               {paragraph.suCardHeader}
             </H2>
           )}
@@ -62,7 +62,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       )}
 
       {paragraph.suCardSuperHeader && (
-        <div className="rs-mb-neg1 order-first font-sans text-19 font-normal uppercase">
+        <div className="rs-mb-neg1 order-first font-sans text-19 font-normal uppercase text-archway-dark">
           {paragraph.suCardSuperHeader}
         </div>
       )}
