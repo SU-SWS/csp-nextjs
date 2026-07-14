@@ -49,7 +49,7 @@ const MenuItem = ({id, url, title, children, activeTrail, level, expanded}: Menu
   )
 
   return (
-    <li className="m-0 border-b p-0 last:border-0">
+    <li className="m-0 border-b border-fog p-0 last:border-0">
       <Link href={url || "#"} className={linkClasses} aria-current={activeTrail.at(-1) === id ? "page" : undefined}>
         {title}
         {hasChildren && (
@@ -58,7 +58,7 @@ const MenuItem = ({id, url, title, children, activeTrail, level, expanded}: Menu
       </Link>
       {isOpen && (
         <ul
-          className={cn("list-unstyled border-t", {
+          className={cn("list-unstyled border-t border-fog", {
             "pl-10": level === 0,
             "pl-20": level === 1,
             "pl-28": level === 2,
