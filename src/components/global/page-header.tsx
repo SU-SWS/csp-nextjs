@@ -37,14 +37,11 @@ const PageHeader = async ({...props}: Props) => {
             <Lockup />
             <div className="flex items-center justify-end gap-6 md:mr-20 lg:mr-0">
               <UtilityNav />
-              {/* TODO: className was `hidden lg:block` in 1.x — review once Winter Quarter banner is replaced with BE work */}
               {!hideSearch && <SiteSearchForm className="hidden lg:hidden" />}
               <QuarterAlert className="hidden xl:block" />
             </div>
           </div>
           <MainMenu hideSearch={hideSearch} />
-          {/* This needs to be replaced with the BE work. This only appears ≥1280px */}
-          <QuarterAlert className="flex flex-row xl:hidden" />
         </div>
       </div>
     </header>
