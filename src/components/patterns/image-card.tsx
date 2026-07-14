@@ -34,7 +34,7 @@ const ImageCard = ({imageUrl, imageAlt, videoUrl, isArticle, squareImage, childr
     <CardWrapper
       {...props}
       className={cn(
-        "centered relative w-full rounded-csp-lg border border-fog-dark bg-csp-cream xl:max-w-[980px]",
+        "centered relative h-full w-full rounded-csp-lg border border-fog-dark bg-csp-cream xl:max-w-[980px]",
         props.className
       )}
     >

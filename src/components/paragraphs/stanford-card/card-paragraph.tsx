@@ -24,6 +24,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
   const headerTagChoice = (behaviors.su_card_styles?.heading || "h2").split(".", 2)
   const headerTag = headerTagChoice[0]
   const headerClasses = cn(
+    "mb-0 mt-0 text-archway-dark",
     headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
     {"sr-only": behaviors.su_card_styles?.hide_heading}
   )
@@ -42,17 +43,17 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       {paragraph.suCardHeader && (
         <>
           {headerTag === "h2" && (
-            <H2 id={id} className={cn("mb-0 mt-0 text-archway-dark", {headerClasses}, props.className)}>
+            <H2 id={id} className={headerClasses}>
               {paragraph.suCardHeader}
             </H2>
           )}
           {headerTag === "h3" && (
-            <H3 id={id} className={cn("mb-0 mt-0 text-archway-dark", {headerClasses}, props.className)}>
+            <H3 id={id} className={headerClasses}>
               {paragraph.suCardHeader}
             </H3>
           )}
           {headerTag === "h4" && (
-            <H4 id={id} className={cn("mb-0 mt-0 text-archway-dark", {headerClasses}, props.className)}>
+            <H4 id={id} className={headerClasses}>
               {paragraph.suCardHeader}
             </H4>
           )}
