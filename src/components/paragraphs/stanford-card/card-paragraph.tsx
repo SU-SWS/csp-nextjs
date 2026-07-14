@@ -42,17 +42,17 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       {paragraph.suCardHeader && (
         <>
           {headerTag === "h2" && (
-            <H2 id={id} className={headerClasses}>
+            <H2 id={id} className={cn("mb-0 mt-0 text-archway-dark", {headerClasses}, props.className)}>
               {paragraph.suCardHeader}
             </H2>
           )}
           {headerTag === "h3" && (
-            <H3 id={id} className={headerClasses}>
+            <H3 id={id} className={cn("mb-0 mt-0 text-archway-dark", {headerClasses}, props.className)}>
               {paragraph.suCardHeader}
             </H3>
           )}
           {headerTag === "h4" && (
-            <H4 id={id} className={headerClasses}>
+            <H4 id={id} className={cn("mb-0 mt-0 text-archway-dark", {headerClasses}, props.className)}>
               {paragraph.suCardHeader}
             </H4>
           )}
@@ -60,17 +60,25 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
         </>
       )}
 
-      {paragraph.suCardSuperHeader && <div className="order-first font-semibold">{paragraph.suCardSuperHeader}</div>}
+      {paragraph.suCardSuperHeader && (
+        <div className="rs-mb-neg1 order-first font-sans text-19 font-normal uppercase">
+          {paragraph.suCardSuperHeader}
+        </div>
+      )}
 
-      <Wysiwyg html={paragraph.suCardBody?.processed} />
+      <Wysiwyg className="rs-mt-1 text-archway-light" html={paragraph.suCardBody?.processed} />
 
       {paragraph.suCardLink?.url && (
         <>
           {behaviors.su_card_styles?.link_style === "action" && (
-            <ActionLink href={paragraph.suCardLink.url}>{paragraph.suCardLink.title}</ActionLink>
+            <ActionLink className="rs-mt-2" href={paragraph.suCardLink.url}>
+              {paragraph.suCardLink.title}
+            </ActionLink>
           )}
           {behaviors.su_card_styles?.link_style !== "action" && (
-            <Button href={paragraph.suCardLink.url}>{paragraph.suCardLink.title}</Button>
+            <Button className="rs-mt-2" href={paragraph.suCardLink.url}>
+              {paragraph.suCardLink.title}
+            </Button>
           )}
         </>
       )}
