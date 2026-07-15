@@ -48,14 +48,15 @@ const HeroBanner = async ({
     <BannerWrapper
       {...props}
       className={cn(
-        "rs-mb-5 relative mx-auto min-h-[400px] w-[calc(100%-0.8rem)] max-w-[160rem] overflow-hidden rounded-[2rem] bg-archway-dark @container @6xl:min-h-[600px]",
+        "rs-mb-5 relative mx-auto min-h-[400px] w-[calc(100%-0.8rem)] max-w-[160rem] overflow-hidden rounded-csp-lg @container @6xl:min-h-[600px]",
+        {"bg-archway-dark": children},
         props.className
       )}
     >
       <div
         className={cn("w-full bg-cool-grey", {
-          "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full": overlayPosition !== "center",
-          "aspect-auto absolute h-full": overlayPosition === "center",
+          "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full": overlayPosition !== "center" && children,
+          "aspect-auto absolute h-full": overlayPosition === "center" || !children,
         })}
       >
         {overlayPosition === "center" && (
@@ -81,7 +82,7 @@ const HeroBanner = async ({
             {...await getImagePlaceholder(imageUrl)}
           />
         )}
-        {overlayPosition !== "center" && (
+        {children && overlayPosition !== "center" && (
           <div
             className="absolute inset-0 z-10 bg-gradient-to-b from-transparent to-csp-archway-xdark/95 md:bg-gradient-to-r md:from-csp-archway-xdark/95 md:to-transparent"
             aria-hidden="true"
