@@ -46,7 +46,7 @@ const TwoColumn = ({items, config}: Props) => {
           items={leftItems}
           config={{top_padding: "none", bottom_margin: "none"}}
           className={cn({
-            "after:contents('') relative after:absolute after:-right-10 after:top-0 after:h-full after:w-[1px] after:bg-black":
+            "after:contents('') relative after:absolute after:-right-10 after:top-0 after:h-full after:w-[1px] after:bg-stone":
               config?.vertical_dividers,
           })}
         />
