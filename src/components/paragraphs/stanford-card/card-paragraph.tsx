@@ -24,6 +24,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
   const headerTagChoice = (behaviors.su_card_styles?.heading || "h2").split(".", 2)
   const headerTag = headerTagChoice[0]
   const headerClasses = cn(
+    "mb-0 mt-0 text-archway-dark",
     headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
     {"sr-only": behaviors.su_card_styles?.hide_heading}
   )
@@ -42,7 +43,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       {paragraph.suCardHeader && (
         <>
           {headerTag === "h2" && (
-            <H2 id={id} className={headerClasses}>
+            <H2 id={id} className={cn("type-2", headerClasses)}>
               {paragraph.suCardHeader}
             </H2>
           )}
@@ -60,17 +61,25 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
         </>
       )}
 
-      {paragraph.suCardSuperHeader && <div className="order-first font-semibold">{paragraph.suCardSuperHeader}</div>}
+      {paragraph.suCardSuperHeader && (
+        <div className="rs-mb-neg1 order-first font-sans text-19 font-normal uppercase text-archway-dark">
+          {paragraph.suCardSuperHeader}
+        </div>
+      )}
 
-      <Wysiwyg html={paragraph.suCardBody?.processed} />
+      <Wysiwyg className="rs-mt-1 text-archway-light" html={paragraph.suCardBody?.processed} />
 
       {paragraph.suCardLink?.url && (
         <>
           {behaviors.su_card_styles?.link_style === "action" && (
-            <ActionLink href={paragraph.suCardLink.url}>{paragraph.suCardLink.title}</ActionLink>
+            <ActionLink className="rs-mt-2" href={paragraph.suCardLink.url}>
+              {paragraph.suCardLink.title}
+            </ActionLink>
           )}
           {behaviors.su_card_styles?.link_style !== "action" && (
-            <Button href={paragraph.suCardLink.url}>{paragraph.suCardLink.title}</Button>
+            <Button className="rs-mt-2" href={paragraph.suCardLink.url}>
+              {paragraph.suCardLink.title}
+            </Button>
           )}
         </>
       )}

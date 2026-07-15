@@ -34,14 +34,19 @@ const ImageCard = ({imageUrl, imageAlt, videoUrl, isArticle, squareImage, childr
     <CardWrapper
       {...props}
       className={cn(
-        "centered relative w-full border border-black-10 bg-white shadow-lg xl:max-w-[980px]",
+        "centered relative h-full w-full rounded-csp-lg border border-fog-dark bg-csp-cream xl:max-w-[980px]",
         props.className
       )}
     >
       {imageUrl && (
-        <div className={cn("relative w-full", {"aspect-1": squareImage, "aspect-[16/9]": !squareImage})}>
+        <div
+          className={cn("relative w-full border-transparent", {
+            "aspect-1": squareImage,
+            "aspect-[16/9]": !squareImage,
+          })}
+        >
           <Image
-            className="object-cover object-center"
+            className="rounded-t-csp-lg object-cover object-center"
             src={imageUrl}
             alt={imageAlt || ""}
             fill
@@ -52,15 +57,15 @@ const ImageCard = ({imageUrl, imageAlt, videoUrl, isArticle, squareImage, childr
 
       {videoUrl && <Oembed url={videoUrl} />}
 
-      <div className="flex flex-col gap-5 p-10">{children}</div>
+      <div className="rs-mt-2 rs-ml-2 rs-mr-3 rs-mb-3 flex flex-col">{children}</div>
     </CardWrapper>
   )
 }
 
 export const ImageCardSkeleton = () => {
   return (
-    <div className="centered w-full border border-black-10 pb-20 shadow-lg xl:max-w-[980px]">
-      <div className="aspect-[16/9] w-full bg-black-10"></div>
+    <div className="centered w-full border border-fog-dark pb-20 xl:max-w-[980px]">
+      <div className="aspect-[16/9] w-full bg-csp-cream"></div>
     </div>
   )
 }
