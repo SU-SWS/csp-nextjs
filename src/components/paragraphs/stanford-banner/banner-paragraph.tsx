@@ -43,21 +43,26 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
           {paragraph.suBannerHeader && (
             <>
               {headerTag === "h2" && (
-                <H2 id={id} className={cn(headerClasses, "type-3 mb-0 font-serif font-normal text-csp-cream")}>
+                <H2
+                  id={id}
+                  className={cn(headerClasses, "type-3 mb-0 font-serif font-normal text-csp-cream @6xl:max-w-[600px]")}
+                >
                   {paragraph.suBannerHeader}
                 </H2>
               )}
               {headerTag === "h3" && (
-                <H3 id={id} className={headerClasses}>
+                <H3 id={id} className={cn(headerClasses, "text-csp-cream @6xl:max-w-[600px]")}>
                   {paragraph.suBannerHeader}
                 </H3>
               )}
               {headerTag === "h4" && (
-                <H4 id={id} className={headerClasses}>
+                <H4 id={id} className={cn(headerClasses, "text-csp-cream @6xl:max-w-[600px]")}>
                   {paragraph.suBannerHeader}
                 </H4>
               )}
-              {headerTag === "div" && <div className={headerClasses}>{paragraph.suBannerHeader}</div>}
+              {headerTag === "div" && (
+                <div className={cn(headerClasses, "text-csp-cream @6xl:max-w-[600px]")}>{paragraph.suBannerHeader}</div>
+              )}
             </>
           )}
 
@@ -67,18 +72,21 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
 
           <Wysiwyg
             html={paragraph.suBannerBody?.processed}
-            className="type-0 font-normal text-csp-cream [&_p]:!type-0"
+            className="type-0 font-normal text-csp-cream [&_p]:!type-0 @6xl:max-w-[600px]"
           />
 
-          {paragraph.suBannerButton?.map((button, i) => (
-            <Button
-              key={i}
-              href={button.url}
-              variant={button.attributes?.buttonType === "secondary" ? "secondary" : "primary"}
-            >
-              {button.title}
-            </Button>
-          ))}
+          <div className="m-0 columns-1 gap-1 @5xl:columns-2 @6xl:columns-3">
+            {paragraph.suBannerButton?.map((button, i) => (
+              <Button
+                key={i}
+                href={button.url}
+                variant={button.attributes?.buttonType === "archway" ? "archway" : "digitalred"}
+                className="m-2 whitespace-nowrap"
+              >
+                {button.title}
+              </Button>
+            ))}
+          </div>
         </>
       )}
     </HeroBanner>
