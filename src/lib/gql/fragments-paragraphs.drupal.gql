@@ -21,6 +21,9 @@ fragment FragmentParagraphStanfordBanner on ParagraphStanfordBanner {
     suBannerButton {
         url
         title
+        attributes {
+            buttonType
+        }
     }
     suBannerImage {
         ...FragmentMediaImage
