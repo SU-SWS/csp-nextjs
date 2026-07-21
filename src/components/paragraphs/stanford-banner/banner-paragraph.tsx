@@ -70,9 +70,15 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
             className="type-0 font-normal text-csp-cream [&_p]:!type-0"
           />
 
-          {paragraph.suBannerButton?.url && (
-            <Button href={paragraph.suBannerButton.url}>{paragraph.suBannerButton.title}</Button>
-          )}
+          {paragraph.suBannerButton?.map((button, i) => (
+            <Button
+              key={i}
+              href={button.url}
+              variant={button.attributes?.buttonType === "secondary" ? "secondary" : "primary"}
+            >
+              {button.title}
+            </Button>
+          ))}
         </>
       )}
     </HeroBanner>
