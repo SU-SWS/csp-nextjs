@@ -66,7 +66,7 @@ const Button = ({
   const isSecondary = variant === "secondary"
 
   const classes = cn(
-    "btn group w-fit rounded-csp-sm font-normal no-underline transition hocus:underline",
+    "btn group w-fit max-w-300 rounded-csp-sm font-normal no-underline transition hocus:underline",
     {
       "border border-csp-digital-red-xdark bg-cardinal-red text-white hocus:bg-digital-red hocus:text-white":
         variant === "primary",

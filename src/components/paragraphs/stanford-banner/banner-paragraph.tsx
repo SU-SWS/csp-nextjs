@@ -75,13 +75,13 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
             className="type-0 font-normal text-csp-cream [&_p]:!type-0 @6xl:max-w-[600px]"
           />
 
-          <div className="m-0 columns-1 gap-1 @5xl:columns-2 @6xl:columns-3">
+          <div className="m-0 columns-1 gap-1 @7xl:columns-3">
             {paragraph.suBannerButton?.map((button, i) => (
               <Button
                 key={i}
                 href={button.url}
                 variant={button.attributes?.buttonType === "archway" ? "archway" : "digitalred"}
-                className="m-2 whitespace-nowrap"
+                className="m-2"
               >
                 {button.title}
               </Button>
