@@ -22,7 +22,7 @@ fragment FragmentParagraphStanfordBanner on ParagraphStanfordBanner {
         url
         title
         attributes {
-            buttonType
+            imageBannerButtonType
         }
     }
     suBannerImage {
