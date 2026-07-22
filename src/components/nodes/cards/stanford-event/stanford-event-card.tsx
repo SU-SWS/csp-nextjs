@@ -1,5 +1,5 @@
 import Link from "@components/elements/link"
-import {CalendarDaysIcon, MapPinIcon} from "@heroicons/react/20/solid"
+import {CalendarDaysIcon, MapPinIcon, ArrowRightIcon} from "@heroicons/react/20/solid"
 import {H2, H3} from "@components/elements/headers"
 import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordEvent} from "@lib/gql/__generated__/graphql"
@@ -11,9 +11,10 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordEvent
   headingLevel?: "h2" | "h3"
+  isTeaser?: boolean
 }
 
-const StanfordEventCard = ({node, headingLevel, ...props}: Props) => {
+const StanfordEventCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
   const timeZone = node.suEventDateTime.timezone || "America/Los_Angeles"
 
   const start = new Date(parseInt(node.suEventDateTime.value) * 1000)
@@ -52,6 +53,7 @@ const StanfordEventCard = ({node, headingLevel, ...props}: Props) => {
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
           <Link href={node.suEventSource?.url || node.path || "#"}>{node.title}</Link>
+          {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
         </Heading>
 
         {node.suEventType && <div className="su-digital-red font-semibold">{node.suEventType[0].name}</div>}

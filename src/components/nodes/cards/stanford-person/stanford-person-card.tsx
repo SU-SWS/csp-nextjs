@@ -5,13 +5,15 @@ import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordPerson} from "@lib/gql/__generated__/graphql"
 import cn from "@lib/utils/className"
 import {getIdFromText} from "@lib/utils/text-tools"
+import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPerson
   headingLevel?: "h2" | "h3"
+  isTeaser?: boolean
 }
 
-const StanfordPersonCard = ({node, headingLevel, ...props}: Props) => {
+const StanfordPersonCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
   const imageUrl = node.suPersonPhoto?.mediaImage.url
 
   const Heading = headingLevel === "h3" ? H3 : H2
@@ -32,6 +34,7 @@ const StanfordPersonCard = ({node, headingLevel, ...props}: Props) => {
 
       <Heading id={id}>
         <Link href={node.suPersonSource?.url || node.path || "#"}>{node.title}</Link>
+        {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
       </Heading>
 
       {node.suPersonShortTitle && <div>{node.suPersonShortTitle}</div>}

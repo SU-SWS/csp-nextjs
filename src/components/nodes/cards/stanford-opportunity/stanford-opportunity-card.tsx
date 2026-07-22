@@ -6,13 +6,15 @@ import ImageCard from "@components/patterns/image-card"
 import Wysiwyg from "@components/elements/wysiwyg"
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
 import {getIdFromText} from "@lib/utils/text-tools"
+import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordOpportunity
   headingLevel?: "h2" | "h3"
+  isTeaser?: boolean
 }
 
-const StanfordOpportunityCard = ({node, headingLevel, ...props}: Props) => {
+const StanfordOpportunityCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
   const image = node.suOppImage?.mediaImage
   const Heading = headingLevel === "h3" ? H3 : H2
   const id = getIdFromText(node.title)
@@ -21,6 +23,7 @@ const StanfordOpportunityCard = ({node, headingLevel, ...props}: Props) => {
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black" id={id}>
           <Link href={node.suOppSource?.url || node.path || "#"}>{node.title}</Link>
+          {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
         </Heading>
         {node.suOppType && <div>{node.suOppType?.map(type => type.name).join(", ")}</div>}
       </ReverseVisualOrder>

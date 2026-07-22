@@ -5,13 +5,15 @@ import {NodeStanfordPublication} from "@lib/gql/__generated__/graphql"
 import ImageCard from "@components/patterns/image-card"
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
 import {getIdFromText} from "@lib/utils/text-tools"
+import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPublication
   headingLevel?: "h2" | "h3"
+  isTeaser?: boolean
 }
 
-const StanfordPublicationCard = ({node, headingLevel, ...props}: Props) => {
+const StanfordPublicationCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
   const citationUrl = node.suPublicationCitation?.suUrl?.url
   const Heading = headingLevel === "h3" ? H3 : H2
   const citationTypes: Record<string, string> = {
@@ -26,6 +28,7 @@ const StanfordPublicationCard = ({node, headingLevel, ...props}: Props) => {
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
           <Link href={citationUrl || node.path || "#"}>{node.title}</Link>
+          {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
         </Heading>
         <div className="font-bold">
           {node.suPublicationCitation?.__typename &&

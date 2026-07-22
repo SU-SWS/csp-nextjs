@@ -4,13 +4,15 @@ import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordPage} from "@lib/gql/__generated__/graphql"
 import ImageCard from "@components/patterns/image-card"
 import {getIdFromText} from "@lib/utils/text-tools"
+import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPage
   headingLevel?: "h2" | "h3"
+  isTeaser?: boolean
 }
 
-const StanfordPageCard = ({node, headingLevel, ...props}: Props) => {
+const StanfordPageCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
   const pageTitleBannerImage =
     node.suPageBanner?.__typename === "ParagraphStanfordPageTitleBanner" &&
     node.suPageBanner.suTitleBannerImage.mediaImage
@@ -24,6 +26,7 @@ const StanfordPageCard = ({node, headingLevel, ...props}: Props) => {
     <ImageCard {...props} aria-labelledby={id} imageUrl={image?.url} imageAlt={image?.alt} isArticle>
       <Heading className="[&_a]:text-black" id={id}>
         <Link href={node.path || "#"}>{node.title}</Link>
+        {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
       </Heading>
 
       {node.suPageDescription && <p>{node.suPageDescription}</p>}

@@ -5,13 +5,15 @@ import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordPolicy} from "@lib/gql/__generated__/graphql"
 import ImageCard from "@components/patterns/image-card"
 import {getIdFromText} from "@lib/utils/text-tools"
+import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPolicy
   headingLevel?: "h2" | "h3"
+  isTeaser?: boolean
 }
 
-const StanfordPolicyCard = ({node, headingLevel, ...props}: Props) => {
+const StanfordPolicyCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
   const Heading = headingLevel === "h3" ? H3 : H2
   const trimmedBodyText = node.body?.processed
     ?.replace(/(<([^>]+)>)/gi, " ")
@@ -26,6 +28,7 @@ const StanfordPolicyCard = ({node, headingLevel, ...props}: Props) => {
     <ImageCard {...props} aria-labelledby={id} isArticle>
       <Heading id={id}>
         <Link href={node.suPolicySource?.url || node.path || "#"}>{node.title}</Link>
+        {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
       </Heading>
 
       {teaserSummary && <Wysiwyg html={teaserSummary} />}
