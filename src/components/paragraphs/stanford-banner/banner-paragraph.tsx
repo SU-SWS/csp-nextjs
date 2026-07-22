@@ -79,7 +79,7 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
               <Button
                 key={i}
                 href={button.url}
-                variant={button.attributes?.buttonType === "archway" ? "archway" : "digitalred"}
+                variant={button.attributes?.imageBannerButtonType === "archway" ? "archway" : "digitalred"}
                 className="m-2"
               >
                 {button.title}
