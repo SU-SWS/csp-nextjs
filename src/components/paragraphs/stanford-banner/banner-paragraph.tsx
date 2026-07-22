@@ -40,31 +40,30 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
     >
       {hasCard && (
         <>
-          {paragraph.suBannerHeader && (
-            <>
-              {headerTag === "h2" && (
-                <H2
-                  id={id}
-                  className={cn(headerClasses, "type-3 mb-0 font-serif font-normal text-csp-cream @6xl:max-w-[600px]")}
-                >
-                  {paragraph.suBannerHeader}
-                </H2>
-              )}
-              {headerTag === "h3" && (
-                <H3 id={id} className={cn(headerClasses, "text-csp-cream @6xl:max-w-[600px]")}>
-                  {paragraph.suBannerHeader}
-                </H3>
-              )}
-              {headerTag === "h4" && (
-                <H4 id={id} className={cn(headerClasses, "text-csp-cream @6xl:max-w-[600px]")}>
-                  {paragraph.suBannerHeader}
-                </H4>
-              )}
-              {headerTag === "div" && (
-                <div className={cn(headerClasses, "text-csp-cream @6xl:max-w-[600px]")}>{paragraph.suBannerHeader}</div>
-              )}
-            </>
-          )}
+          <div className="@6xl:max-w-[600px]">
+            {paragraph.suBannerHeader && (
+              <>
+                {headerTag === "h2" && (
+                  <H2 id={id} className={cn(headerClasses, "type-3 my-0 font-serif font-normal text-csp-cream")}>
+                    {paragraph.suBannerHeader}
+                  </H2>
+                )}
+                {headerTag === "h3" && (
+                  <H3 id={id} className={cn(headerClasses, "my-0 text-csp-cream")}>
+                    {paragraph.suBannerHeader}
+                  </H3>
+                )}
+                {headerTag === "h4" && (
+                  <H4 id={id} className={cn(headerClasses, "my-0 text-csp-cream")}>
+                    {paragraph.suBannerHeader}
+                  </H4>
+                )}
+                {headerTag === "div" && (
+                  <div className={cn(headerClasses, "text-csp-cream")}>{paragraph.suBannerHeader}</div>
+                )}
+              </>
+            )}
+          </div>
 
           {paragraph.suBannerSupHeader && (
             <div className="type-2 order-first font-normal text-fog-dark">{paragraph.suBannerSupHeader}</div>
@@ -72,7 +71,7 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
 
           <Wysiwyg
             html={paragraph.suBannerBody?.processed}
-            className="type-0 font-normal text-csp-cream [&_p]:!type-0 @6xl:max-w-[600px]"
+            className="type-0 font-normal text-csp-cream [&_p]:!type-0"
           />
 
           <div className="m-0 columns-1 gap-1 @7xl:columns-3">
