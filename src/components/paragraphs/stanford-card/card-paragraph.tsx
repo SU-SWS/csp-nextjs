@@ -68,7 +68,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       )}
 
       <Wysiwyg
-        className="rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.4] md:[&_*]:text-19"
+        className="rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19"
         html={paragraph.suCardBody?.processed}
       />
 
