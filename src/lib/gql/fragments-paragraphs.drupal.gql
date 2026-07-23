@@ -45,6 +45,36 @@ fragment FragmentParagraphStanfordCard on ParagraphStanfordCard {
     }
 }
 
+fragment FragmentParagraphCspCourseCardInstructor on ParagraphCspCourseCardInstructor {
+    cspInstructorName
+    cspInstructorTitle
+    cspInstructorUrl {
+        url
+        title
+    }
+    cspInstructorHeadshot {
+        ...FragmentMediaImage
+    }
+}
+
+fragment FragmentParagraphCspFauxCourseCard on ParagraphCspFauxCourseCard {
+    cspCourseCardTitle
+    cspCourseCardFormat
+    cspCourseCardLocation
+    cspCourseCardColor
+    cspCourseCardLink {
+        url
+        title
+    }
+    cspCourseCardImage {
+        ...FragmentMediaImage
+    }
+    cspCourseCardInstructors {
+        ...FragmentParagraphInterface
+        ...FragmentParagraphCspCourseCardInstructor
+    }
+}
+
 fragment FragmentParagraphStanfordEntity on ParagraphStanfordEntity {
     suEntityHeadline
     suEntityDescription {
@@ -215,6 +245,7 @@ fragment FragmentParagraphStanfordWysiwyg on ParagraphStanfordWysiwyg {
 
 fragment FragmentParagraphUnion on ParagraphUnion {
     ...FragmentParagraphInterface
+    ...FragmentParagraphCspFauxCourseCard
     ...FragmentParagraphStanfordAccordion
     ...FragmentParagraphStanfordFaq
     ...FragmentParagraphStanfordBanner

@@ -1,4 +1,5 @@
 import CardParagraph from "@components/paragraphs/stanford-card/card-paragraph"
+import FauxCourseCardParagraph from "@components/paragraphs/csp-faux-course-card/faux-course-card-paragraph"
 import EntityParagraph from "@components/paragraphs/stanford-entity/entity-paragraph"
 import GalleryParagraph from "@components/paragraphs/stanford-gallery/gallery-paragraph"
 import MediaCaptionParagraph from "@components/paragraphs/stanford-media-caption/media-caption-paragraph"
@@ -40,6 +41,8 @@ const ParagraphComponent = async ({paragraph}: Props) => {
       return <BannerParagraph paragraph={paragraph} {...itemProps} />
     case "ParagraphStanfordCard":
       return <CardParagraph paragraph={paragraph} {...itemProps} />
+    case "ParagraphCspFauxCourseCard":
+      return <FauxCourseCardParagraph paragraph={paragraph} {...itemProps} />
     case "ParagraphStanfordEntity":
       return <EntityParagraph paragraph={paragraph} {...itemProps} />
     case "ParagraphStanfordFaq":
