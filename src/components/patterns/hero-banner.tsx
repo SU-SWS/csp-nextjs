@@ -86,10 +86,7 @@ const HeroBanner = async ({
           <div
             className={cn(
               "absolute inset-0 z-10 bg-gradient-to-b from-transparent to-csp-archway-xdark/95 md:from-csp-archway-xdark/95 md:to-transparent",
-              {
-                "md:bg-gradient-to-l": overlayPosition === "right",
-                "md:bg-gradient-to-r": overlayPosition !== "right",
-              }
+              overlayPosition === "right" ? "md:bg-gradient-to-l" : "md:bg-gradient-to-r"
             )}
             aria-hidden="true"
           />
