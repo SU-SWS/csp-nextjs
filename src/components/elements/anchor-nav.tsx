@@ -151,12 +151,15 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
   const hasOverflow = overflowHeadings.length > 0
 
   return (
-    <div ref={navRef} {...props} className={cn("mb-20 text-16", props.className)}>
+    <div ref={navRef} {...props} className={cn("mb-20 max-w-1000 text-16", props.className)}>
       <nav
         aria-labelledby="anchor-nav"
-        className={cn("relative mx-auto w-fit items-center rounded border border-fog-dark bg-csp-cream font-sans", {
-          "flex rounded-full": horizontal,
-        })}
+        className={cn(
+          "relative mx-auto w-fit items-center rounded-csp-sm border border-fog-dark bg-csp-cream font-sans",
+          {
+            "flex rounded-full": horizontal,
+          }
+        )}
       >
         {width && width < 768 && (
           <button
