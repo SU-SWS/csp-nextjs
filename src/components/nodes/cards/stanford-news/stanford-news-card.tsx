@@ -38,8 +38,10 @@ const StanfordNewsCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
     >
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black" id={id}>
-          <Link href={node.suNewsSource?.url || node.path || "#"}>{node.title}</Link>
-          {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
+          <Link className="flex" href={node.suNewsSource?.url || node.path || "#"}>
+            {node.title}
+            {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
+          </Link>
         </Heading>
 
         {publishDate && <div>{publishDate}</div>}

@@ -25,8 +25,10 @@ const StanfordPageCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
   return (
     <ImageCard {...props} aria-labelledby={id} imageUrl={image?.url} imageAlt={image?.alt} isArticle>
       <Heading className="[&_a]:text-black" id={id}>
-        <Link href={node.path || "#"}>{node.title}</Link>
-        {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
+        <Link className="flex" href={node.path || "#"}>
+          {node.title}
+          {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
+        </Link>
       </Heading>
 
       {node.suPageDescription && <p>{node.suPageDescription}</p>}

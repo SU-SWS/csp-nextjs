@@ -27,8 +27,9 @@ const StanfordPublicationCard = ({node, headingLevel, isTeaser, ...props}: Props
     <ImageCard {...props} aria-labelledby={id} isArticle>
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
-          <Link href={citationUrl || node.path || "#"}>{node.title}</Link>
-          {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
+          <Link className="flex" href={citationUrl || node.path || "#"}>
+            {node.title} {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
+          </Link>
         </Heading>
         <div className="font-bold">
           {node.suPublicationCitation?.__typename &&

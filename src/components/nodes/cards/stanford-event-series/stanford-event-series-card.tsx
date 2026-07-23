@@ -18,8 +18,10 @@ const StanfordEventSeriesCard = ({node, headingLevel, isTeaser, ...props}: Props
   return (
     <ImageCard {...props} aria-labelledby={id} isArticle>
       <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
-        <Link href={node.path || "#"}>{node.title}</Link>
-        {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
+        <Link className="flex" href={node.path || "#"}>
+          {node.title}
+          {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
+        </Link>
       </Heading>
       {node.suEventSeriesDek && <p>{node.suEventSeriesDek}</p>}
     </ImageCard>

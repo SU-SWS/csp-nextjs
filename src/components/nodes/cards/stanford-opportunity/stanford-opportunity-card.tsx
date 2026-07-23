@@ -22,8 +22,10 @@ const StanfordOpportunityCard = ({node, headingLevel, isTeaser, ...props}: Props
     <ImageCard {...props} aria-labelledby={id} imageUrl={image?.url} isArticle>
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black" id={id}>
-          <Link href={node.suOppSource?.url || node.path || "#"}>{node.title}</Link>
-          {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
+          <Link className="flex" href={node.suOppSource?.url || node.path || "#"}>
+            {node.title}
+            {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
+          </Link>
         </Heading>
         {node.suOppType && <div>{node.suOppType?.map(type => type.name).join(", ")}</div>}
       </ReverseVisualOrder>

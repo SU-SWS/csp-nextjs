@@ -27,8 +27,10 @@ const StanfordPolicyCard = ({node, headingLevel, isTeaser, ...props}: Props) => 
   return (
     <ImageCard {...props} aria-labelledby={id} isArticle>
       <Heading id={id}>
-        <Link href={node.suPolicySource?.url || node.path || "#"}>{node.title}</Link>
-        {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
+        <Link className="flex" href={node.suPolicySource?.url || node.path || "#"}>
+          {node.title}
+          {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
+        </Link>
       </Heading>
 
       {teaserSummary && <Wysiwyg html={teaserSummary} />}

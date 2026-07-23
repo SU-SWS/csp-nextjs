@@ -33,8 +33,10 @@ const StanfordPersonCard = ({node, headingLevel, isTeaser, ...props}: Props) => 
       )}
 
       <Heading id={id}>
-        <Link href={node.suPersonSource?.url || node.path || "#"}>{node.title}</Link>
-        {isTeaser && <ArrowRightIcon height={25} className="ml-2 inline-block" />}
+        <Link className="flex" href={node.suPersonSource?.url || node.path || "#"}>
+          {node.title}
+          {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
+        </Link>
       </Heading>
 
       {node.suPersonShortTitle && <div>{node.suPersonShortTitle}</div>}
