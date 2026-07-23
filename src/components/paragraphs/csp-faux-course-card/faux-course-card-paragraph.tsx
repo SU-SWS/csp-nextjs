@@ -4,6 +4,7 @@ import Link from "@components/elements/link"
 import {H3} from "@components/elements/headers"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 import CourseCardInstructor from "@components/paragraphs/csp-faux-course-card/course-card-instructor"
+import cn from "@lib/utils/className"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   paragraph: ParagraphCspFauxCourseCard
@@ -32,7 +33,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const instructors = paragraph.cspCourseCardInstructors || []
 
   return (
-    <div {...props} className="flex flex-wrap gap-24">
+    <div {...props} className={cn("flex flex-wrap gap-24", props.className)}>
       {image?.url && (
         <div className="relative aspect-[260/180] w-[260px] max-w-full shrink-0">
           {url ? (
