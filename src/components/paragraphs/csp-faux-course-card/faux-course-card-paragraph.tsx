@@ -29,7 +29,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
     <div
       {...props}
       className={cn(
-        "flex max-w-[116rem] flex-wrap gap-24 justify-self-center rounded-csp-md border border-fog-dark",
+        "flex max-w-[116rem] flex-wrap justify-self-center rounded-csp-md border border-fog-dark",
         props.className
       )}
     >
@@ -45,11 +45,11 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         </div>
       )}
 
-      <div className="min-w-0 max-w-600 flex-1">
-        {colorBar && <div className="mb-16 h-4 w-[50px] rounded" style={{backgroundColor: colorBar}} />}
+      <div className="rs-pt-1 rs-pb-3 rs-px-3 min-w-0 max-w-600 flex-1">
+        {colorBar && <div className="rs-mb-1 h-[.4rem] w-[5rem] rounded" style={{backgroundColor: colorBar}} />}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
-          <div className="mb-8 text-16">
+          <div className="rs-mb-neg2 font-sans text-16 font-normal text-archway-light">
             {paragraph.cspCourseCardFormat}
             {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && <span className="mx-6">|</span>}
             {paragraph.cspCourseCardLocation}
@@ -57,7 +57,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         )}
 
         {paragraph.cspCourseCardTitle && (
-          <H3 className="mb-16">
+          <H3 className="rs-mb-1 type-1 mt-0 font-normal text-archway-dark hocus:text-digital-red">
             {url ? <Link href={url}>{paragraph.cspCourseCardTitle}</Link> : paragraph.cspCourseCardTitle}
           </H3>
         )}
