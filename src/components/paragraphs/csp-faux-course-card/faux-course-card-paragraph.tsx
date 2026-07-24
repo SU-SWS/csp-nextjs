@@ -32,7 +32,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       )}
     >
       {image?.url && (
-        <div className="relative m-[.6rem] aspect-[54/29] w-full min-w-[56rem] flex-grow self-start overflow-hidden rounded-csp-sm">
+        <div className="relative m-[.6rem] aspect-[54/29] w-full flex-grow self-start overflow-hidden rounded-csp-sm @9xl:min-w-[56rem]">
           {url ? (
             <Link href={url} className="relative block h-full">
               <Image src={image.url} alt={image.alt || ""} fill className="border-transparent object-cover" />

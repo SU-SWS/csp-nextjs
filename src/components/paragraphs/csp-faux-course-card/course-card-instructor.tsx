@@ -18,14 +18,14 @@ const CourseCardInstructor = ({instructor}: Props) => {
   const headshot = instructor.cspInstructorHeadshot?.mediaImage
 
   return (
-    <li className="flex items-center gap-8">
+    <li className="flex gap-8">
       {headshot?.url && (
         <div className="relative h-[57px] w-[57px] shrink-0">
           <Image className="rounded-full object-cover" src={headshot.url} alt={headshot.alt || ""} fill sizes="57px" />
         </div>
       )}
 
-      <div className="text-16 font-normal text-archway-light">
+      <div className="flex flex-col gap-2">
         <div className="text-19 font-normal">
           {instructor.cspInstructorUrl?.url ? (
             <Link
@@ -35,10 +35,12 @@ const CourseCardInstructor = ({instructor}: Props) => {
               {instructor.cspInstructorName}
             </Link>
           ) : (
-            instructor.cspInstructorName
+            <div className="text-19 font-normal text-archway-dark">{instructor.cspInstructorName}</div>
           )}
         </div>
-        {instructor.cspInstructorTitle && <div>{instructor.cspInstructorTitle}</div>}
+        <div className="text-16 font-normal text-archway-light">
+          {instructor.cspInstructorTitle && <div>{instructor.cspInstructorTitle}</div>}
+        </div>
       </div>
     </li>
   )
