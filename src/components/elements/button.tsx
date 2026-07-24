@@ -91,18 +91,16 @@ const Button = ({
     className
   )
 
-  const icon = showIcon && (
-    <ArrowRightIcon
-      height={22}
-      className="mb-[.3rem] ml-2 inline-block transition-all group-hocus-visible:translate-x-1"
-    />
-  )
-
   if (!href || buttonElem) {
     return (
       <button className={classes} type="button" {...props}>
         {children}
-        {icon}
+        {showIcon && (
+          <ArrowRightIcon
+            height={22}
+            className="mb-[.3rem] ml-2 inline-block transition-all group-hocus-visible:translate-x-1"
+          />
+        )}
       </button>
     )
   }
@@ -110,7 +108,12 @@ const Button = ({
   return (
     <Link href={getLinkHref(href)} className={classes} {...props}>
       {children}
-      {icon}
+      {showIcon && (
+        <ArrowRightIcon
+          height={22}
+          className="mb-[.3rem] ml-2 inline-block transition-all group-hocus-visible:translate-x-1"
+        />
+      )}
     </Link>
   )
 }
