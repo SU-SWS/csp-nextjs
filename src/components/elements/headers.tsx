@@ -1,6 +1,7 @@
 import {HtmlHTMLAttributes} from "react"
 import cn from "@lib/utils/className"
 import {getIdFromText} from "@lib/utils/text-tools"
+import {ChevronRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLHeadingElement>
 type H1Props = Props & {
