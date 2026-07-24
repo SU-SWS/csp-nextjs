@@ -26,13 +26,10 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   return (
     <div
       {...props}
-      className={cn(
-        "flex max-w-[116rem] flex-wrap justify-self-center rounded-csp-md border border-fog-dark",
-        props.className
-      )}
+      className={cn("flex max-w-[116rem] justify-self-center rounded-csp-md border border-fog-dark", props.className)}
     >
       {image?.url && (
-        <div className="relative aspect-[260/180] w-[260px] max-w-full shrink-0 rounded-csp-sm border">
+        <div className="relative aspect-[54/29] w-[260px] rounded-csp-sm border">
           {url ? (
             <Link href={url} className="relative block h-full w-full">
               <Image src={image.url} alt={image.alt || ""} fill sizes="260px" className="object-cover" />
@@ -55,8 +52,14 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         )}
 
         {paragraph.cspCourseCardTitle && (
-          <H3 className="rs-mb-1 type-1 mt-0 font-normal text-archway-dark hocus:text-digital-red">
-            {url ? <Link href={url}>{paragraph.cspCourseCardTitle}</Link> : paragraph.cspCourseCardTitle}
+          <H3 className="rs-mb-1 type-1 mt-0">
+            {url ? (
+              <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
+                {paragraph.cspCourseCardTitle}
+              </Link>
+            ) : (
+              paragraph.cspCourseCardTitle
+            )}
           </H3>
         )}
 
