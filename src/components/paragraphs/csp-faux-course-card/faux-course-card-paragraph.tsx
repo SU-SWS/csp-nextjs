@@ -29,13 +29,19 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       className={cn("flex max-w-[116rem] justify-self-center rounded-csp-md border border-fog-dark", props.className)}
     >
       {image?.url && (
-        <div className="relative aspect-[54/29] w-[260px] rounded-csp-sm border">
+        <div className="relative m-[.6rem] aspect-[54/29] min-w-[540px] self-start overflow-hidden rounded-csp-sm">
           {url ? (
-            <Link href={url} className="relative block h-full w-full">
-              <Image src={image.url} alt={image.alt || ""} fill sizes="260px" className="object-cover" />
+            <Link href={url} className="relative block h-full">
+              <Image
+                src={image.url}
+                alt={image.alt || ""}
+                fill
+
+                className="border-transparent object-none"
+              />
             </Link>
           ) : (
-            <Image src={image.url} alt={image.alt || ""} fill sizes="260px" className="object-cover" />
+            <Image src={image.url} alt={image.alt || ""} fill sizes="260px" className="border object-none" />
           )}
         </div>
       )}
