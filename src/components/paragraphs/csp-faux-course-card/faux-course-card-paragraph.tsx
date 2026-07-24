@@ -26,27 +26,24 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   return (
     <div
       {...props}
-      className={cn("flex max-w-[116rem] justify-self-center rounded-csp-md border border-fog-dark", props.className)}
+      className={cn(
+        "flex max-w-[116rem] flex-col justify-self-center rounded-csp-md border border-fog-dark @9xl:flex-row",
+        props.className
+      )}
     >
       {image?.url && (
-        <div className="relative m-[.6rem] aspect-[54/29] min-w-[540px] self-start overflow-hidden rounded-csp-sm">
+        <div className="relative m-[.6rem] aspect-[54/29] w-full min-w-[56rem] flex-grow self-start overflow-hidden rounded-csp-sm">
           {url ? (
             <Link href={url} className="relative block h-full">
-              <Image
-                src={image.url}
-                alt={image.alt || ""}
-                fill
-
-                className="border-transparent object-none"
-              />
+              <Image src={image.url} alt={image.alt || ""} fill className="border-transparent object-cover" />
             </Link>
           ) : (
-            <Image src={image.url} alt={image.alt || ""} fill sizes="260px" className="border object-none" />
+            <Image src={image.url} alt={image.alt || ""} fill className="border object-cover" />
           )}
         </div>
       )}
 
-      <div className="rs-pt-1 rs-pb-3 rs-px-3 min-w-0 max-w-600 flex-1">
+      <div className="rs-pt-1 rs-pb-3 rs-px-3 min-w-0 max-w-600">
         {colorBar && <div className="rs-mb-1 h-[.4rem] w-[5rem] rounded" style={{backgroundColor: colorBar}} />}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
