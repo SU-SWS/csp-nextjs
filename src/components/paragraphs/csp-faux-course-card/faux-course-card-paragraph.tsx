@@ -10,9 +10,6 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   paragraph: ParagraphCspFauxCourseCard
 }
 
-/**
- * Placeholder color-bar values
- */
 const COLOR_BAR_PLACEHOLDER: Record<string, string> = {
   lagunita: "#00778B",
   plum: "#620059",
@@ -22,20 +19,22 @@ const COLOR_BAR_PLACEHOLDER: Record<string, string> = {
   archway: "#D2C295",
 }
 
-/**
- * Stub rendering of the Faux Course Card paragraph (CSP-105).
- */
 const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const image = paragraph.cspCourseCardImage?.mediaImage
   const url = paragraph.cspCourseCardLink?.url
   const colorBar = paragraph.cspCourseCardColor ? COLOR_BAR_PLACEHOLDER[paragraph.cspCourseCardColor] : undefined
-
   const instructors = paragraph.cspCourseCardInstructors || []
 
   return (
-    <div {...props} className={cn("flex flex-wrap gap-24", props.className)}>
+    <div
+      {...props}
+      className={cn(
+        "flex max-w-[116rem] flex-wrap gap-24 justify-self-center rounded-csp-md border border-fog-dark",
+        props.className
+      )}
+    >
       {image?.url && (
-        <div className="relative aspect-[260/180] w-[260px] max-w-full shrink-0">
+        <div className="relative aspect-[260/180] w-[260px] max-w-full shrink-0 rounded-csp-sm border">
           {url ? (
             <Link href={url} className="relative block h-full w-full">
               <Image src={image.url} alt={image.alt || ""} fill sizes="260px" className="object-cover" />
@@ -46,7 +45,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         </div>
       )}
 
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 max-w-600 flex-1">
         {colorBar && <div className="mb-16 h-4 w-[50px] rounded" style={{backgroundColor: colorBar}} />}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
@@ -57,9 +56,11 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
           </div>
         )}
 
-        <H3 className="mb-16">
-          {url ? <Link href={url}>{paragraph.cspCourseCardTitle}</Link> : paragraph.cspCourseCardTitle}
-        </H3>
+        {paragraph.cspCourseCardTitle && (
+          <H3 className="mb-16">
+            {url ? <Link href={url}>{paragraph.cspCourseCardTitle}</Link> : paragraph.cspCourseCardTitle}
+          </H3>
+        )}
 
         {instructors.length > 0 && (
           <ul className="flex list-none flex-col gap-8 p-0">
