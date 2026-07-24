@@ -11,24 +11,15 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
 }
 
 /**
- * Placeholder color-bar values
- */
-const COLOR_BAR_PLACEHOLDER: Record<string, string> = {
-  lagunita: "#00778B",
-  plum: "#620059",
-  "palo-verde": "#175E54",
-  olive: "#4F4821",
-  cardinal: "#8C1515",
-  archway: "#D2C295",
-}
-
-/**
  * Stub rendering of the Faux Course Card paragraph (CSP-105).
  */
 const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const image = paragraph.cspCourseCardImage?.mediaImage
   const url = paragraph.cspCourseCardLink?.url
-  const colorBar = paragraph.cspCourseCardColor ? COLOR_BAR_PLACEHOLDER[paragraph.cspCourseCardColor] : undefined
+
+  // Drupal restricts this to an approved palette and stores the hex without a
+  // leading "#", so the value can be used as-is.
+  const colorBar = paragraph.cspCourseCardColor?.color ? `#${paragraph.cspCourseCardColor.color}` : undefined
 
   const instructors = paragraph.cspCourseCardInstructors || []
 

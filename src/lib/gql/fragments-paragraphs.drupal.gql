@@ -61,7 +61,9 @@ fragment FragmentParagraphCspFauxCourseCard on ParagraphCspFauxCourseCard {
     cspCourseCardTitle
     cspCourseCardFormat
     cspCourseCardLocation
-    cspCourseCardColor
+    cspCourseCardColor {
+        color
+    }
     cspCourseCardLink {
         url
         title
