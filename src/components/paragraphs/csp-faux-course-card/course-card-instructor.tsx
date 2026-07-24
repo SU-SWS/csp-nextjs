@@ -26,9 +26,14 @@ const CourseCardInstructor = ({instructor}: Props) => {
       )}
 
       <div className="text-16 font-normal text-archway-light">
-        <div className="text-19 font-normal text-archway-dark hocus:text-digital-red">
+        <div className="text-19 font-normal">
           {instructor.cspInstructorUrl?.url ? (
-            <Link href={instructor.cspInstructorUrl.url}>{instructor.cspInstructorName}</Link>
+            <Link
+              className="font-normal text-archway-dark no-underline hocus:text-digital-red hocus:underline"
+              href={instructor.cspInstructorUrl.url}
+            >
+              {instructor.cspInstructorName}
+            </Link>
           ) : (
             instructor.cspInstructorName
           )}
