@@ -25,8 +25,8 @@ const CourseCardInstructor = ({instructor}: Props) => {
         </div>
       )}
 
-      <div className="text-16 leading-tight">
-        <div className="font-semibold">
+      <div className="text-16 font-normal text-archway-light">
+        <div className="text-19 font-normal text-archway-dark hocus:text-digital-red">
           {instructor.cspInstructorUrl?.url ? (
             <Link href={instructor.cspInstructorUrl.url}>{instructor.cspInstructorName}</Link>
           ) : (
