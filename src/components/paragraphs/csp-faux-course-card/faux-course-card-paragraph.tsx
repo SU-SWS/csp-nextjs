@@ -44,7 +44,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       )}
 
       <div className="rs-pt-1 rs-pb-3 rs-px-3 min-w-0 max-w-600">
-        {colorBar && <div className="rs-mb-1 h-4 w-20 rounded" style={{backgroundColor: colorBar}} />}
+        {colorBar && <div className="rs-mb-1 h-[.4rem] w-20 rounded" style={{backgroundColor: colorBar}} />}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
           <div className="mb-8 font-sans text-16 font-normal text-archway-light md:mb-9 2xl:mb-10">
