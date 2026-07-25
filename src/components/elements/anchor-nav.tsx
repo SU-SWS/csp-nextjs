@@ -151,11 +151,11 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
   const hasOverflow = overflowHeadings.length > 0
 
   return (
-    <div ref={navRef} {...props} className={cn("mb-20 max-w-1000 text-16", props.className)}>
+    <div ref={navRef} {...props} className={cn("centered-container mb-20 max-w-1000 text-16", props.className)}>
       <nav
         aria-labelledby="anchor-nav"
         className={cn(
-          "relative mx-auto w-fit items-center rounded-csp-sm border border-fog-dark bg-csp-cream font-sans",
+          "relative mx-auto w-fit min-w-96 items-center rounded-csp-sm border border-fog-dark bg-csp-cream font-sans",
           {
             "flex rounded-full": horizontal,
           }
@@ -196,7 +196,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
             "flex flex-row flex-nowrap items-center": horizontal,
             "ml-14": !horizontal,
             hidden: width && width < 768 && !mobileMenuOpen,
-            "absolute left-0 top-full z-10 block w-fit min-w-[300px] border-black-10 bg-white p-5 shadow-xl":
+            "absolute left-0 top-full z-10 mt-10 block w-fit min-w-96 rounded-csp-lg border border-black-10 bg-csp-cream p-5":
               width && width < 768 && mobileMenuOpen,
           })}
         >
@@ -240,14 +240,14 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
                 <ul
                   id={menuPanelId}
                   aria-labelledby={menuButtonId}
-                  className="absolute right-0 top-full z-10 m-0 min-w-48 list-none bg-white py-2 shadow-lg"
+                  className="rs-py-2 rs-px-3 absolute right-0 top-full z-10 m-0 mt-4 w-96 list-none rounded-csp-sm border border-fog-dark bg-csp-cream"
                 >
                   {overflowHeadings.map(({id, text}) => (
-                    <li key={id}>
+                    <li key={id} className="rs-pb-2 m-0 px-0 last:pb-0">
                       <a
                         href={`#${id}`}
                         onClick={closeOverflow}
-                        className={cn("block px-6 py-3 font-normal text-cardinal-red no-underline hocus:underline")}
+                        className={cn("block font-normal text-cardinal-red no-underline hocus:underline")}
                       >
                         {text}
                       </a>
