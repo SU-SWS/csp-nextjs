@@ -20,8 +20,8 @@ const CourseCardInstructor = ({instructor}: Props) => {
   return (
     <li className="flex gap-8">
       {headshot?.url && (
-        <div className="relative h-[57px] w-[57px] shrink-0">
-          <Image className="rounded-full object-cover" src={headshot.url} alt={headshot.alt || ""} fill sizes="57px" />
+        <div className="relative size-[5.7rem] shrink-0">
+          <Image className="rounded-full object-cover" src={headshot.url} alt={headshot.alt || ""} fill />
         </div>
       )}
 
