@@ -33,23 +33,35 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
     >
       {image?.url && (
         <div className="relative mx-auto mt-[.6rem] aspect-[54/29] w-full max-w-[calc(100%_-_1.2rem)] flex-grow self-start overflow-hidden rounded-csp-sm @9xl:ml-[0.6rem] @9xl:mr-[0.6rem] @9xl:w-auto @9xl:min-w-[56rem] @9xl:max-w-none">
-          {url ? (
+          {url && (
             <Link href={url} className="relative block h-full">
               <Image src={image.url} alt={image.alt || ""} fill className="border-transparent object-cover" />
             </Link>
-          ) : (
-            <Image src={image.url} alt={image.alt || ""} fill className="border object-cover" />
           )}
+          {!url && <Image src={image.url} alt={image.alt || ""} fill className="border object-cover" />}
         </div>
       )}
 
       <div className="rs-pt-1 rs-pb-3 rs-px-3 min-w-0 max-w-600">
-        {colorBar && <div className="rs-mb-1 h-[.4rem] w-20 rounded" style={{backgroundColor: colorBar}} />}
+        {colorBar && (
+          <div
+            className={cn("rs-mb-1 h-[.4rem] w-20 rounded", props.className, {
+              "bg-olive": paragraph.cspCourseCardColor?.color === "8F993E",
+              "bg-archway-light": paragraph.cspCourseCardColor?.color === "766253",
+              "bg-cardinal-red": paragraph.cspCourseCardColor?.color === "8c1515",
+              "bg-plum": paragraph.cspCourseCardColor?.color === "81337A",
+              "bg-lagunita-light": paragraph.cspCourseCardColor?.color === "009AB4",
+              "bg-palo-verde": paragraph.cspCourseCardColor?.color === "279989",
+            })}
+          />
+        )}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
           <div className="mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-4">
             {paragraph.cspCourseCardFormat}
-            {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && <span className="mx-6">|</span>}
+            {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && (
+              <span className="mx-6">&nbsp;|&nbsp;</span>
+            )}
             {paragraph.cspCourseCardLocation}
           </div>
         )}
@@ -69,7 +81,9 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         {instructors.length > 0 && (
           <ul className="flex list-none flex-col gap-8 p-0">
             {instructors.map(instructor => (
-              <CourseCardInstructor key={instructor.uuid} instructor={instructor} />
+              <li key={instructor.uuid}>
+                <CourseCardInstructor instructor={instructor} />
+              </li>
             ))}
           </ul>
         )}

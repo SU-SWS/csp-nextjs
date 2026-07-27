@@ -41,8 +41,6 @@ const ParagraphComponent = async ({paragraph}: Props) => {
       return <BannerParagraph paragraph={paragraph} {...itemProps} />
     case "ParagraphStanfordCard":
       return <CardParagraph paragraph={paragraph} {...itemProps} />
-    case "ParagraphCspFauxCourseCard":
-      return <FauxCourseCardParagraph paragraph={paragraph} {...itemProps} />
     case "ParagraphStanfordEntity":
       return <EntityParagraph paragraph={paragraph} {...itemProps} />
     case "ParagraphStanfordFaq":
@@ -69,6 +67,8 @@ const ParagraphComponent = async ({paragraph}: Props) => {
           <FilteredListParagraph paragraph={paragraph} {...itemProps} />
         </Suspense>
       )
+    case "ParagraphCspFauxCourseCard":
+      return <FauxCourseCardParagraph paragraph={paragraph} {...itemProps} />
   }
   console.warn(`Unknown paragraph ${paragraph.__typename}. Item ${paragraph.uuid}.`)
 }
