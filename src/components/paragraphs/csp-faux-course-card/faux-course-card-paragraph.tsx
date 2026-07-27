@@ -32,7 +32,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       )}
     >
       {image?.url && (
-        <div className="relative mx-auto mt-[.6rem] aspect-[54/29] w-full max-w-[calc(100%_-_1.2rem)] flex-grow self-start overflow-hidden rounded-csp-sm @9xl:min-w-[56rem]">
+        <div className="relative mx-auto mt-[.6rem] aspect-[54/29] w-full max-w-[calc(100%_-_1.2rem)] flex-grow self-start overflow-hidden rounded-csp-sm @9xl:ml-[0.6rem] @9xl:mr-[0.6rem] @9xl:w-auto @9xl:min-w-[56rem] @9xl:max-w-none">
           {url ? (
             <Link href={url} className="relative block h-full">
               <Image src={image.url} alt={image.alt || ""} fill className="border-transparent object-cover" />
@@ -44,10 +44,10 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       )}
 
       <div className="rs-pt-1 rs-pb-3 rs-px-3 min-w-0 max-w-600">
-        {colorBar && <div className="rs-mb-1 h-2 w-20 rounded" style={{backgroundColor: colorBar}} />}
+        {colorBar && <div className="rs-mb-1 h-[.4rem] w-20 rounded" style={{backgroundColor: colorBar}} />}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
-          <div className="mb-8 font-sans text-16 font-normal text-archway-light md:mb-9 2xl:mb-10">
+          <div className="mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-4">
             {paragraph.cspCourseCardFormat}
             {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && <span className="mx-6">|</span>}
             {paragraph.cspCourseCardLocation}
