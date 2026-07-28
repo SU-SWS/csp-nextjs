@@ -5,6 +5,7 @@ import Image from "next/image"
 import Oembed from "@components/elements/ombed"
 import React, {HtmlHTMLAttributes, ReactElement} from "react"
 import {H2, H3, H4, H5, H6} from "@components/elements/headers"
+import {ChevronRightIcon} from "@heroicons/react/20/solid"
 import cn from "@lib/utils/className"
 import {Maybe} from "@lib/gql/__generated__/graphql"
 import Mathjax from "@components/tools/mathjax"
@@ -29,6 +30,10 @@ const Wysiwyg = ({html, className, ...props}: Props): ReactElement | undefined =
       {formatHtml(html)}
     </div>
   )
+}
+
+const hasLink = (children: React.ReactNode): boolean => {
+  return React.Children.toArray(children).some(child => React.isValidElement(child) && child.type === Link)
 }
 
 const fixProps = (props: Record<PropertyKey, string | boolean>) => {
@@ -74,17 +79,51 @@ const options: HTMLReactParserOptions = {
 
         case "script":
           return <Script {...nodeProps}>{domToReact(children, options)}</Script>
-
-        case "h2":
-          return <H2 {...nodeProps}>{domToReact(children, options)}</H2>
-        case "h3":
-          return <H3 {...nodeProps}>{domToReact(children, options)}</H3>
-        case "h4":
-          return <H4 {...nodeProps}>{domToReact(children, options)}</H4>
-        case "h5":
-          return <H5 {...nodeProps}>{domToReact(children, options)}</H5>
-        case "h6":
-          return <H6 {...nodeProps}>{domToReact(children, options)}</H6>
+        case "h2": {
+          const headingContent = domToReact(children, options)
+          return (
+            <H2 {...nodeProps} className="hocus:decoration-[.25rem] hocus:underline-offset-[.4rem]">
+              {headingContent}
+              {hasLink(headingContent) && <ChevronRightIcon className="inline h-20 fill-digital-red" />}
+            </H2>
+          )
+        }
+        case "h3": {
+          const headingContent = domToReact(children, options)
+          return (
+            <H3 {...nodeProps} className="hocus:decoration-[.25rem] hocus:underline-offset-[.4rem]">
+              {headingContent}
+              {hasLink(headingContent) && <ChevronRightIcon className="inline h-16 fill-digital-red" />}
+            </H3>
+          )
+        }
+        case "h4": {
+          const headingContent = domToReact(children, options)
+          return (
+            <H4 {...nodeProps} className="hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]">
+              {headingContent}
+              {hasLink(headingContent) && <ChevronRightIcon className="inline h-14 fill-digital-red" />}
+            </H4>
+          )
+        }
+        case "h5": {
+          const headingContent = domToReact(children, options)
+          return (
+            <H5 {...nodeProps} className="hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]">
+              {headingContent}
+              {hasLink(headingContent) && <ChevronRightIcon className="inline h-12 fill-digital-red" />}
+            </H5>
+          )
+        }
+        case "h6": {
+          const headingContent = domToReact(children, options)
+          return (
+            <H6 {...nodeProps} className="hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]">
+              {headingContent}
+              {hasLink(headingContent) && <ChevronRightIcon className="inline h-12 fill-digital-red" />}
+            </H6>
+          )
+        }
         case "table":
           return <Table {...nodeProps}>{domToReact(children, options)}</Table>
         case "thead":
@@ -168,12 +207,12 @@ const fixClasses = (classes?: string | boolean): string => {
     .replaceAll(" visually-hidden ", " sr-only ")
     .replaceAll(" font-splash ", " type-4 font-normal font-sans ")
     .replaceAll(" callout-text ", " font-normal type-2 font-sans ")
-    .replaceAll(" related-text ", " shadow-lg border border-black-20 p-16 font-normal ")
+    .replaceAll(" related-text ", " border border-fog-dark rounded-csp-md p-16 font-normal ")
     .replaceAll(" intro-text ", " type-2 font-normal font-sans ")
-    .replaceAll(" quote-text ", " px-24 py-16 ml-32 type-3 border-l-3 border-black ")
+    .replaceAll(" quote-text ", " px-24 py-16 ml-32 type-1 border-l-3 border-fog-dark ")
     .replaceAll(
       " drop-cap ",
-      " type-2 font-normal font-sans first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-2 first-letter:mr-4 "
+      " type-2 font-normal font-sans first-letter:san-serif first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-2 first-letter:mr-4 "
     )
     .replaceAll(/ tablesaw[\w-] /g, " ")
   return cn(classes)
