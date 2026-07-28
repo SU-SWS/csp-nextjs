@@ -26,19 +26,17 @@ const CourseCardInstructor = ({instructor}: Props) => {
       )}
 
       <div className="flex flex-col gap-2">
-        <div className="text-19 font-normal">
-          {instructor.cspInstructorUrl?.url && (
-            <Link
-              className="font-normal text-archway-dark no-underline hocus:text-digital-red hocus:underline"
-              href={instructor.cspInstructorUrl.url}
-            >
-              {instructor.cspInstructorName}
-            </Link>
-          )}
-          {!instructor.cspInstructorUrl?.url && (
-            <div className="text-19 font-normal text-archway-dark">{instructor.cspInstructorName}</div>
-          )}
-        </div>
+        {instructor.cspInstructorUrl?.url && (
+          <Link
+            className="text-archway-dark no-underline hocus:text-digital-red hocus:underline"
+            href={instructor.cspInstructorUrl.url}
+          >
+            <h3 className="mb-0 text-19 font-normal">{instructor.cspInstructorName}</h3>
+          </Link>
+        )}
+        {!instructor.cspInstructorUrl?.url && (
+          <h3 className="mb-0 text-19 font-normal text-archway-dark">{instructor.cspInstructorName}</h3>
+        )}
         <div className="text-16 font-normal text-archway-light">
           {instructor.cspInstructorTitle && <div>{instructor.cspInstructorTitle}</div>}
         </div>
