@@ -10,15 +10,15 @@ export type CourseCardInstructorItem = NonNullable<ParagraphCspFauxCourseCard["c
 
 type Props = {
   instructor: CourseCardInstructorItem
-  parentHeadingLevel?: "h2" | "h3"
+  headingElement?: "h3" | "div"
 }
 
 /**
  * Stub rendering of a single Course Card instructor (name, title, headshot).
  */
-const CourseCardInstructor = ({instructor, parentHeadingLevel}: Props) => {
+const CourseCardInstructor = ({instructor, headingElement = "div"}: Props) => {
   const headshot = instructor.cspInstructorHeadshot?.mediaImage
-  const HeadingElement = parentHeadingLevel === "h3" ? "div" : H3
+  const HeadingElement = headingElement === "h3" ? H3 : "div"
 
   return (
     <div className="flex gap-8">

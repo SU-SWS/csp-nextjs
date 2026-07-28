@@ -1,23 +1,23 @@
 import {HtmlHTMLAttributes} from "react"
 import Image from "next/image"
 import Link from "@components/elements/link"
-import {H2, H3} from "@components/elements/headers"
+import {H2} from "@components/elements/headers"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 import CourseCardInstructor from "@components/paragraphs/csp-faux-course-card/course-card-instructor"
 import cn from "@lib/utils/className"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   paragraph: ParagraphCspFauxCourseCard
-  headingLevel?: "h2" | "h3"
 }
 
 /**
  * Stub rendering of the Faux Course Card paragraph (CSP-105).
  */
-const FauxCourseCardParagraph = ({paragraph, headingLevel, ...props}: Props) => {
+const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const image = paragraph.cspCourseCardImage?.mediaImage
   const url = paragraph.cspCourseCardLink?.url
-  const Heading = headingLevel === "h3" ? H3 : H2
+  // TODO: Make this dependent on field from paragraph.
+  const Heading = H2
 
   // Drupal restricts this to an approved palette and stores the hex without a
   // leading "#", so the value can be used as-is.
@@ -84,7 +84,10 @@ const FauxCourseCardParagraph = ({paragraph, headingLevel, ...props}: Props) => 
           <ul className="flex list-none flex-col gap-8 p-0">
             {instructors.map(instructor => (
               <li key={instructor.uuid}>
-                <CourseCardInstructor instructor={instructor} parentHeadingLevel={headingLevel} />
+                <CourseCardInstructor
+                  instructor={instructor}
+                  headingElement={paragraph.cspCourseCardTitle ? "h3" : "div"}
+                />
               </li>
             ))}
           </ul>
