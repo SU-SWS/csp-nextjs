@@ -70,7 +70,7 @@ const Button = ({
     {
       "border border-csp-digital-red-xdark bg-cardinal-red text-white hocus:bg-digital-red hocus:text-white":
         variant === "primary",
-      "border-2 border-digital-red text-digital-red hocus:border-black": variant === "secondary",
+      "border-archway-stone border text-archway-dark hocus:border-black": variant === "secondary",
       "border border-stone bg-transparent text-archway-dark hocus:bg-archway-dark hocus:text-csp-cream":
         variant === "ghost",
       "border border-csp-digital-red-xdark bg-digital-red/80 text-csp-cream hocus:bg-digital-red hocus:text-csp-cream":
@@ -79,9 +79,10 @@ const Button = ({
         variant === "archway",
       "rounded-full border border-fog-dark px-4 py-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white":
         variant === "search",
-      "px-6 py-4 font-sans text-18": !isSecondary && size === "default",
-      "px-7 pb-5 pt-4": isSecondary && size === "default",
-      "px-12 pb-8 pt-7 text-5xl": !isSecondary && size === "big",
+      "py-4 pl-8 pr-6 font-sans text-18": !isSecondary && size === "default",
+      "pb-5 pl-8 pr-7 pt-4 font-sans text-18": isSecondary && size === "default",
+      "type-1 px-12 pb-8 pt-7 font-sans hocus:decoration-[.125rem] hocus:underline-offset-[.3rem]":
+        !isSecondary && size === "big",
       "px-12 pb-8 pt-7": isSecondary && size === "big",
       "py-4": size === "round",
       "mx-auto flex items-center": centered,
@@ -90,15 +91,16 @@ const Button = ({
     className
   )
 
-  const icon = showIcon && (
-    <ArrowRightIcon height={25} className="ml-2 inline-block transition-all group-hocus-visible:translate-x-1" />
-  )
-
   if (!href || buttonElem) {
     return (
       <button className={classes} type="button" {...props}>
         {children}
-        {icon}
+        {showIcon && (
+          <ArrowRightIcon
+            height={22}
+            className="mb-[.3rem] ml-2 inline-block transition-all group-hocus-visible:translate-x-1"
+          />
+        )}
       </button>
     )
   }
@@ -106,7 +108,12 @@ const Button = ({
   return (
     <Link href={getLinkHref(href)} className={classes} {...props}>
       {children}
-      {icon}
+      {showIcon && (
+        <ArrowRightIcon
+          height={22}
+          className="mb-[.3rem] ml-2 inline-block transition-all group-hocus-visible:translate-x-1"
+        />
+      )}
     </Link>
   )
 }

@@ -67,7 +67,10 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
         </div>
       )}
 
-      <Wysiwyg className="rs-mt-1 text-archway-light" html={paragraph.suCardBody?.processed} />
+      <Wysiwyg
+        className="rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19"
+        html={paragraph.suCardBody?.processed}
+      />
 
       {paragraph.suCardLink?.url && (
         <>

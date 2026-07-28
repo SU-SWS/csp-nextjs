@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html,
+  body {
+    background-color: var(--csp-cream, #fcf9f5);
+    color: var(--archway-dark, #2f2424);
+  }
+
+  a {
+    color: var(--digital-red, #b1040e);
+  }
+}
+
 /* Styles for react-tiny-oembed containers */
 .aspect-\[16\/9\] .__embed_column {
   width: 100%;

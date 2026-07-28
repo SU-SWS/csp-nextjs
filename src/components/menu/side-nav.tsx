@@ -1,7 +1,6 @@
 import Link from "@components/elements/link"
 import {BookLink, MenuItem as MenuItemType} from "@lib/gql/__generated__/graphql"
 import {HTMLAttributes} from "react"
-import {ChevronDownIcon} from "@heroicons/react/20/solid"
 import cn from "@lib/utils/className"
 
 type Props = HTMLAttributes<HTMLElement> & {
@@ -52,9 +51,6 @@ const MenuItem = ({id, url, title, children, activeTrail, level, expanded}: Menu
     <li className="m-0 border-b border-fog p-0 last:border-0">
       <Link href={url || "#"} className={linkClasses} aria-current={activeTrail.at(-1) === id ? "page" : undefined}>
         {title}
-        {hasChildren && (
-          <ChevronDownIcon height={20} aria-hidden="true" className="ml-auto shrink-0 text-archway-light" />
-        )}
       </Link>
       {isOpen && (
         <ul

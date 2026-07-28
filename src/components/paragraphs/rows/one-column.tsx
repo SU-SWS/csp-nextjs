@@ -20,6 +20,7 @@ const OneColumn = ({items, config, className, ...props}: Props) => {
           "pt-0": config?.top_padding === "none",
           "pt-40": config?.top_padding === "more",
           "mb-0": config?.bottom_margin === "none",
+          "mb-[.6rem]": config?.bottom_margin === "ultra-slim",
           "pb-0": config?.bottom_padding === "none",
           "bg-foggy-light": config?.bg_color === "f4f4f4",
           "bg-[#ebeae4]": config?.bg_color === "ebeae5",
