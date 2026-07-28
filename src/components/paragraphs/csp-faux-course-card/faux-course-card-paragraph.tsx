@@ -24,7 +24,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
     <div
       {...props}
       className={cn(
-        "flex max-w-[116rem] flex-col justify-self-center rounded-csp-md border border-fog-dark @9xl:flex-row",
+        "relative flex max-w-[116rem] flex-col justify-self-center rounded-csp-md border border-fog-dark @9xl:flex-row",
         props.className
       )}
     >
@@ -43,7 +43,10 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       <div className="rs-pt-1 rs-pb-3 rs-px-3 flex min-w-0 max-w-600 flex-col">
         {url && (
           <Heading className="rs-mb-1 type-1 order-3 mt-0">
-            <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
+            <Link
+              className="font-normal text-archway-dark after:absolute after:inset-0 hocus:text-digital-red"
+              href={url}
+            >
               {paragraph.cspCourseCardTitle}
             </Link>
           </Heading>

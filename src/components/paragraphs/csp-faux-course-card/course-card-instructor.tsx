@@ -36,12 +36,14 @@ const CourseCardInstructor = ({instructor, headingElement = "div"}: Props) => {
 
       <div className="flex flex-col gap-2">
         {instructor.cspInstructorUrl?.url && (
-          <Link
-            className="text-archway-dark no-underline hocus:text-digital-red hocus:underline"
-            href={instructor.cspInstructorUrl.url}
-          >
-            <HeadingElement className="m-0 text-19 font-normal">{instructor.cspInstructorName}</HeadingElement>
-          </Link>
+          <HeadingElement className="m-0 text-19 font-normal">
+            <Link
+              className="relative z-10 text-archway-dark no-underline hocus:text-digital-red hocus:underline"
+              href={instructor.cspInstructorUrl.url}
+            >
+              {instructor.cspInstructorName}
+            </Link>
+          </HeadingElement>
         )}
         {!instructor.cspInstructorUrl?.url && (
           <HeadingElement className="m-0 text-19 font-normal text-archway-dark">
