@@ -1,21 +1,23 @@
 import {HtmlHTMLAttributes} from "react"
 import Image from "next/image"
 import Link from "@components/elements/link"
-import {H2} from "@components/elements/headers"
+import {H2, H3} from "@components/elements/headers"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 import CourseCardInstructor from "@components/paragraphs/csp-faux-course-card/course-card-instructor"
 import cn from "@lib/utils/className"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   paragraph: ParagraphCspFauxCourseCard
+  headingLevel?: "h2" | "h3"
 }
 
 /**
  * Stub rendering of the Faux Course Card paragraph (CSP-105).
  */
-const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
+const FauxCourseCardParagraph = ({paragraph, headingLevel, ...props}: Props) => {
   const image = paragraph.cspCourseCardImage?.mediaImage
   const url = paragraph.cspCourseCardLink?.url
+  const Heading = headingLevel === "h3" ? H3 : H2
 
   // Drupal restricts this to an approved palette and stores the hex without a
   // leading "#", so the value can be used as-is.
@@ -67,7 +69,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         )}
 
         {paragraph.cspCourseCardTitle && (
-          <H2 className="rs-mb-1 type-1 mt-0">
+          <Heading className="rs-mb-1 type-1 mt-0">
             {url ? (
               <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
                 {paragraph.cspCourseCardTitle}
@@ -75,14 +77,14 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
             ) : (
               paragraph.cspCourseCardTitle
             )}
-          </H2>
+          </Heading>
         )}
 
         {instructors.length > 0 && (
           <ul className="flex list-none flex-col gap-8 p-0">
             {instructors.map(instructor => (
               <li key={instructor.uuid}>
-                <CourseCardInstructor instructor={instructor} />
+                <CourseCardInstructor instructor={instructor} parentHeadingLevel={headingLevel} />
               </li>
             ))}
           </ul>

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "@components/elements/link"
+import {H3} from "@components/elements/headers"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 
 /**
@@ -9,13 +10,15 @@ export type CourseCardInstructorItem = NonNullable<ParagraphCspFauxCourseCard["c
 
 type Props = {
   instructor: CourseCardInstructorItem
+  parentHeadingLevel?: "h2" | "h3"
 }
 
 /**
  * Stub rendering of a single Course Card instructor (name, title, headshot).
  */
-const CourseCardInstructor = ({instructor}: Props) => {
+const CourseCardInstructor = ({instructor, parentHeadingLevel}: Props) => {
   const headshot = instructor.cspInstructorHeadshot?.mediaImage
+  const HeadingElement = parentHeadingLevel === "h3" ? "div" : H3
 
   return (
     <div className="flex gap-8">
@@ -31,11 +34,13 @@ const CourseCardInstructor = ({instructor}: Props) => {
             className="text-archway-dark no-underline hocus:text-digital-red hocus:underline"
             href={instructor.cspInstructorUrl.url}
           >
-            <h3 className="mb-0 text-19 font-normal">{instructor.cspInstructorName}</h3>
+            <HeadingElement className="m-0 text-19 font-normal">{instructor.cspInstructorName}</HeadingElement>
           </Link>
         )}
         {!instructor.cspInstructorUrl?.url && (
-          <h3 className="mb-0 text-19 font-normal text-archway-dark">{instructor.cspInstructorName}</h3>
+          <HeadingElement className="m-0 text-19 font-normal text-archway-dark">
+            {instructor.cspInstructorName}
+          </HeadingElement>
         )}
         <div className="text-16 font-normal text-archway-light">
           {instructor.cspInstructorTitle && <div>{instructor.cspInstructorTitle}</div>}
