@@ -151,7 +151,11 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
   const hasOverflow = overflowHeadings.length > 0
 
   return (
-    <div ref={navRef} {...props} className={cn("centered-container mb-20 max-w-1000 text-16", props.className)}>
+    <div
+      ref={navRef}
+      {...props}
+      className={cn("centered-container relative z-20 mb-20 max-w-1000 text-16", props.className)}
+    >
       <nav
         aria-labelledby="anchor-nav"
         className={cn(
