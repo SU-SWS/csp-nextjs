@@ -23,8 +23,14 @@ const CourseCardInstructor = ({instructor, headingElement = "div"}: Props) => {
   return (
     <div className="flex gap-8">
       {headshot?.url && (
-        <div className="relative size-[5.7rem] shrink-0">
-          <Image className="rounded-full object-cover" src={headshot.url} alt={headshot.alt || ""} fill />
+        <div className="relative h-[5.7rem] w-[5.7rem] shrink-0">
+          <Image
+            className="rounded-full object-cover"
+            src={headshot.url}
+            alt={headshot.alt || ""}
+            fill
+            sizes="5.7rem"
+          />
         </div>
       )}
 
