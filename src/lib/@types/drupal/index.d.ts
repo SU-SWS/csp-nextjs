@@ -6,7 +6,7 @@ export type LayoutParagraphBehaviors = {
     config: {
       label?: string
       bg_color?: string
-      bottom_margin?: "none"
+      bottom_margin?: "none" | "ultra-slim"
       bottom_padding?: "none"
       top_padding?: "none" | "more"
     }
