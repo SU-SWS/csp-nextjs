@@ -1,7 +1,7 @@
 import {HtmlHTMLAttributes} from "react"
 import Image from "next/image"
 import Link from "@components/elements/link"
-import {H3} from "@components/elements/headers"
+import {H2, H3} from "@components/elements/headers"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 import CourseCardInstructor from "@components/paragraphs/csp-faux-course-card/course-card-instructor"
 import cn from "@lib/utils/className"
@@ -67,7 +67,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         )}
 
         {paragraph.cspCourseCardTitle && (
-          <H3 className="rs-mb-1 type-1 mt-0">
+          <H2 className="rs-mb-1 type-1 mt-0">
             {url ? (
               <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
                 {paragraph.cspCourseCardTitle}
@@ -75,7 +75,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
             ) : (
               paragraph.cspCourseCardTitle
             )}
-          </H3>
+          </H2>
         )}
 
         {instructors.length > 0 && (
