@@ -42,9 +42,11 @@ const CourseCardInstructor = ({instructor, headingElement = "div"}: Props) => {
             {instructor.cspInstructorName}
           </HeadingElement>
         )}
-        <div className="text-16 font-normal text-archway-light">
-          {instructor.cspInstructorTitle && <div>{instructor.cspInstructorTitle}</div>}
-        </div>
+        {instructor.cspInstructorTitle && (
+          <div className="text-16 font-normal text-archway-light">
+            <div>{instructor.cspInstructorTitle}</div>
+          </div>
+        )}
       </div>
     </div>
   )
