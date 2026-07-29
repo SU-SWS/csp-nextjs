@@ -29,7 +29,7 @@ const CourseCardInstructor = ({instructor, headingElement = "div"}: Props) => {
             src={headshot.url}
             alt={headshot.alt || ""}
             fill
-            sizes="5.7rem"
+            sizes="(max-width: 768px) 100px, 100px"
           />
         </div>
       )}
