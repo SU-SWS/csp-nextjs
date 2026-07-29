@@ -9,19 +9,16 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordCourse
   headingLevel?: "h2" | "h3"
-  isTeaser?: boolean
 }
 
-const StanfordCourseCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
+const StanfordCourseCard = ({node, headingLevel, ...props}: Props) => {
   const Heading = headingLevel === "h3" ? H3 : H2
   const id = getIdFromText(node.title)
   return (
     <ImageCard {...props} aria-labelledby={id} isArticle>
       <ReverseVisualOrder>
         <Heading id={id}>
-          <Link className="flex" href={node.path || "#"}>
-            {node.title}
-          </Link>
+          <Link href={node.path || "#"}>{node.title}</Link>
         </Heading>
 
         <div className="flex items-center gap-5">

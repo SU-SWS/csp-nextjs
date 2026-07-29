@@ -10,10 +10,9 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordOpportunity
   headingLevel?: "h2" | "h3"
-  isTeaser?: boolean
 }
 
-const StanfordOpportunityCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
+const StanfordOpportunityCard = ({node, headingLevel, ...props}: Props) => {
   const image = node.suOppImage?.mediaImage
   const Heading = headingLevel === "h3" ? H3 : H2
   const id = getIdFromText(node.title)
@@ -21,9 +20,7 @@ const StanfordOpportunityCard = ({node, headingLevel, isTeaser, ...props}: Props
     <ImageCard {...props} aria-labelledby={id} imageUrl={image?.url} isArticle>
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black" id={id}>
-          <Link className="flex" href={node.suOppSource?.url || node.path || "#"}>
-            {node.title}
-          </Link>
+          <Link href={node.suOppSource?.url || node.path || "#"}>{node.title}</Link>
         </Heading>
         {node.suOppType && <div>{node.suOppType?.map(type => type.name).join(", ")}</div>}
       </ReverseVisualOrder>

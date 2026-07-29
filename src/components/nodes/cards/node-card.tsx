@@ -33,25 +33,25 @@ const NodeCard = ({node, headingLevel, isTeaser}: Props) => {
   }
   switch (node.__typename) {
     case "NodeStanfordCourse":
-      return <StanfordCourseCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordCourseCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordEvent":
-      return <StanfordEventCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordEventCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordEventSeries":
-      return <StanfordEventSeriesCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordEventSeriesCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordMedia":
-      return <StanfordMediaCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} />
+      return <StanfordMediaCard node={node} headingLevel={headingLevel} />
     case "NodeStanfordNews":
-      return <StanfordNewsCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordNewsCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordPage":
       return <StanfordPageCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
     case "NodeStanfordPerson":
-      return <StanfordPersonCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordPersonCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordPolicy":
-      return <StanfordPolicyCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordPolicyCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordPublication":
-      return <StanfordPublicationCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordPublicationCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordOpportunity":
-      return <StanfordOpportunityCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordOpportunityCard node={node} headingLevel={headingLevel} {...itemProps} />
   }
 }
 export default NodeCard

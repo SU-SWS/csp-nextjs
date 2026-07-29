@@ -8,18 +8,15 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordEventSeries
   headingLevel?: "h2" | "h3"
-  isTeaser?: boolean
 }
 
-const StanfordEventSeriesCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
+const StanfordEventSeriesCard = ({node, headingLevel, ...props}: Props) => {
   const Heading = headingLevel === "h3" ? H3 : H2
   const id = getIdFromText(node.title)
   return (
     <ImageCard {...props} aria-labelledby={id} isArticle>
       <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
-        <Link className="flex" href={node.path || "#"}>
-          {node.title}
-        </Link>
+        <Link href={node.path || "#"}>{node.title}</Link>
       </Heading>
       {node.suEventSeriesDek && <p>{node.suEventSeriesDek}</p>}
     </ImageCard>

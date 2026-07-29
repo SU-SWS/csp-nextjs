@@ -9,10 +9,9 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPublication
   headingLevel?: "h2" | "h3"
-  isTeaser?: boolean
 }
 
-const StanfordPublicationCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
+const StanfordPublicationCard = ({node, headingLevel, ...props}: Props) => {
   const citationUrl = node.suPublicationCitation?.suUrl?.url
   const Heading = headingLevel === "h3" ? H3 : H2
   const citationTypes: Record<string, string> = {
@@ -26,9 +25,7 @@ const StanfordPublicationCard = ({node, headingLevel, isTeaser, ...props}: Props
     <ImageCard {...props} aria-labelledby={id} isArticle>
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
-          <Link className="flex" href={citationUrl || node.path || "#"}>
-            {node.title}
-          </Link>
+          <Link href={citationUrl || node.path || "#"}>{node.title}</Link>
         </Heading>
         <div className="font-bold">
           {node.suPublicationCitation?.__typename &&

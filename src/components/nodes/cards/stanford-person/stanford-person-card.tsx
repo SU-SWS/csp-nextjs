@@ -9,10 +9,9 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPerson
   headingLevel?: "h2" | "h3"
-  isTeaser?: boolean
 }
 
-const StanfordPersonCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
+const StanfordPersonCard = ({node, headingLevel, ...props}: Props) => {
   const imageUrl = node.suPersonPhoto?.mediaImage.url
 
   const Heading = headingLevel === "h3" ? H3 : H2
@@ -32,9 +31,7 @@ const StanfordPersonCard = ({node, headingLevel, isTeaser, ...props}: Props) => 
       )}
 
       <Heading id={id}>
-        <Link className="flex" href={node.suPersonSource?.url || node.path || "#"}>
-          {node.title}
-        </Link>
+        <Link href={node.suPersonSource?.url || node.path || "#"}>{node.title}</Link>
       </Heading>
 
       {node.suPersonShortTitle && <div>{node.suPersonShortTitle}</div>}

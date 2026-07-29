@@ -9,10 +9,9 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordNews
   headingLevel?: "h2" | "h3"
-  isTeaser?: boolean
 }
 
-const StanfordNewsCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
+const StanfordNewsCard = ({node, headingLevel, ...props}: Props) => {
   const image = node.suNewsFeaturedMedia?.mediaImage
 
   const topics = node.suNewsTopics?.slice(0, 3) || []
@@ -37,9 +36,7 @@ const StanfordNewsCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
     >
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black" id={id}>
-          <Link className="flex" href={node.suNewsSource?.url || node.path || "#"}>
-            {node.title}
-          </Link>
+          <Link href={node.suNewsSource?.url || node.path || "#"}>{node.title}</Link>
         </Heading>
 
         {publishDate && <div>{publishDate}</div>}

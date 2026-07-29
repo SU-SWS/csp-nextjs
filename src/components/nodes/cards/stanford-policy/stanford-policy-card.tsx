@@ -9,10 +9,9 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPolicy
   headingLevel?: "h2" | "h3"
-  isTeaser?: boolean
 }
 
-const StanfordPolicyCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
+const StanfordPolicyCard = ({node, headingLevel, ...props}: Props) => {
   const Heading = headingLevel === "h3" ? H3 : H2
   const trimmedBodyText = node.body?.processed
     ?.replace(/(<([^>]+)>)/gi, " ")
@@ -26,9 +25,7 @@ const StanfordPolicyCard = ({node, headingLevel, isTeaser, ...props}: Props) => 
   return (
     <ImageCard {...props} aria-labelledby={id} isArticle>
       <Heading id={id}>
-        <Link className="flex" href={node.suPolicySource?.url || node.path || "#"}>
-          {node.title}
-        </Link>
+        <Link href={node.suPolicySource?.url || node.path || "#"}>{node.title}</Link>
       </Heading>
 
       {teaserSummary && <Wysiwyg html={teaserSummary} />}

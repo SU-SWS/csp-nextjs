@@ -11,10 +11,9 @@ import {getIdFromText} from "@lib/utils/text-tools"
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordEvent
   headingLevel?: "h2" | "h3"
-  isTeaser?: boolean
 }
 
-const StanfordEventCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
+const StanfordEventCard = ({node, headingLevel, ...props}: Props) => {
   const timeZone = node.suEventDateTime.timezone || "America/Los_Angeles"
 
   const start = new Date(parseInt(node.suEventDateTime.value) * 1000)
@@ -52,9 +51,7 @@ const StanfordEventCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
 
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
-          <Link className="flex" href={node.suEventSource?.url || node.path || "#"}>
-            {node.title}
-          </Link>
+          <Link href={node.suEventSource?.url || node.path || "#"}>{node.title}</Link>
         </Heading>
 
         {node.suEventType && <div className="su-digital-red font-semibold">{node.suEventType[0].name}</div>}
