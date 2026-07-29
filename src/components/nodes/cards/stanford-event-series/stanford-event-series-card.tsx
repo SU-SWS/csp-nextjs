@@ -4,7 +4,6 @@ import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordEventSeries} from "@lib/gql/__generated__/graphql"
 import ImageCard from "@components/patterns/image-card"
 import {getIdFromText} from "@lib/utils/text-tools"
-import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordEventSeries
@@ -20,7 +19,6 @@ const StanfordEventSeriesCard = ({node, headingLevel, isTeaser, ...props}: Props
       <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
         <Link className="flex" href={node.path || "#"}>
           {node.title}
-          {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
         </Link>
       </Heading>
       {node.suEventSeriesDek && <p>{node.suEventSeriesDek}</p>}

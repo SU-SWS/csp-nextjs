@@ -5,7 +5,6 @@ import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordPerson} from "@lib/gql/__generated__/graphql"
 import cn from "@lib/utils/className"
 import {getIdFromText} from "@lib/utils/text-tools"
-import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPerson
@@ -35,7 +34,6 @@ const StanfordPersonCard = ({node, headingLevel, isTeaser, ...props}: Props) => 
       <Heading id={id}>
         <Link className="flex" href={node.suPersonSource?.url || node.path || "#"}>
           {node.title}
-          {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
         </Link>
       </Heading>
 

@@ -5,7 +5,6 @@ import {NodeStanfordPublication} from "@lib/gql/__generated__/graphql"
 import ImageCard from "@components/patterns/image-card"
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
 import {getIdFromText} from "@lib/utils/text-tools"
-import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPublication
@@ -28,7 +27,7 @@ const StanfordPublicationCard = ({node, headingLevel, isTeaser, ...props}: Props
       <ReverseVisualOrder>
         <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
           <Link className="flex" href={citationUrl || node.path || "#"}>
-            {node.title} {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
+            {node.title}
           </Link>
         </Heading>
         <div className="font-bold">

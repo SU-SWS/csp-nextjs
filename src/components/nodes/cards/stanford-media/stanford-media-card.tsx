@@ -5,7 +5,6 @@ import {NodeStanfordMedia} from "@lib/gql/__generated__/graphql"
 import ImageCard from "@components/patterns/image-card"
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
 import {getIdFromText} from "@lib/utils/text-tools"
-import {ArrowRightIcon} from "@heroicons/react/20/solid"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordMedia
@@ -34,7 +33,6 @@ const StanfordMediaCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
         <Heading className="[&_a]:text-black" id={id}>
           <Link className="flex" href={node.suMediaSource?.url || node.path || "#"}>
             {node.title}
-            {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
           </Link>
         </Heading>
 

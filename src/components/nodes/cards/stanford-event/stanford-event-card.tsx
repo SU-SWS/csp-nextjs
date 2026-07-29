@@ -1,5 +1,5 @@
 import Link from "@components/elements/link"
-import {CalendarDaysIcon, MapPinIcon, ArrowRightIcon} from "@heroicons/react/20/solid"
+import {CalendarDaysIcon, MapPinIcon} from "@heroicons/react/20/solid"
 import {H2, H3} from "@components/elements/headers"
 import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordEvent} from "@lib/gql/__generated__/graphql"
@@ -54,7 +54,6 @@ const StanfordEventCard = ({node, headingLevel, isTeaser, ...props}: Props) => {
         <Heading className="[&_a]:text-black [&_a]:hocus:text-digital-red" id={id}>
           <Link className="flex" href={node.suEventSource?.url || node.path || "#"}>
             {node.title}
-            {isTeaser && <ArrowRightIcon height={25} className="ml-2 self-center" />}
           </Link>
         </Heading>
 
