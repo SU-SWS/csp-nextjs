@@ -9,6 +9,7 @@ export type LayoutParagraphBehaviors = {
       bottom_margin?: "none" | "ultra-slim"
       bottom_padding?: "none"
       top_padding?: "none" | "more"
+      section_width?: "full" | "wide" | "standard"
     }
     parent_uuid?: string
     region?: string
