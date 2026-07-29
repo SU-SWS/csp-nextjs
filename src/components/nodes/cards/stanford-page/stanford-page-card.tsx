@@ -27,7 +27,7 @@ const StanfordPageCard = ({node, headingLevel, ...props}: Props) => {
       imageUrl={image?.url}
       imageAlt={image?.alt}
       isArticle
-      className="relative"
+      className="relative hocus:shadow-md"
     >
       <Heading className="[&_a]:text-black" id={id}>
         <Link className="flex after:absolute after:inset-0" href={node.path || "#"}>
