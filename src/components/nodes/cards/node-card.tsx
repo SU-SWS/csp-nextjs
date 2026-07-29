@@ -19,13 +19,9 @@ type Props = {
    * Which heading level the node title should display.
    */
   headingLevel?: "h2" | "h3"
-  /**
-   * Whether the card should be displayed as a teaser to add an arrow icon.
-   */
-  isTeaser?: boolean
 }
 
-const NodeCard = ({node, headingLevel, isTeaser}: Props) => {
+const NodeCard = ({node, headingLevel}: Props) => {
   const itemProps: {[key: string]: string} = {}
   if (process.env.NODE_ENV === "development") {
     itemProps["data-type"] = node.__typename || "unknown"
@@ -43,7 +39,7 @@ const NodeCard = ({node, headingLevel, isTeaser}: Props) => {
     case "NodeStanfordNews":
       return <StanfordNewsCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordPage":
-      return <StanfordPageCard node={node} headingLevel={headingLevel} isTeaser={isTeaser} {...itemProps} />
+      return <StanfordPageCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordPerson":
       return <StanfordPersonCard node={node} headingLevel={headingLevel} {...itemProps} />
     case "NodeStanfordPolicy":

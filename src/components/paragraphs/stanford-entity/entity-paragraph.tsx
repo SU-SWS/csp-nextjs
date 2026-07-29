@@ -69,7 +69,7 @@ const EntityTeaser = async ({entityPath, headingLevel = "h2"}: {entityPath: stri
   cacheTag(`paths:${entityPath}`)
   const {entity} = await getEntityFromPath(entityPath, false, true)
   if (!entity) return null
-  return <NodeCard node={entity} headingLevel={headingLevel} isTeaser={true} />
+  return <NodeCard node={entity} headingLevel={headingLevel} />
 }
 
 export default EntityParagraph
