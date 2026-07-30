@@ -34,7 +34,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
             alt={image.alt || ""}
             fill
             className="border object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 879px) 500px, 700px"
+            sizes="(max-width: 768px) 100vw, 700px"
           />
         </div>
       )}
