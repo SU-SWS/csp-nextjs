@@ -73,7 +73,7 @@ const config: Config = {
       colors: {
         ...(decanter.theme?.extend?.colors ?? {}),
         "csp-cream": "#FCF9F5",
-        "csp-apricot": "#DAA67F",
+        "csp-peach": "#DAA67F",
         "csp-digital-red-xdark": "#7A0000",
         "csp-dark-66": "#2F2424A8",
         "csp-archway": {

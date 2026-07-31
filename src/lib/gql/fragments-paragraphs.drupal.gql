@@ -43,6 +43,10 @@ fragment FragmentParagraphStanfordCard on ParagraphStanfordCard {
     suCardMedia {
         ...FragmentMediaUnion
     }
+    cspCardBgColor {
+        color
+        opacity
+    }
 }
 
 fragment FragmentParagraphCspCourseCardInstructor on ParagraphCspCourseCardInstructor {
