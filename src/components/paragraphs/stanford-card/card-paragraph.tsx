@@ -29,7 +29,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
   const headerClasses = cn(
     "mb-0 mt-0 text-archway-dark",
     headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
-    {"max-w-[55rem] text-csp-cream": isPoster},
+    {"type-3 max-w-[55rem] text-csp-cream": isPoster},
     {"sr-only": behaviors.su_card_styles?.hide_heading}
   )
 
@@ -49,7 +49,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       {paragraph.suCardHeader && (
         <>
           {headerTag === "h2" && (
-            <H2 id={id} className={cn("type-2", headerClasses)}>
+            <H2 id={id} className={cn("type-4", headerClasses)}>
               {paragraph.suCardHeader}
             </H2>
           )}
@@ -79,7 +79,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
 
       <Wysiwyg
         className={cn("rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19", {
-          "text-csp-cream": isPoster,
+          "type-3 text-csp-cream": isPoster,
           "[&_a]:text-csp-peach [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline": isPoster,
         })}
         html={paragraph.suCardBody?.processed}
@@ -89,9 +89,12 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
         <>
           {behaviors.su_card_styles?.link_style === "action" && (
             <ActionLink
-              className={cn("rs-mt-2 font-sans text-18 font-normal text-archway-dark no-underline hocus:underline", {
-                "[&_svg]:hocus:fill-text-csp-peach text-csp-cream hocus:text-csp-peach": isPoster,
-              })}
+              className={cn(
+                "rs-mt-2 items-center font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
+                {
+                  "[&_svg]:hocus:fill-text-csp-peach text-csp-cream hocus:text-csp-peach": isPoster,
+                }
+              )}
               href={paragraph.suCardLink.url}
             >
               {paragraph.suCardLink.title}
