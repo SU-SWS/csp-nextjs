@@ -1,5 +1,5 @@
 import {HtmlHTMLAttributes} from "react"
-import {ParagraphStanfordCard} from "@lib/gql/__generated__/graphql"
+import {Maybe, ParagraphStanfordCard} from "@lib/gql/__generated__/graphql"
 import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behaviors"
 import {H2, H3, H4} from "@components/elements/headers"
 import Wysiwyg from "@components/elements/wysiwyg"
@@ -34,6 +34,9 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
   )
 
   const id = headerTag !== "div" ? getIdFromText(paragraph.suCardHeader) : undefined
+  const bgColor = isPoster ? paragraph.cspCardBgColor?.color : undefined
+
+  console.log("bgColor value:", bgColor, "isPoster:", isPoster)
 
   return (
     <ImageCard
@@ -70,7 +73,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       {paragraph.suCardSuperHeader && (
         <div
           className={cn("rs-mb-neg1 order-first font-sans text-19 font-normal uppercase text-archway-dark", {
-            "text-csp-cream": isPoster,
+            "tracking-[1.9px] text-csp-cream": isPoster,
           })}
         >
           {paragraph.suCardSuperHeader}
@@ -78,10 +81,17 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       )}
 
       <Wysiwyg
-        className={cn("rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19", {
-          "type-3 text-csp-cream": isPoster,
-          "[&_a]:text-csp-peach [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline": isPoster,
-        })}
+        className={cn(
+          !isPoster && "rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19",
+          isPoster && "type-2 text-csp-cream",
+          "[&_a]:underline [&_a]:hocus:text-white [&_a]:hocus:no-underline",
+          {"[&_a]:text-csp-peach": isPoster && bgColor === "8c1515"},
+          {"[&_a]:text-csp-plum-xlight": isPoster && bgColor === "620059"},
+          {"[&_a]:text-lagunita-40": isPoster && bgColor === "007c92"},
+          {"[&_a]:text-csp-palo-alto-50": isPoster && bgColor === "175e54"},
+          {"[&_a]:text-archway-light": isPoster && bgColor === "f4f4f4"},
+          {"[&_a]:text-csp-peach": isPoster && bgColor === "2e2d29"}
+        )}
         html={paragraph.suCardBody?.processed}
       />
 

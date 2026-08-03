@@ -76,6 +76,8 @@ const config: Config = {
         "csp-peach": "#DAA67F",
         "csp-digital-red-xdark": "#7A0000",
         "csp-dark-66": "#2F2424A8",
+        "csp-palo-alto-50": "#8EBDBA",
+        "csp-plum-xlight": "#B080AC",
         "csp-archway": {
           DEFAULT: "#5D4B3C",
           dark80: "#2F242480",

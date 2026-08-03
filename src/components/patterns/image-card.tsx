@@ -83,7 +83,7 @@ const ImageCard = ({
           "rs-pt-2 rs-pl-2 rs-pr-3 rs-pb-3",
           {"bg-csp-cream": !isPoster},
           {"flex flex-1 flex-col gap-[.6rem]": isPoster},
-          {"bg-black": isPoster && bgColor === "2e2d29"},
+          {"bg-archway-dark": isPoster && bgColor === "2e2d29"},
           {"bg-cardinal-red": isPoster && bgColor === "8c1515"},
           {"bg-plum": isPoster && bgColor === "620059"},
           {"bg-lagunita": isPoster && bgColor === "007c92"},
