@@ -1,5 +1,5 @@
 import {HtmlHTMLAttributes} from "react"
-import {Maybe, ParagraphStanfordCard} from "@lib/gql/__generated__/graphql"
+import {ParagraphStanfordCard} from "@lib/gql/__generated__/graphql"
 import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behaviors"
 import {H2, H3, H4} from "@components/elements/headers"
 import Wysiwyg from "@components/elements/wysiwyg"
@@ -35,8 +35,6 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
 
   const id = headerTag !== "div" ? getIdFromText(paragraph.suCardHeader) : undefined
   const bgColor = isPoster ? paragraph.cspCardBgColor?.color : undefined
-
-  console.log("bgColor value:", bgColor, "isPoster:", isPoster)
 
   return (
     <ImageCard
