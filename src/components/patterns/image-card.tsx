@@ -80,7 +80,7 @@ const ImageCard = ({
 
       <div
         className={cn("rs-pt-2 rs-pl-2 rs-pr-3 rs-pb-3 flex flex-col", {
-          "bg-csp-cream": !isPoster,
+          "rounded-b-csp-lg bg-csp-cream": !isPoster,
           "flex-1 gap-[.6rem] rounded-csp-md": isPoster,
           "bg-archway-dark": isPoster && bgColor === "2e2d29",
           "bg-cardinal-red": isPoster && bgColor === "8c1515",
