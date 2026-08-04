@@ -4,6 +4,7 @@ import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordPage} from "@lib/gql/__generated__/graphql"
 import ImageCard from "@components/patterns/image-card"
 import {getIdFromText} from "@lib/utils/text-tools"
+import cn from "@lib/utils/className"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPage
@@ -21,9 +22,18 @@ const StanfordPageCard = ({node, headingLevel, ...props}: Props) => {
   const Heading = headingLevel === "h3" ? H3 : H2
   const id = getIdFromText(node.title)
   return (
-    <ImageCard {...props} aria-labelledby={id} imageUrl={image?.url} imageAlt={image?.alt} isArticle>
+    <ImageCard
+      {...props}
+      aria-labelledby={id}
+      imageUrl={image?.url}
+      imageAlt={image?.alt}
+      isArticle
+      className={cn("relative hocus:shadow-md", props.className)}
+    >
       <Heading className="[&_a]:text-black" id={id}>
-        <Link href={node.path || "#"}>{node.title}</Link>
+        <Link className="flex after:absolute after:inset-0" href={node.path || "#"}>
+          {node.title}
+        </Link>
       </Heading>
 
       {node.suPageDescription && <p>{node.suPageDescription}</p>}
