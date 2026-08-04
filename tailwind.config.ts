@@ -48,6 +48,7 @@ const config: Config = {
         "13xl": "130rem",
         "14xl": "140rem",
         "15xl": "150rem",
+        "bp-768": "76.8rem",
       },
       scale: {
         "-100": "-1",

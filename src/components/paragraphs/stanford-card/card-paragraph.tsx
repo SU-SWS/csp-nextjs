@@ -4,6 +4,7 @@ import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behavi
 import {H2, H3, H4} from "@components/elements/headers"
 import Wysiwyg from "@components/elements/wysiwyg"
 import ActionLink from "@components/elements/action-link"
+import {ChevronRightIcon} from "@heroicons/react/20/solid"
 import Button from "@components/elements/button"
 import ImageCard from "@components/patterns/image-card"
 import {CardParagraphBehaviors} from "drupal"
@@ -83,12 +84,13 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
           !isPoster &&
             "rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19 [&_a]:hocus:text-archway-dark",
           isPoster && "type-2 text-csp-cream [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline",
-          {"[&_a]:text-csp-peach": isPoster && bgColor === "8c1515"},
-          {"[&_a]:text-csp-plum-xlight": isPoster && bgColor === "620059"},
-          {"[&_a]:text-lagunita-40": isPoster && bgColor === "007c92"},
-          {"[&_a]:text-csp-palo-alto-50": isPoster && bgColor === "175e54"},
-          {"[&_a]:text-archway-light": isPoster && bgColor === "f4f4f4"},
-          {"[&_a]:text-csp-peach": isPoster && bgColor === "2e2d29"}
+          {
+            "[&_a]:text-csp-peach": isPoster && bgColor === "8c1515",
+            "[&_a]:text-csp-plum-xlight": isPoster && bgColor === "620059",
+            "[&_a]:text-lagunita-40": isPoster && bgColor === "007c92",
+            "[&_a]:text-csp-palo-alto-50": isPoster && bgColor === "175e54",
+            "[&_a]:text-archway-light": isPoster && bgColor === "f4f4f4",
+          }
         )}
         html={paragraph.suCardBody?.processed}
       />
@@ -97,15 +99,25 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
         <>
           {behaviors.su_card_styles?.link_style === "action" && (
             <ActionLink
+              isPoster={isPoster}
               className={cn(
                 "rs-mt-2 items-center font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
                 {
-                  "[&_svg]:hocus:fill-text-csp-peach text-csp-cream hocus:text-csp-peach": isPoster,
+                  "[&_svg]:hocus:fill-text-csp-peach relative flex gap-4 pr-[25px] text-csp-cream hocus:text-csp-peach":
+                    isPoster,
                 }
               )}
               href={paragraph.suCardLink.url}
             >
               {paragraph.suCardLink.title}
+              {isPoster && (
+                <div className="size-[2.6rem] rounded-full border border-digital-red-dark bg-digital-red hocus:bg-cardinal-red">
+                  <ChevronRightIcon
+                    height={25}
+                    className="inline-block fill-white transition-all group-hocus-visible:translate-x-1"
+                  />
+                </div>
+              )}
             </ActionLink>
           )}
           {behaviors.su_card_styles?.link_style !== "action" && (

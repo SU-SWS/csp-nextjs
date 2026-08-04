@@ -54,7 +54,7 @@ const ImageCard = ({
       {...props}
       className={cn(
         "centered relative h-full w-full rounded-csp-lg border xl:max-w-[980px]",
-        {"flex flex-col gap-[.6rem] border-none @4xl:flex-row": isPoster},
+        {"flex flex-col gap-[.6rem] border-none @bp-768:flex-row": isPoster},
         props.className
       )}
     >
@@ -83,12 +83,14 @@ const ImageCard = ({
           "rs-pt-2 rs-pl-2 rs-pr-3 rs-pb-3",
           {"bg-csp-cream": !isPoster},
           {"flex flex-1 flex-col gap-[.6rem]": isPoster},
-          {"bg-archway-dark": isPoster && bgColor === "2e2d29"},
-          {"bg-cardinal-red": isPoster && bgColor === "8c1515"},
-          {"bg-plum": isPoster && bgColor === "620059"},
-          {"bg-lagunita": isPoster && bgColor === "007c92"},
-          {"bg-palo-alto": isPoster && bgColor === "175e54"},
-          {"bg-foggy-light": isPoster && bgColor === "f4f4f4"},
+          {
+            "bg-archway-dark": isPoster && bgColor === "2e2d29",
+            "bg-cardinal-red": isPoster && bgColor === "8c1515",
+            "bg-plum": isPoster && bgColor === "620059",
+            "bg-lagunita": isPoster && bgColor === "007c92",
+            "bg-palo-alto": isPoster && bgColor === "175e54",
+            "bg-foggy-light": isPoster && bgColor === "f4f4f4",
+          },
           {"flex-1 rounded-csp-md": isPoster}
         )}
       >
