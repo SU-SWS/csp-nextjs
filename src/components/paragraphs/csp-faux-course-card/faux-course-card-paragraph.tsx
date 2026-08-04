@@ -1,10 +1,13 @@
 import {HtmlHTMLAttributes} from "react"
 import Image from "next/image"
 import Link from "@components/elements/link"
-import {H2} from "@components/elements/headers"
+import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behaviors"
+import {H2, H3, H4} from "@components/elements/headers"
+import {CardParagraphBehaviors} from "drupal"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 import CourseCardInstructor from "@components/paragraphs/csp-faux-course-card/course-card-instructor"
 import cn from "@lib/utils/className"
+import {getIdFromText} from "@lib/utils/text-tools"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   paragraph: ParagraphCspFauxCourseCard
@@ -16,8 +19,16 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
 const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const image = paragraph.cspCourseCardImage?.mediaImage
   const url = paragraph.cspCourseCardLink?.url
-  // TODO: Make this dependent on field from paragraph.
-  const Heading = H2
+  const behaviors = getParagraphBehaviors<CardParagraphBehaviors>(paragraph)
+  const headerTagChoice = (behaviors.su_card_styles?.heading || "h2").split(".", 2)
+  const headerTag = headerTagChoice[0]
+  const headerClasses = cn(
+    "mb-0 mt-0 text-archway-dark",
+    headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
+    {"sr-only": behaviors.su_card_styles?.hide_heading}
+  )
+
+  const id = headerTag !== "div" ? getIdFromText(paragraph.suCardHeader) : undefined
 
   return (
     <div
@@ -41,13 +52,34 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
 
       <div className="rs-pt-1 rs-pb-3 rs-px-3 flex min-w-0 max-w-600 flex-col">
         {url && (
-          <Heading className="rs-mb-1 type-1 order-3 mt-0">
+          <H2 className="rs-mb-1 type-1 order-3 mt-0">
             <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
               {paragraph.cspCourseCardTitle}
             </Link>
-          </Heading>
+          </H2>
         )}
-        {!url && <Heading className="rs-mb-1 type-1 order-3 mt-0">{paragraph.cspCourseCardTitle}</Heading>}
+        {!url && <H2 className="rs-mb-1 type-1 order-3 mt-0">{paragraph.cspCourseCardTitle}</H2>}
+
+        {paragraph.suCardHeader && (
+          <>
+            {headerTag === "h2" && (
+              <H2 id={id} className={cn("type-2", headerClasses)}>
+                {paragraph.suCardHeader}
+              </H2>
+            )}
+            {headerTag === "h3" && (
+              <H3 id={id} className={headerClasses}>
+                {paragraph.suCardHeader}
+              </H3>
+            )}
+            {headerTag === "h4" && (
+              <H4 id={id} className={headerClasses}>
+                {paragraph.suCardHeader}
+              </H4>
+            )}
+            {headerTag === "div" && <div className={headerClasses}>{paragraph.suCardHeader}</div>}
+          </>
+        )}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
           <div className="order-2 mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-4">
