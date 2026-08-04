@@ -17,7 +17,7 @@ const ThreeColumn = ({items, config}: Props) => {
   const rightItems = items.filter(item => getParagraphBehaviors(item).layout_paragraphs?.region === "right")
   return (
     <div
-      className={cn("mb-32", {
+      className={cn("mx-auto mb-32", {
         "px-10 py-20": !!config?.bg_color,
         "pt-0": config?.top_padding === "none",
         "pt-40": config?.top_padding === "more",

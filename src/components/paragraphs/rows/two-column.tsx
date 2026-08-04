@@ -20,7 +20,7 @@ const TwoColumn = ({items, config}: Props) => {
 
   return (
     <div
-      className={cn("mb-32", {
+      className={cn("mx-auto mb-32", {
         gutters: !config?.bg_color,
         "px-10 py-20": !!config?.bg_color,
         "pt-0": config?.top_padding === "none",
