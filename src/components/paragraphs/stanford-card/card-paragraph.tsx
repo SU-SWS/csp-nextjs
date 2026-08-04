@@ -45,7 +45,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       videoUrl={videoUrl}
       isArticle={!!paragraph.suCardHeader && headerTag !== "div"}
       variant={cardtype}
-      bgColor={cardtype === "poster" ? paragraph.cspCardBgColor?.color : undefined}
+      bgColor={bgColor}
     >
       {paragraph.suCardHeader && (
         <>
@@ -80,9 +80,9 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
 
       <Wysiwyg
         className={cn(
-          !isPoster && "rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19",
-          isPoster && "type-2 text-csp-cream",
-          "[&_a]:underline [&_a]:hocus:text-white [&_a]:hocus:no-underline",
+          !isPoster &&
+            "rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19 [&_a]:hocus:text-archway-dark",
+          isPoster && "type-2 text-csp-cream [&_a]:underline [&_a]:hocus:text-white [&_a]:hocus:no-underline",
           {"[&_a]:text-csp-peach": isPoster && bgColor === "8c1515"},
           {"[&_a]:text-csp-plum-xlight": isPoster && bgColor === "620059"},
           {"[&_a]:text-lagunita-40": isPoster && bgColor === "007c92"},
