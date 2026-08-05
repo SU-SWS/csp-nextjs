@@ -30,7 +30,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
   const headerClasses = cn(
     "type-2 mb-0 mt-0 font-normal text-archway-dark",
     headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
-    {"type-3 max-w-[55rem] text-csp-cream": isPoster},
+    {"fluid-type-3 max-w-[55rem] text-csp-cream": isPoster},
     {"sr-only": behaviors.su_card_styles?.hide_heading}
   )
 
