@@ -2,7 +2,7 @@ import {HtmlHTMLAttributes} from "react"
 import Image from "next/image"
 import Link from "@components/elements/link"
 import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behaviors"
-import {H2, H3, H4} from "@components/elements/headers"
+import {H2, H3} from "@components/elements/headers"
 import {CardParagraphBehaviors} from "drupal"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 import CourseCardInstructor from "@components/paragraphs/csp-faux-course-card/course-card-instructor"
@@ -13,26 +13,21 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   paragraph: ParagraphCspFauxCourseCard
 }
 
-/**
- * Stub rendering of the Faux Course Card paragraph (CSP-105).
- */
 const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const image = paragraph.cspCourseCardImage?.mediaImage
   const url = paragraph.cspCourseCardLink?.url
-  const behaviors = getParagraphBehaviors<CardParagraphBehaviors>(paragraph)
-  const headerTagChoice = (behaviors.su_card_styles?.heading || "h2").split(".", 2)
-  const headerTag = headerTagChoice[0]
+  const headerTag = paragraph.cspCourseCardHeading || "h2"
+
   const headerClasses = cn(
-    "mb-0 mt-0 text-archway-dark",
-    headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
-    {"sr-only": behaviors.su_card_styles?.hide_heading}
+    "rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
   )
 
-  const id = headerTag !== "div" ? getIdFromText(paragraph.suCardHeader) : undefined
+  const id = headerTag !== "div" ? getIdFromText(paragraph.cspCourseCardTitle) : undefined
 
   return (
     <div
       {...props}
+      aria-labelledby={id}
       className={cn(
         "relative flex max-w-[116rem] flex-col justify-self-center rounded-csp-md border border-fog-dark @9xl:flex-row",
         props.className
@@ -51,33 +46,29 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       )}
 
       <div className="rs-pt-1 rs-pb-3 rs-px-3 flex min-w-0 max-w-600 flex-col">
-        {url && (
-          <H2 className="rs-mb-1 type-1 order-3 mt-0">
-            <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
-              {paragraph.cspCourseCardTitle}
-            </Link>
-          </H2>
-        )}
-        {!url && <H2 className="rs-mb-1 type-1 order-3 mt-0">{paragraph.cspCourseCardTitle}</H2>}
-
-        {paragraph.suCardHeader && (
+        {paragraph.cspCourseCardTitle && (
           <>
             {headerTag === "h2" && (
               <H2 id={id} className={cn("type-2", headerClasses)}>
-                {paragraph.suCardHeader}
+                {url && (
+                  <Link className="font-normal" href={url}>
+                    {paragraph.cspCourseCardTitle}
+                  </Link>
+                )}
+                {!url && paragraph.cspCourseCardTitle}
               </H2>
             )}
             {headerTag === "h3" && (
               <H3 id={id} className={headerClasses}>
-                {paragraph.suCardHeader}
+                {url && (
+                  <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
+                    {paragraph.cspCourseCardTitle}
+                  </Link>
+                )}
+                {!url && paragraph.cspCourseCardTitle}
               </H3>
             )}
-            {headerTag === "h4" && (
-              <H4 id={id} className={headerClasses}>
-                {paragraph.suCardHeader}
-              </H4>
-            )}
-            {headerTag === "div" && <div className={headerClasses}>{paragraph.suCardHeader}</div>}
+            {headerTag === "div" && <div className={headerClasses}>{paragraph.cspCourseCardTitle}</div>}
           </>
         )}
 
@@ -107,11 +98,11 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         {!!paragraph.cspCourseCardColor?.color && (
           <div
             className={cn("rs-mb-1 order-1 h-[.4rem] w-20 rounded", props.className, {
-              "bg-olive": paragraph.cspCourseCardColor?.color === "8F993E",
+              "bg-olive": paragraph.cspCourseCardColor?.color === "8f993e",
               "bg-archway-light": paragraph.cspCourseCardColor?.color === "766253",
               "bg-cardinal-red": paragraph.cspCourseCardColor?.color === "8c1515",
-              "bg-plum": paragraph.cspCourseCardColor?.color === "81337A",
-              "bg-lagunita-light": paragraph.cspCourseCardColor?.color === "009AB4",
+              "bg-plum": paragraph.cspCourseCardColor?.color === "81337a",
+              "bg-lagunita-light": paragraph.cspCourseCardColor?.color === "009ab4",
               "bg-palo-verde": paragraph.cspCourseCardColor?.color === "279989",
             })}
           />
