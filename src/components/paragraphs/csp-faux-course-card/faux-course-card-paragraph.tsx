@@ -16,14 +16,10 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const url = paragraph.cspCourseCardLink?.url
   const headerTag = paragraph.cspCourseCardHeading || "h2"
 
-  const headerClasses = cn(
-    "rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
-  )
-
   const id = headerTag !== "div" ? getIdFromText(paragraph.cspCourseCardTitle) : undefined
 
   return (
-    <div
+    <article
       {...props}
       aria-labelledby={id}
       className={cn(
@@ -47,7 +43,10 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         {paragraph.cspCourseCardTitle && (
           <>
             {headerTag === "h2" && (
-              <H2 id={id} className={cn("type-2", headerClasses)}>
+              <H2
+                id={id}
+                className="rs-mb-1 type-2 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+              >
                 {url && (
                   <Link className="font-normal" href={url}>
                     {paragraph.cspCourseCardTitle}
@@ -57,7 +56,10 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
               </H2>
             )}
             {headerTag === "h3" && (
-              <H3 id={id} className={headerClasses}>
+              <H3
+                id={id}
+                className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+              >
                 {url && (
                   <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
                     {paragraph.cspCourseCardTitle}
@@ -66,7 +68,11 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
                 {!url && paragraph.cspCourseCardTitle}
               </H3>
             )}
-            {headerTag === "div" && <div className={headerClasses}>{paragraph.cspCourseCardTitle}</div>}
+            {headerTag === "div" && (
+              <div className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red">
+                {paragraph.cspCourseCardTitle}
+              </div>
+            )}
           </>
         )}
 
@@ -106,7 +112,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
           />
         )}
       </div>
-    </div>
+    </article>
   )
 }
 
