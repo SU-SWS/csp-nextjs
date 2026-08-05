@@ -51,7 +51,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       {paragraph.suCardHeader && (
         <>
           {headerTag === "h2" && (
-            <H2 id={id} className={cn("type-4", headerClasses)}>
+            <H2 id={id} className={headerClasses}>
               {paragraph.suCardHeader}
             </H2>
           )}
