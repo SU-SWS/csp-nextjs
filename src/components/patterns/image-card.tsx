@@ -63,7 +63,7 @@ const ImageCard = ({
           className={cn("relative w-full border-transparent", {
             "aspect-1": squareImage,
             "aspect-[16/9]": !squareImage,
-            "flex-1": isPoster,
+            "aspect-[3/2] flex-1 md:aspect-[16/9]": isPoster,
           })}
         >
           <Image
