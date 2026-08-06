@@ -55,7 +55,15 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
 
   if (className?.includes("link--action")) {
     return (
-      <ActionLink prefetch={false} href={href} className={className?.replaceAll("link--action", "")} {...props}>
+      <ActionLink
+        prefetch={false}
+        href={href}
+        className={className?.replaceAll(
+          "link--action",
+          "[&_svg]:rounded-full [&_svg]:border-digital-red-dark [&_svg]:bg-digital-red-dark [&_svg]:fill-csp-cream [&_svg]:hocus:bg-cardinal-red [&_svg]:group-hocus-visible:translate-x-1"
+        )}
+        {...props}
+      >
         {children}
       </ActionLink>
     )
