@@ -11,7 +11,7 @@ type Props = HtmlHTMLAttributes<HTMLAnchorElement> & {
   isPoster?: boolean
 }
 
-const ActionLink = ({href, isPoster, children, ...props}: Props) => {
+const ActionLink = ({href, children, ...props}: Props) => {
   return (
     <Link {...props} href={getLinkHref(href)} className={cn("group", props.className)}>
       {children}
