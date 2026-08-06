@@ -17,9 +17,10 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const headerTag = paragraph.cspCourseCardHeading || "h2"
 
   const id = headerTag !== "div" ? getIdFromText(paragraph.cspCourseCardTitle) : undefined
+  const WrapperTag = headerTag === "div" ? "div" : "article"
 
   return (
-    <article
+    <WrapperTag
       {...props}
       aria-labelledby={id}
       className={cn(
@@ -112,7 +113,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
           />
         )}
       </div>
-    </article>
+    </WrapperTag>
   )
 }
 
