@@ -31,7 +31,7 @@ const PageHeader = async ({...props}: Props) => {
         </div>
       </div>
       <GlobalMessage />
-      <div className="relative mx-auto max-w-[150rem]">
+      <div className="relative">
         <div className="min-h-50 centered pr-32 md:pr-24 lg:pr-0">
           <div className="flex w-full items-center justify-between">
             <Lockup />

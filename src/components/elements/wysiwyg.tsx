@@ -209,7 +209,7 @@ const fixClasses = (classes?: string | boolean): string => {
     .replaceAll(" callout-text ", " font-normal type-2 font-sans ")
     .replaceAll(" related-text ", " border border-fog-dark rounded-csp-md p-16 font-normal ")
     .replaceAll(" intro-text ", " type-2 font-normal font-sans ")
-    .replaceAll(" quote-text ", " px-24 py-16 ml-32 type-1 border-l-3 border-fog-dark ")
+    .replaceAll(" quote-text ", " p-[4.8rem] mb-32 type-1 border-l-3 border-fog-dark ")
     .replaceAll(
       " drop-cap ",
       " type-2 font-normal font-sans first-letter:san-serif first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-2 first-letter:mr-4 "
