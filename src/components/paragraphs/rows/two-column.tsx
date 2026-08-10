@@ -28,9 +28,6 @@ const TwoColumn = ({items, config}: Props) => {
         "mb-0": config?.bottom_margin === "none",
         "mb-[.6rem]": config?.bottom_margin === "ultra-slim",
         "pb-0": config?.bottom_padding === "none",
-        "max-w-[1500px]": !config?.section_width || config.section_width === "full",
-        "max-w-[1300px]": config?.section_width === "wide",
-        "max-w-[1140px]": config?.section_width === "standard",
         "bg-foggy-light": config?.bg_color === "f4f4f4",
         "bg-[#ebeae4]": config?.bg_color === "ebeae5",
         "bg-[#dcecef]": config?.bg_color === "dcecef",
@@ -44,6 +41,9 @@ const TwoColumn = ({items, config}: Props) => {
         className={cn("centered grid gap-10 @6xl:grid-cols-2 @6xl:gap-20", {
           "@6xl:grid-cols-1-2": config?.column_widths === "33-67",
           "@6xl:grid-cols-2-1": config?.column_widths === "67-33",
+          "max-w-[1500px]": !config?.section_width || config.section_width === "full",
+          "max-w-[1300px]": config?.section_width === "wide",
+          "max-w-[1140px]": config?.section_width === "standard",
         })}
       >
         <OneColumn

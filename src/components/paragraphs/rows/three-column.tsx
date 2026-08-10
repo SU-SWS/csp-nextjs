@@ -17,16 +17,13 @@ const ThreeColumn = ({items, config}: Props) => {
   const rightItems = items.filter(item => getParagraphBehaviors(item).layout_paragraphs?.region === "right")
   return (
     <div
-      className={cn("mx-auto mb-32", {
+      className={cn("mx-auto mb-32 h-fit", {
         "px-10 py-20": !!config?.bg_color,
         "pt-0": config?.top_padding === "none",
         "pt-40": config?.top_padding === "more",
         "mb-0": config?.bottom_margin === "none",
         "mb-[.6rem]": config?.bottom_margin === "ultra-slim",
         "pb-0": config?.bottom_padding === "none",
-        "max-w-[1500px]": !config?.section_width || config.section_width === "full",
-        "max-w-[1300px]": config?.section_width === "wide",
-        "max-w-[1140px]": config?.section_width === "standard",
         "bg-foggy-light": config?.bg_color === "f4f4f4",
         "bg-[#ebeae4]": config?.bg_color === "ebeae5",
         "bg-[#dcecef]": config?.bg_color === "dcecef",
@@ -36,7 +33,13 @@ const ThreeColumn = ({items, config}: Props) => {
       })}
       data-columns="3"
     >
-      <div className="centered grid gap-10 @4xl:grid-cols-2 @6xl:gap-20 @9xl:grid-cols-3">
+      <div
+        className={cn("centered grid gap-10 @4xl:grid-cols-2 @6xl:gap-20 @9xl:grid-cols-3", {
+          "max-w-[1500px]": !config?.section_width || config.section_width === "full",
+          "max-w-[1300px]": config?.section_width === "wide",
+          "max-w-[1140px]": config?.section_width === "standard",
+        })}
+      >
         <OneColumn
           items={leftItems}
           config={{top_padding: "none", bottom_margin: "none"}}
