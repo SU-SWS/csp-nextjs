@@ -13,7 +13,7 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
 
 const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const image = paragraph.cspCourseCardImage?.mediaImage
-  const url = paragraph.cspCourseCardLink?.url
+  const url = paragraph.cspCourseCardLink.url || "#"
   const headerTag = paragraph.cspCourseCardHeading || "h2"
 
   const id = headerTag !== "div" ? getIdFromText(paragraph.cspCourseCardTitle) : undefined
@@ -41,40 +41,32 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       )}
 
       <div className="rs-pt-1 rs-pb-3 rs-px-3 flex min-w-0 max-w-600 flex-col">
-        {paragraph.cspCourseCardTitle && (
-          <>
-            {headerTag === "h2" && (
-              <H2
-                id={id}
-                className="rs-mb-1 type-2 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
-              >
-                {url && (
-                  <Link className="font-normal" href={url}>
-                    {paragraph.cspCourseCardTitle}
-                  </Link>
-                )}
-                {!url && paragraph.cspCourseCardTitle}
-              </H2>
-            )}
-            {headerTag === "h3" && (
-              <H3
-                id={id}
-                className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
-              >
-                {url && (
-                  <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
-                    {paragraph.cspCourseCardTitle}
-                  </Link>
-                )}
-                {!url && paragraph.cspCourseCardTitle}
-              </H3>
-            )}
-            {headerTag === "div" && (
-              <div className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red">
-                {paragraph.cspCourseCardTitle}
-              </div>
-            )}
-          </>
+        {headerTag === "h2" && (
+          <H2
+            id={id}
+            className="rs-mb-1 type-2 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+          >
+            <Link className="font-normal" href={url}>
+              {paragraph.cspCourseCardTitle}
+            </Link>
+          </H2>
+        )}
+        {headerTag === "h3" && (
+          <H3
+            id={id}
+            className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+          >
+            <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
+              {paragraph.cspCourseCardTitle}
+            </Link>
+          </H3>
+        )}
+        {headerTag === "div" && (
+          <div className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red">
+            <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
+              {paragraph.cspCourseCardTitle}
+            </Link>
+          </div>
         )}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
