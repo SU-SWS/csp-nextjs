@@ -6,7 +6,7 @@ import Wysiwyg from "@components/elements/wysiwyg"
 import ActionLink from "@components/elements/action-link"
 import {ChevronRightIcon} from "@heroicons/react/20/solid"
 import Button from "@components/elements/button"
-import ImageCard from "@components/patterns/image-card"
+import ImageCard, {ImageCardBgColor} from "@components/patterns/image-card"
 import {CardParagraphBehaviors} from "drupal"
 import {getIdFromText} from "@lib/utils/text-tools"
 import cn from "@lib/utils/className"
@@ -48,7 +48,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
       videoUrl={videoUrl}
       isArticle={!!paragraph.suCardHeader && headerTag !== "div"}
       variant={cardtype}
-      bgColor={bgColor}
+      bgColor={bgColor as ImageCardBgColor}
     >
       {paragraph.suCardHeader && (
         <>
@@ -100,7 +100,6 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
         <>
           {behaviors.su_card_styles?.link_style === "action" && (
             <ActionLink
-              isPoster={isPoster}
               className={cn(
                 "rs-mt-2 items-center font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
                 {

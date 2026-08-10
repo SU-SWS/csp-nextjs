@@ -8,7 +8,6 @@ type Props = HtmlHTMLAttributes<HTMLAnchorElement> & {
    * Link url.
    */
   href: string
-  isPoster?: boolean
 }
 
 const ActionLink = ({href, children, ...props}: Props) => {

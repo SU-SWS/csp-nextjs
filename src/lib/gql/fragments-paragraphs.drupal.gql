@@ -45,7 +45,6 @@ fragment FragmentParagraphStanfordCard on ParagraphStanfordCard {
     }
     cspCardBgColor {
         color
-        opacity
     }
 }
 

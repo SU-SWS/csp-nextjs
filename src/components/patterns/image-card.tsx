@@ -32,8 +32,10 @@ type Props = HTMLAttributes<HTMLElement | HTMLDivElement> & {
   /**
    * Background color for poster variant (hex color code)
    */
-  bgColor?: Maybe<string>
+  bgColor?: Maybe<ImageCardBgColor>
 }
+
+export type ImageCardBgColor = "2e2d29" | "8c1515" | "620059" | "007c92" | "175e54" | "f4f4f4"
 
 const ImageCard = ({
   imageUrl,
@@ -93,21 +95,6 @@ const ImageCard = ({
         {children}
       </div>
     </CardWrapper>
-  )
-}
-
-export const ImageCardSkeleton = ({variant}: {variant?: "default" | "poster"}) => {
-  const isPoster = variant === "poster"
-
-  return (
-    <div
-      className={cn("centered w-full pb-20 xl:max-w-[980px]", {
-        "border border-fog-dark": !isPoster,
-        "border-none": isPoster,
-      })}
-    >
-      <div className="aspect-[16/9] w-full bg-csp-cream"></div>
-    </div>
   )
 }
 
