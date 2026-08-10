@@ -75,6 +75,7 @@ fragment FragmentParagraphCspFauxCourseCard on ParagraphCspFauxCourseCard {
         ...FragmentParagraphInterface
         ...FragmentParagraphCspCourseCardInstructor
     }
+    cspCourseCardHeading
 }
 
 fragment FragmentParagraphStanfordEntity on ParagraphStanfordEntity {

@@ -1,27 +1,28 @@
 import {HtmlHTMLAttributes} from "react"
 import Image from "next/image"
 import Link from "@components/elements/link"
-import {H2} from "@components/elements/headers"
+import {H2, H3} from "@components/elements/headers"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 import CourseCardInstructor from "@components/paragraphs/csp-faux-course-card/course-card-instructor"
 import cn from "@lib/utils/className"
+import {getIdFromText} from "@lib/utils/text-tools"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   paragraph: ParagraphCspFauxCourseCard
 }
 
-/**
- * Stub rendering of the Faux Course Card paragraph (CSP-105).
- */
 const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const image = paragraph.cspCourseCardImage?.mediaImage
-  const url = paragraph.cspCourseCardLink?.url
-  // TODO: Make this dependent on field from paragraph.
-  const Heading = H2
+  const url = paragraph.cspCourseCardLink.url || "#"
+  const headerTag = paragraph.cspCourseCardHeading || "h2"
+
+  const id = headerTag !== "div" ? getIdFromText(paragraph.cspCourseCardTitle) : undefined
+  const WrapperTag = headerTag === "div" ? "div" : "article"
 
   return (
-    <div
+    <WrapperTag
       {...props}
+      aria-labelledby={id}
       className={cn(
         "relative flex max-w-[116rem] flex-col justify-self-center rounded-csp-md border border-fog-dark @9xl:flex-row",
         props.className
@@ -40,14 +41,33 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       )}
 
       <div className="rs-pt-1 rs-pb-3 rs-px-3 flex min-w-0 max-w-600 flex-col">
-        {url && (
-          <Heading className="rs-mb-1 type-1 order-3 mt-0">
+        {headerTag === "h2" && (
+          <H2
+            id={id}
+            className="rs-mb-1 type-2 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+          >
+            <Link className="font-normal" href={url}>
+              {paragraph.cspCourseCardTitle}
+            </Link>
+          </H2>
+        )}
+        {headerTag === "h3" && (
+          <H3
+            id={id}
+            className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+          >
             <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
               {paragraph.cspCourseCardTitle}
             </Link>
-          </Heading>
+          </H3>
         )}
-        {!url && <Heading className="rs-mb-1 type-1 order-3 mt-0">{paragraph.cspCourseCardTitle}</Heading>}
+        {headerTag === "div" && (
+          <div className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red">
+            <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
+              {paragraph.cspCourseCardTitle}
+            </Link>
+          </div>
+        )}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
           <div className="order-2 mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-4">
@@ -75,17 +95,17 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         {!!paragraph.cspCourseCardColor?.color && (
           <div
             className={cn("rs-mb-1 order-1 h-[.4rem] w-20 rounded", props.className, {
-              "bg-olive": paragraph.cspCourseCardColor?.color === "8F993E",
+              "bg-olive": paragraph.cspCourseCardColor?.color === "8f993e",
               "bg-archway-light": paragraph.cspCourseCardColor?.color === "766253",
               "bg-cardinal-red": paragraph.cspCourseCardColor?.color === "8c1515",
-              "bg-plum": paragraph.cspCourseCardColor?.color === "81337A",
-              "bg-lagunita-light": paragraph.cspCourseCardColor?.color === "009AB4",
+              "bg-plum": paragraph.cspCourseCardColor?.color === "81337a",
+              "bg-lagunita-light": paragraph.cspCourseCardColor?.color === "009ab4",
               "bg-palo-verde": paragraph.cspCourseCardColor?.color === "279989",
             })}
           />
         )}
       </div>
-    </div>
+    </WrapperTag>
   )
 }
 
