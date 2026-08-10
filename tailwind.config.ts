@@ -48,6 +48,7 @@ const config: Config = {
         "13xl": "130rem",
         "14xl": "140rem",
         "15xl": "150rem",
+        "bp-768": "76.8rem",
       },
       scale: {
         "-100": "-1",
@@ -73,9 +74,11 @@ const config: Config = {
       colors: {
         ...(decanter.theme?.extend?.colors ?? {}),
         "csp-cream": "#FCF9F5",
-        "csp-apricot": "#DAA67F",
+        "csp-peach": "#DAA67F",
         "csp-digital-red-xdark": "#7A0000",
         "csp-dark-66": "#2F2424A8",
+        "csp-palo-alto-50": "#8EBDBA",
+        "csp-plum-xlight": "#B080AC",
         "csp-archway": {
           DEFAULT: "#5D4B3C",
           dark80: "#2F242480",

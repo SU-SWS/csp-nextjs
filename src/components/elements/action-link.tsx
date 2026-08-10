@@ -1,4 +1,3 @@
-import {ChevronRightIcon} from "@heroicons/react/20/solid"
 import {HtmlHTMLAttributes} from "react"
 import cn from "@lib/utils/className"
 import Link from "next/link"
@@ -22,10 +21,6 @@ const ActionLink = ({href, children, ...props}: Props) => {
       )}
     >
       {children}
-      <ChevronRightIcon
-        height={25}
-        className="ml-4 inline-block rounded-full border-csp-digital-red-xdark bg-digital-red-dark fill-csp-cream transition-all hocus:bg-cardinal-red group-hocus-visible:translate-x-1"
-      />
     </Link>
   )
 }

@@ -29,6 +29,7 @@ export type CardParagraphBehaviors = LayoutParagraphBehaviors & {
     heading?: "h2" | "h3" | "h4" | "div.su-splash-font"
     hide_heading?: boolean
     link_style?: "action" | "button"
+    csp_card_variant?: "default" | "poster"
   }
 }
 
