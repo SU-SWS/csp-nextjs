@@ -4,7 +4,6 @@ import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behavi
 import {H2, H3, H4} from "@components/elements/headers"
 import Wysiwyg from "@components/elements/wysiwyg"
 import ActionLink from "@components/elements/action-link"
-import {ChevronRightIcon} from "@heroicons/react/20/solid"
 import Button from "@components/elements/button"
 import ImageCard, {ImageCardBgColor} from "@components/patterns/image-card"
 import {CardParagraphBehaviors} from "drupal"
@@ -21,6 +20,8 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
   const cardtype = behaviors.su_card_styles?.csp_card_variant ?? "default"
   const isPoster = cardtype === "poster"
 
+  const bgColor = isPoster ? paragraph.cspCardBgColor?.color : undefined
+
   const image = paragraph.suCardMedia?.__typename === "MediaImage" ? paragraph.suCardMedia.mediaImage : undefined
   const videoUrl =
     paragraph.suCardMedia?.__typename === "MediaVideo" ? paragraph.suCardMedia.mediaOembedVideo : undefined
@@ -33,11 +34,12 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
     {
       "fluid-type-3 max-w-[55rem] text-csp-cream": isPoster,
       "sr-only": behaviors.su_card_styles?.hide_heading,
+      "text-archway-dark [&_a]:text-archway-light [&_a]:hocus:text-archway-dark":
+        !bgColor || (isPoster && bgColor === "f4f4f4"),
     }
   )
 
   const id = headerTag !== "div" ? getIdFromText(paragraph.suCardHeader) : undefined
-  const bgColor = isPoster ? paragraph.cspCardBgColor?.color : undefined
 
   return (
     <ImageCard
@@ -103,21 +105,14 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
               className={cn(
                 "rs-mt-2 items-center font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
                 {
-                  "[&_svg]:hocus:fill-text-csp-peach relative flex gap-4 pr-[25px] text-csp-cream hocus:text-csp-peach":
+                  "[&_svg]:hocus:fill-text-csp-peach relative flex pr-[25px] text-csp-cream hocus:text-csp-peach":
                     isPoster,
+                  "text-archway-dark [&_a]:hocus:text-archway-dark": !bgColor || (isPoster && bgColor === "f4f4f4"),
                 }
               )}
               href={paragraph.suCardLink.url}
             >
               {paragraph.suCardLink.title}
-              {isPoster && (
-                <div className="size-[2.6rem] rounded-full border border-digital-red-dark bg-digital-red hocus:bg-cardinal-red">
-                  <ChevronRightIcon
-                    height={25}
-                    className="inline-block fill-white transition-all group-hocus-visible:translate-x-1"
-                  />
-                </div>
-              )}
             </ActionLink>
           )}
           {behaviors.su_card_styles?.link_style !== "action" && (
