@@ -87,8 +87,8 @@ const HeroBanner = async ({
             className={cn(
               "absolute inset-0 z-10 bg-gradient-to-b from-transparent to-csp-archway-xdark/95 @6xl:to-transparent",
               overlayPosition === "right"
-                ? "@6xl:bg-gradient-to-l @6xl:from-[rgb(47_32_32/0.95)_15%]"
-                : "@6xl:bg-gradient-to-r @6xl:from-[rgb(47_32_32/0.95)_30%]"
+                ? "@6xl:bg-gradient-to-l @6xl:from-[rgb(47_32_32/0.95)_50%]"
+                : "@6xl:bg-gradient-to-r @6xl:from-[rgb(47_32_32/0.95)_50%]"
             )}
             aria-hidden="true"
           />
