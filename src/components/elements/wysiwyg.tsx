@@ -212,7 +212,7 @@ const fixClasses = (classes?: string | boolean): string => {
     .replaceAll(" quote-text ", " p-[4.8rem] mb-32 type-1 border-l-3 border-fog-dark ")
     .replaceAll(
       " drop-cap ",
-      " type-2 font-normal font-sans first-letter:san-serif first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-2 first-letter:mr-4 "
+      " type-2 font-normal font-sans first-letter:font-serif first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:-mt-9 first-letter:mr-4 first-letter:leading-none "
     )
     .replaceAll(/ tablesaw[\w-] /g, " ")
   return cn(classes)
