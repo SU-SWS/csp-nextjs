@@ -40,7 +40,7 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
     >
       {hasCard && (
         <>
-          <div className="@6xl:max-w-[600px]">
+          <div className="@6xl:max-w-[55rem]">
             {paragraph.suBannerHeader && (
               <>
                 {headerTag === "h2" && (
@@ -66,12 +66,14 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
           </div>
 
           {paragraph.suBannerSupHeader && (
-            <div className="type-2 order-first font-normal text-fog-dark">{paragraph.suBannerSupHeader}</div>
+            <div className="type-2 order-first font-sans font-normal text-fog-dark @6xl:max-w-[55rem]">
+              {paragraph.suBannerSupHeader}
+            </div>
           )}
 
           <Wysiwyg
             html={paragraph.suBannerBody?.processed}
-            className="type-0 font-normal text-csp-cream [&_p]:!type-0"
+            className="text-1.9 [&_p]:leading-1.5 font-sans font-normal text-csp-cream @6xl:max-w-[55rem] [&_p]:text-19"
           />
 
           <div className="m-0 columns-1 gap-1 @7xl:columns-3">
