@@ -85,8 +85,10 @@ const HeroBanner = async ({
         {children && overlayPosition !== "center" && (
           <div
             className={cn(
-              "absolute inset-0 z-10 bg-gradient-to-b from-transparent to-csp-archway-xdark/95 @6xl:from-csp-archway-xdark/95 @6xl:to-transparent",
-              overlayPosition === "right" ? "@6xl:bg-gradient-to-l" : "@6xl:bg-gradient-to-r"
+              "absolute inset-0 z-10 bg-gradient-to-b from-transparent to-csp-archway-xdark/95 @6xl:to-transparent",
+              overlayPosition === "right"
+                ? "@6xl:bg-gradient-to-l @6xl:from-[rgb(47_32_32/0.95)_15%]"
+                : "@6xl:bg-gradient-to-r @6xl:from-[rgb(47_32_32/0.95)_30%]"
             )}
             aria-hidden="true"
           />
@@ -98,7 +100,7 @@ const HeroBanner = async ({
           className={cn("relative z-[11] flex size-full flex-col gap-10", {
             "cc rs-py-4 items-center justify-center text-center text-white @6xl:max-w-800":
               overlayPosition === "center",
-            "rs-p-2 @6xl:z-10 @6xl:my-24 @6xl:max-w-[900px] @6xl:bg-transparent": overlayPosition !== "center",
+            "rs-p-2 @6xl:z-10 @6xl:my-24 @6xl:max-w-[90rem] @6xl:bg-transparent": overlayPosition !== "center",
             "@6xl:ml-auto @6xl:mr-20": overlayPosition === "right",
             "@6xl:ml-20 @6xl:mr-auto": overlayPosition === "left",
           })}
