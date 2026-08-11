@@ -42,21 +42,21 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
       >
         <span className="flex h-[20px] w-[20px] flex-col items-center justify-center">
           <span
-            className={cn("block h-[3px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
-              "translate-y-[.8rem] rotate-45": menuOpen,
-              "-translate-y-0.5": !menuOpen,
+            className={cn("block h-[1.5px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
+              "translate-y-[4px] rotate-45": menuOpen,
+              "-translate-y-[4px]": !menuOpen,
             })}
           />
           <span
-            className={cn("my-3 block h-[3px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
+            className={cn("my-1 block h-[1.5px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
               "opacity-0": menuOpen,
               "opacity-100": !menuOpen,
             })}
           />
           <span
-            className={cn("block h-[3px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
-              "-translate-y-4 -rotate-45": menuOpen,
-              "translate-y-0.5": !menuOpen,
+            className={cn("block h-[1.5px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
+              "-translate-y-[4px] -rotate-45": menuOpen,
+              "translate-y-1": !menuOpen,
             })}
           />
         </span>
