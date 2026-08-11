@@ -66,7 +66,7 @@ const Button = ({
   const isSecondary = variant === "secondary"
 
   const classes = cn(
-    "btn group w-fit max-w-300 rounded-csp-sm font-normal no-underline transition hocus:underline",
+    "btn group flex w-fit max-w-300 items-center rounded-csp-sm font-normal no-underline transition hocus:underline",
     {
       "border border-csp-digital-red-xdark bg-cardinal-red text-white hocus:bg-digital-red hocus:text-white":
         variant === "primary",
@@ -86,7 +86,6 @@ const Button = ({
       "px-12 pb-8 pt-7": isSecondary && size === "big",
       "py-4": size === "round",
       "mx-auto flex items-center": centered,
-      "inline-block text-center": !centered,
     },
     className
   )
@@ -98,7 +97,7 @@ const Button = ({
         {showIcon && (
           <ArrowRightIcon
             height={22}
-            className="mb-[.3rem] ml-2 inline-block transition-all group-hocus-visible:translate-x-1"
+            className="mb-[.3rem] ml-2 inline-block flex-shrink-0 transition-all group-hocus-visible:translate-x-1"
           />
         )}
       </button>
@@ -111,7 +110,7 @@ const Button = ({
       {showIcon && (
         <ArrowRightIcon
           height={22}
-          className="mb-[.3rem] ml-2 inline-block transition-all group-hocus-visible:translate-x-1"
+          className="mb-[.3rem] ml-2 inline-block flex-shrink-0 transition-all group-hocus-visible:translate-x-1"
         />
       )}
     </Link>
