@@ -4,7 +4,6 @@ import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behavi
 import {H2, H3, H4} from "@components/elements/headers"
 import Wysiwyg from "@components/elements/wysiwyg"
 import ActionLink from "@components/elements/action-link"
-import {ChevronRightIcon} from "@heroicons/react/20/solid"
 import Button from "@components/elements/button"
 import ImageCard, {ImageCardBgColor} from "@components/patterns/image-card"
 import {CardParagraphBehaviors} from "drupal"
@@ -39,8 +38,6 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
         !bgColor || (isPoster && bgColor === "f4f4f4"),
     }
   )
-
-  console.log("bgColor", bgColor, "isPoster", isPoster, "headerClasses", headerClasses)
 
   const id = headerTag !== "div" ? getIdFromText(paragraph.suCardHeader) : undefined
 
