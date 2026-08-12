@@ -42,7 +42,10 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
       >
         {menuOpen && <XMarkIcon width={25} className={cn("h-8 w-8 fill-stone-dark")} />}
         {!menuOpen && <Bars3Icon width={25} className={cn("h-8 w-8 fill-stone-dark")} />}
-        <span className="mr-4 text-17 text-archway-light group-hocus-visible:underline" aria-hidden="true">
+        <span
+          className="mr-[.7rem] mt-[.2rem] text-17 text-archway-light group-hocus-visible:underline"
+          aria-hidden="true"
+        >
           {menuOpen ? "Close" : "Menu"}
         </span>
       </button>
