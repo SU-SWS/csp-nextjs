@@ -38,7 +38,14 @@ const StanfordPagePage = ({node, isHome, ...props}: Props) => {
 
       <ReverseVisualOrder>
         {node.suPageBanner?.__typename !== "ParagraphStanfordPageTitleBanner" && (
-          <H1 className={cn("centered mt-32", {"sr-only": isHome})}>{node.title}</H1>
+          <H1
+            className={cn("centered", {
+              "mt-32": !node.suPageBanner,
+              "sr-only": isHome,
+            })}
+          >
+            {node.title}
+          </H1>
         )}
 
         {node.suPageBanner?.__typename === "ParagraphStanfordBanner" && (
