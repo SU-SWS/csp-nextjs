@@ -1,7 +1,7 @@
 "use client"
 
 import useOutsideClick from "@hooks/useOutsideClick"
-import {ChevronDownIcon} from "@heroicons/react/20/solid"
+import {ChevronDownIcon, XMarkIcon, Bars3Icon} from "@heroicons/react/20/solid"
 import {useBoolean, useEventListener} from "usehooks-ts"
 import {HTMLAttributes, ReactNode, useCallback, useEffect, useRef} from "react"
 import {usePathname} from "next/navigation"
@@ -40,26 +40,8 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
         aria-expanded={menuOpen}
         aria-label={menuOpen ? "Close Main Navigation Menu" : "Open Main Navigation Menu"}
       >
-        <span className="flex h-[20px] w-[20px] flex-col items-center justify-center">
-          <span
-            className={cn("block h-[1.5px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
-              "translate-y-[4px] rotate-45": menuOpen,
-              "-translate-y-[4px]": !menuOpen,
-            })}
-          />
-          <span
-            className={cn("my-1 block h-[1.5px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
-              "opacity-0": menuOpen,
-              "opacity-100": !menuOpen,
-            })}
-          />
-          <span
-            className={cn("block h-[1.5px] w-full rounded-sm bg-stone-dark transition-all duration-300 ease-out", {
-              "-translate-y-[4px] -rotate-45": menuOpen,
-              "translate-y-1": !menuOpen,
-            })}
-          />
-        </span>
+        {menuOpen && <XMarkIcon width={25} className={cn("h-8 w-8 fill-stone-dark")} />}
+        {!menuOpen && <Bars3Icon width={25} className={cn("h-8 w-8 fill-stone-dark")} />}
         <span className="mr-4 text-17 text-archway-light group-hocus-visible:underline" aria-hidden="true">
           {menuOpen ? "Close" : "Menu"}
         </span>
