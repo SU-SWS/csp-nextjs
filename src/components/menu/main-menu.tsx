@@ -32,6 +32,7 @@ const MainMenu = async ({hideSearch}: Props) => {
         ))}
         <li>
           <Button
+            href="/search"
             type="submit"
             showIcon={false}
             variant="search"

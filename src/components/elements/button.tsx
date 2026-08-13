@@ -77,7 +77,7 @@ const Button = ({
         variant === "digitalred",
       "border border-stone bg-archway-dark/80 text-csp-cream hocus:bg-archway-dark hocus:text-csp-cream":
         variant === "archway",
-      "rounded-full border border-fog-dark px-4 py-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-white":
+      "rounded-full border border-fog-dark px-4 py-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-csp-cream":
         variant === "search",
       "py-4 pl-8 pr-6 font-sans text-18": !isSecondary && size === "default",
       "pb-5 pl-8 pr-7 pt-4 font-sans text-18": isSecondary && size === "default",
