@@ -88,11 +88,11 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
         className={cn({
           "rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19 [&_a]:hocus:text-archway-dark":
             !isPoster,
-          "type-2 [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline": isPoster,
-          "text-csp-cream [&_a]:text-csp-peach": isPoster && bgColor === "8c1515",
-          "text-csp-cream [&_a]:text-csp-plum-xlight": isPoster && bgColor === "620059",
-          "text-csp-cream [&_a]:text-lagunita-40": isPoster && bgColor === "007c92",
-          "text-csp-cream [&_a]:text-csp-palo-alto-50": isPoster && bgColor === "175e54",
+          "type-2 text-csp-cream [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline": isPoster,
+          "[&_a]:text-csp-peach": (isPoster && bgColor === "8c1515") || (isPoster && bgColor === "2e2d29"),
+          "[&_a]:text-csp-plum-xlight": isPoster && bgColor === "620059",
+          "[&_a]:text-lagunita-40": isPoster && bgColor === "007c92",
+          "[&_a]:text-csp-palo-alto-50": isPoster && bgColor === "175e54",
           "text-archway-dark [&_a]:text-archway-light [&_a]:hocus:text-archway-dark": isPoster && bgColor === "f4f4f4",
         })}
         html={paragraph.suCardBody?.processed}
