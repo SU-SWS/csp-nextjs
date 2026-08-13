@@ -40,7 +40,7 @@ export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLU
         aria-expanded={menuOpen}
         aria-label={menuOpen ? "Close Main Navigation Menu" : "Open Main Navigation Menu"}
       >
-        <span className="flex h-[10px] w-[20px] flex-col justify-center">
+        <span className="flex h-[24px] w-[20px] flex-col justify-center">
           <span
             className={cn(
               "block h-[2px] w-full shrink-0 rounded-sm bg-stone-dark transition-all duration-300 ease-out",
