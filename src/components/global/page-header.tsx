@@ -32,7 +32,7 @@ const PageHeader = async ({...props}: Props) => {
       </div>
       <GlobalMessage />
       <div className="relative">
-        <div className="min-h-50 centered pr-0 sm:pr-24 md:pr-32 lg:pr-0">
+        <div className="min-h-50 centered pr-0 sm:pr-24 md:pr-28 lg:pr-0">
           <div className="mb-8 flex w-full flex-col justify-between pr-8 sm:mb-0 sm:flex-row sm:items-center md:pr-0">
             <Lockup />
             <div className="flex items-center justify-end gap-6 pr-32 sm:justify-center sm:pr-0 md:mr-20 lg:mr-0">
