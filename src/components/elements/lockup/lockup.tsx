@@ -36,7 +36,7 @@ export const Lockup = async () => {
 
   if (!lockupSettingsConfig || lockupSettingsConfig.suLockupEnabled) {
     return (
-      <div className="whitespace-nowrap py-10 md:whitespace-normal">
+      <div className="whitespace-nowrap py-10 pb-4 sm:pb-10 md:whitespace-normal">
         <Link href="/" className="flex items-center gap-2 no-underline">
           <div className="self-end">
             <div className="mr-2 inline-block border-r border-black pr-2">
