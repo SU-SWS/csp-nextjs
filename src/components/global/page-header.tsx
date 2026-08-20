@@ -32,10 +32,10 @@ const PageHeader = async ({...props}: Props) => {
       </div>
       <GlobalMessage />
       <div className="relative">
-        <div className="min-h-50 centered pr-32 md:pr-24 lg:pr-0">
-          <div className="flex w-full items-center justify-between">
+        <div className="min-h-50 centered pr-0 sm:pr-24 md:pr-20 lg:pr-0">
+          <div className="mb-8 flex w-full flex-col justify-between pr-8 sm:mb-0 sm:flex-row sm:items-center md:pr-0">
             <Lockup />
-            <div className="flex items-center justify-end gap-6 md:mr-20 lg:mr-0">
+            <div className="flex items-center justify-end gap-6 pr-[6.5rem] sm:justify-center sm:pr-0 md:mr-20 lg:mr-0">
               <UtilityNav />
               {!hideSearch && <SiteSearchForm className="hidden lg:hidden" />}
               <QuarterAlert className="hidden xl:block" />
