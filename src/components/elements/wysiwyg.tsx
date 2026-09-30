@@ -82,7 +82,7 @@ const options: HTMLReactParserOptions = {
         case "h2": {
           const headingContent = domToReact(children, options)
           return (
-            <H2 {...nodeProps} className="hocus:decoration-[.25rem] hocus:underline-offset-[.4rem]">
+            <H2 className={cn(nodeProps.className, "hocus:decoration-[.25rem] hocus:underline-offset-[.4rem]")}>
               {headingContent}
               {hasLink(headingContent) && <ChevronRightIcon className="inline h-20 fill-digital-red" />}
             </H2>
@@ -91,7 +91,7 @@ const options: HTMLReactParserOptions = {
         case "h3": {
           const headingContent = domToReact(children, options)
           return (
-            <H3 {...nodeProps} className="hocus:decoration-[.25rem] hocus:underline-offset-[.4rem]">
+            <H3 className={cn(nodeProps.className, "hocus:decoration-[.25rem] hocus:underline-offset-[.4rem]")}>
               {headingContent}
               {hasLink(headingContent) && <ChevronRightIcon className="inline h-16 fill-digital-red" />}
             </H3>
@@ -100,7 +100,7 @@ const options: HTMLReactParserOptions = {
         case "h4": {
           const headingContent = domToReact(children, options)
           return (
-            <H4 {...nodeProps} className="hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]">
+            <H4 className={cn(nodeProps.className, "hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]")}>
               {headingContent}
               {hasLink(headingContent) && <ChevronRightIcon className="inline h-14 fill-digital-red" />}
             </H4>
@@ -109,7 +109,7 @@ const options: HTMLReactParserOptions = {
         case "h5": {
           const headingContent = domToReact(children, options)
           return (
-            <H5 {...nodeProps} className="hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]">
+            <H5 className={cn(nodeProps.className, "hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]")}>
               {headingContent}
               {hasLink(headingContent) && <ChevronRightIcon className="inline h-12 fill-digital-red" />}
             </H5>
@@ -118,7 +118,7 @@ const options: HTMLReactParserOptions = {
         case "h6": {
           const headingContent = domToReact(children, options)
           return (
-            <H6 {...nodeProps} className="hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]">
+            <H6 className={cn(nodeProps.className, "hocus:decoration-[.15rem] hocus:underline-offset-[.2rem]")}>
               {headingContent}
               {hasLink(headingContent) && <ChevronRightIcon className="inline h-12 fill-digital-red" />}
             </H6>
