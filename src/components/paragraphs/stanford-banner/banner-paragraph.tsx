@@ -76,7 +76,7 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
             className="text-1.9 [&_p]:leading-1.5 font-sans font-normal text-csp-cream @6xl:max-w-[55rem] [&_p]:text-19"
           />
 
-          <ul className="m-0 list-none columns-1 gap-1 @7xl:columns-3">
+          <ul className="m-0 list-none columns-1 gap-1 p-0 @7xl:columns-3">
             {paragraph.suBannerButton?.map((button, i) => (
               <li key={i}>
                 <Button
