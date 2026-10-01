@@ -66,7 +66,7 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
           </div>
 
           {paragraph.suBannerSupHeader && (
-            <div className="type-2 order-first font-sans font-normal text-fog-dark @6xl:max-w-[55rem]">
+            <div className="type-2 order-first mb-[1.75rem] font-sans font-normal text-fog-dark @6xl:max-w-[55rem]">
               {paragraph.suBannerSupHeader}
             </div>
           )}
@@ -76,18 +76,20 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
             className="text-1.9 [&_p]:leading-1.5 font-sans font-normal text-csp-cream @6xl:max-w-[55rem] [&_p]:text-19"
           />
 
-          <div className="m-0 columns-1 gap-1 @7xl:columns-3">
+          <ul className="m-0 list-none columns-1 gap-1 @7xl:columns-3">
             {paragraph.suBannerButton?.map((button, i) => (
-              <Button
-                key={i}
-                href={button.url}
-                variant={button.attributes?.imageBannerButtonType === "archway" ? "archway" : "digitalred"}
-                className="m-2"
-              >
-                {button.title}
-              </Button>
+              <li key={i}>
+                <Button
+                  key={i}
+                  href={button.url}
+                  variant={button.attributes?.imageBannerButtonType === "archway" ? "archway" : "digitalred"}
+                  className="m-2"
+                >
+                  {button.title}
+                </Button>
+              </li>
             ))}
-          </div>
+          </ul>
         </>
       )}
     </HeroBanner>
