@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           repository: "SU-SWS/ace-stanfordlagunita"
-          ref: '3.x'
+          ref: '4.x'
       - uses: actions/checkout@v7
         with:
           path: frontend
