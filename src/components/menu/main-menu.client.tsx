@@ -1,103 +1,138 @@
 "use client"
 
 import useOutsideClick from "@hooks/useOutsideClick"
-import {ChevronDownIcon} from "@heroicons/react/20/solid"
-import {useBoolean, useEventListener} from "usehooks-ts"
-import {HTMLAttributes, ReactNode, useCallback, useEffect, useRef} from "react"
+import {ChevronDownIcon, MagnifyingGlassIcon} from "@heroicons/react/20/solid"
+import {useBoolean, useEventListener, useScrollLock, useWindowSize} from "usehooks-ts"
+import {RefObject, useEffect, useId, useRef} from "react"
 import {usePathname} from "next/navigation"
 import cn from "@lib/utils/className"
-import Link, {LinkProps} from "@components/elements/link"
-import {RefObject} from "react"
+import Link from "@components/elements/link"
+import Button from "@components/elements/button"
+import SiteSearchForm from "@components/search/site-search-form"
+import {MenuItem as MenuItemType} from "@lib/gql/__generated__/graphql"
+import Hamburger from "@components/menu/hamburger"
+import ReactFocusLock from "react-focus-lock"
+import {XMarkIcon} from "@heroicons/react/24/solid"
 
-export const MainMenuClientWrapper = ({children, ...props}: HTMLAttributes<HTMLUListElement>) => {
+type Props = {
+  hideSearch?: boolean
+  menuItems: MenuItemType[]
+}
+
+const MainMenuClient = ({hideSearch, menuItems}: Props) => {
+  const {width = 0} = useWindowSize({initializeWithValue: false})
+  const {lock: lockScroll, unlock: unlockScroll} = useScrollLock({autoLock: false})
   const buttonRef = useRef<HTMLButtonElement>(null)
   const menuRef = useRef<HTMLDivElement>(null)
-
-  const {value: menuOpen, setFalse: closeMenu, toggle: toggleMenu} = useBoolean(false)
+  const {value: menuOpen, setTrue: openMenu, setFalse: closeMenu} = useBoolean(false)
   const browserUrl = usePathname()
+  const id = useId()
+  const urlRef = useRef(browserUrl)
 
-  useOutsideClick(menuRef, closeMenu)
-
-  const handleEscape = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key !== "Escape" || !menuOpen) return
-
+  useEffect(() => {
+    if (browserUrl !== urlRef.current) {
+      urlRef.current = browserUrl
+      unlockScroll()
       closeMenu()
-      buttonRef.current?.focus()
-    },
-    [menuOpen, closeMenu]
-  )
+    }
+  }, [browserUrl, closeMenu, unlockScroll])
 
-  useEffect(() => closeMenu(), [browserUrl, closeMenu])
+  const handleClose = () => {
+    closeMenu()
+    unlockScroll()
+    setTimeout(() => buttonRef.current?.focus(), 100)
+  }
+
+  const handleEscape = (event: KeyboardEvent) => {
+    if (event.key !== "Escape" || !menuOpen) return
+    handleClose()
+  }
   useEventListener("keydown", handleEscape, menuRef as RefObject<HTMLDivElement>)
 
+  const isMobile = width < 992
   return (
-    <nav {...props} ref={menuRef}>
-      <button
+    <nav id={id} aria-label="Main Navigation" className="lg:centered" ref={menuRef}>
+      <Hamburger
         ref={buttonRef}
-        className="group absolute right-10 top-[7.3rem] flex flex-row-reverse items-center sm:top-[2.7rem] md:right-[6rem] md:top-[3.9rem] lg:hidden"
-        onClick={toggleMenu}
+        className="group absolute top-[7.3rem] right-25 z-10 flex flex-row-reverse items-center sm:top-[2.7rem] md:top-[3.9rem] md:right-[6rem] lg:hidden"
+        onClick={() => {
+          openMenu()
+          lockScroll()
+        }}
+        open={menuOpen}
         aria-expanded={menuOpen}
         aria-label={menuOpen ? "Close Main Navigation Menu" : "Open Main Navigation Menu"}
+        aria-controls={`${id}-dialog`}
       >
-        <span className="flex h-[24px] w-[20px] flex-col justify-center">
-          <span
-            className={cn(
-              "block h-[2px] w-full shrink-0 rounded-sm bg-stone-dark transition-all duration-300 ease-out",
-              {
-                "translate-y-3.5 rotate-45": menuOpen,
-                "translate-y-1": !menuOpen,
-              }
-            )}
-          />
-          <span
-            className={cn(
-              "my-3 block h-[2px] w-full shrink-0 rounded-sm bg-stone-dark transition-all duration-300 ease-out",
-              {
-                "opacity-0": menuOpen,
-                "opacity-100": !menuOpen,
-              }
-            )}
-          />
-          <span
-            className={cn(
-              "block h-[2px] w-full shrink-0 rounded-sm bg-stone-dark transition-all duration-300 ease-out",
-              {
-                "-translate-y-4 -rotate-45": menuOpen,
-                "-translate-y-1": !menuOpen,
-              }
-            )}
-          />
-        </span>
         <span
-          className="mr-4 text-17 text-archway-light group-hocus-visible:underline sm:mt-[.4rem] md:mt-0.5"
+          className="mr-10 text-17 text-archway-light group-hocus-visible:underline sm:mt-[.4rem] md:mt-1.25"
           aria-hidden="true"
         >
           {menuOpen ? "Close" : "Menu"}
         </span>
-      </button>
-      <div
+      </Hamburger>
+      <ReactFocusLock
+        as={isMobile ? "dialog" : "div"}
+        autoFocus={isMobile}
+        returnFocus
+        disabled={!menuOpen || isMobile}
+        lockProps={{
+          id: `${id}-dialog`,
+          open: isMobile,
+          "aria-labelledby": isMobile ? id : undefined,
+          "aria-modal": isMobile,
+        }}
         className={cn(
-          "top-100 absolute left-0 z-20 hidden w-full bg-black lg:relative lg:top-0 lg:block lg:bg-transparent",
-          {block: menuOpen}
+          "fixed top-0 left-0 z-20 hidden h-dvh w-dvw overflow-auto bg-black lg:relative lg:top-0 lg:block lg:h-auto lg:w-auto lg:overflow-visible lg:bg-transparent",
+          {
+            block: menuOpen,
+          }
         )}
       >
-        {children}
-      </div>
+        <button
+          onClick={handleClose}
+          className="mt-10 mr-10 ml-auto block rounded-full border-2 border-transparent p-3 transition-colors lg:hidden hocus-visible:border-digital-red"
+        >
+          <XMarkIcon width={30} className="text-white" />
+          <span className="sr-only">Close Menu Dialog</span>
+        </button>
+
+        {!hideSearch && <SiteSearchForm className="px-20 lg:hidden" />}
+        {/* mb-22.5 and lg:justify-start are design changes from CSP-48--menu */}
+        <ul className="list-unstyled mb-22.5 flex-wrap p-0 lg:flex lg:justify-start">
+          {menuItems.map(item => (
+            <MenuItem key={item.id} {...item} level={0} />
+          ))}
+          <li>
+            <Button
+              href="/search"
+              type="submit"
+              showIcon={false}
+              variant="search"
+              size="round"
+              className="relative top-5 hidden lg:block lg:justify-self-end"
+            >
+              <MagnifyingGlassIcon width={20} />
+              <span className="sr-only">Submit Search</span>
+            </Button>
+          </li>
+        </ul>
+      </ReactFocusLock>
     </nav>
   )
 }
 
-type ItemProps = HTMLAttributes<HTMLLIElement> & {
+type MenuItemProps = MenuItemType & {
   level: number
-  link: ReactNode
 }
 
-export const MainMenuItemClientWrapper = ({id, level, link, children, ...props}: ItemProps) => {
+const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
   const menuItemRef = useRef<HTMLLIElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const {value: submenuOpen, setFalse: closeSubmenu, toggle: toggleSubmenu} = useBoolean(false)
   const browserUrl = usePathname()
+  const href = url || "#"
+  const isCurrent = href === browserUrl
 
   useOutsideClick(menuItemRef, closeSubmenu)
 
@@ -105,27 +140,49 @@ export const MainMenuItemClientWrapper = ({id, level, link, children, ...props}:
   useEffect(() => closeSubmenu(), [browserUrl, closeSubmenu])
 
   // If the user presses escape on the keyboard, close the submenus.
-  const handleEscape = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key !== "Escape" || !submenuOpen) return
+  const handleEscape = (event: KeyboardEvent) => {
+    if (event.key !== "Escape" || !submenuOpen) return
 
-      closeSubmenu()
-      if (level === 0) buttonRef.current?.focus()
-    },
-    [level, submenuOpen, closeSubmenu]
-  )
+    closeSubmenu()
+    if (level === 0) buttonRef.current?.focus()
+  }
 
   useEventListener("keydown", handleEscape, menuItemRef as unknown as RefObject<HTMLDivElement>)
 
   return (
-    <li {...props} ref={menuItemRef}>
-      {link}
+    <li
+      ref={menuItemRef}
+      className={cn(
+        "relative m-0 grid grid-cols-10 items-center justify-between border-b border-cool-grey py-5 first:border-t last:border-0 lg:relative lg:border-black-20 lg:py-0 lg:pr-27.5",
+        {"first:border-t-0 lg:flex lg:border-b-0 last:lg:pr-0": level === 0, "lg:first:border-t-0": level === 1}
+      )}
+    >
+      <Link
+        href={href}
+        id={id}
+        data-intrail={!isCurrent && browserUrl.includes(href) && href !== "/"}
+        aria-current={isCurrent ? "page" : undefined}
+        className={cn(
+          "col-start-1 col-end-9 border-l-[6px] border-transparent py-12.5 text-white no-underline transition-all lg:gap-7.5 lg:text-17 lg:font-normal lg:text-stone-dark lg:active:text-cardinal-red hocus:text-white lg:hocus:text-stone-dark hocus-visible:border-white hocus-visible:underline",
+          {
+            "ml-12.5 pl-25 lg:ml-0 lg:border-l-0 lg:pb-5 lg:pl-0 aria-current-page:text-white lg:aria-current-page:text-cardinal-red lg:hocus:aria-current-page:text-cardinal-red data-intrail:border-transparent lg:data-intrail:border-fog-dark":
+              level === 0,
+            "pl-40 lg:pl-20 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 1,
+            "pl-56 lg:pl-20 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 2,
+            "pl-96 lg:pl-40 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 3,
+            "ml-10 lg:ml-0 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level !== 0,
+          }
+        )}
+      >
+        {title}
+      </Link>
+      {level === 0 && <span className="mb-[6px] ml-12.5 hidden h-[25px] lg:block" />}
 
-      {children && (
+      {!!children.length && (
         <>
           <button
             aria-labelledby={id}
-            className="group relative right-10 col-start-10 w-fit shrink-0 rounded-full border border-transparent bg-white text-black active:text-black hocus:bg-white hocus:text-black hocus-visible:border-black lg:right-0 lg:mt-2 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light lg:aria-current-page:text-cardinal-red lg:hocus:bg-transparent lg:hocus:text-archway-light lg:hocus-visible:border lg:hocus-visible:border-fog-dark"
+            className="group relative right-25 col-start-10 w-fit shrink-0 rounded-full border border-transparent bg-white text-black active:text-black lg:right-0 lg:mt-5 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light hocus:bg-white hocus:text-black lg:hocus:bg-transparent lg:hocus:text-archway-light hocus-visible:border-black lg:hocus-visible:border lg:hocus-visible:border-fog-dark lg:aria-current-page:text-cardinal-red"
             ref={buttonRef}
             onClick={toggleSubmenu}
             aria-expanded={submenuOpen}
@@ -139,25 +196,22 @@ export const MainMenuItemClientWrapper = ({id, level, link, children, ...props}:
             />
           </button>
 
-          {submenuOpen && children}
+          {submenuOpen && (
+            <ul
+              className={cn("list-unstyled col-span-10 w-full min-w-300 px-0 lg:bg-white", {
+                "lg:absolute lg:top-full lg:left-0 lg:shadow-2xl": level === 0,
+                "lg:top-0": level !== 0,
+              })}
+            >
+              {children.map(item => (
+                <MenuItem key={item.id} {...item} level={level + 1} />
+              ))}
+            </ul>
+          )}
         </>
       )}
     </li>
   )
 }
 
-export const MainMenuItemClientLink = ({href, children, ...props}: LinkProps) => {
-  const currentPath = usePathname()
-  const isCurrent = href === currentPath
-
-  return (
-    <Link
-      {...props}
-      href={href}
-      data-intrail={!isCurrent && currentPath.includes(href) && href !== "/"}
-      aria-current={isCurrent ? "page" : undefined}
-    >
-      {children}
-    </Link>
-  )
-}
+export default MainMenuClient

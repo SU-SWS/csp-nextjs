@@ -16,9 +16,9 @@ export const H1 = ({children, className, showTopBorder = true, ...props}: H1Prop
   return (
     <h1
       className={cn(
-        "type-4 font-serif font-normal",
+        "font-serif type-4 font-normal",
         {
-          "before:rs-mb-1 before:block before:h-2 before:w-full before:max-w-[5rem] before:rounded-md before:bg-cardinal-red before:content-['']":
+          "before:rs-mb-1 before:block before:h-5 before:w-full before:max-w-[5rem] before:rounded-md before:bg-cardinal-red before:content-['']":
             showTopBorder,
         },
         className
@@ -31,11 +31,13 @@ export const H1 = ({children, className, showTopBorder = true, ...props}: H1Prop
 }
 
 export const H2 = ({children, className, ...props}: Props) => {
-  const id = typeof children === "string" ? getIdFromText(children) : undefined
+  // Only generate an id when one wasn't given, otherwise the generated id is thrown away but still
+  // consumes a suffix for the next heading with the same text.
+  const id = !props.id && typeof children === "string" ? getIdFromText(children) : undefined
   return (
     <h2
       id={id}
-      className={cn(headingLinkClasses, "rs-mt-2 rs-mb-neg1 type-3 font-serif font-normal", className)}
+      className={cn(headingLinkClasses, "rs-mt-2 mb-11 font-serif type-3 font-normal md:mb-12 2xl:mb-13", className)}
       {...props}
     >
       {children}
@@ -45,7 +47,7 @@ export const H2 = ({children, className, ...props}: Props) => {
 
 export const H3 = ({children, className, ...props}: Props) => {
   return (
-    <h3 className={cn(headingLinkClasses, "rs-mb-0 rs-mt-2 type-2 font-serif font-normal", className)} {...props}>
+    <h3 className={cn(headingLinkClasses, "rs-mt-2 rs-mb-0 font-serif type-2 font-normal", className)} {...props}>
       {children}
     </h3>
   )
@@ -53,7 +55,7 @@ export const H3 = ({children, className, ...props}: Props) => {
 
 export const H4 = ({children, className, ...props}: Props) => {
   return (
-    <h4 className={cn(headingLinkClasses, "rs-mb-0 rs-mt-2 type-1 font-serif font-normal", className)} {...props}>
+    <h4 className={cn(headingLinkClasses, "rs-mt-2 rs-mb-0 font-serif type-1 font-normal", className)} {...props}>
       {children}
     </h4>
   )
@@ -61,7 +63,7 @@ export const H4 = ({children, className, ...props}: Props) => {
 
 export const H5 = ({children, className, ...props}: Props) => {
   return (
-    <h5 className={cn(headingLinkClasses, "rs-mb-0 rs-mt-2 type-1 font-serif font-normal", className)} {...props}>
+    <h5 className={cn(headingLinkClasses, "rs-mt-2 rs-mb-0 font-serif type-1 font-normal", className)} {...props}>
       {children}
     </h5>
   )

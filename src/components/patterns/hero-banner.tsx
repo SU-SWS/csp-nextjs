@@ -1,8 +1,7 @@
 import React, {ElementType, HtmlHTMLAttributes} from "react"
-import Image from "next/image"
 import cn from "@lib/utils/className"
 import {Maybe} from "@lib/gql/__generated__/graphql"
-import {getImagePlaceholder} from "@lib/utils/get-image-placeholder"
+import BlurImage from "@components/images/blur-image"
 import {OverlayColors} from "@lib/@types/drupal"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
@@ -32,7 +31,7 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   overlayColor?: OverlayColors
 }
 
-const HeroBanner = async ({
+const HeroBanner = ({
   imageUrl,
   imageAlt,
   eagerLoadImage,
@@ -48,15 +47,15 @@ const HeroBanner = async ({
     <BannerWrapper
       {...props}
       className={cn(
-        "rs-mb-5 relative mx-auto min-h-[400px] w-[calc(100%-0.8rem)] max-w-[210rem] overflow-hidden rounded-csp-lg @container @6xl:min-h-[600px]",
+        "@container relative mx-auto rs-mb-5 min-h-[400px] w-[calc(100%-0.8rem)] max-w-[210rem] overflow-hidden rounded-csp-lg @6xl:min-h-[600px]",
         {"bg-archway-dark": children},
         props.className
       )}
     >
       <div
         className={cn("w-full bg-cool-grey", {
-          "@6xl:aspect-auto relative aspect-[16/9] @6xl:absolute @6xl:h-full": overlayPosition !== "center" && children,
-          "aspect-auto absolute h-full": overlayPosition === "center" || !children,
+          "relative aspect-video @6xl:absolute @6xl:aspect-auto @6xl:h-full": overlayPosition !== "center" && children,
+          "absolute aspect-auto h-full": overlayPosition === "center" || !children,
         })}
       >
         {overlayPosition === "center" && (
@@ -72,14 +71,13 @@ const HeroBanner = async ({
           />
         )}
         {imageUrl && (
-          <Image
+          <BlurImage
             className="object-cover"
             src={imageUrl}
             alt={imageAlt || ""}
             loading={eagerLoadImage ? "eager" : "lazy"}
             fill
             sizes="100vw"
-            {...await getImagePlaceholder(imageUrl)}
           />
         )}
         {children && overlayPosition !== "center" && (
@@ -97,12 +95,12 @@ const HeroBanner = async ({
 
       {children && (
         <div
-          className={cn("relative z-[11] flex size-full flex-col gap-[1.75rem]", {
-            "cc rs-py-4 items-center justify-center text-center text-white @6xl:max-w-800":
+          className={cn("relative z-11 flex size-full flex-col gap-[1.75rem]", {
+            "cc items-center justify-center rs-py-4 text-center text-white @6xl:max-w-800":
               overlayPosition === "center",
-            "rs-p-2 @6xl:z-10 @6xl:my-24 @6xl:max-w-[90rem] @6xl:bg-transparent": overlayPosition !== "center",
-            "@6xl:ml-auto @6xl:mr-20": overlayPosition === "right",
-            "@6xl:ml-20 @6xl:mr-auto": overlayPosition === "left",
+            "rs-p-2 @6xl:z-10 @6xl:my-60 @6xl:max-w-[90rem] @6xl:bg-transparent": overlayPosition !== "center",
+            "@6xl:mr-40 @6xl:ml-auto": overlayPosition === "right",
+            "@6xl:mr-auto @6xl:ml-40": overlayPosition === "left",
           })}
         >
           {children}

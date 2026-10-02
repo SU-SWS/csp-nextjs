@@ -31,10 +31,10 @@ const customTwMerge = extendTailwindMerge({
       py: [(value: string) => value.startsWith("rs-py-")],
       ps: [(value: string) => value.startsWith("rs-ps-")],
       pe: [(value: string) => value.startsWith("rs-pe-")],
+      gap: [{gap: ["xs", "lg", "xl", "2xl"]}],
     },
     theme: {
-      gap: ["xs", "lg", "xl", "2xl"],
-      borderRadius: ["csp-xs", "csp-sm", "csp-md", "csp-lg"],
+      radius: ["csp-xs", "csp-sm", "csp-md", "csp-lg"],
     },
   },
 })

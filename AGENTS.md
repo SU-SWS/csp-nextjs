@@ -7,7 +7,7 @@ This is a Next.js application that serves as a frontend for a Drupal backend CMS
 ## Technology Stack
 
 - **Frontend Framework**: Next.js (v16)
-- **Styling**: TailwindCSS (v3)
+- **Styling**: TailwindCSS (v4)
 - **Backend CMS**: Drupal (v11)
 - **Data Layer**: GraphQL
 - **Package Manager**: yarn
@@ -203,7 +203,7 @@ yarn lint
 
 ## Styling Guidelines
 
-**TailwindCSS Configuration**: `tailwind.config.ts`
+**TailwindCSS Configuration**: `src/styles/index.css` (CSS-first `@theme`; there is no `tailwind.config.ts`)
 
 **Custom Theme Extensions**:
 
@@ -232,9 +232,9 @@ Only deltas from framework defaults are listed; standard React, TypeScript, and 
 
 ## Design system (Decanter)
 
-Decanter v7 provides Tailwind tokens that surface as normal utility classes. This repo imports Decanter into `tailwind.config.ts` (`import decanter from "decanter"`), spreads `decanter.theme?.extend` and `decanter.plugins`, then layers CSP tokens and plugins on top. It is not used as a preset.
+Decanter v8 is a CSS-first Tailwind v4 preset whose tokens surface as normal utility classes. `src/styles/index.css` imports it (`@import "decanter"`), then layers CSP tokens on top in an `@theme` block.
 
-- Config source of truth: `tailwind.config.ts`. Read it before choosing values.
+- Config source of truth: `src/styles/index.css`. Read it before choosing values.
 - Decanter overrides Tailwind's default `black`, `sky`, and `stone` spectrums; do not assume stock Tailwind values for those.
 
 ### Root font size: 10px, not 16px
@@ -251,13 +251,13 @@ Use utility classes, never hex. Two layers:
 
 ### Typography
 
-- Font families: `font-sans` (Source Sans 3), `font-serif` (Source Serif 4), `font-slab` (Roboto Slab), `font-stanford` (Stanford ligature, logo only), and the mono stack. `font-stanford` and `font-serif` are wired to `next/font` CSS variables (`--font-stanford`, `--font-serif`) in `tailwind.config.ts`. <!-- TODO: point to where next/font is configured, likely the root layout. -->
+- Font families: `font-sans` (Source Sans 3), `font-serif` (Source Serif 4), `font-slab` (Roboto Slab), `font-stanford` (Stanford ligature, logo only), and the mono stack. `font-stanford` and `font-serif` are overridden by `next/font` CSS variables (`--font-stanford`, `--font-serif`) configured in `src/styles/typography/fonts.ts`.
 - Modular scale: `type-0` (1em base) through `type-9`, responsive and em-based, growing about 1.15x on mobile, 1.2x at `md`, 1.25x at `lg`, with proportional letter spacing. The body has a sensible base, so `type-N` works with no extra setup. Optional `basefont-19` to `basefont-23` bump a section's base. Headings h1 to h6 already map to type-5 down to type-0, so prefer semantic headings.
 - Fluid sizing: `fluid-type-0` through `fluid-type-10`.
 
 ### Layout and spacing
 
-- Centered container: use `cc` (or `centered-container`) for fluid, breakpoint-aware content width. Do not recreate with `max-w-*` plus padding. Provided by the `centeredContainerStyles` plugin (`src/styles/centered-container`).
+- Centered container: use `cc` (or `centered-container`) for fluid, breakpoint-aware content width. Do not recreate with `max-w-*` plus padding. Provided by `src/styles/centered-container.css`.
 - Responsive spacing: prefer Decanter's `rs-*` utilities (`rs-p-*`, `rs-m-*`, and side and axis variants like `rs-py-*`, `rs-mt-*`) over hand-tuning per breakpoint.
 - Images: rendered with `next/image` from the Drupal source, using default Next optimization. <!-- TODO: note any responsive image container constraint pattern this repo standardizes on. -->
 
@@ -272,7 +272,7 @@ graphqlClient().request<TypescriptType>(QueryDocument, {variables})
 
 ### Rendering Paragraphs
 
-```typescript
+```jsx
 // Example pattern for rendering paragraph entities
 <Paragraph paragraph={paragraph} />
 ```
@@ -311,7 +311,7 @@ graphqlClient().request<TypescriptType>(QueryDocument, {variables})
 **Styling Issues**:
 
 - Run `yarn build` to rebuild TailwindCSS
-- Check purge/content configuration in tailwind.config.js
+- Check the `@source` directives in `src/styles/index.css`
 - Verify class names are not dynamically constructed
 
 ## Testing
@@ -341,3 +341,13 @@ When working with this codebase, AI agents should ask:
 **Last Updated**: 2026-07-13
 
 **Maintained By**: pookmish
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

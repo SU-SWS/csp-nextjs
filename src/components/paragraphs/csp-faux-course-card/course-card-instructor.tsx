@@ -21,14 +21,14 @@ const CourseCardInstructor = ({instructor, headingElement = "div"}: Props) => {
   const HeadingElement = headingElement === "h3" ? H3 : "div"
 
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-20">
       {headshot?.url && (
         <div className="relative h-[5.7rem] w-[5.7rem] shrink-0">
           <Image className="rounded-full object-cover" src={headshot.url} alt={headshot.alt || ""} fill sizes="100px" />
         </div>
       )}
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-5">
         {instructor.cspInstructorUrl?.url && (
           <HeadingElement className="m-0 text-19 font-normal">
             <Link

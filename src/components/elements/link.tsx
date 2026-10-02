@@ -55,7 +55,7 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
 
   if (className?.includes("link--action")) {
     return (
-      <ActionLink prefetch={false} href={href} className={className?.replaceAll("link--action", "")} {...props}>
+      <ActionLink href={href} className={className?.replaceAll("link--action", "")} {...props}>
         {children}
       </ActionLink>
     )
@@ -74,7 +74,6 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
 
     return (
       <Button
-        prefetch={false}
         href={href}
         variant={variant}
         size={className.includes("--big") ? "big" : "default"}
@@ -86,7 +85,7 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
         {externalLink && (
           <ArrowUpRightIcon
             height={20}
-            className="ml-2 inline-block transition-all group-hocus-visible:translate-x-2"
+            className="ml-4 inline-block transition-all group-hocus-visible:translate-x-2"
           />
         )}
       </Button>
@@ -105,16 +104,16 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
         {children}
         <ArrowUpRightIcon
           height={20}
-          className="ml-2 inline-block transition-all group-hocus-visible:-translate-y-1 group-hocus-visible:translate-x-1"
+          className="ml-4 inline-block transition-all group-hocus-visible:translate-x-1 group-hocus-visible:-translate-y-1"
         />
       </a>
     )
   }
 
   return (
-    <Link prefetch={false} href={href} className={cn("group font-normal", className)} {...props}>
+    <Link href={href} className={cn("group font-normal", className)} {...props}>
       {children}
-      {href.startsWith("mailto") && <EnvelopeIcon width={20} className="ml-4 inline-block" />}
+      {href.startsWith("mailto") && <EnvelopeIcon width={20} className="ml-8 inline-block" />}
     </Link>
   )
 }

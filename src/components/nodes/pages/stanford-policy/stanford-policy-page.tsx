@@ -10,16 +10,14 @@ import Button from "@components/elements/button"
 import {ChevronLeftIcon} from "@heroicons/react/16/solid"
 import {ChevronRightIcon} from "@heroicons/react/20/solid"
 import StanfordPolicyListItem from "@components/nodes/list-item/stanford-policy/stanford-policy-list-item"
-import NodePageMetadata from "@components/nodes/pages/node-page-metadata"
-import {getCleanDescription} from "@lib/utils/text-tools"
-import {redirect} from "next/navigation"
+import {permanentRedirect} from "next/navigation"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordPolicy
 }
 
 const StanfordPolicyPage = async ({node, ...props}: Props) => {
-  if (node.suPolicySource?.url) redirect(node.suPolicySource.url)
+  if (node.suPolicySource?.url) permanentRedirect(node.suPolicySource.url)
 
   const changeLog = node.suPolicyChangelog?.filter(change => change.suPolicyPublic) || []
 
@@ -36,15 +34,10 @@ const StanfordPolicyPage = async ({node, ...props}: Props) => {
   const prevPage = flattenedMenu[flattenedMenu.findIndex(page => page.url === node.path) - 1]
 
   return (
-    <article className="centered pt-32" {...props}>
-      <NodePageMetadata
-        pageTitle={node.title}
-        metatags={node.metatag}
-        backupDescription={getCleanDescription(node.body?.processed)}
-      />
-      <div className="flex gap-5">
-        <H1 className="flex-grow">{node.title}</H1>
-        <div className="flex h-fit gap-5">
+    <article className="centered pt-64" {...props}>
+      <div className="flex gap-10">
+        <H1 className="grow">{node.title}</H1>
+        <div className="flex h-fit gap-10">
           {prevPage && (
             <Button href={prevPage.url} variant="secondary" size="default" className="flex items-center">
               <ChevronLeftIcon width={20} />
@@ -59,8 +52,8 @@ const StanfordPolicyPage = async ({node, ...props}: Props) => {
           )}
         </div>
       </div>
-      <InteriorPage currentPath={node.path || "#"} menuItems={node.book ? [node.book] : undefined}>
-        <div className="flex flex-col gap-20">
+      <InteriorPage currentPath={node.path} menuItems={node.book ? [node.book] : undefined}>
+        <div className="flex flex-col gap-40">
           {(node.suPolicyAuthority || node.suPolicyUpdated || node.suPolicyEffective) && (
             <div>
               {node.suPolicyUpdated && (
@@ -97,12 +90,12 @@ const StanfordPolicyPage = async ({node, ...props}: Props) => {
           )}
 
           {changeLog.length > 0 && (
-            <div className="mb-10 border border-black-40 bg-black-10 p-20">
+            <div className="mb-20 border border-black-40 bg-black-10 p-40">
               <H2 className="type-2">Change log:</H2>
 
               {changeLog.map(change => (
                 <div key={change.uuid}>
-                  <H3 className="type-0 flex gap-2">
+                  <H3 className="flex gap-4 type-0">
                     <div>
                       {new Date(change.suPolicyDate.time).toLocaleDateString("en-us", {
                         month: "long",
@@ -111,7 +104,7 @@ const StanfordPolicyPage = async ({node, ...props}: Props) => {
                         timeZone: change.suPolicyDate.timezone,
                       })}
                     </div>
-                    <div className="w-[2px] shrink-0 bg-black" />
+                    <div className="w-2 shrink-0 bg-black" />
                     <div>{change.suPolicyTitle}</div>
                   </H3>
 
@@ -125,14 +118,14 @@ const StanfordPolicyPage = async ({node, ...props}: Props) => {
 
           <Wysiwyg html={node.body?.processed} />
 
-          {node.book && <ChildPages currentPath={node.path || "#"} bookItems={[node.book]} />}
+          {node.book && <ChildPages currentPath={node.path} bookItems={[node.book]} />}
         </div>
       </InteriorPage>
 
       {node.suPolicyRelated && (
         <div>
           <H2 className="text-center">Related Policies</H2>
-          <ul className="list-unstyled grid gap-20 lg:grid-cols-3">
+          <ul className="list-unstyled grid gap-40 lg:grid-cols-3">
             {node.suPolicyRelated.map(policy => (
               <li key={policy.uuid}>
                 <RelatedPolicy path={policy.path} />
@@ -158,7 +151,7 @@ const ChildPages = ({bookItems, currentPath}: {bookItems: Array<BookLink>; curre
   const childUrls = getChildUrls(bookItems[0])
   if (!childUrls) return
   return (
-    <ol className="list-unstyled mt-20">
+    <ol className="list-unstyled mt-40">
       {childUrls.map(child => (
         <ChildTeaser key={child.id} path={child.url} />
       ))}
@@ -166,13 +159,14 @@ const ChildPages = ({bookItems, currentPath}: {bookItems: Array<BookLink>; curre
   )
 }
 
-const ChildTeaser = async ({path}: {path: NodeInterface["path"]}) => {
+// Fed a book link url rather than a node path, and a book link need not resolve to one.
+const ChildTeaser = async ({path}: {path: BookLink["url"]}) => {
   if (!path) return
   const queryResponse = await getEntityFromPath<NodeStanfordPolicy>(path, false, true)
   if (!queryResponse.entity) return
 
   return (
-    <li className="mb-16 border-b border-black-20 pb-16 last:border-b-0 [&_p]:mb-0">
+    <li className="mb-32 border-b border-black-20 pb-32 last:border-b-0 [&_p]:mb-0">
       <StanfordPolicyListItem node={queryResponse.entity} />
     </li>
   )

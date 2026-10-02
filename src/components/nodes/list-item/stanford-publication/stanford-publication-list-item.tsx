@@ -17,11 +17,11 @@ const StanfordPublicationListItem = ({node, apa, chicago, ...props}: Props) => {
       {citation && (
         <Wysiwyg
           html={citation}
-          className="ml-12 -indent-12 [&_a]:text-digital-red [&_a]:no-underline [&_a]:hocus:text-black [&_a]:hocus:underline"
+          className="ml-24 -indent-12 [&_a]:text-digital-red [&_a]:no-underline [&_a]:hocus:text-black [&_a]:hocus:underline"
         />
       )}
       {!citation && (
-        <Link className="text-digital-red no-underline hocus:text-black hocus:underline" href={node.path || "#"}>
+        <Link className="text-digital-red no-underline hocus:text-black hocus:underline" href={node.path}>
           {node.title}
         </Link>
       )}

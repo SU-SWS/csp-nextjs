@@ -3,6 +3,8 @@ import {graphqlClient} from "@lib/gql/gql-client"
 import {notFound} from "next/navigation"
 import {ParagraphDocument, ParagraphQuery, ParagraphStanfordGallery} from "@lib/gql/__generated__/graphql"
 import Image from "next/image"
+import {Suspense} from "react"
+import {cacheTag} from "next/cache"
 
 export const metadata = {
   title: "Gallery Image",
@@ -18,10 +20,18 @@ type Props = {
 // Vercel max execution. See https://vercel.com/docs/functions/configuring-functions/duration
 export const maxDuration = 30
 
-const Page = async (props: Props) => {
+const Page = (props: Props) => (
+  <Suspense fallback={<GallerySkeleton />}>
+    <GalleryContent params={props.params} />
+  </Suspense>
+)
+
+const GalleryContent = async (props: Props) => {
   "use cache: remote"
+
   const params = await props.params
   const [paragraphId, mediaUuid] = params.uuid
+  cacheTag("all-cache", "paragraphs", `paragraph:${paragraphId}`)
 
   const paragraphQuery = await graphqlClient().request<ParagraphQuery>(ParagraphDocument, {uuid: paragraphId})
   if (paragraphQuery.paragraph?.__typename !== "ParagraphStanfordGallery") notFound()
@@ -34,7 +44,7 @@ const Page = async (props: Props) => {
   galleryImages = galleryImages?.filter(image => !!image.suGalleryImage?.url)
 
   return (
-    <div className="centered mt-32">
+    <div className="mt-64 centered">
       <H1>{paragraph.suGalleryHeadline || "Media"}</H1>
       {galleryImages?.map(galleryImage => {
         if (!galleryImage.suGalleryImage?.url) return
@@ -55,6 +65,13 @@ const Page = async (props: Props) => {
     </div>
   )
 }
+
+const GallerySkeleton = () => (
+  <div className="mt-64 centered">
+    <div className="mb-40 h-16 w-1/2 bg-black-10" />
+    <div className="aspect-[16/9] w-full bg-black-10" />
+  </div>
+)
 
 export const generateStaticParams = async (): Promise<Array<{uuid: string[]}>> => [{uuid: ["none"]}]
 

@@ -1,6 +1,6 @@
 import cn from "@lib/utils/className"
 import Image from "next/image"
-import Oembed from "@components/elements/ombed"
+import Oembed from "@components/elements/oembed"
 import {ElementType, HTMLAttributes} from "react"
 import {Maybe} from "@lib/gql/__generated__/graphql"
 
@@ -55,7 +55,7 @@ const ImageCard = ({
     <CardWrapper
       {...props}
       className={cn(
-        "centered relative h-full w-full rounded-csp-lg border xl:max-w-[980px]",
+        "relative centered h-full w-full rounded-csp-lg border xl:max-w-[980px]",
         {"flex flex-col gap-[.6rem] border-none @bp-768:flex-row": isPoster},
         props.className
       )}
@@ -63,7 +63,7 @@ const ImageCard = ({
       {imageUrl && (
         <div
           className={cn("relative w-full border-transparent", {
-            "aspect-1": squareImage,
+            "aspect-square": squareImage,
             "aspect-[16/9]": !squareImage,
             "aspect-[3/2] flex-1 md:aspect-[16/9]": isPoster,
           })}
@@ -81,7 +81,7 @@ const ImageCard = ({
       {videoUrl && <Oembed url={videoUrl} />}
 
       <div
-        className={cn("rs-pt-2 rs-pl-2 rs-pr-3 rs-pb-3 flex flex-col", {
+        className={cn("flex flex-col rs-pt-2 rs-pr-3 rs-pb-3 rs-pl-2", {
           "rounded-b-csp-lg bg-csp-cream": !isPoster,
           "flex-1 gap-[.6rem] rounded-csp-md": isPoster,
           "bg-archway-dark": isPoster && bgColor === "2e2d29",
@@ -89,7 +89,7 @@ const ImageCard = ({
           "bg-plum": isPoster && bgColor === "620059",
           "bg-lagunita": isPoster && bgColor === "007c92",
           "bg-palo-alto": isPoster && bgColor === "175e54",
-          "bg-foggy-light text-archway-dark": isPoster && bgColor === "f4f4f4",
+          "bg-fog-light text-archway-dark": isPoster && bgColor === "f4f4f4",
         })}
       >
         {children}

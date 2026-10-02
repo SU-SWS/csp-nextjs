@@ -6,8 +6,6 @@ import {H1} from "@components/elements/headers"
 import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordNews} from "@lib/gql/__generated__/graphql"
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
-import NodePageMetadata from "@components/nodes/pages/node-page-metadata"
-import {getFirstText} from "@lib/utils/text-tools"
 import Wysiwyg from "@components/elements/wysiwyg"
 import StanfordNewsSpotlightPage from "@components/nodes/pages/stanford-news/stanford-news-spotlight-page"
 
@@ -39,22 +37,17 @@ const StanfordNewsPage = ({node, ...props}: Props) => {
   const topics = node.suNewsTopics?.slice(0, 3)
 
   return (
-    <article className="centered mt-32" {...props}>
-      <NodePageMetadata
-        pageTitle={node.title}
-        metatags={node.metatag}
-        backupDescription={node.suNewsDek || getFirstText(node.suNewsComponents)}
-      />
-      <div className="mx-auto mb-48 lg:w-10/12">
+    <article className="mt-64 centered" {...props}>
+      <div className="mx-auto mb-96 lg:w-10/12">
         <ReverseVisualOrder>
           <H1>{node.title}</H1>
 
           {topics && <div>{topics.map(topic => topic.name).join(", ")}</div>}
         </ReverseVisualOrder>
 
-        {node.suNewsDek && <div className="mb-10">{node.suNewsDek}</div>}
+        {node.suNewsDek && <div className="mb-20">{node.suNewsDek}</div>}
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-10">
           {node.suNewsPublishingDate && (
             <time dateTime={new Date(node.suNewsPublishingDate.time).toISOString().substring(0, 10)}>
               {publishDate}
@@ -62,13 +55,13 @@ const StanfordNewsPage = ({node, ...props}: Props) => {
           )}
           {node.suNewsByline && <div>{node.suNewsByline}</div>}
 
-          {!node.suNewsHideSocial && <SocialIcons className="flex gap-4" />}
+          {!node.suNewsHideSocial && <SocialIcons className="flex gap-8" />}
         </div>
       </div>
 
       {bannerImageUrl && (
-        <figure className="mb-32">
-          <div className="relative aspect-[16/9] w-full">
+        <figure className="mb-64">
+          <div className="relative aspect-video w-full">
             <Image
               className="object-cover"
               src={bannerImageUrl}
@@ -79,12 +72,12 @@ const StanfordNewsPage = ({node, ...props}: Props) => {
             />
           </div>
           {node.suNewsBannerMediaCaption && (
-            <figcaption className="px-20 text-center">{node.suNewsBannerMediaCaption}</figcaption>
+            <figcaption className="px-40 text-center">{node.suNewsBannerMediaCaption}</figcaption>
           )}
         </figure>
       )}
 
-      <Wysiwyg html={node.body?.processed} className="centered mb-32 xl:max-w-[980px]" />
+      <Wysiwyg html={node.body?.processed} className="centered mb-64 xl:max-w-980" />
       <Rows components={node.suNewsComponents} className="mx-auto lg:w-8/12" />
     </article>
   )

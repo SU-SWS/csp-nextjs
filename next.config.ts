@@ -8,9 +8,13 @@ module.exports = async (_phase: string) => {
   const nextConfig: NextConfig = {
     env: {...(await vaultEnvVars())},
     cacheComponents: true,
+    // Optional SAML packages: resolved with a runtime `require` instead of being bundled, so a
+    // site that installs without the optionalDependencies still builds. @see lib/auth/optional-saml.ts
+    serverExternalPackages: ["passport-saml", "xml-encryption", "@xmldom/xmldom"],
     cacheLife: {
+      // Safety net for any `use cache` scope that doesn't name a profile.
       default: {
-        stale: undefined,
+        stale: INFINITE_CACHE,
         revalidate: INFINITE_CACHE,
         expire: INFINITE_CACHE,
       },
@@ -21,20 +25,21 @@ module.exports = async (_phase: string) => {
     },
     images: {
       minimumCacheTTL: 2678400,
-      dangerouslyAllowLocalIP: true,
+      dangerouslyAllowLocalIP: !process.env.VERCEL_ENV,
       remotePatterns: [
         {
-          // Allow any stanford domain for images, but require https.
-          protocol: "https",
-          hostname: "**.stanford.edu",
-        },
-        {
+          // Only original files arrive here; image style derivatives carry an `?itok=` hash and are
+          // rendered without the optimizer. @see components/elements/wysiwyg.tsx
           protocol: drupalUrl.protocol === "https:" ? "https" : "http",
           hostname: drupalUrl.hostname,
+          pathname: "/sites/**",
+          search: "",
         },
         {
           protocol: "https",
           hostname: "localist-images.azureedge.net",
+          pathname: "/photos/**",
+          search: "",
         },
       ],
     },

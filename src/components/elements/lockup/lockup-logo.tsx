@@ -6,7 +6,7 @@ const LockupLogo = ({logoUrl, siteName = ""}: {logoUrl?: Maybe<string>; siteName
     <>
       {logoUrl && (
         <picture>
-          <img src={logoUrl} alt={`${siteName} Logo`} className="h-auto max-h-[35px] max-w-[400px] object-contain" />
+          <img src={logoUrl} alt={`${siteName} Logo`} className="h-auto max-h-35 max-w-400 object-contain" />
         </picture>
       )}
       {!logoUrl && (

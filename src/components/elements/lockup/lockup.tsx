@@ -16,12 +16,13 @@ import {LockupSetting, StanfordBasicSiteSetting} from "@lib/gql/__generated__/gr
 import {getConfigPage, getConfigPageField} from "@lib/gql/gql-queries"
 
 export const Lockup = async () => {
-  const siteName = await getConfigPageField<StanfordBasicSiteSetting, StanfordBasicSiteSetting["suSiteName"]>(
-    "StanfordBasicSiteSetting",
-    "suSiteName"
-  )
-
-  const lockupSettingsConfig = await getConfigPage<LockupSetting>("LockupSetting")
+  const [siteName, lockupSettingsConfig] = await Promise.all([
+    getConfigPageField<StanfordBasicSiteSetting, StanfordBasicSiteSetting["suSiteName"]>(
+      "StanfordBasicSiteSetting",
+      "suSiteName"
+    ),
+    getConfigPage<LockupSetting>("LockupSetting"),
+  ])
 
   const logoUrl = !lockupSettingsConfig?.suUseThemeLogo ? lockupSettingsConfig?.suUploadLogoImage?.url : undefined
   const lockupProps = {
@@ -36,10 +37,10 @@ export const Lockup = async () => {
 
   if (!lockupSettingsConfig || lockupSettingsConfig.suLockupEnabled) {
     return (
-      <div className="whitespace-nowrap py-10 pb-4 sm:pb-10 md:whitespace-normal">
-        <Link href="/" className="flex items-center gap-2 no-underline">
+      <div className="py-25 pb-10 whitespace-nowrap sm:pb-25 md:whitespace-normal">
+        <Link href="/" className="flex items-center gap-5 no-underline">
           <div className="self-end">
-            <div className="mr-2 inline-block border-r border-black pr-2">
+            <div className="mr-5 inline-block border-r border-black pr-5">
               <LockupLogo {...lockupProps} />
             </div>
             <div className="inline-block text-[1.89rem] font-normal text-archway-dark md:type-2">
@@ -91,8 +92,8 @@ export const Lockup = async () => {
     case "none":
     default:
       return (
-        <div className="py-10">
-          <Link href="/" className="flex flex-col gap-4 no-underline md:flex-row">
+        <div className="py-20">
+          <Link href="/" className="flex flex-col gap-10 no-underline md:flex-row">
             <LockupLogo {...lockupProps} />
             <span className="sr-only">{siteName}</span>
           </Link>

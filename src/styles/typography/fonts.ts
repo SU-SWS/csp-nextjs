@@ -18,6 +18,5 @@ export const sourceSerif4 = Source_Serif_4({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-serif",
-  weight: ["300", "400", "500", "700"],
   adjustFontFallback: false,
 })

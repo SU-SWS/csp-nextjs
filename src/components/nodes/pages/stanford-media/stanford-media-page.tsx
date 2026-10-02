@@ -3,11 +3,10 @@ import {H1, H2, H3} from "@components/elements/headers"
 import {HtmlHTMLAttributes, Suspense} from "react"
 import {NodeStanfordMedia, StanfordMediaDocument, StanfordMediaQuery} from "@lib/gql/__generated__/graphql"
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
-import NodePageMetadata from "@components/nodes/pages/node-page-metadata"
 import Wysiwyg from "@components/elements/wysiwyg"
 import Button from "@components/elements/button"
 import Link from "@components/elements/link"
-import Oembed from "@components/elements/ombed"
+import Oembed from "@components/elements/oembed"
 import {graphqlClient} from "@lib/gql/gql-client"
 import Image from "next/image"
 import {getIdFromText, getTimeDuration} from "@lib/utils/text-tools"
@@ -32,23 +31,22 @@ const StanfordMediaPage = async ({node, ...props}: Props) => {
   const topics = node.suMediaTypes?.slice(0, 3)
 
   return (
-    <article className="centered mt-32 flex gap-20" {...props}>
-      <NodePageMetadata pageTitle={node.title} metatags={node.metatag} backupDescription={node.suMediaDek} />
-      <div className="flex-grow">
-        <ReverseVisualOrder className="mb-20 gap-20 border-b border-black-20 pb-20">
+    <article className="mt-64 centered flex gap-40" {...props}>
+      <div className="grow">
+        <ReverseVisualOrder className="mb-40 gap-40 border-b border-black-20 pb-40">
           <div className="flex">
-            <div className="flex-grow">
+            <div className="grow">
               <H1>{node.title}</H1>
 
               {topics && <div>{topics.map(topic => topic.name).join(", ")}</div>}
 
-              {node.suMediaDek && <div className="mb-10">{node.suMediaDek}</div>}
+              {node.suMediaDek && <div className="mb-20">{node.suMediaDek}</div>}
               {node.suMediaPerson && (
-                <div className="mb-10">
+                <div className="mb-20">
                   {node.suMediaPerson.map((person, i) => (
                     <span key={person.uuid}>
                       <Link
-                        href={person.suPersonProfileLink?.url || person.path || "#"}
+                        href={person.suPersonProfileLink?.url || person.path}
                         className="font-normal text-digital-red no-underline hocus:text-black hocus:underline"
                       >
                         {person.title}
@@ -61,7 +59,7 @@ const StanfordMediaPage = async ({node, ...props}: Props) => {
               )}
 
               {(node.suMediaDate || node.suMediaDuration) && (
-                <div className="mb-10">
+                <div className="mb-20">
                   {node.suMediaDate && (
                     <time dateTime={new Date(node.suMediaDate.time).toISOString().substring(0, 10)}>{publishDate}</time>
                   )}
@@ -77,7 +75,7 @@ const StanfordMediaPage = async ({node, ...props}: Props) => {
               )}
             </div>
             {(node.suMediaSeries || node.suMediaSeason || node.suMediaEpisode) && (
-              <div className="w-3/12 space-y-5 border-t border-black-30 pt-5">
+              <div className="w-3/12 space-y-5 border-t border-black-30 pt-10">
                 <strong>Part of Series</strong>
                 {node.suMediaSeries && <div>{node.suMediaSeries}</div>}
 
@@ -90,17 +88,32 @@ const StanfordMediaPage = async ({node, ...props}: Props) => {
             {node.suMediaAudioVideo[0].__typename === "MediaVideo" && (
               <Oembed url={node.suMediaAudioVideo[0].mediaOembedVideo} />
             )}
+
+            {node.suMediaAudioVideo[0].__typename === "MediaSdr" && (
+              <Oembed url={node.suMediaAudioVideo[0].mediaEmbeddableOembed} />
+            )}
+
+            {node.suMediaAudioVideo[0].__typename === "MediaEmbeddable" &&
+              !node.suMediaAudioVideo[0].mediaEmbeddableCode &&
+              node.suMediaAudioVideo[0].mediaEmbeddableOembed && (
+                <Oembed url={node.suMediaAudioVideo[0].mediaEmbeddableOembed} />
+              )}
+
+            {node.suMediaAudioVideo[0].__typename === "MediaEmbeddable" &&
+              node.suMediaAudioVideo[0].mediaEmbeddableCode && (
+                <div dangerouslySetInnerHTML={{__html: node.suMediaAudioVideo[0].mediaEmbeddableCode}} />
+              )}
           </div>
         </ReverseVisualOrder>
 
-        <Wysiwyg html={node.body?.processed} className="centered mb-32 xl:max-w-[980px]" />
+        <Wysiwyg html={node.body?.processed} className="centered mb-64 xl:max-w-980" />
 
         {node.suMediaAudioVideo.length > 1 && (
           <div>
             <H2>Video clips from: {node.title}</H2>
             <ul className="list-unstyled">
               {node.suMediaAudioVideo.slice(1).map(clip => (
-                <li key={clip.uuid} className="mt-10 border-t border-black-20 pt-10">
+                <li key={clip.uuid} className="mt-20 border-t border-black-20 pt-20">
                   <Link
                     href={`/av-media${node.path}/${clip.uuid}`}
                     className="text-digital-red no-underline hocus:text-black hocus:underline"
@@ -126,7 +139,8 @@ const StanfordMediaPage = async ({node, ...props}: Props) => {
 
 const NextMedia = async ({node}: {node: NodeStanfordMedia}) => {
   "use cache: remote"
-  cacheTag("paths", `paths:${node.path}`)
+
+  cacheTag("all-cache", "paths", `paths:${node.path}`)
   const upNextMediaQuery = node.suMediaSeries
     ? await graphqlClient().request<StanfordMediaQuery>(StanfordMediaDocument, {filter: {series: node.suMediaSeries}})
     : undefined
@@ -156,13 +170,13 @@ const UpNextMedia = ({media}: {media: NodeStanfordMedia}) => {
     <article aria-labelledby={id}>
       <ReverseVisualOrder>
         <Link
-          href={media.suMediaSource?.url || media.path || "#"}
+          href={media.suMediaSource?.url || media.path}
           className="text-black no-underline hocus:text-digital-red hocus:underline"
         >
           <H3 id={id}>{media.title}</H3>
         </Link>
         {media.suMediaImage?.mediaImage.url && (
-          <div className="relative aspect-[3/2]">
+          <div className="relative aspect-3/2">
             <Image
               src={media.suMediaImage.mediaImage.url}
               alt={media.suMediaImage.mediaImage.alt || ""}
