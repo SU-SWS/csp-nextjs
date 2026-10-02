@@ -19,12 +19,12 @@ const StanfordOpportunityListItem = ({node, headingLevel, ...props}: Props) => {
   const id = getIdFromText(node.title)
   return (
     <article {...props} aria-labelledby={id} className={cn("@container", props.className)}>
-      <div className="flex w-full flex-col justify-between @3xl:flex-row">
+      <div className="flex w-full flex-col justify-between gap-30 @3xl:flex-row">
         <div className="order-2 @3xl:order-1">
           <ReverseVisualOrder>
             <Heading className="font-bold" id={id}>
               <Link
-                href={node.suOppSource?.url || node.path || "#"}
+                href={node.suOppSource?.url || node.path}
                 className="order-2 text-digital-red no-underline hocus:text-black hocus:underline"
               >
                 {node.title}
@@ -44,7 +44,7 @@ const StanfordOpportunityListItem = ({node, headingLevel, ...props}: Props) => {
 
         {image?.url && (
           <div className="order-1 w-full shrink-0 @3xl:w-1/4">
-            <div className="relative mb-10 aspect-[16/9] @3xl:order-2 @3xl:mb-0">
+            <div className="relative mb-20 aspect-square @3xl:order-2 @3xl:mb-0">
               <Image
                 className="ed11y-ignore object-cover"
                 src={image.url}

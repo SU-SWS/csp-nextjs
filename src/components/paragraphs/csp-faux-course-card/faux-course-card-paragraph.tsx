@@ -29,7 +29,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       )}
     >
       {image?.url && (
-        <div className="min-w-40rem relative mx-auto mt-[.6rem] aspect-[54/29] w-full max-w-[calc(100%_-_1.2rem)] flex-grow self-start overflow-hidden rounded-csp-sm @9xl:ml-[0.6rem] @9xl:mr-[0.6rem] @9xl:min-w-[54rem]">
+        <div className="min-w-40rem relative mx-auto mt-[.6rem] aspect-[54/29] w-full max-w-[calc(100%_-_1.2rem)] grow self-start overflow-hidden rounded-csp-sm @9xl:mr-[0.6rem] @9xl:ml-[0.6rem] @9xl:min-w-[54rem]">
           <Image
             src={image.url}
             alt={image.alt || ""}
@@ -40,11 +40,11 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         </div>
       )}
 
-      <div className="rs-pt-1 rs-pb-3 rs-px-3 flex min-w-0 max-w-600 flex-col">
+      <div className="flex max-w-600 min-w-0 flex-col rs-pt-1 rs-px-3 rs-pb-3">
         {headerTag === "h2" && (
           <H2
             id={id}
-            className="rs-mb-1 type-2 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+            className="order-3 mt-0 rs-mb-1 type-2 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
           >
             <Link className="font-normal" href={url}>
               {paragraph.cspCourseCardTitle}
@@ -54,7 +54,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         {headerTag === "h3" && (
           <H3
             id={id}
-            className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+            className="order-3 mt-0 rs-mb-1 type-1 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
           >
             <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
               {paragraph.cspCourseCardTitle}
@@ -62,7 +62,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
           </H3>
         )}
         {headerTag === "div" && (
-          <div className="rs-mb-1 type-1 order-3 mt-0 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red">
+          <div className="order-3 mt-0 rs-mb-1 type-1 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red">
             <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
               {paragraph.cspCourseCardTitle}
             </Link>
@@ -70,17 +70,17 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
         )}
 
         {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
-          <div className="order-2 mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-4">
+          <div className="order-2 mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-10">
             {paragraph.cspCourseCardFormat}
             {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && (
-              <span className="mx-6">&nbsp;|&nbsp;</span>
+              <span className="mx-15">&nbsp;|&nbsp;</span>
             )}
             {paragraph.cspCourseCardLocation}
           </div>
         )}
 
         {!!paragraph.cspCourseCardInstructors?.length && (
-          <ul className="order-4 flex list-none flex-col gap-8 p-0">
+          <ul className="order-4 flex list-none flex-col gap-20 p-0">
             {paragraph.cspCourseCardInstructors.map(instructor => (
               <li key={instructor.uuid}>
                 <CourseCardInstructor
@@ -94,7 +94,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
 
         {!!paragraph.cspCourseCardColor?.color && (
           <div
-            className={cn("rs-mb-1 order-1 h-[.4rem] w-20 rounded", props.className, {
+            className={cn("order-1 rs-mb-1 h-[.4rem] w-50 rounded-[0.3rem]", props.className, {
               "bg-olive": paragraph.cspCourseCardColor?.color === "8f993e",
               "bg-archway-light": paragraph.cspCourseCardColor?.color === "766253",
               "bg-cardinal-red": paragraph.cspCourseCardColor?.color === "8c1515",

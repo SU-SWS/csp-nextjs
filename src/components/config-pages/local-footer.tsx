@@ -19,9 +19,9 @@ import {H2} from "@components/elements/headers"
 import TwitterIcon from "@components/elements/icons/TwitterIcon"
 import YoutubeIcon from "@components/elements/icons/YoutubeIcon"
 import FacebookIcon from "@components/elements/icons/FacebookIcon"
-import {Maybe, StanfordLocalFooter} from "@lib/gql/__generated__/graphql"
+import {Maybe, StanfordBasicSiteSetting, StanfordLocalFooter} from "@lib/gql/__generated__/graphql"
 import {buildUrl} from "@lib/utils/utils"
-import {getConfigPage} from "@lib/gql/gql-queries"
+import {getConfigPage, getConfigPageField} from "@lib/gql/gql-queries"
 import cn from "@lib/utils/className"
 import LinkedInIcon from "@components/elements/icons/LinkedInIcon"
 import InstagramIcon from "@components/elements/icons/InstagramIcon"
@@ -41,7 +41,14 @@ const LocalFooter = async ({...props}: Props) => {
   const localFooterConfig = await getConfigPage<StanfordLocalFooter>("StanfordLocalFooter")
   if (!localFooterConfig?.suFooterEnabled) return
 
+  const siteName =
+    (await getConfigPageField<StanfordBasicSiteSetting, StanfordBasicSiteSetting["suSiteName"]>(
+      "StanfordBasicSiteSetting",
+      "suSiteName"
+    )) || "Stanford University"
+
   const lockupProps = {
+    siteName,
     useDefault: localFooterConfig.suLocalFootUseLoc,
     lockupOption: localFooterConfig.suLocalFootLocOp,
     line1: localFooterConfig.suLocalFootLine1,
@@ -56,27 +63,27 @@ const LocalFooter = async ({...props}: Props) => {
   }
 
   return (
-    <div {...props} className={cn("local-footer py-20", props.className)}>
+    <div {...props} className={cn("local-footer py-50", props.className)}>
       <div className="centered">
-        <div className="mb-20 flex items-center justify-between">
+        <div className="mb-50 flex items-center justify-between">
           <FooterLockup {...lockupProps} />
           {localFooterConfig.suLocalFootSunetT && (
             <Link
               href="/login"
-              className="not-sr-only inline-flex items-center pr-2 text-16 font-normal text-archway no-underline hocus:text-archway-dark hocus:underline [&_svg]:hocus:text-digital-red"
+              className="not-sr-only inline-flex items-center pr-5 text-16 font-normal text-archway no-underline hocus:text-archway-dark hocus:underline [&_svg]:hocus:text-digital-red"
             >
-              {localFooterConfig.suLocalFootSunetT} {<UsersIcon width={16} className="ml-2" />}
+              {localFooterConfig.suLocalFootSunetT} {<UsersIcon width={16} className="ml-5" />}
             </Link>
           )}
         </div>
 
-        <div className="grid justify-between gap-32 md:grid-cols-2 lg:grid-cols-2 [&_a:focus]:text-black [&_a:focus]:underline [&_a:hover]:text-black [&_a:hover]:underline [&_a]:font-normal [&_a]:no-underline [&_a]:transition">
-          <div className="flex flex-col gap-32 self-start md:flex-row">
+        <div className="grid justify-between gap-80 md:grid-cols-2 lg:grid-cols-2 [&_a]:font-normal [&_a]:no-underline [&_a]:transition [&_a:focus]:text-black [&_a:focus]:underline [&_a:hover]:text-black [&_a:hover]:underline">
+          <div className="flex flex-col gap-80 self-start md:flex-row">
             <div className="max-w-1/2">
               {/* Column 1 */}
               {/* Primary Links */}
               {localFooterConfig.suLocalFootPrimeH && (
-                <H2 className="type-1 mt-0 font-regular uppercase">{localFooterConfig.suLocalFootPrimeH}</H2>
+                <H2 className="mt-0 font-sans type-1 font-normal uppercase">{localFooterConfig.suLocalFootPrimeH}</H2>
               )}
               {localFooterConfig.suLocalFootPrimary && (
                 <ul className="list-unstyled">
@@ -101,14 +108,14 @@ const LocalFooter = async ({...props}: Props) => {
               {/* First Content block */}
               <Wysiwyg
                 html={localFooterConfig.suLocalFootPrCo?.processed}
-                className="mt-12 [&_h2]:type-1 [&_.btn--secondary]:bg-white [&_h2]:font-regular [&_h2]:uppercase"
+                className="mt-30 [&_.btn--secondary]:bg-white [&_h2]:type-1 [&_h2]:font-normal [&_h2]:uppercase"
               />
             </div>
 
             <div className="max-w-1/2">
               {/* Secondary Links */}
               {localFooterConfig.suLocalFootSecondH && (
-                <H2 className="type-1 mt-0 font-regular uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
+                <H2 className="mt-0 font-sans type-1 font-normal uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
               )}
 
               {localFooterConfig.suLocalFootSecond && (
@@ -129,13 +136,13 @@ const LocalFooter = async ({...props}: Props) => {
               {/* Second Content block */}
               <Wysiwyg
                 html={localFooterConfig.suLocalFootSeCo?.processed}
-                className="mt-12 [&_h2]:type-1 [&_.btn--secondary]:bg-white [&_h2]:font-regular [&_h2]:uppercase"
+                className="mt-30 [&_.btn--secondary]:bg-white [&_h2]:type-1 [&_h2]:font-normal [&_h2]:uppercase"
               />
 
               {/* Third Content block */}
               <Wysiwyg
                 html={localFooterConfig.suLocalFootTr2Co?.processed}
-                className="mt-12 [&_h2]:type-1 [&_.btn--secondary]:bg-white [&_h2]:font-regular [&_h2]:uppercase"
+                className="mt-30 [&_.btn--secondary]:bg-white [&_h2]:type-1 [&_h2]:font-normal [&_h2]:uppercase"
               />
             </div>
           </div>
@@ -160,7 +167,7 @@ const LocalFooter = async ({...props}: Props) => {
                         type="email"
                         name="email"
                         placeholder="Email address"
-                        className="rs-mt-0 rs-py-0 rs-px-1 w-full rounded-xl border border-black-30 bg-white text-16 text-black placeholder:text-black-30 focus:border-digital-red focus:outline-none"
+                        className="rs-mt-0 w-full rounded-xl border border-black-30 bg-white rs-py-0 rs-px-1 text-16 text-black placeholder:text-black-30 focus:border-digital-red focus:outline-hidden"
                         required
                       />
 
@@ -180,14 +187,14 @@ const LocalFooter = async ({...props}: Props) => {
               )}
             </div>
             {localFooterConfig.suLocalFootSocial && (
-              <ul className="list-unstyled rs-mt-neg2 flex flex-wrap justify-end gap-3">
+              <ul className="list-unstyled rs-mt-neg2 flex flex-wrap justify-end gap-7.5">
                 {localFooterConfig.suLocalFootSocial.map((link, index) => {
                   if (!link.url) return
                   return (
                     <li key={`footer-social-link-${index}`}>
                       <Link
                         href={link.url}
-                        className="block rounded-full border border-transparent p-2 [&_svg]:fill-csp-dark-66 hocus:[&_svg]:fill-csp-digital-red-xdark"
+                        className="block rounded-full border border-transparent p-5 [&_svg]:fill-csp-dark-66 hocus:[&_svg]:fill-csp-digital-red-xdark"
                       >
                         <SocialIcon url={link.url} />
                         <span className="sr-only">{link.title}</span>
@@ -216,7 +223,7 @@ const LocalFooter = async ({...props}: Props) => {
 
             <Wysiwyg
               html={localFooterConfig.suLocalFootTrCo?.processed}
-              className="mt-12 [&_.btn--secondary]:bg-white [&_h2]:font-regular [&_h2]:uppercase"
+              className="mt-30 [&_.btn--secondary]:bg-white [&_h2]:font-normal [&_h2]:uppercase"
             />
           </div>
         </div>
@@ -265,8 +272,8 @@ const FooterLockup = ({useDefault = true, siteName, lockupOption, ...props}: Foo
   switch (lockupOption) {
     case "none":
       return (
-        <div className="py-10">
-          <Link href="/" className="flex flex-col gap-4 no-underline lg:flex-row" aria-label="Home">
+        <div className="py-20">
+          <Link href="/" className="flex flex-col gap-6 no-underline lg:flex-row" aria-label="Home">
             <LockupLogo {...lockupProps} />
           </Link>
         </div>
@@ -310,12 +317,12 @@ const FooterLockup = ({useDefault = true, siteName, lockupOption, ...props}: Foo
   }
 
   return (
-    <div className="py-10">
-      <Link href="/" className="flex flex-col gap-4 no-underline lg:flex-row">
+    <div className="py-20">
+      <Link href="/" className="flex flex-col gap-6 no-underline lg:flex-row">
         <LockupLogo {...lockupProps} />
 
-        <div className="w-[1px] shrink-0 bg-black" />
-        <div className="type-3 font-normal leading-none text-black">{siteName || "University"}</div>
+        <div className="w-px shrink-0 bg-black" />
+        <div className="type-2 leading-none font-normal text-black">{siteName || "University"}</div>
       </Link>
     </div>
   )

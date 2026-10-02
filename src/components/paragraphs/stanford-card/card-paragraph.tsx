@@ -29,10 +29,10 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
   const headerTagChoice = (behaviors.su_card_styles?.heading || "h2").split(".", 2)
   const headerTag = headerTagChoice[0]
   const headerClasses = cn(
-    "type-2 mb-0 mt-0 font-normal text-archway-dark",
+    "mt-0 mb-0 type-2 font-normal text-archway-dark",
     headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
     {
-      "fluid-type-3 max-w-[55rem] text-csp-cream": isPoster,
+      "max-w-[55rem] fluid-type-3 text-csp-cream": isPoster,
       "sr-only": behaviors.su_card_styles?.hide_heading,
       "text-archway-dark [&_a]:text-archway-light [&_a]:hocus:text-archway-dark":
         !bgColor || (isPoster && bgColor === "f4f4f4"),
@@ -75,7 +75,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
 
       {paragraph.suCardSuperHeader && (
         <div
-          className={cn("rs-mb-neg1 order-first font-sans text-19 font-normal uppercase text-archway-dark", {
+          className={cn("order-first rs-mb-neg1 font-sans text-19 font-normal text-archway-dark uppercase", {
             "tracking-[1.9px] text-csp-cream": isPoster,
             "text-archway-dark": isPoster && bgColor === "f4f4f4",
           })}

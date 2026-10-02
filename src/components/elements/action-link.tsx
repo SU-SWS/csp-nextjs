@@ -12,23 +12,24 @@ type Props = HtmlHTMLAttributes<HTMLAnchorElement> & {
 }
 
 const ActionLink = ({href, children, ...props}: Props) => {
+  const Component = href.startsWith("#") ? "a" : Link
   return (
-    <Link
+    <Component
       {...props}
       href={getLinkHref(href)}
       className={cn(
-        "group relative flex gap-4 pr-10 font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
+        "group relative flex gap-10 pr-25 font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
         props.className
       )}
     >
       {children}
-      <div className="mb-[.3rem] size-[2.6rem] rounded-full border border-csp-digital-red-xdark bg-digital-red hocus:bg-cardinal-red">
+      <span className="mb-[.3rem] block size-[2.6rem] rounded-full border border-csp-digital-red-xdark bg-digital-red hocus:bg-cardinal-red">
         <ChevronRightIcon
           height={25}
-          className="inline-block fill-white align-top transition-all group-hocus-visible:translate-x-1"
+          className="inline-block fill-white align-top transition-all group-hocus-visible:translate-x-2.5"
         />
-      </div>
-    </Link>
+      </span>
+    </Component>
   )
 }
 export default ActionLink

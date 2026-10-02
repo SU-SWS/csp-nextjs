@@ -24,22 +24,22 @@ const InteriorPage = async ({children, leftSideBar, hideSecondaryNav, currentPat
   const subTree = topMenuItem ? topMenuItem.children : []
 
   return (
-    <div {...props} className={cn("centered flex flex-col gap-20 lg:flex-row", props.className)}>
+    <div {...props} className={cn("centered flex flex-col gap-40 lg:flex-row", props.className)}>
       {(subTree.length > 1 || subTree[0]?.children || leftSideBar) && (
         <aside className="shrink-0 lg:w-1/4">
           {!hideSecondaryNav && (subTree.length > 1 || subTree[0]?.children) && (
-            <div className="hidden lg:block">
+            <>
               <a href="#page-content" className="skiplink">
                 Skip secondary navigation
               </a>
               <SideNav menuItems={subTree} activeTrail={activeTrail} />
-            </div>
+            </>
           )}
           {leftSideBar}
         </aside>
       )}
 
-      <div id="page-content" className="flex-grow font-serif">
+      <div id="page-content" className="min-w-0 grow font-serif">
         {children}
       </div>
     </div>

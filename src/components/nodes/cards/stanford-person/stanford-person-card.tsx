@@ -19,7 +19,7 @@ const StanfordPersonCard = ({node, headingLevel, ...props}: Props) => {
   return (
     <article {...props} aria-labelledby={id} className={cn("mx-auto overflow-hidden text-center", props.className)}>
       {imageUrl && (
-        <div className="relative mx-auto mb-20 aspect-[1/1] w-3/5">
+        <div className="relative mx-auto mb-40 aspect-square w-3/5">
           <Image
             className="ed11y-ignore rounded-full object-cover"
             src={imageUrl}
@@ -31,7 +31,7 @@ const StanfordPersonCard = ({node, headingLevel, ...props}: Props) => {
       )}
 
       <Heading id={id}>
-        <Link href={node.suPersonSource?.url || node.path || "#"}>{node.title}</Link>
+        <Link href={node.suPersonSource?.url || node.path}>{node.title}</Link>
       </Heading>
 
       {node.suPersonShortTitle && <div>{node.suPersonShortTitle}</div>}

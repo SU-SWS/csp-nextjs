@@ -13,7 +13,7 @@ const QuarterAlert = async ({className, ...props}: Props) => {
   return (
     <div
       className={cn(
-        "rs-px-2 mx-[3rem] mb-[.9rem] gap-8 rounded-3xl border-2 py-[.9rem] pr-32 leading-none text-white xl:rs-pt-0 xl:rs-pb-1 xl:rs-px-1 md:mx-24 lg:mr-24 lg:justify-self-end xl:block xl:max-w-[24rem] xl:rounded-b-3xl xl:rounded-t-none xl:border-t-0 xl:text-left",
+        "mx-[3rem] mb-[.9rem] gap-20 rounded-3xl border-2 py-[.9rem] rs-px-2 pr-80 leading-none text-white md:mx-60 lg:mr-60 lg:justify-self-end xl:block xl:max-w-[24rem] xl:rounded-t-none xl:rounded-b-3xl xl:border-t-0 xl:rs-pt-0 xl:rs-px-1 xl:rs-pb-1 xl:text-left",
         {
           "bg-lagunita": !config.cspQaColor,
           "border-csp-lagunita-xdark bg-lagunita": config.cspQaColor === "lagunita",
@@ -26,9 +26,9 @@ const QuarterAlert = async ({className, ...props}: Props) => {
       )}
       {...props}
     >
-      <div className="flex flex-row items-center gap-8 xl:block">
+      <div className="flex flex-row items-center gap-20 xl:block">
         {config.cspQaLabel && (
-          <h2 className="mb-0 text-18 font-normal uppercase leading-none xl:leading-normal">{config.cspQaLabel}</h2>
+          <h2 className="mb-0 text-18 leading-none font-normal uppercase xl:leading-normal">{config.cspQaLabel}</h2>
         )}
         {config.cspQaText?.processed && (
           <Wysiwyg

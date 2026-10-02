@@ -77,14 +77,14 @@ const Button = ({
         variant === "digitalred",
       "border border-stone bg-archway-dark/80 text-csp-cream hocus:bg-archway-dark hocus:text-csp-cream":
         variant === "archway",
-      "rounded-full border border-fog-dark px-4 py-4 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-csp-cream":
+      "rounded-full border border-fog-dark px-10 py-10 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-csp-cream":
         variant === "search",
-      "py-4 pl-8 pr-6 font-sans text-18": !isSecondary && size === "default",
-      "pb-5 pl-8 pr-7 pt-4 font-sans text-18": isSecondary && size === "default",
-      "type-1 px-12 pb-8 pt-7 font-sans hocus:decoration-[.125rem] hocus:underline-offset-[.3rem]":
+      "py-10 pr-15 pl-20 font-sans text-18": !isSecondary && size === "default",
+      "pt-10 pr-17.5 pb-12.5 pl-20 font-sans text-18": isSecondary && size === "default",
+      "px-30 pt-17.5 pb-20 font-sans type-1 hocus:decoration-[.125rem] hocus:underline-offset-[.3rem]":
         !isSecondary && size === "big",
-      "px-12 pb-8 pt-7": isSecondary && size === "big",
-      "py-4": size === "round",
+      "px-30 pt-17.5 pb-20": isSecondary && size === "big",
+      "py-10": size === "round",
       "mx-auto flex items-center": centered,
     },
     className
@@ -97,23 +97,23 @@ const Button = ({
         {showIcon && (
           <ArrowRightIcon
             height={22}
-            className="mb-[.3rem] ml-2 inline-block flex-shrink-0 transition-all group-hocus-visible:translate-x-1"
+            className="mb-[.3rem] ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
           />
         )}
       </button>
     )
   }
-
+  const Component = href.startsWith("#") ? "a" : Link
   return (
-    <Link href={getLinkHref(href)} className={classes} {...props}>
+    <Component href={getLinkHref(href)} className={classes} {...props}>
       {children}
       {showIcon && (
         <ArrowRightIcon
           height={22}
-          className="mb-[.3rem] ml-2 inline-block flex-shrink-0 transition-all group-hocus-visible:translate-x-1"
+          className="mb-[.3rem] ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
         />
       )}
-    </Link>
+    </Component>
   )
 }
 

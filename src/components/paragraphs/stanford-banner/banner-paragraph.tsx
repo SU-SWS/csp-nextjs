@@ -44,7 +44,10 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
             {paragraph.suBannerHeader && (
               <>
                 {headerTag === "h2" && (
-                  <H2 id={id} className={cn(headerClasses, "type-3 my-0 font-serif font-normal text-csp-cream")}>
+                  <H2
+                    id={id}
+                    className={cn(headerClasses, "no-anchor my-0 font-serif type-3 font-normal text-csp-cream")}
+                  >
                     {paragraph.suBannerHeader}
                   </H2>
                 )}
@@ -66,25 +69,25 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
           </div>
 
           {paragraph.suBannerSupHeader && (
-            <div className="type-2 order-first mb-[1.75rem] font-sans font-normal text-fog-dark @6xl:max-w-[55rem]">
+            <div className="order-first mb-[1.75rem] font-sans type-2 font-normal text-fog-dark @6xl:max-w-[55rem]">
               {paragraph.suBannerSupHeader}
             </div>
           )}
 
           <Wysiwyg
             html={paragraph.suBannerBody?.processed}
-            className="text-1.9 [&_p]:leading-1.5 font-sans font-normal text-csp-cream @6xl:max-w-[55rem] [&_p]:text-19"
+            className="font-sans font-normal text-csp-cream @6xl:max-w-[55rem] [&_p]:text-19"
           />
 
           {!!paragraph.suBannerButton?.length && (
-            <ul className="m-0 list-none columns-1 gap-1 p-0 @7xl:columns-3">
+            <ul className="m-0 list-none columns-1 gap-2.5 p-0 @7xl:columns-3">
               {paragraph.suBannerButton?.map((button, i) => (
                 <li key={i}>
                   <Button
                     key={i}
                     href={button.url}
                     variant={button.attributes?.imageBannerButtonType === "archway" ? "archway" : "digitalred"}
-                    className="m-2"
+                    className="m-5"
                   >
                     {button.title}
                   </Button>

@@ -26,7 +26,7 @@ const EntityParagraph = async ({paragraph, ...props}: Props) => {
   return (
     <EntityWrapper
       {...props}
-      className={cn("centered mb-20 flex flex-col gap-10", props.className)}
+      className={cn("centered mb-40 flex flex-col gap-20", props.className)}
       aria-labelledby={EntityWrapper === "section" ? id : undefined}
     >
       {paragraph.suEntityHeadline && behaviors.stanford_teaser?.heading_behavior !== "remove" && (
@@ -42,7 +42,7 @@ const EntityParagraph = async ({paragraph, ...props}: Props) => {
 
       {!!paragraph.suEntityItem?.length && (
         <div
-          className={cn("mb-20 grid gap-20 [&>*]:w-full", {
+          className={cn("mb-40 grid gap-40 [&>*]:w-full", {
             "@5xl:grid-cols-2": paragraph.suEntityItem.length === 2,
             "@8xl:grid-cols-3": paragraph.suEntityItem.length >= 3,
           })}
@@ -66,7 +66,10 @@ const EntityParagraph = async ({paragraph, ...props}: Props) => {
 
 const EntityTeaser = async ({entityPath, headingLevel = "h2"}: {entityPath: string; headingLevel?: "h2" | "h3"}) => {
   "use cache: remote"
+
   cacheTag(`paths:${entityPath}`)
+  // NodeCard only reads teaser fields, so ask Drupal for the reduced field set rather than the
+  // full node with its body and every nested paragraph.
   const {entity} = await getEntityFromPath(entityPath, false, true)
   if (!entity) return null
   return <NodeCard node={entity} headingLevel={headingLevel} />

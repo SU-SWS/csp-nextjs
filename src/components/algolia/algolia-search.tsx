@@ -3,7 +3,7 @@
 import {liteClient} from "algoliasearch/lite"
 import {useHits, useSearchBox} from "react-instantsearch"
 import {InstantSearchNext} from "react-instantsearch-nextjs"
-import {useRef} from "react"
+import {useMemo, useRef} from "react"
 import Button from "@components/elements/button"
 import {UseSearchBoxProps} from "react-instantsearch"
 import DefaultHit, {DefaultAlgoliaHit} from "@components/algolia/hits/default"
@@ -17,7 +17,8 @@ type Props = {
 
 const AlgoliaSearch = ({appId, searchIndex, searchApiKey}: Props) => {
   const pathname = usePathname()
-  const searchClient = liteClient(appId, searchApiKey)
+  // Memoised so InstantSearch isn't handed a brand new client on every render.
+  const searchClient = useMemo(() => liteClient(appId, searchApiKey), [appId, searchApiKey])
 
   return (
     <InstantSearchNext
@@ -79,7 +80,7 @@ const SearchBox = (props?: UseSearchBoxProps) => {
 
   return (
     <form
-      className="flex flex-col gap-10"
+      className="flex flex-col gap-20"
       action=""
       role="search"
       noValidate
@@ -106,7 +107,7 @@ const SearchBox = (props?: UseSearchBoxProps) => {
         </label>
         <input
           id="search-input"
-          className="type-2 h-20 max-w-xl rounded-full px-10 hocus:shadow-2xl"
+          className="h-20 max-w-xl rounded-full px-20 type-2 hocus:shadow-2xl"
           ref={inputRef}
           autoCorrect="on"
           spellCheck={false}
@@ -117,7 +118,7 @@ const SearchBox = (props?: UseSearchBoxProps) => {
           autoFocus
         />
       </div>
-      <div className="flex gap-10">
+      <div className="flex gap-20">
         <Button type="submit">Submit</Button>
         <Button variant="secondary" size="default" type="reset" className={query.length === 0 ? "hidden" : undefined}>
           Reset

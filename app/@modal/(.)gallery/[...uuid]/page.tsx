@@ -4,6 +4,7 @@ import Link from "@components/elements/link"
 import {ParagraphDocument, ParagraphQuery, ParagraphStanfordGallery} from "@lib/gql/__generated__/graphql"
 import {graphqlClient} from "@lib/gql/gql-client"
 import {notFound} from "next/navigation"
+import {cacheTag} from "next/cache"
 
 type Props = {
   params: Promise<{uuid: string[]}>
@@ -16,6 +17,7 @@ const Page = async (props: Props) => {
   "use cache: remote"
   const params = await props.params
   const [paragraphId, mediaUuid] = params.uuid
+  cacheTag("all-cache", "paragraphs", `paragraph:${paragraphId}`)
 
   const paragraphQuery = await graphqlClient().request<ParagraphQuery>(ParagraphDocument, {uuid: paragraphId})
   if (paragraphQuery.paragraph?.__typename !== "ParagraphStanfordGallery") notFound()
@@ -39,8 +41,8 @@ const Page = async (props: Props) => {
 
         return (
           <div key={galleryImage.uuid} className="flex h-full flex-col">
-            <figure key={galleryImage.uuid} className="flex flex-grow flex-col">
-              <picture className="relative block h-full w-full flex-grow">
+            <figure key={galleryImage.uuid} className="flex grow flex-col">
+              <picture className="relative block h-full w-full grow">
                 <Image
                   src={galleryImage.suGalleryImage.url}
                   alt={galleryImage.suGalleryImage.alt || ""}
@@ -50,7 +52,7 @@ const Page = async (props: Props) => {
                 />
               </picture>
               {galleryImage.suGalleryCaption && (
-                <figcaption id={mediaUuid} className="m-0 mx-auto w-fit bg-white px-32 py-5">
+                <figcaption id={mediaUuid} className="m-0 mx-auto w-fit bg-white px-64 py-10">
                   {galleryImage.suGalleryCaption}
                 </figcaption>
               )}
