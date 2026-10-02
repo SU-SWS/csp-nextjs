@@ -75,13 +75,10 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
 
       {paragraph.suCardSuperHeader && (
         <div
-          className={cn(
-            "order-first mb-11 font-sans text-19 font-normal text-archway-dark uppercase md:mb-12 2xl:mb-13",
-            {
-              "tracking-[1.9px] text-csp-cream": isPoster,
-              "text-archway-dark": isPoster && bgColor === "f4f4f4",
-            }
-          )}
+          className={cn("order-first rs-mb-neg1 font-sans text-19 font-normal text-archway-dark uppercase", {
+            "tracking-[1.9px] text-csp-cream": isPoster,
+            "text-archway-dark": isPoster && bgColor === "f4f4f4",
+          })}
         >
           {paragraph.suCardSuperHeader}
         </div>

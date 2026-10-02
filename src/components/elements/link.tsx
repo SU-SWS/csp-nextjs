@@ -110,11 +110,12 @@ const DrupalLink = ({href, showExtLinkIcon, className, children, ...props}: Link
     )
   }
 
+  const Component = href.startsWith("#") ? "a" : Link
   return (
-    <Link href={href} className={cn("group font-normal", className)} {...props}>
+    <Component href={href} className={cn("group font-normal", className)} {...props}>
       {children}
       {href.startsWith("mailto") && <EnvelopeIcon width={20} className="ml-8 inline-block" />}
-    </Link>
+    </Component>
   )
 }
 

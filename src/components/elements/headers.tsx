@@ -37,7 +37,7 @@ export const H2 = ({children, className, ...props}: Props) => {
   return (
     <h2
       id={id}
-      className={cn(headingLinkClasses, "rs-mt-2 mb-11 font-serif type-3 font-normal md:mb-12 2xl:mb-13", className)}
+      className={cn(headingLinkClasses, "rs-mt-2 rs-mb-neg1 font-serif type-3 font-normal", className)}
       {...props}
     >
       {children}

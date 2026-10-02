@@ -164,9 +164,12 @@ const createOptions = (allowedTags?: Array<string>): HTMLReactParserOptions => {
           // tabbable no-op, so leave them as the plain anchors they are.
           if (!href) return <NodeName {...props}>{domToReact(children, options)}</NodeName>
 
-          if ((href as string).startsWith("#")) {
+          // Buttons and action links still need the link component for their styles.
+          const styledLink = /\b(button|link--action)\b/.test(String(props.className || ""))
+          if ((href as string).startsWith("#") && !styledLink) {
             return (
-              <a href={href as string} {...props}>
+              // font-normal matches the weight the link component gives every other link.
+              <a href={href as string} {...props} className={cn("font-normal", props.className as string)}>
                 {domToReact(children, options)}
               </a>
             )

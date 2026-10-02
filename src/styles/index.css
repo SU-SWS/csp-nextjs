@@ -80,6 +80,14 @@
   --radius-csp-sm: var(--csp-radius-sm);
   --radius-csp-md: var(--csp-radius-md);
   --radius-csp-lg: var(--csp-radius-lg);
+
+  /* Decanter 7 negative responsive spacing steps, e.g. rs-mb-neg1. Decanter 8 dropped them. */
+  --responsive-spacing-xs-neg2: 0.8rem;
+  --responsive-spacing-md-neg2: 0.9rem;
+  --responsive-spacing-2xl-neg2: 1rem;
+  --responsive-spacing-xs-neg1: 1.1rem;
+  --responsive-spacing-md-neg1: 1.2rem;
+  --responsive-spacing-2xl-neg1: 1.3rem;
 }
 
 @layer base {
@@ -91,6 +99,69 @@
 
   a {
     color: var(--color-digital-red);
+  }
+}
+
+/*
+  Tailwind 4 puts component styles in a cascade layer that always loses to utilities. In Tailwind 3
+  these rules beat utility classes on specificity, so editor content and the footer relied on them.
+  Repeating them in the utilities layer lets specificity decide again.
+*/
+@layer utilities {
+  .wysiwyg {
+    p,
+    ol,
+    ul,
+    dl {
+      margin-bottom: 1.6em;
+    }
+
+    li p {
+      margin-bottom: 0.4em;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0.7em;
+
+      &:not(:first-child) {
+        margin-top: 1.6em;
+      }
+    }
+
+    h2 + h3,
+    h3 + h4,
+    h4 + h5,
+    h5 + h6 {
+      &:not(:first-child) {
+        margin-top: 1em;
+      }
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .local-footer .wysiwyg {
+    h2 {
+      font-size: 1.5em;
+    }
+
+    h3 {
+      font-size: 1.3em;
+    }
+
+    h4 {
+      font-size: 1.1em;
+    }
   }
 }
 

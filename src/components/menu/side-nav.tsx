@@ -56,7 +56,7 @@ const SideNav = ({menuItems, activeTrail, ...props}: Props) => {
       <div
         id={id}
         className={cn(
-          "absolute top-full left-0 z-10 hidden w-full rounded-xl border border-black-20 bg-white p-20 shadow-2xl",
+          "absolute top-full left-0 z-10 hidden w-full rounded-xl border border-black-20 p-20 shadow-2xl max-lg:bg-white",
           // Fade and slide the panel on mobile. `transition-discrete` keeps `display` in the
           // transition, so the panel still lands on `hidden` -- and out of the tab order -- once the
           // close animation finishes. `starting:` supplies the pre-open style that an element coming

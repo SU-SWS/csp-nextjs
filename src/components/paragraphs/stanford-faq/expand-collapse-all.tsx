@@ -31,7 +31,6 @@ const ExpandCollapseAll = ({...props}: Props) => {
       ref={ref}
       buttonElem
       onClick={toggle}
-      secondary
       {...props}
       className={cn("flex items-center gap-10 whitespace-nowrap", props.className)}
     >

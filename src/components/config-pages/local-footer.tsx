@@ -83,7 +83,7 @@ const LocalFooter = async ({...props}: Props) => {
               {/* Column 1 */}
               {/* Primary Links */}
               {localFooterConfig.suLocalFootPrimeH && (
-                <H2 className="mt-0 type-1 font-normal uppercase">{localFooterConfig.suLocalFootPrimeH}</H2>
+                <H2 className="mt-0 font-sans type-1 font-normal uppercase">{localFooterConfig.suLocalFootPrimeH}</H2>
               )}
               {localFooterConfig.suLocalFootPrimary && (
                 <ul className="list-unstyled">
@@ -115,7 +115,7 @@ const LocalFooter = async ({...props}: Props) => {
             <div className="max-w-1/2">
               {/* Secondary Links */}
               {localFooterConfig.suLocalFootSecondH && (
-                <H2 className="mt-0 type-1 font-normal uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
+                <H2 className="mt-0 font-sans type-1 font-normal uppercase">{localFooterConfig.suLocalFootSecondH}</H2>
               )}
 
               {localFooterConfig.suLocalFootSecond && (
@@ -187,7 +187,7 @@ const LocalFooter = async ({...props}: Props) => {
               )}
             </div>
             {localFooterConfig.suLocalFootSocial && (
-              <ul className="list-unstyled mt-8 flex flex-wrap justify-end gap-7.5 md:mt-9 2xl:mt-10">
+              <ul className="list-unstyled rs-mt-neg2 flex flex-wrap justify-end gap-7.5">
                 {localFooterConfig.suLocalFootSocial.map((link, index) => {
                   if (!link.url) return
                   return (

@@ -83,10 +83,10 @@ const HeroBanner = ({
         {children && overlayPosition !== "center" && (
           <div
             className={cn(
-              "absolute inset-0 z-10 bg-gradient-to-b from-transparent to-csp-archway-xdark/95 @6xl:to-transparent",
+              "absolute inset-0 z-10 bg-linear-to-b from-transparent to-csp-archway-xdark/95 @6xl:to-transparent",
               overlayPosition === "right"
-                ? "@6xl:bg-gradient-to-l @6xl:from-[rgb(47_32_32/0.95)_50%]"
-                : "@6xl:bg-gradient-to-r @6xl:from-[rgb(47_32_32/0.95)_50%]"
+                ? "@6xl:bg-linear-to-l @6xl:from-csp-archway-xdark/95 @6xl:from-50%"
+                : "@6xl:bg-linear-to-r @6xl:from-csp-archway-xdark/95 @6xl:from-50%"
             )}
             aria-hidden="true"
           />

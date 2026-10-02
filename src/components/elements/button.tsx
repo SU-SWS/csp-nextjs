@@ -103,9 +103,9 @@ const Button = ({
       </button>
     )
   }
-
+  const Component = href.startsWith("#") ? "a" : Link
   return (
-    <Link href={getLinkHref(href)} className={classes} {...props}>
+    <Component href={getLinkHref(href)} className={classes} {...props}>
       {children}
       {showIcon && (
         <ArrowRightIcon
@@ -113,7 +113,7 @@ const Button = ({
           className="mb-[.3rem] ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
         />
       )}
-    </Link>
+    </Component>
   )
 }
 
