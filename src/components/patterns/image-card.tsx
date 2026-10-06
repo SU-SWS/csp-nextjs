@@ -90,6 +90,7 @@ const ImageCard = ({
           "bg-lagunita": isPoster && bgColor === "007c92",
           "bg-palo-alto": isPoster && bgColor === "175e54",
           "bg-fog-light text-archway-dark": isPoster && bgColor === "f4f4f4",
+          "[&>div]:text-archway-dark": isPoster && !bgColor,
         })}
       >
         {children}
