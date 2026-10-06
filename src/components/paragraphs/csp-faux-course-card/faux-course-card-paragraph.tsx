@@ -85,7 +85,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
               <li key={instructor.uuid}>
                 <CourseCardInstructor
                   instructor={instructor}
-                  headingElement={paragraph.cspCourseCardTitle ? "h3" : "div"}
+                  headingElement={headerTag === "h2" ? "h3" : headerTag === "h3" ? "h4" : "div"}
                 />
               </li>
             ))}
