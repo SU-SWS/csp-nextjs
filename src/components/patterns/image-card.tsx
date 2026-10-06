@@ -35,7 +35,7 @@ type Props = HTMLAttributes<HTMLElement | HTMLDivElement> & {
   bgColor?: Maybe<ImageCardBgColor>
 }
 
-export type ImageCardBgColor = "2e2d29" | "8c1515" | "620059" | "007c92" | "175e54" | "f4f4f4"
+export type ImageCardBgColor = "2e2d29" | "8c1515" | "620059" | "007c92" | "175e54" | "f4f4f4" | ""
 
 const ImageCard = ({
   imageUrl,
@@ -90,6 +90,7 @@ const ImageCard = ({
           "bg-lagunita": isPoster && bgColor === "007c92",
           "bg-palo-alto": isPoster && bgColor === "175e54",
           "bg-fog-light text-archway-dark": isPoster && bgColor === "f4f4f4",
+          "[&>div]:text-archway-dark": isPoster && !bgColor,
         })}
       >
         {children}
