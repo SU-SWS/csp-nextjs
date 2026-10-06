@@ -87,7 +87,7 @@ jobs:
           composer install -n &&
           drush drupal:sync --site=csp -n &&
           drush sqlq 'truncate config_pages__su_site_algolia_id' &&
-          drush cr
+          curl http://localhost
       - name: Build Frontend
         run: |
           cd $GITHUB_WORKSPACE/frontend &&
