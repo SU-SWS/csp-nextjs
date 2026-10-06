@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "@components/elements/link"
-import {H3} from "@components/elements/headers"
+import {H2, H3, H4} from "@components/elements/headers"
 import {ParagraphCspFauxCourseCard} from "@lib/gql/__generated__/graphql"
 
 /**
@@ -10,7 +10,7 @@ export type CourseCardInstructorItem = NonNullable<ParagraphCspFauxCourseCard["c
 
 type Props = {
   instructor: CourseCardInstructorItem
-  headingElement?: "h3" | "div"
+  headingElement?: "h2" | "h3" | "h4" | "div"
 }
 
 /**
@@ -18,7 +18,7 @@ type Props = {
  */
 const CourseCardInstructor = ({instructor, headingElement = "div"}: Props) => {
   const headshot = instructor.cspInstructorHeadshot?.mediaImage
-  const HeadingElement = headingElement === "h3" ? H3 : "div"
+  const HeadingElement = {h2: H2, h3: H3, h4: H4, div: "div"}[headingElement]
 
   return (
     <div className="flex gap-20">

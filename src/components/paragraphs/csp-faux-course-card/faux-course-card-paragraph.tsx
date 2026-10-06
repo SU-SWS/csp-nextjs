@@ -81,14 +81,14 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
 
         {!!paragraph.cspCourseCardInstructors?.length && (
           <ul className="order-4 flex list-none flex-col gap-20 p-0">
-            {paragraph.cspCourseCardInstructors.map(instructor => (
-              <li key={instructor.uuid}>
-                <CourseCardInstructor
-                  instructor={instructor}
-                  headingElement={paragraph.cspCourseCardTitle ? "h3" : "div"}
-                />
-              </li>
-            ))}
+            {paragraph.cspCourseCardInstructors.map(instructor => {
+              const instructorHeading = headerTag === "h2" ? "h3" : headerTag === "h3" ? "h4" : "div"
+              return (
+                <li key={instructor.uuid}>
+                  <CourseCardInstructor instructor={instructor} headingElement={instructorHeading} />
+                </li>
+              )
+            })}
           </ul>
         )}
 
