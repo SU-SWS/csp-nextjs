@@ -95,7 +95,7 @@ const HeroBanner = ({
 
       {children && (
         <div
-          className={cn("relative z-11 flex size-full flex-col gap-[1.75rem]", {
+          className={cn("relative z-11 flex size-full flex-col rs-gap-2", {
             "cc items-center justify-center rs-py-4 text-center text-white @6xl:max-w-800":
               overlayPosition === "center",
             "rs-p-2 @6xl:z-10 @6xl:my-60 @6xl:max-w-[90rem] @6xl:bg-transparent": overlayPosition !== "center",
