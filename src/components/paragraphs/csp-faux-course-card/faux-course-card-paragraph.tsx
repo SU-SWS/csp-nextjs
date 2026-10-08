@@ -20,90 +20,90 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
   const WrapperTag = headerTag === "div" ? "div" : "article"
 
   return (
-    <WrapperTag
-      {...props}
-      aria-labelledby={id}
-      className={cn(
-        "relative flex max-w-[116rem] flex-col justify-self-center rounded-csp-md border border-fog-dark @9xl:flex-row",
-        props.className
-      )}
-    >
-      {image?.url && (
-        <div className="min-w-40rem relative mx-auto mt-[.6rem] aspect-[54/29] w-full max-w-[calc(100%_-_1.2rem)] grow self-start overflow-hidden rounded-csp-sm @9xl:mr-[0.6rem] @9xl:ml-[0.6rem] @9xl:min-w-[54rem]">
-          <Image
-            src={image.url}
-            alt={image.alt || ""}
-            fill
-            className="border object-cover"
-            sizes="(max-width: 768px) 100vw, 700px"
-          />
+    <WrapperTag {...props} aria-labelledby={id} className={cn("relative centered", props.className)}>
+      <div
+        className={cn(
+          "flex max-w-[116rem] flex-col justify-start rounded-csp-md border border-fog-dark @9xl:flex-row",
+          props.className
+        )}
+      >
+        {image?.url && (
+          <div className="min-w-40rem relative m-6 mx-auto aspect-54/29 w-full max-w-[calc(100%-1.2rem)] grow self-start overflow-hidden rounded-csp-sm @9xl:mr-6 @9xl:ml-6 @9xl:max-w-[54rem] @9xl:min-w-[54rem]">
+            <Image
+              src={image.url}
+              alt={image.alt || ""}
+              fill
+              className="border object-cover"
+              sizes="(max-width: 768px) 100vw, 700px"
+            />
+          </div>
+        )}
+
+        <div className="flex max-w-600 min-w-0 flex-col rs-pt-1 rs-px-3 rs-pb-3">
+          {headerTag === "h2" && (
+            <H2
+              id={id}
+              className="order-3 mt-0 rs-mb-1 type-2 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+            >
+              <Link className="font-normal" href={url}>
+                {paragraph.cspCourseCardTitle}
+              </Link>
+            </H2>
+          )}
+          {headerTag === "h3" && (
+            <H3
+              id={id}
+              className="order-3 mt-0 rs-mb-1 type-2 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
+            >
+              <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
+                {paragraph.cspCourseCardTitle}
+              </Link>
+            </H3>
+          )}
+          {headerTag === "div" && (
+            <div className="order-3 mt-0 rs-mb-1 type-1 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red">
+              <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
+                {paragraph.cspCourseCardTitle}
+              </Link>
+            </div>
+          )}
+
+          {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
+            <div className="order-2 mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-10">
+              {paragraph.cspCourseCardFormat}
+              {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && (
+                <span className="mx-15">&nbsp;|&nbsp;</span>
+              )}
+              {paragraph.cspCourseCardLocation}
+            </div>
+          )}
+
+          {!!paragraph.cspCourseCardInstructors?.length && (
+            <ul className="order-4 flex list-none flex-col gap-20 p-0">
+              {paragraph.cspCourseCardInstructors.map(instructor => (
+                <li key={instructor.uuid}>
+                  <CourseCardInstructor
+                    instructor={instructor}
+                    headingElement={headerTag === "h2" ? "h3" : headerTag === "h3" ? "h4" : "div"}
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {!!paragraph.cspCourseCardColor?.color && (
+            <div
+              className={cn("order-1 rs-mb-1 h-[.4rem] w-50 rounded-[0.3rem]", props.className, {
+                "bg-olive": paragraph.cspCourseCardColor?.color === "8f993e",
+                "bg-archway-light": paragraph.cspCourseCardColor?.color === "766253",
+                "bg-cardinal-red": paragraph.cspCourseCardColor?.color === "8c1515",
+                "bg-plum": paragraph.cspCourseCardColor?.color === "81337a",
+                "bg-lagunita-light": paragraph.cspCourseCardColor?.color === "009ab4",
+                "bg-palo-verde": paragraph.cspCourseCardColor?.color === "279989",
+              })}
+            />
+          )}
         </div>
-      )}
-
-      <div className="flex max-w-600 min-w-0 flex-col rs-pt-1 rs-px-3 rs-pb-3">
-        {headerTag === "h2" && (
-          <H2
-            id={id}
-            className="order-3 mt-0 rs-mb-1 type-2 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
-          >
-            <Link className="font-normal" href={url}>
-              {paragraph.cspCourseCardTitle}
-            </Link>
-          </H2>
-        )}
-        {headerTag === "h3" && (
-          <H3
-            id={id}
-            className="order-3 mt-0 rs-mb-1 type-1 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red"
-          >
-            <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
-              {paragraph.cspCourseCardTitle}
-            </Link>
-          </H3>
-        )}
-        {headerTag === "div" && (
-          <div className="order-3 mt-0 rs-mb-1 type-1 font-normal [&_a]:text-archway-dark [&_a]:hocus:text-digital-red">
-            <Link className="font-normal text-archway-dark hocus:text-digital-red" href={url}>
-              {paragraph.cspCourseCardTitle}
-            </Link>
-          </div>
-        )}
-
-        {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
-          <div className="order-2 mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-10">
-            {paragraph.cspCourseCardFormat}
-            {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && (
-              <span className="mx-15">&nbsp;|&nbsp;</span>
-            )}
-            {paragraph.cspCourseCardLocation}
-          </div>
-        )}
-
-        {!!paragraph.cspCourseCardInstructors?.length && (
-          <ul className="order-4 flex list-none flex-col gap-20 p-0">
-            {paragraph.cspCourseCardInstructors.map(instructor => (
-              <li key={instructor.uuid}>
-                <CourseCardInstructor
-                  instructor={instructor}
-                  headingElement={headerTag === "h2" ? "h3" : headerTag === "h3" ? "h4" : "div"}
-                />
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {!!paragraph.cspCourseCardColor?.color && (
-          <div
-            className={cn("order-1 rs-mb-1 h-[.4rem] w-50 rounded-[0.3rem]", props.className, {
-              "bg-olive": paragraph.cspCourseCardColor?.color === "8f993e",
-              "bg-archway-light": paragraph.cspCourseCardColor?.color === "766253",
-              "bg-cardinal-red": paragraph.cspCourseCardColor?.color === "8c1515",
-              "bg-plum": paragraph.cspCourseCardColor?.color === "81337a",
-              "bg-lagunita-light": paragraph.cspCourseCardColor?.color === "009ab4",
-              "bg-palo-verde": paragraph.cspCourseCardColor?.color === "279989",
-            })}
-          />
-        )}
       </div>
     </WrapperTag>
   )
