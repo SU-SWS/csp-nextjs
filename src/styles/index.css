@@ -183,6 +183,18 @@
   height: 100%;
 }
 
+.aspect-video .\__embed_column {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.aspect-video .\__embed_column iframe {
+  width: 100%;
+  height: 100%;
+}
+
 /* Base: XS-SM */
 :root {
   --csp-radius-xs: 6px;
