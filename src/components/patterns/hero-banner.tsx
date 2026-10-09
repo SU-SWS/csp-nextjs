@@ -54,7 +54,7 @@ const HeroBanner = ({
     >
       <div
         className={cn("w-full bg-cool-grey", {
-          "relative aspect-video @6xl:absolute @6xl:aspect-auto @6xl:h-full": overlayPosition !== "center" && children,
+          "relative aspect-video @9xl:absolute @9xl:aspect-auto @9xl:h-full": overlayPosition !== "center" && children,
           "absolute aspect-auto h-full": overlayPosition === "center" || !children,
         })}
       >
@@ -83,10 +83,10 @@ const HeroBanner = ({
         {children && overlayPosition !== "center" && (
           <div
             className={cn(
-              "absolute inset-0 z-10 bg-linear-to-b from-transparent to-csp-archway-xdark/95 @6xl:to-transparent",
+              "absolute inset-0 z-10 bg-linear-to-b from-transparent via-csp-archway-meddark/60 via-50% to-csp-archway-xdark/95 to-75% @2xl:from-60% @4xl:from-50% @9xl:to-transparent",
               overlayPosition === "right"
-                ? "@6xl:bg-linear-to-l @6xl:from-csp-archway-xdark/95 @6xl:from-50%"
-                : "@6xl:bg-linear-to-r @6xl:from-csp-archway-xdark/95 @6xl:from-50%"
+                ? "@9xl:bg-linear-to-l @9xl:from-csp-archway-xdark/95 @9xl:from-30%"
+                : "@9xl:bg-linear-to-r @9xl:from-csp-archway-xdark/95 @9xl:from-30%"
             )}
             aria-hidden="true"
           />
@@ -98,9 +98,9 @@ const HeroBanner = ({
           className={cn("relative z-11 flex size-full flex-col rs-gap-2", {
             "cc items-center justify-center rs-py-4 text-center text-white @6xl:max-w-800":
               overlayPosition === "center",
-            "rs-p-2 @6xl:z-10 @6xl:my-60 @6xl:max-w-[90rem] @6xl:bg-transparent": overlayPosition !== "center",
-            "@6xl:mr-40 @6xl:ml-auto": overlayPosition === "right",
-            "@6xl:mr-auto @6xl:ml-40": overlayPosition === "left",
+            "rs-p-2 @6xl:my-60 @9xl:z-10 @9xl:max-w-[90rem] @9xl:bg-transparent": overlayPosition !== "center",
+            "@9xl:mr-40 @9xl:ml-auto": overlayPosition === "right",
+            "@9xl:mr-auto @9xl:ml-40": overlayPosition === "left",
           })}
         >
           {children}
