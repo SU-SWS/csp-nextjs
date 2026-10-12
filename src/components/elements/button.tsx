@@ -61,6 +61,7 @@ const Button = ({
   showIcon = true,
   children,
   className,
+  prefetch = false,
   ...props
 }: ButtonProps) => {
   const isSecondary = variant === "secondary"
@@ -103,9 +104,10 @@ const Button = ({
       </button>
     )
   }
-  const Component = href.startsWith("#") ? "a" : Link
+  const isAnchor = href.startsWith("#")
+  const Component = isAnchor ? "a" : Link
   return (
-    <Component href={getLinkHref(href)} className={classes} {...props}>
+    <Component href={getLinkHref(href)} className={classes} {...(!isAnchor && {prefetch})} {...props}>
       {children}
       {showIcon && (
         <ArrowRightIcon

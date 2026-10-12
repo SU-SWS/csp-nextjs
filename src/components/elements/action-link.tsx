@@ -1,6 +1,6 @@
 import {HtmlHTMLAttributes} from "react"
 import cn from "@lib/utils/className"
-import Link from "next/link"
+import Link, {LinkProps} from "next/link"
 import {getLinkHref} from "@components/elements/link"
 import {ChevronRightIcon} from "@heroicons/react/20/solid"
 
@@ -9,13 +9,19 @@ type Props = HtmlHTMLAttributes<HTMLAnchorElement> & {
    * Link url.
    */
   href: string
+  /**
+   * Next.js prefetch functionality. Disabled by default.
+   */
+  prefetch?: LinkProps["prefetch"]
 }
 
-const ActionLink = ({href, children, ...props}: Props) => {
-  const Component = href.startsWith("#") ? "a" : Link
+const ActionLink = ({href, children, prefetch = false, ...props}: Props) => {
+  const isAnchor = href.startsWith("#")
+  const Component = isAnchor ? "a" : Link
   return (
     <Component
       {...props}
+      {...(!isAnchor && {prefetch})}
       href={getLinkHref(href)}
       className={cn(
         "group relative flex gap-10 pr-25 font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
