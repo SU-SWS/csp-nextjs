@@ -106,7 +106,6 @@ const MainMenuClient = ({hideSearch, menuItems}: Props) => {
           <li>
             <Button
               href="/search"
-              type="submit"
               showIcon={false}
               variant="search"
               size="round"
