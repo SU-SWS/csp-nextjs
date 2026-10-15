@@ -55,8 +55,8 @@ const ImageCard = ({
     <CardWrapper
       {...props}
       className={cn(
-        "relative centered h-full w-full rounded-csp-lg border xl:max-w-[980px]",
-        {"flex flex-col gap-[.6rem] border-none @bp-768:flex-row": isPoster},
+        "relative centered h-full w-full max-w-980 rounded-csp-lg border",
+        {"max-w-16xl flex flex-col gap-6 border-none @bp-768:flex-row": isPoster},
         props.className
       )}
     >
@@ -64,8 +64,8 @@ const ImageCard = ({
         <div
           className={cn("relative w-full border-transparent", {
             "aspect-square": squareImage,
-            "aspect-[16/9]": !squareImage,
-            "aspect-[3/2] flex-1 md:aspect-[16/9]": isPoster,
+            "aspect-video": !squareImage,
+            "aspect-3/2 flex-1 md:aspect-video": isPoster,
           })}
         >
           <Image

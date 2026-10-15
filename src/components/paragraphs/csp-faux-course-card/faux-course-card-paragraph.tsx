@@ -23,7 +23,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
     <WrapperTag {...props} aria-labelledby={id} className={cn("relative centered", props.className)}>
       <div
         className={cn(
-          "flex max-w-[116rem] flex-col justify-start rounded-csp-md border border-fog-dark @9xl:flex-row",
+          "flex max-w-[114rem] flex-col justify-start rounded-csp-md border border-fog-dark @9xl:flex-row",
           props.className
         )}
       >
@@ -69,7 +69,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
           )}
 
           {(paragraph.cspCourseCardFormat || paragraph.cspCourseCardLocation) && (
-            <div className="order-2 mb-[.8rem] font-sans text-16 font-normal text-archway-light md:mb-[.9rem] 2xl:mb-10">
+            <div className="order-2 mb-8 font-sans text-16 font-normal text-archway-light md:mb-9 2xl:mb-10">
               {paragraph.cspCourseCardFormat}
               {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && (
                 <span className="mx-15">&nbsp;|&nbsp;</span>

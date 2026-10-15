@@ -7,6 +7,6 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
 }
 
 const WysiwygParagraph = ({paragraph, ...props}: Props) => {
-  return <Wysiwyg html={paragraph.suWysiwygText?.processed} className="centered xl:max-w-1200" {...props} />
+  return <Wysiwyg html={paragraph.suWysiwygText?.processed} className="centered max-w-980" {...props} />
 }
 export default WysiwygParagraph

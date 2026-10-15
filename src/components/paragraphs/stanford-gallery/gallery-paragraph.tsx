@@ -18,7 +18,7 @@ const GalleryParagraph = ({paragraph, ...props}: Props) => {
   return (
     <GalleryWrapper
       {...props}
-      className={cn("@container centered mb-40 flex flex-col gap-20 xl:max-w-1200", props.className)}
+      className={cn("max-w-16xl @container centered mb-40 flex flex-col gap-20", props.className)}
       aria-labelledby={paragraph.suGalleryHeadline ? id : undefined}
     >
       {paragraph.suGalleryHeadline && (
