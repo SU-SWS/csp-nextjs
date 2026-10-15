@@ -29,8 +29,8 @@
 @utility centered {
   @apply gutters;
 
-  /* Largest breakpoint (2000px) plus a gutter on either side (100px). */
+  /* Largest breakpoint (1500px) plus a gutter on either side (100px). */
   @media only screen and (min-width: 2200px) {
-    max-width: 2000px;
+    max-width: 1500px;
   }
 }
