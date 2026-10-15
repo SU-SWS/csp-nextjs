@@ -171,7 +171,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
     <div
       ref={navRef}
       {...props}
-      className={cn("centered-container relative z-20 mb-50 max-w-1000 text-16", props.className)}
+      className={cn("centered-container relative z-20 mb-50 max-w-10xl text-16", props.className)}
     >
       <nav
         aria-labelledby="anchor-nav"
@@ -191,12 +191,14 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
             aria-controls={mobilePanelId}
             onClick={toggleMobileMenu}
           >
-            <OnThisPageIcon className="w-10 text-black-40" />
+            <OnThisPageIcon className="w-auto min-w-20 text-black-50" />
             On This Page
             <ChevronDownIcon
               width={24}
               aria-hidden
-              className={cn("text-cardinal-red transition-transform duration-150", {"rotate-180": mobileMenuOpen})}
+              className={cn("min-w-24 text-cardinal-red transition-transform duration-150", {
+                "rotate-180": mobileMenuOpen,
+              })}
             />
           </button>
         )}
@@ -204,9 +206,12 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           <div
             ref={headingRef}
             id="anchor-nav"
-            className="m-0 flex items-center gap-10 p-12.5 pr-10 text-16 font-normal whitespace-nowrap text-archway-dark"
+            className={cn(
+              "m-0 flex items-center gap-10 pl-40 text-16 font-normal whitespace-nowrap text-archway-dark",
+              {"rs-pt-1 rs-pb-0 pl-20": !horizontal}
+            )}
           >
-            <OnThisPageIcon className="w-10 text-black-40" />
+            <OnThisPageIcon className="w-20 text-black-50" />
             On This Page
           </div>
         )}
@@ -215,19 +220,20 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           id={mobilePanelId}
           className={cn("list-unstyled", {
             "flex flex-row flex-nowrap items-center": horizontal,
-            "ml-28": !horizontal,
+            "rs-mb-1 ml-40": !horizontal,
             hidden: width && width < 768 && !mobileMenuOpen,
-            "absolute top-full left-0 z-10 mt-25 block w-fit min-w-240 rounded-csp-lg border border-black-10 bg-csp-cream p-12.5":
+            "absolute top-full left-0 z-10 mt-25 block w-fit min-w-sm rounded-csp-lg border border-black-10 bg-csp-cream p-12.5":
               width && width < 768 && mobileMenuOpen,
           })}
         >
           {(width && width < 768 ? headings : visibleHeadings).map(({id, text}) => (
-            <li key={id} data-nav-item className="m-0">
+            <li key={id} data-nav-item className={cn("m-0", {"mb-12": !horizontal})}>
               <a
                 href={`#${id}`}
                 onClick={closeMobileMenu}
                 className={cn("nowrap block p-10 font-normal text-cardinal-red no-underline hocus:underline", {
-                  "whitespace-nowrap": horizontal && width && width >= 768,
+                  "px-10 py-0 whitespace-nowrap": horizontal && width && width >= 768,
+                  "px-10 py-0": !horizontal,
                 })}
               >
                 {text}
@@ -239,7 +245,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           {horizontal && width && width >= 768 && (
             <li
               ref={overflowContainerRef}
-              className={cn("relative my-0 mr-0 ml-auto shrink-0 p-10", {
+              className={cn("relative my-0 rs-mr-2 ml-auto shrink-0 p-10", {
                 "pointer-events-none invisible": !hasOverflow,
               })}
             >
@@ -266,7 +272,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
                   className="absolute top-full right-0 z-10 m-0 mt-10 w-240 list-none rounded-csp-sm border border-fog-dark bg-csp-cream rs-py-2 rs-px-3"
                 >
                   {overflowHeadings.map(({id, text}) => (
-                    <li key={id} className="m-0 px-0 rs-pb-2 last:pb-0">
+                    <li key={id} className="m-0 px-0 rs-pb-1 last:pb-0">
                       <a
                         href={`#${id}`}
                         onClick={closeOverflow}
