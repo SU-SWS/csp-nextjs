@@ -191,12 +191,14 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
             aria-controls={mobilePanelId}
             onClick={toggleMobileMenu}
           >
-            <OnThisPageIcon className="w-auto text-black-50" />
+            <OnThisPageIcon className="w-auto min-w-20 text-black-50" />
             On This Page
             <ChevronDownIcon
               width={24}
               aria-hidden
-              className={cn("text-cardinal-red transition-transform duration-150", {"rotate-180": mobileMenuOpen})}
+              className={cn("min-w-24 text-cardinal-red transition-transform duration-150", {
+                "rotate-180": mobileMenuOpen,
+              })}
             />
           </button>
         )}
