@@ -52,7 +52,7 @@ const HeroBanner = ({
     <BannerWrapper
       {...props}
       className={cn(
-        "@container relative mx-auto rs-mb-5 min-h-[400px] w-[calc(100%-0.8rem)] max-w-[210rem] overflow-hidden rounded-csp-lg @6xl:min-h-[600px]",
+        "@6xl:min-h-600px @container relative mx-auto rs-mb-5 min-h-400 w-[calc(100%-0.8rem)] overflow-hidden rounded-csp-lg xl:max-w-1600",
         {"bg-archway-dark": children},
         props.className
       )}
