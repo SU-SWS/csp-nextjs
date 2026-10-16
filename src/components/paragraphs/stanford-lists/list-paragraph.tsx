@@ -52,7 +52,7 @@ const ListParagraph = async ({paragraph, ...props}: Props) => {
   return (
     <ListWrapper
       {...props}
-      className={cn("centered mb-40 flex flex-col gap-20 xl:max-w-1200", props.className)}
+      className={cn("centered mb-40 flex flex-col gap-20 xl:max-w-980", props.className)}
       aria-labelledby={ListWrapper === "section" ? id : undefined}
       data-nosnippet
     >

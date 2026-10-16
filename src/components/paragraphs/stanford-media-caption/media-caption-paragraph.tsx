@@ -17,7 +17,7 @@ const MediaCaptionParagraph = ({paragraph, ...props}: Props) => {
     paragraph.suMediaCaptionMedia?.__typename === "MediaVideo" && paragraph.suMediaCaptionMedia.mediaOembedVideo
 
   return (
-    <figure {...props} className={cn("centered xl:max-w-1200", props.className)}>
+    <figure {...props} className={cn("max-w-16xl centered", props.className)}>
       {image?.url && (
         <div className="relative aspect-video w-full">
           <BlurImage
