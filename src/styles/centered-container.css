@@ -24,10 +24,6 @@
   @media (min-width: 1200px) {
     max-width: calc(100vw - (var(--screen-margin-xl) * 2));
   }
-
-  @media (min-width: 1700px) {
-    max-width: calc(100vw - (var(--screen-margin-xl) * 2));
-  }
 }
 
 @utility centered {
