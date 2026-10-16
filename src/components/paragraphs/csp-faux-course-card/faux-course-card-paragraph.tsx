@@ -23,7 +23,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
     <WrapperTag {...props} aria-labelledby={id} className={cn("relative", props.className)}>
       <div
         className={cn(
-          "flex max-w-[114rem] flex-col justify-start justify-self-center rounded-csp-md border border-fog-dark @9xl:flex-row",
+          "centered flex flex-col justify-start justify-self-center rounded-csp-md border border-fog-dark xl:max-w-[114rem] @9xl:flex-row",
           props.className
         )}
       >
