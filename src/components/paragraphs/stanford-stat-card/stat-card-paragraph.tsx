@@ -51,7 +51,7 @@ const StatCardParagraph = ({paragraph, ...props}: Props) => {
     <ImageCard
       {...props}
       className={cn({
-        "max-w-980 text-center": paragraph.suStatCentered,
+        "text-center xl:max-w-980": paragraph.suStatCentered,
         "text-white [&_a]:text-white": whiteText,
         "bg-black": paragraph.suStatBgColor?.color === "2e2d29",
         "bg-cool-grey": paragraph.suStatBgColor?.color === "53565a",

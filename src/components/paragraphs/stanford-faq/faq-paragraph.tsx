@@ -33,7 +33,7 @@ const FaqParagraph = ({paragraph, ...props}: Props) => {
   const id = getIdFromText(paragraph.suFaqHeadline)
 
   return (
-    <div {...props} className={cn("centered max-w-980 space-y-20", props.className)}>
+    <div {...props} className={cn("centered space-y-20 xl:max-w-980", props.className)}>
       <div className="flex flex-col items-center justify-between gap-40 @3xl:flex-row">
         {heading && (
           <Header id={id} className="mb-0">

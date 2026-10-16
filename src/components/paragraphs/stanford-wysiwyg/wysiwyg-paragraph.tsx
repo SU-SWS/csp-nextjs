@@ -11,7 +11,7 @@ const WysiwygParagraph = ({paragraph, ...props}: Props) => {
   return (
     <Wysiwyg
       html={paragraph.suWysiwygText?.processed}
-      className={cn("gutters max-w-980", props.className)}
+      className={cn("centered xl:max-w-980", props.className)}
       {...props}
     />
   )
