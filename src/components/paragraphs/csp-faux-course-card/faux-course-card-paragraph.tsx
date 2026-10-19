@@ -23,12 +23,12 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
     <WrapperTag {...props} aria-labelledby={id} className={cn("relative", props.className)}>
       <div
         className={cn(
-          "centered flex flex-col justify-start justify-self-center rounded-csp-md border border-fog-dark xl:max-w-[114rem] @9xl:flex-row",
+          "centered flex flex-col justify-start justify-self-center rounded-csp-md border border-fog-dark xl:max-w-[114rem] @7xl:flex-row",
           props.className
         )}
       >
         {image?.url && (
-          <div className="min-w-40rem relative m-6 mx-auto aspect-54/29 w-full max-w-[calc(100%-1.2rem)] grow self-start overflow-hidden rounded-csp-sm @9xl:mr-6 @9xl:ml-6 @9xl:max-w-[54rem] @9xl:min-w-[54rem]">
+          <div className="min-w-40rem relative m-6 mx-auto aspect-3/2 w-full max-w-[calc(100%-1.2rem)] grow self-start overflow-hidden rounded-csp-sm @7xl:max-w-400 @9xl:mr-6 @9xl:ml-6 @9xl:max-w-[54rem] @9xl:min-w-[54rem]">
             <Image
               src={image.url}
               alt={image.alt || ""}
