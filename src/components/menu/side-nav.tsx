@@ -86,7 +86,7 @@ type MenuItemProps = (MenuItemType | BookLink) & {
 }
 
 const MenuItem = ({id, url, title, children, activeTrail, level, expanded}: MenuItemProps) => {
-  const hasChildren = !!children && children.length > 0
+  const hasChildren = !!children && !!children.length
   const isOpen = expanded && hasChildren && activeTrail.includes(id)
 
   const linkClasses = cn(
