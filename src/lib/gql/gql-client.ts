@@ -10,13 +10,22 @@ export type DrupalGraphqlError = {
 /** Parsed body of a GraphQL response. */
 type GraphqlResponseBody<TResult> = {data?: TResult | null; errors?: DrupalGraphqlError[]}
 
-/** Drupal is given this long to answer before the request is abandoned, so a hung backend can't stall a render. */
-const REQUEST_TIMEOUT_MS = 15000
+/**
+ * Drupal is given this long to answer before the request is abandoned, so a hung backend can't stall a render.
+ * CI builds against a freshly synced Drupal with cold caches, so they are given longer.
+ */
+const REQUEST_TIMEOUT_MS = process.env.CI ? 60000 : 30000
 
 /** Base class for every failed GraphQL request. Check for a subclass to tell the causes apart. */
 export class ClientError extends Error {
   // Names are literal strings: production builds minify class names, which would turn logs into "f: ...".
   name = "ClientError"
+  /**
+   * Stable code for the failure cause. Next keeps a digest an error already has instead of hashing it, and the
+   * digest is the only part of a server error that reaches the error page in production. So the cause shows in
+   * the 500 response body (see app/error.tsx), e.g. `curl -s /path | grep DRUPAL_`.
+   */
+  digest = "DRUPAL_ERROR"
 }
 
 /** Drupal could not be reached: connection refused, DNS failure, or no answer within the timeout. */
@@ -29,6 +38,7 @@ export class NetworkError extends ClientError {
     options?: ErrorOptions
   ) {
     super(message, options)
+    this.digest = timedOut ? "DRUPAL_TIMEOUT" : "DRUPAL_UNREACHABLE"
   }
 }
 
@@ -42,6 +52,7 @@ export class HttpError extends ClientError {
     readonly errors?: DrupalGraphqlError[]
   ) {
     super(message)
+    this.digest = `DRUPAL_HTTP_${status}`
   }
 }
 
@@ -54,6 +65,7 @@ export class GraphqlError extends ClientError {
     readonly errors: DrupalGraphqlError[] = []
   ) {
     super(message)
+    this.digest = "DRUPAL_GRAPHQL"
   }
 }
 
