@@ -52,7 +52,7 @@ const HeroBanner = ({
     <BannerWrapper
       {...props}
       className={cn(
-        "@6xl:min-h-600px @container relative mx-auto rs-mb-5 min-h-400 w-[calc(100%-0.8rem)] max-w-1600 overflow-hidden rounded-csp-lg",
+        "@container relative mx-auto rs-mb-5 flex min-h-400 w-[calc(100%-0.8rem)] max-w-[210rem] flex-col justify-center overflow-hidden rounded-csp-lg @6xl:min-h-600",
         {"bg-archway-dark": children},
         props.className
       )}
@@ -101,10 +101,11 @@ const HeroBanner = ({
 
       {children && (
         <div
-          className={cn("relative z-11 flex size-full flex-col rs-gap-2", {
+          className={cn("relative z-11 flex flex-col rs-gap-2", {
             "cc items-center justify-center rs-py-4 text-center text-white @6xl:max-w-800":
               overlayPosition === "center",
-            "rs-p-2 @6xl:my-60 @9xl:z-10 @9xl:max-w-[90rem] @9xl:bg-transparent": overlayPosition !== "center",
+            "justify-center rs-p-2 @6xl:my-60 @9xl:z-10 @9xl:max-w-9xl @9xl:bg-transparent":
+              overlayPosition !== "center",
             "@9xl:mr-40 @9xl:ml-auto": overlayPosition === "right",
             "@9xl:mr-auto @9xl:ml-40": overlayPosition === "left",
           })}

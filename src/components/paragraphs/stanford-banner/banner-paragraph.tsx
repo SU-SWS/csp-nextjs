@@ -81,14 +81,13 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
           />
 
           {!!paragraph.suBannerButton?.length && (
-            <ul className="m-0 list-none columns-1 gap-2.5 p-0 @7xl:columns-3">
+            <ul className="m-0 grid max-w-780 list-none auto-rows-fr grid-cols-1 gap-10 p-0 @7xl:grid-cols-3">
               {paragraph.suBannerButton?.map((button, i) => (
-                <li key={i}>
+                <li key={i} className="m-0 flex max-w-full min-w-242">
                   <Button
-                    key={i}
                     href={button.url}
                     variant={button.attributes?.imageBannerButtonType === "archway" ? "archway" : "digitalred"}
-                    className="m-5"
+                    className="h-full w-full justify-center"
                   >
                     {button.title}
                   </Button>
