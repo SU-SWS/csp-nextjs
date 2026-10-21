@@ -227,7 +227,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           })}
         >
           {(width && width < 992 ? headings : visibleHeadings).map(({id, text}) => (
-            <li key={id} data-nav-item className={cn("m-0", {"mb-12": !horizontal})}>
+            <li key={id} data-nav-item className={cn("m-0", {"mb-12 ml-0 lg:rs-mr-1 lg:ml-40": !horizontal})}>
               <a
                 href={`#${id}`}
                 onClick={closeMobileMenu}
