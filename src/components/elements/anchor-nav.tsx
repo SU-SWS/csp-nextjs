@@ -171,18 +171,18 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
     <div
       ref={navRef}
       {...props}
-      className={cn("centered-container relative z-20 mb-50 max-w-10xl text-16", props.className)}
+      className={cn("relative z-2 mb-50 max-w-10xl text-16", {centered: horizontal}, props.className)}
     >
       <nav
         aria-labelledby="anchor-nav"
         className={cn(
-          "relative mx-auto w-fit min-w-240 items-center rounded-csp-sm border border-fog-dark bg-csp-cream font-sans",
+          "relative mx-auto w-fit min-w-sm items-center rounded-csp-sm border border-fog-dark bg-csp-cream font-sans lg:mx-0",
           {
             "flex rounded-full": horizontal,
           }
         )}
       >
-        {width && width < 768 && (
+        {width && width < 992 && (
           <button
             ref={mobileButtonRef}
             id="anchor-nav"
@@ -202,7 +202,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
             />
           </button>
         )}
-        {(!width || width >= 768) && (
+        {(!width || width >= 992) && (
           <div
             ref={headingRef}
             id="anchor-nav"
@@ -220,19 +220,19 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           id={mobilePanelId}
           className={cn("list-unstyled", {
             "flex flex-row flex-nowrap items-center": horizontal,
-            "rs-mb-1 ml-40": !horizontal,
-            hidden: width && width < 768 && !mobileMenuOpen,
+            "rs-mb-1": !horizontal,
+            hidden: width && width < 992 && !mobileMenuOpen,
             "absolute top-full left-0 z-10 mt-25 block w-fit min-w-sm rounded-csp-lg border border-black-10 bg-csp-cream p-12.5":
-              width && width < 768 && mobileMenuOpen,
+              width && width < 992 && mobileMenuOpen,
           })}
         >
-          {(width && width < 768 ? headings : visibleHeadings).map(({id, text}) => (
+          {(width && width < 992 ? headings : visibleHeadings).map(({id, text}) => (
             <li key={id} data-nav-item className={cn("m-0", {"mb-12": !horizontal})}>
               <a
                 href={`#${id}`}
                 onClick={closeMobileMenu}
                 className={cn("nowrap block p-10 font-normal text-cardinal-red no-underline hocus:underline", {
-                  "px-10 py-0 whitespace-nowrap": horizontal && width && width >= 768,
+                  "px-10 py-0 whitespace-nowrap": horizontal && width && width >= 992,
                   "px-10 py-0": !horizontal,
                 })}
               >
@@ -242,7 +242,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           ))}
 
           {/* Overflow button — always rendered when horizontal so its width can be measured */}
-          {horizontal && width && width >= 768 && (
+          {horizontal && width && width >= 992 && (
             <li
               ref={overflowContainerRef}
               className={cn("relative my-0 rs-mr-2 ml-auto shrink-0 p-10", {
@@ -265,11 +265,11 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
                 />
               </button>
 
-              {width && width >= 768 && hasOverflow && overflowOpen && (
+              {width && width >= 992 && hasOverflow && overflowOpen && (
                 <ul
                   id={menuPanelId}
                   aria-labelledby={menuButtonId}
-                  className="absolute top-full right-0 z-10 m-0 mt-10 w-240 list-none rounded-csp-sm border border-fog-dark bg-csp-cream rs-py-2 rs-px-3"
+                  className="absolute top-full right-0 z-10 m-0 mt-10 w-sm list-none rounded-csp-sm border border-fog-dark bg-csp-cream rs-py-2 rs-px-3"
                 >
                   {overflowHeadings.map(({id, text}) => (
                     <li key={id} className="m-0 px-0 rs-pb-1 last:pb-0">
