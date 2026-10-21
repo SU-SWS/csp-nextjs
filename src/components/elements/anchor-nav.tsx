@@ -12,6 +12,8 @@ type HeadingItem = {
   text: string
 }
 
+const ANCHOR_NAV_BREAK = 992
+
 type Props = HTMLAttributes<HTMLDivElement> & {
   /**
    * Display links horizontally with overflow into a "More" dropdown.
@@ -182,7 +184,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           }
         )}
       >
-        {width && width < 992 && (
+        {width && width < ANCHOR_NAV_BREAK && (
           <button
             ref={mobileButtonRef}
             id="anchor-nav"
@@ -202,7 +204,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
             />
           </button>
         )}
-        {(!width || width >= 992) && (
+        {(!width || width >= ANCHOR_NAV_BREAK) && (
           <div
             ref={headingRef}
             id="anchor-nav"
@@ -221,18 +223,18 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           className={cn("list-unstyled", {
             "flex flex-row flex-nowrap items-center": horizontal,
             "rs-mb-1": !horizontal,
-            hidden: width && width < 992 && !mobileMenuOpen,
+            hidden: width && width < ANCHOR_NAV_BREAK && !mobileMenuOpen,
             "absolute top-full left-0 z-10 mt-25 block w-fit min-w-sm rounded-csp-lg border border-black-10 bg-csp-cream p-12.5":
-              width && width < 992 && mobileMenuOpen,
+              width && width < ANCHOR_NAV_BREAK && mobileMenuOpen,
           })}
         >
-          {(width && width < 992 ? headings : visibleHeadings).map(({id, text}) => (
+          {(width && width < ANCHOR_NAV_BREAK ? headings : visibleHeadings).map(({id, text}) => (
             <li key={id} data-nav-item className={cn("m-0", {"mb-12 ml-0 lg:rs-mr-1 lg:ml-40": !horizontal})}>
               <a
                 href={`#${id}`}
                 onClick={closeMobileMenu}
                 className={cn("nowrap block p-10 font-normal text-cardinal-red no-underline hocus:underline", {
-                  "px-10 py-0 whitespace-nowrap": horizontal && width && width >= 992,
+                  "px-10 py-0 whitespace-nowrap": horizontal && width && width >= ANCHOR_NAV_BREAK,
                   "px-10 py-0": !horizontal,
                 })}
               >
@@ -242,7 +244,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
           ))}
 
           {/* Overflow button — always rendered when horizontal so its width can be measured */}
-          {horizontal && width && width >= 992 && (
+          {horizontal && width && width >= ANCHOR_NAV_BREAK && (
             <li
               ref={overflowContainerRef}
               className={cn("relative my-0 rs-mr-2 ml-auto shrink-0 p-10", {
@@ -265,7 +267,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
                 />
               </button>
 
-              {width && width >= 992 && hasOverflow && overflowOpen && (
+              {width && width >= ANCHOR_NAV_BREAK && hasOverflow && overflowOpen && (
                 <ul
                   id={menuPanelId}
                   aria-labelledby={menuButtonId}
