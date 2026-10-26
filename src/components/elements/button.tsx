@@ -98,7 +98,7 @@ const Button = ({
         {showIcon && (
           <ArrowRightIcon
             height={22}
-            className="mb-[.3rem] ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
+            className="mb-3 ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
           />
         )}
       </button>
@@ -112,7 +112,7 @@ const Button = ({
       {showIcon && (
         <ArrowRightIcon
           height={22}
-          className="mb-[.3rem] ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
+          className="mb-3 ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
         />
       )}
     </Component>

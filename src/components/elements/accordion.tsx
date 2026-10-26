@@ -84,10 +84,14 @@ const Accordion = ({
 
   return (
     <section aria-labelledby={`${id}-button`} {...props}>
-      <Heading id={`${id}-button`}>
+      <Heading id={`${id}-button`} className={cn("type-1")}>
         <button
           {...buttonProps}
-          className={cn("flex w-full items-center text-left hocus-visible:underline", buttonProps?.className)}
+          className={cn(
+            "flex w-full items-center rs-gap-1 rs-px-2 text-left hocus-visible:underline",
+            {"rs-pb-1": !isExpanded},
+            buttonProps?.className
+          )}
           aria-expanded={isExpanded}
           aria-controls={`${id}-panel`}
           onClick={onButtonClick}
@@ -100,7 +104,7 @@ const Accordion = ({
       <div
         {...panelProps}
         id={`${id}-panel`}
-        className={cn("hidden", {"mb-40 block": isExpanded}, panelProps?.className)}
+        className={cn("hidden", {"rs-mb-1 block": isExpanded}, panelProps?.className)}
         role="region"
         aria-labelledby={`${id}-button`}
       >

@@ -32,7 +32,9 @@ const ExpandCollapseAll = ({...props}: Props) => {
       buttonElem
       onClick={toggle}
       {...props}
-      className={cn("flex items-center gap-10 whitespace-nowrap", props.className)}
+      showIcon={false}
+      variant="ghost"
+      className={cn("mt-30 flex items-center gap-10 whitespace-nowrap", props.className)}
     >
       {expand ? "Expand All" : "Collapse All"}
       {expand && <PlusIcon width={20} />}
