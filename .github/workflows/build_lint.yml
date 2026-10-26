@@ -73,7 +73,8 @@ jobs:
             build-${{ hashFiles('drush/drush.yml') }}-${{ hashFiles('composer.json') }}-${{ hashFiles('composer.lock') }}
             build-${{ hashFiles('drush/drush.yml') }}-${{ hashFiles('composer.json') }}-
             build-${{ hashFiles('drush/drush.yml') }}-
-      # The image's MariaDB client verifies server certs by default, and the mysql service's cert is self-signed.
+      # The image's MariaDB client verifies server certs by default, and the mysql service's cert is self-signed. Drush
+      # gets the same setting from the Drupal repo's ci.settings.php.
       - name: Sync Site
         run: |
           git config --system --add safe.directory '*' &&
