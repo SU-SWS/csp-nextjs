@@ -73,9 +73,11 @@ jobs:
             build-${{ hashFiles('drush/drush.yml') }}-${{ hashFiles('composer.json') }}-${{ hashFiles('composer.lock') }}
             build-${{ hashFiles('drush/drush.yml') }}-${{ hashFiles('composer.json') }}-
             build-${{ hashFiles('drush/drush.yml') }}-
+      # The image's MariaDB client verifies server certs by default, and the mysql service's cert is self-signed.
       - name: Sync Site
         run: |
           git config --system --add safe.directory '*' &&
+          printf '[client]\nskip-ssl-verify-server-cert\n' > /etc/mysql/conf.d/ci.cnf &&
           mysql -h mysql -P 3306 -u root -pdrupal -e 'SET GLOBAL max_allowed_packet=67108864;' &&
           rm -rf /var/www/html &&
           ln -snf $GITHUB_WORKSPACE /var/www/html &&
