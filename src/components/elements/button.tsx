@@ -69,12 +69,12 @@ const Button = ({
   const classes = cn(
     "btn group inline-flex w-fit max-w-300 items-center rounded-csp-sm font-normal no-underline transition hocus:underline",
     {
-      "border border-csp-digital-red-xdark bg-cardinal-red text-white hocus:bg-digital-red hocus:text-white":
+      "border border-csp-digital-red-dark bg-cardinal-red text-white hocus:bg-digital-red hocus:text-white":
         variant === "primary",
       "border-archway-stone border text-archway-dark hocus:border-black": variant === "secondary",
       "border border-stone bg-transparent text-archway-dark hocus:bg-archway-dark hocus:text-csp-cream":
         variant === "ghost",
-      "border border-csp-digital-red-xdark bg-digital-red/80 text-csp-cream hocus:bg-digital-red hocus:text-csp-cream":
+      "border border-csp-digital-red-dark bg-digital-red/80 text-csp-cream hocus:bg-digital-red hocus:text-csp-cream":
         variant === "digitalred",
       "border border-stone bg-archway-dark/80 text-csp-cream hocus:bg-archway-dark hocus:text-csp-cream":
         variant === "archway",
@@ -98,7 +98,7 @@ const Button = ({
         {showIcon && (
           <ArrowRightIcon
             height={22}
-            className="mb-[.3rem] ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
+            className="mb-3 ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
           />
         )}
       </button>
@@ -112,7 +112,7 @@ const Button = ({
       {showIcon && (
         <ArrowRightIcon
           height={22}
-          className="mb-[.3rem] ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
+          className="mb-3 ml-5 inline-block shrink-0 transition-all group-hocus-visible:translate-x-2.5"
         />
       )}
     </Component>

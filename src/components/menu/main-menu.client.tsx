@@ -189,7 +189,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
             <ChevronDownIcon
               height={20}
               className={cn(
-                "ml-auto transition duration-150 ease-in-out group-hocus-visible:text-csp-digital-red-xdark",
+                "ml-auto transition duration-150 ease-in-out group-hocus-visible:text-csp-digital-red-dark",
                 {"rotate-180": submenuOpen}
               )}
             />

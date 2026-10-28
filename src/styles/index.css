@@ -18,6 +18,7 @@
 @theme {
   /* Decanter ships 3xl at 1700px; this project has always used 1600px. */
   --breakpoint-3xl: 1600px;
+  --breakpoint-bp-981: 981px;
 
   /* Container query sizes above Tailwind's built-in 7xl (80rem). */
   --container-8xl: 80rem;
@@ -58,13 +59,11 @@
   --list-style-type-circle: circle;
   --list-style-type-square: square;
 
-  /* CSP container query size, e.g. @bp-768:flex-row. */
-  --container-bp-768: 76.8rem;
-
   /* CSP colors, e.g. bg-csp-cream or text-csp-archway-xdark. */
   --color-csp-cream: #fcf9f5;
   --color-csp-peach: #daa67f;
-  --color-csp-digital-red-xdark: #7a0000;
+  --color-csp-digital-red-dark: #7a0000;
+  --color-csp-digital-red-xdark: #600000;
   --color-csp-dark-66: #2f2424a8;
   --color-csp-palo-alto-50: #8ebdba;
   --color-csp-plum-xlight: #b080ac;

@@ -29,7 +29,7 @@ const ActionLink = ({href, children, prefetch = false, ...props}: Props) => {
       )}
     >
       {children}
-      <span className="mb-[.3rem] block size-[2.6rem] rounded-full border border-csp-digital-red-xdark bg-digital-red hocus:bg-cardinal-red">
+      <span className="mb-[.3rem] block size-[2.6rem] rounded-full border border-csp-digital-red-dark bg-digital-red hocus:bg-cardinal-red">
         <ChevronRightIcon
           height={25}
           className="inline-block fill-white align-top transition-all group-hocus-visible:translate-x-2.5"
