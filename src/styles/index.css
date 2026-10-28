@@ -18,6 +18,7 @@
 @theme {
   /* Decanter ships 3xl at 1700px; this project has always used 1600px. */
   --breakpoint-3xl: 1600px;
+  --breakpoint-bp-981: 981px;
 
   /* Container query sizes above Tailwind's built-in 7xl (80rem). */
   --container-8xl: 80rem;
@@ -57,9 +58,6 @@
   --list-style-type-upper-roman: upper-roman;
   --list-style-type-circle: circle;
   --list-style-type-square: square;
-
-  /* CSP container query size, e.g. @bp-981:flex-row. */
-  --container-bp-981: 98.1rem;
 
   /* CSP colors, e.g. bg-csp-cream or text-csp-archway-xdark. */
   --color-csp-cream: #fcf9f5;

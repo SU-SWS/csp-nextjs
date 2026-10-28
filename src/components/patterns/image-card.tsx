@@ -56,7 +56,7 @@ const ImageCard = ({
       {...props}
       className={cn(
         "relative centered h-full w-full rounded-csp-lg border xl:max-w-980",
-        {"max-w-16xl flex flex-col gap-6 border-none @bp-981:flex-row": isPoster},
+        {"max-w-16xl flex flex-col gap-6 border-none bp-981:flex-row": isPoster},
         props.className
       )}
     >
