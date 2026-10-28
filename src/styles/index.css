@@ -58,8 +58,8 @@
   --list-style-type-circle: circle;
   --list-style-type-square: square;
 
-  /* CSP container query size, e.g. @bp-768:flex-row. */
-  --container-bp-768: 76.8rem;
+  /* CSP container query size, e.g. @bp-981:flex-row. */
+  --container-bp-981: 98.1rem;
 
   /* CSP colors, e.g. bg-csp-cream or text-csp-archway-xdark. */
   --color-csp-cream: #fcf9f5;

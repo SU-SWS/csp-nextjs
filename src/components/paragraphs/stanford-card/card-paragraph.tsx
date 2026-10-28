@@ -32,7 +32,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
     "mt-0 mb-0 type-2 font-normal text-archway-dark",
     headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
     {
-      "max-w-[55rem] fluid-type-3 text-csp-cream": isPoster,
+      "fluid-type-3 text-csp-cream": isPoster,
       "sr-only": behaviors.su_card_styles?.hide_heading,
       "text-archway-dark [&_a]:text-archway-light [&_a]:hocus:text-archway-dark":
         !bgColor || (isPoster && bgColor === "f4f4f4"),
@@ -86,9 +86,9 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
 
       <Wysiwyg
         className={cn({
-          "rs-mt-1 text-archway-light [&_*]:text-16 [&_*]:leading-[1.5] md:[&_*]:text-19 [&_a]:hocus:text-archway-dark":
+          "rs-mt-1 text-archway-light **:text-16 **:leading-normal md:**:text-19 [&_a]:hocus:text-archway-dark":
             !isPoster,
-          "type-2 text-csp-cream [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline": isPoster,
+          "text-csp-cream **:type-2 [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline": isPoster,
           "[&_a]:text-csp-peach": (isPoster && bgColor === "8c1515") || (isPoster && bgColor === "2e2d29"),
           "[&_a]:text-csp-plum-xlight": isPoster && bgColor === "620059",
           "[&_a]:text-lagunita-40": isPoster && bgColor === "007c92",
@@ -105,7 +105,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
               className={cn(
                 "rs-mt-2 items-center font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
                 {
-                  "[&_svg]:hocus:fill-text-csp-peach relative flex pr-[25px] text-csp-cream hocus:text-csp-peach":
+                  "[&_svg]:hocus:fill-text-csp-peach pr-25px relative flex text-csp-cream hocus:text-csp-peach":
                     isPoster,
                   "text-archway-dark [&_a]:hocus:text-archway-dark": !bgColor || (isPoster && bgColor === "f4f4f4"),
                 }
@@ -116,9 +116,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
             </ActionLink>
           )}
           {behaviors.su_card_styles?.link_style !== "action" && (
-            <Button className="rs-mt-2" href={paragraph.suCardLink.url}>
-              {paragraph.suCardLink.title}
-            </Button>
+            <Button href={paragraph.suCardLink.url}>{paragraph.suCardLink.title}</Button>
           )}
         </>
       )}
