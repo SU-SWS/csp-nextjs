@@ -18,7 +18,6 @@
 @theme {
   /* Decanter ships 3xl at 1700px; this project has always used 1600px. */
   --breakpoint-3xl: 1600px;
-  --breakpoint-bp-981: 981px;
 
   /* Container query sizes above Tailwind's built-in 7xl (80rem). */
   --container-8xl: 80rem;

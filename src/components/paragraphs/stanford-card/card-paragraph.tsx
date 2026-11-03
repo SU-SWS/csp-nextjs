@@ -119,7 +119,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
               href={paragraph.suCardLink.url}
               className={cn("hocus:border-csp-digital-red-dark", {
                 "border-csp-digital-red-xdark bg-digital-red/80":
-                  (isPoster && bgColor === "8c1515") || (isPoster && bgColor === "2e2d29"),
+                  isPoster && (bgColor === "8c1515" || bgColor === "2e2d29"),
                 "border-csp-digital-red-xdark bg-cardinal-red": !bgColor || (isPoster && bgColor === "f4f4f4"),
                 "border-stone bg-archway/80":
                   (isPoster && bgColor === "007c92") ||
