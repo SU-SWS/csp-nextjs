@@ -194,7 +194,7 @@ const LocalFooter = async ({...props}: Props) => {
                     <li key={`footer-social-link-${index}`}>
                       <Link
                         href={link.url}
-                        className="block rounded-full border border-transparent p-5 [&_svg]:fill-csp-dark-66 hocus:[&_svg]:fill-csp-digital-red-xdark"
+                        className="block rounded-full border border-transparent p-5 [&_svg]:fill-csp-dark-66 hocus:[&_svg]:fill-csp-digital-red-dark"
                       >
                         <SocialIcon url={link.url} />
                         <span className="sr-only">{link.title}</span>
