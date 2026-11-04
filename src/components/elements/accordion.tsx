@@ -84,7 +84,7 @@ const Accordion = ({
 
   return (
     <section aria-labelledby={`${id}-button`} {...props}>
-      <Heading id={`${id}-button`} className={cn("type-1")}>
+      <Heading id={`${id}-button`} className="type-1">
         <button
           {...buttonProps}
           className={cn(
