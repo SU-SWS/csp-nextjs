@@ -178,7 +178,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
       <nav
         aria-labelledby="anchor-nav"
         className={cn(
-          "relative mx-auto w-fit min-w-sm items-center rounded-csp-sm border border-fog-dark bg-csp-cream font-sans lg:mx-0",
+          "relative mx-auto w-fit min-w-xs items-center rounded-csp-sm border border-fog-dark bg-csp-cream font-sans lg:mx-0",
           {
             "flex rounded-full": horizontal,
           }
@@ -224,7 +224,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
             "flex flex-row flex-nowrap items-center": horizontal,
             "rs-mb-1": !horizontal,
             hidden: width && width < ANCHOR_NAV_BREAK && !mobileMenuOpen,
-            "absolute top-full left-0 z-10 mt-25 block w-fit min-w-sm rounded-csp-lg border border-black-10 bg-csp-cream p-12.5":
+            "absolute top-full left-0 z-10 mt-6 block w-fit min-w-sm rounded-csp-sm border border-fog-dark bg-csp-cream p-12.5":
               width && width < ANCHOR_NAV_BREAK && mobileMenuOpen,
           })}
         >

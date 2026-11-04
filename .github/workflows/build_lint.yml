@@ -30,7 +30,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: pookmish/drupal8ci:php8.3
+      image: pookmish/drupal8ci:php8.4
       env:
         BUILD_PAGES: 500
     services:
@@ -76,6 +76,7 @@ jobs:
       - name: Sync Site
         run: |
           git config --system --add safe.directory '*' &&
+          printf '[client]\nskip-ssl-verify-server-cert\n' > /etc/mysql/conf.d/ci.cnf &&
           mysql -h mysql -P 3306 -u root -pdrupal -e 'SET GLOBAL max_allowed_packet=67108864;' &&
           rm -rf /var/www/html &&
           ln -snf $GITHUB_WORKSPACE /var/www/html &&
@@ -99,3 +100,11 @@ jobs:
           cd $GITHUB_WORKSPACE/frontend &&
           yarn &&
           yarn build
+      # html-validate needs a newer node than the drupal8ci image ships.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Validate HTML
+        run: |
+          cd $GITHUB_WORKSPACE/frontend &&
+          yarn validate:html

@@ -77,7 +77,7 @@ const BannerParagraph = ({paragraph, eagerLoadImage, ...props}: Props) => {
 
           <Wysiwyg
             html={paragraph.suBannerBody?.processed}
-            className="font-sans font-normal text-csp-cream @6xl:max-w-[55rem] [&_p]:text-19"
+            className="font-sans font-normal text-csp-cream @6xl:max-w-[55rem] [&_a]:text-csp-peach [&_a]:no-underline [&_a]:hocus:underline [&_p]:text-19"
           />
 
           {!!paragraph.suBannerButton?.length && (
