@@ -106,7 +106,7 @@ const StanfordMediaPage = async ({node, ...props}: Props) => {
           </div>
         </ReverseVisualOrder>
 
-        <Wysiwyg html={node.body?.processed} className="centered mb-64 xl:max-w-980" />
+        <Wysiwyg html={node.body?.processed} className="content-width mb-64" />
 
         {!!node.suMediaClips?.length && (
           <div>

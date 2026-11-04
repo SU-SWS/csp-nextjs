@@ -59,7 +59,7 @@ const StanfordPagePage = ({node, isHome, ...props}: Props) => {
           hideSecondaryNav={hideSecondaryNav}
         >
           {anchorPosition === "top" && <AnchorNav horizontal />}
-          <Wysiwyg html={node.body?.processed} className="centered mb-64 xl:max-w-980" />
+          <Wysiwyg html={node.body?.processed} className="content-width mb-64" />
           <Rows components={node.suPageComponents} />
         </InteriorPage>
       )}
@@ -67,7 +67,7 @@ const StanfordPagePage = ({node, isHome, ...props}: Props) => {
       {fullWidth && (
         <>
           {anchorPosition === "top" && <AnchorNav horizontal />}
-          <Wysiwyg html={node.body?.processed} className="centered mb-64 xl:max-w-980" />
+          <Wysiwyg html={node.body?.processed} className="content-width mb-64" />
           <Rows components={node.suPageComponents} />
         </>
       )}
