@@ -16,7 +16,7 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
 }
 
 const InteriorPage = ({children, leftSideBar, hideSecondaryNav, currentPath, menuItems, ...props}: Props) => (
-  <div {...props} className={cn("centered flex flex-col gap-40 lg:flex-row", props.className)}>
+  <div {...props} className={cn("group/interior centered flex flex-col gap-40 lg:flex-row", props.className)}>
     {/* The menu lookup lives in its own component, so the page content renders alongside it instead of waiting. */}
     <InteriorSideBar hideSecondaryNav={hideSecondaryNav} currentPath={currentPath} menuItems={menuItems}>
       {leftSideBar}

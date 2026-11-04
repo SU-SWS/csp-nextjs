@@ -77,7 +77,7 @@ const StanfordNewsPage = ({node, ...props}: Props) => {
         </figure>
       )}
 
-      <Wysiwyg html={node.body?.processed} className="centered mb-64 xl:max-w-980" />
+      <Wysiwyg html={node.body?.processed} className="content-width mb-64" />
       <Rows components={node.suNewsComponents} className="mx-auto lg:w-8/12" />
     </article>
   )
