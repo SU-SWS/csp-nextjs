@@ -34,3 +34,17 @@
     max-width: 1500px;
   }
 }
+
+/*
+  Readable content column: centered, capped at 980px from xl up. Inside an
+  interior page with a sidebar, align to the left of the content column instead
+  of centering within it.
+*/
+@utility content-width {
+  @apply centered xl:max-w-980;
+
+  :where(.group\/interior):has(> aside) & {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
