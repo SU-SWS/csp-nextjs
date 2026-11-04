@@ -21,6 +21,7 @@ const TwoColumn = ({items, config}: Props) => {
   return (
     <div
       className={cn("mx-auto mb-80", {
+        "w-49/50 rounded-csp-lg": !!config?.bg_color,
         gutters: !config?.bg_color,
         "px-40 py-40": !!config?.bg_color,
         "pt-0": config?.top_padding === "none",

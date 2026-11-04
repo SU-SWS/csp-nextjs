@@ -16,6 +16,7 @@ const OneColumn = ({items, config, className, ...props}: Props) => {
       className={cn(
         "@container mb-80 h-fit space-y-40",
         {
+          "mx-auto w-49/50 rounded-csp-lg": !!config?.bg_color,
           "px-20 py-40": !!config?.bg_color,
           "pt-0": config?.top_padding === "none",
           "pt-80": config?.top_padding === "more",
