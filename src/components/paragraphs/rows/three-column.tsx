@@ -18,6 +18,7 @@ const ThreeColumn = ({items, config}: Props) => {
   return (
     <div
       className={cn("mx-auto mb-80 h-fit", {
+        "w-49/50 rounded-csp-lg": !!config?.bg_color,
         "px-20 py-40": !!config?.bg_color,
         "pt-0": config?.top_padding === "none",
         "pt-80": config?.top_padding === "more",
