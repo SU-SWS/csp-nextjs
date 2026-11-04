@@ -55,8 +55,11 @@ const ImageCard = ({
     <CardWrapper
       {...props}
       className={cn(
-        "relative content-width h-full w-full rounded-csp-lg border",
-        {"max-w-16xl flex flex-col gap-6 border-none lg:flex-row": isPoster},
+        "relative h-full w-full rounded-csp-lg border",
+        {
+          "content-width": !isPoster,
+          "centered flex w-[calc(100%-0.8rem)] max-w-1600 flex-col gap-6 border-none lg:flex-row": isPoster,
+        },
         props.className
       )}
     >
