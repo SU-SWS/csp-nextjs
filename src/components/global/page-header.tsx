@@ -32,7 +32,7 @@ const PageHeader = async ({...props}: Props) => {
         <div className="centered pr-0 sm:pr-60 md:pr-50 lg:pr-0">
           <div className="mb-20 flex w-full flex-col justify-between pr-20 sm:mb-0 sm:flex-row sm:items-center md:pr-0">
             <Lockup />
-            <div className="flex items-center justify-end gap-15 pr-[6.5rem] sm:justify-center sm:pr-0 md:mr-50 lg:mr-0">
+            <div className="flex items-center justify-end gap-30 pr-65 sm:justify-center sm:pr-0 md:mr-50 lg:mr-0">
               <UtilityNav />
               {!hideSearch && <SiteSearchForm className="hidden lg:hidden" />}
               <QuarterAlert className="hidden xl:block" />
