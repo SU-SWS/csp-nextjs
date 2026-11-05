@@ -306,7 +306,7 @@ const classMap: Record<string, string> = {
   "font-splash": "type-4 font-normal font-sans",
   "callout-text": "font-normal type-2 font-sans",
   "related-text": "border border-fog-dark rounded-csp-md p-40 font-normal",
-  "intro-text": "type-2 font-normal font-sans",
+  "intro-text": "type-2 font-normal font-sans [.wysiwyg_&]:mb-1em",
   "quote-text": "p-[4.8rem] mb-80 type-1 border-l-3 border-fog-dark",
   "drop-cap":
     "type-2 font-normal font-sans first-letter:san-serif first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-5 first-letter:mr-10",
