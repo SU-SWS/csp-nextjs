@@ -263,7 +263,7 @@ const createOptions = (allowedTags?: Array<string>): HTMLReactParserOptions => {
         }
 
         case "hr":
-          return <NodeName {...getNodeProps(domNode, "border-black rs-mb-0")} />
+          return <NodeName {...getNodeProps(domNode, "border-stone rs-mb-0")} />
 
         case "pre": {
           const codeStyles =
