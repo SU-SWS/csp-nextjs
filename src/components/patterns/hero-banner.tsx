@@ -88,11 +88,10 @@ const HeroBanner = ({
         )}
         {children && overlayPosition !== "center" && (
           <div
+            // Only shown when the text overlays the image; stacked below it, the image has no gradient.
             className={cn(
-              "absolute inset-0 z-10 bg-linear-to-b from-transparent via-csp-archway-meddark/60 via-50% to-csp-archway-xdark/95 to-75% @2xl:from-60% @4xl:from-50% @9xl:to-transparent",
-              overlayPosition === "right"
-                ? "@9xl:bg-linear-to-l @9xl:from-csp-archway-xdark/95 @9xl:from-30%"
-                : "@9xl:bg-linear-to-r @9xl:from-csp-archway-xdark/95 @9xl:from-30%"
+              "absolute inset-0 z-10 hidden from-csp-archway-xdark/95 from-30% via-csp-archway-meddark/60 via-50% to-transparent to-75% @9xl:block",
+              overlayPosition === "right" ? "bg-linear-to-l" : "bg-linear-to-r"
             )}
             aria-hidden="true"
           />
@@ -106,7 +105,7 @@ const HeroBanner = ({
               overlayPosition === "center",
             "justify-center rs-p-2 @6xl:my-60 @9xl:z-10 @9xl:max-w-9xl @9xl:bg-transparent":
               overlayPosition !== "center",
-            "@9xl:mr-40 @9xl:ml-auto": overlayPosition === "right",
+            "relative text-right @9xl:mr-40 @9xl:ml-auto @9xl:items-end": overlayPosition === "right",
             "@9xl:mr-auto @9xl:ml-40": overlayPosition === "left",
           })}
         >
