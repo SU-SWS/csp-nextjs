@@ -57,7 +57,8 @@ const ImageCard = ({
       className={cn(
         "relative h-full w-full rounded-csp-lg border",
         {
-          "content-width": !isPoster,
+          "content-width border-fog-dark": !isPoster,
+          "overflow-hidden rounded-t-csp-lg": !imageUrl && !videoUrl && !isPoster,
           "centered flex w-[calc(100%-0.8rem)] max-w-1600 flex-col gap-6 border-none lg:flex-row": isPoster,
         },
         props.className
@@ -84,9 +85,9 @@ const ImageCard = ({
       {videoUrl && <Oembed url={videoUrl} />}
 
       <div
-        className={cn("flex flex-col rs-p-4", {
-          "rounded-b-csp-lg bg-csp-cream": !isPoster,
-          "flex-1 rs-gap-1 rounded-csp-md": isPoster,
+        className={cn("flex flex-col", {
+          "rounded-b-csp-lg bg-csp-cream rs-pt-2 rs-pr-3 rs-pb-3 rs-pl-2": !isPoster,
+          "flex-1 rs-gap-1 rounded-csp-md rs-p-4": isPoster,
           "bg-archway-dark": isPoster && bgColor === "2e2d29",
           "bg-cardinal-red": isPoster && bgColor === "8c1515",
           "bg-plum": isPoster && bgColor === "620059",
