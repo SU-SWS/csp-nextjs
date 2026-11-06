@@ -13,7 +13,7 @@ const QuarterAlert = async ({className, ...props}: Props) => {
   return (
     <div
       className={cn(
-        "mx-[3rem] mb-[.9rem] gap-20 rounded-3xl border-2 py-[.9rem] rs-px-2 pr-80 leading-none text-white md:mx-60 lg:mr-60 lg:justify-self-end xl:block xl:max-w-[24rem] xl:rounded-t-none xl:rounded-b-3xl xl:border-t-0 xl:rs-pt-0 xl:rs-px-1 xl:rs-pb-1 xl:text-left",
+        "mb-9 gap-20 rounded-3xl border-2 py-9 rs-px-2 pr-80 leading-none text-white lg:justify-self-end xl:block xl:max-w-sm xl:rounded-t-none xl:rounded-b-3xl xl:border-t-0 xl:rs-pt-0 xl:rs-px-1 xl:rs-pb-1 xl:text-left",
         {
           "bg-lagunita": !config.cspQaColor,
           "border-csp-lagunita-xdark bg-lagunita": config.cspQaColor === "lagunita",
@@ -33,7 +33,15 @@ const QuarterAlert = async ({className, ...props}: Props) => {
         {config.cspQaText?.processed && (
           <Wysiwyg
             html={config.cspQaText.processed}
-            className="[&_*]:font-serif [&_a]:font-semibold [&_a]:text-white [&_a]:hocus:text-white [&_p]:text-18"
+            className={cn(
+              "**:font-serif [&_a]:font-semibold [&_a]:text-white [&_a]:hocus:text-white [&_p]:text-18 [&_p]:leading-normal",
+              {
+                "[&_a]:hocus:text-lagunita-40": config.cspQaColor === "lagunita",
+                "[&_a]:hocus:text-csp-peach": config.cspQaColor === "cardinal" || config.cspQaColor === "black",
+                "[&_a]:hocus:text-csp-plum-xlight": config.cspQaColor === "plum",
+                "[&_a]:hocus:text-csp-palo-alto-50": config.cspQaColor === "palo-alto",
+              }
+            )}
           />
         )}
       </div>
