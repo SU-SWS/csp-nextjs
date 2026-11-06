@@ -29,10 +29,11 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
   const headerTagChoice = (behaviors.su_card_styles?.heading || "h2").split(".", 2)
   const headerTag = headerTagChoice[0]
   const headerClasses = cn(
-    "mt-0 mb-0 type-2 font-normal text-archway-dark",
+    "mt-0 mb-0 font-normal text-archway-dark",
     headerTagChoice[1]?.replace(".", " ").replace("su-font-splash", "type-2 font-bold") || undefined,
     {
       "fluid-type-3 text-csp-cream": isPoster,
+      "type-1": !isPoster,
       "sr-only": behaviors.su_card_styles?.hide_heading,
       "text-archway-dark [&_a]:text-archway-light [&_a]:hocus:text-archway-dark":
         !bgColor || (isPoster && bgColor === "f4f4f4"),
@@ -86,7 +87,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
 
       <Wysiwyg
         className={cn({
-          "rs-mt-1 text-archway-light **:text-16 **:leading-normal md:**:text-19 [&_a]:hocus:text-archway-dark":
+          "rs-mt-1 rs-mb-2 text-archway-light **:text-16 **:leading-normal md:**:text-19 [&_a]:hocus:text-archway-dark":
             !isPoster,
           "text-csp-cream **:type-2 [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline": isPoster,
           "[&_a]:text-csp-peach": (isPoster && bgColor === "8c1515") || (isPoster && bgColor === "2e2d29"),
