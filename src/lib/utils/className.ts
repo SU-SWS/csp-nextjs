@@ -35,6 +35,8 @@ const customTwMerge = extendTailwindMerge({
     },
     theme: {
       radius: ["csp-xs", "csp-sm", "csp-md", "csp-lg"],
+      // Decanter's em spacing tokens, so a class like `mb-04em` replaces another margin.
+      spacing: ["01em", "02em", "03em", "04em", "05em", "06em", "07em", "08em", "09em", "1em"],
     },
   },
 })

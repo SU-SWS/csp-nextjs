@@ -1,5 +1,0 @@
-@layer components {
-  .wysiwyg > :first-child {
-    margin-top: 0;
-  }
-}
