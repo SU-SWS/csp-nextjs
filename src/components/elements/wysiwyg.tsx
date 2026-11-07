@@ -64,25 +64,22 @@ const componentMap: Record<string, React.ElementType> = {
 
 const headingTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6"])
 
-const headingSpacing = "mb-07em not-first:mt-16em"
-
 /**
- * Vertical rhythm for editor content. Applied ahead of the editor's own classes, so a mapped class
- * such as `intro-text` can replace a margin here.
+ * Vertical rhythm for editor content, on Decanter's responsive spacing scale. Applied ahead of the
+ * editor's own classes, so a mapped class such as `font-splash` can replace a margin here.
  *
- * `h1` renders as an h2, so `[h2+&]` also follows a demoted h1.
+ * H2 to H5 take their margins from the heading components. A heading directly under the level
+ * above it sits closer; `h1` renders as an h2, so `[h2+&]` also follows a demoted h1.
  */
 const blockSpacing: Record<string, string> = {
-  p: "mb-16em in-[li]:mb-04em",
-  ul: "mb-16em",
-  ol: "mb-16em",
-  dl: "mb-16em",
-  h1: headingSpacing,
-  h2: headingSpacing,
-  h3: cn(headingSpacing, "[h2+&]:not-first:mt-1em"),
-  h4: cn(headingSpacing, "[h3+&]:not-first:mt-1em"),
-  h5: cn(headingSpacing, "[h4+&]:not-first:mt-1em"),
-  h6: cn(headingSpacing, "[h5+&]:not-first:mt-1em"),
+  p: "rs-mb-2 in-[li]:mb-04em",
+  ul: "rs-mb-2",
+  ol: "rs-mb-2",
+  dl: "rs-mb-2",
+  h3: "[h2+&]:rs-mt-1",
+  h4: "[h3+&]:rs-mt-1",
+  h5: "[h4+&]:rs-mt-1",
+  h6: "rs-mt-2 rs-mb-0 [h5+&]:rs-mt-1",
 }
 
 /**
@@ -328,7 +325,7 @@ const classMap: Record<string, string> = {
   "font-splash": "type-4 font-normal font-sans rs-my-2",
   "callout-text": "font-normal type-2 font-sans",
   "related-text": "border border-fog-dark rounded-csp-md p-40 font-normal",
-  "intro-text": "type-2 font-normal font-sans mb-1em",
+  "intro-text": "type-2 font-normal font-sans rs-mb-2",
   "quote-text": "p-[4.8rem] mb-80 type-1 border-l-3 border-fog-dark",
   "drop-cap":
     "type-2 font-normal font-sans first-letter:san-serif first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-5 first-letter:mr-10",
@@ -342,7 +339,7 @@ const paragraphClassMap: Record<string, string> = {
   "align-left": "float-left mr-20",
   "align-right": "float-right ml-20",
   "font-splash": cn(classMap["font-splash"], "in-[li]:rs-my-2"),
-  "intro-text": cn(classMap["intro-text"], "in-[li]:mb-1em"),
+  "intro-text": cn(classMap["intro-text"], "in-[li]:rs-mb-2"),
   "quote-text": "p-[4.8rem] type-1 border-l-3 border-fog-dark",
 }
 
