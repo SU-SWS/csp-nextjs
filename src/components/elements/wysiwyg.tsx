@@ -34,7 +34,7 @@ const Wysiwyg = ({html, allowedTags, className, ...props}: Props): ReactElement 
   const cleanHtml = html.replaceAll(/^\s*\n/gm, "")
 
   return (
-    <div className={cn("wysiwyg", className)} {...props}>
+    <div className={cn("wysiwyg *:first:mt-0 *:last:mb-0", className)} {...props}>
       {mathJaxDelimiters.test(cleanHtml) && <Mathjax />}
       {convertHtml(cleanHtml, allowedTags)}
     </div>
@@ -63,6 +63,27 @@ const componentMap: Record<string, React.ElementType> = {
 }
 
 const headingTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6"])
+
+const headingSpacing = "mb-07em not-first:mt-16em"
+
+/**
+ * Vertical rhythm for editor content. Applied ahead of the editor's own classes, so a mapped class
+ * such as `intro-text` can replace a margin here.
+ *
+ * `h1` renders as an h2, so `[h2+&]` also follows a demoted h1.
+ */
+const blockSpacing: Record<string, string> = {
+  p: "mb-16em in-[li]:mb-04em",
+  ul: "mb-16em",
+  ol: "mb-16em",
+  dl: "mb-16em",
+  h1: headingSpacing,
+  h2: headingSpacing,
+  h3: cn(headingSpacing, "[h2+&]:not-first:mt-1em"),
+  h4: cn(headingSpacing, "[h3+&]:not-first:mt-1em"),
+  h5: cn(headingSpacing, "[h4+&]:not-first:mt-1em"),
+  h6: cn(headingSpacing, "[h5+&]:not-first:mt-1em"),
+}
 
 /**
  * Underline styles and chevron icon sizes for editor headings that contain a link.
@@ -124,7 +145,7 @@ const textContent = (node: Element): string =>
 const getNodeProps = (node: Element, className?: string) => {
   const props = attributesToProps(node.attribs)
 
-  const classes = cn(className, fixClasses(props.className))
+  const classes = cn(className, fixClasses(props.className, node.name))
   if (classes) props.className = classes
   else delete props.className
 
@@ -197,7 +218,7 @@ const createOptions = (allowedTags?: Array<string>): HTMLReactParserOptions => {
 
         case "p":
           return (
-            <NodeName {...getNodeProps(domNode, "max-w-[100ch] text-21 leading-[1.7]")}>
+            <NodeName {...getNodeProps(domNode, cn("max-w-[100ch] text-21 leading-[1.7]", blockSpacing.p))}>
               {domToReact(children, options)}
             </NodeName>
           )
@@ -211,7 +232,7 @@ const createOptions = (allowedTags?: Array<string>): HTMLReactParserOptions => {
         case "h5":
         case "h6": {
           const {heading, icon} = linkedHeadingStyles[domNode.name]
-          const props = getNodeProps(domNode, heading)
+          const props = getNodeProps(domNode, cn(heading, blockSpacing[domNode.name]))
           if (!props.id) {
             const id = getIdFromText(textContent(domNode))
             if (id) props.id = id
@@ -228,7 +249,7 @@ const createOptions = (allowedTags?: Array<string>): HTMLReactParserOptions => {
 
         // https://v3.tailwindcss.com/docs/preflight#lists-are-unstyled
         case "ul": {
-          const marker = cn({
+          const marker = cn(blockSpacing.ul, {
             "list-circle": domNode.attribs.type === "circle",
             "list-square": domNode.attribs.type === "square",
           })
@@ -237,7 +258,7 @@ const createOptions = (allowedTags?: Array<string>): HTMLReactParserOptions => {
 
         // https://v3.tailwindcss.com/docs/preflight#lists-are-unstyled
         case "ol": {
-          const marker = cn({
+          const marker = cn(blockSpacing.ol, {
             "list-lower-alpha": domNode.attribs.type === "a",
             "list-upper-alpha": domNode.attribs.type === "A",
             "list-lower-roman": domNode.attribs.type === "i",
@@ -272,7 +293,8 @@ const createOptions = (allowedTags?: Array<string>): HTMLReactParserOptions => {
         }
 
         default: {
-          const props = getNodeProps(domNode)
+          // Covers `dl` and the demoted `h1`.
+          const props = getNodeProps(domNode, blockSpacing[domNode.name])
           if (voidTags.has(domNode.name)) return <NodeName {...props} />
 
           // Give every editor heading an anchor target, not only the ones whose children parse to a
@@ -303,16 +325,28 @@ const classMap: Record<string, string> = {
   "align-left": "float-left mr-20 mb-20",
   "align-right": "float-right ml-20 mb-20",
   "visually-hidden": "sr-only",
-  "font-splash": "type-4 font-normal font-sans [.wysiwyg_&]:rs-my-2",
+  "font-splash": "type-4 font-normal font-sans rs-my-2",
   "callout-text": "font-normal type-2 font-sans",
   "related-text": "border border-fog-dark rounded-csp-md p-40 font-normal",
-  "intro-text": "type-2 font-normal font-sans [.wysiwyg_&]:mb-1em",
+  "intro-text": "type-2 font-normal font-sans mb-1em",
   "quote-text": "p-[4.8rem] mb-80 type-1 border-l-3 border-fog-dark",
   "drop-cap":
     "type-2 font-normal font-sans first-letter:san-serif first-letter:font-bold first-letter:type-6 first-letter:float-left first-letter:my-5 first-letter:mr-10",
 }
 
-const fixClasses = (classes?: string | boolean): string => {
+/**
+ * Paragraph versions of classMap entries. Paragraphs keep their 1.6em bottom margin under quote and
+ * alignment styles, and intro and splash margins also hold inside a list item.
+ */
+const paragraphClassMap: Record<string, string> = {
+  "align-left": "float-left mr-20",
+  "align-right": "float-right ml-20",
+  "font-splash": cn(classMap["font-splash"], "in-[li]:rs-my-2"),
+  "intro-text": cn(classMap["intro-text"], "in-[li]:mb-1em"),
+  "quote-text": "p-[4.8rem] type-1 border-l-3 border-fog-dark",
+}
+
+const fixClasses = (classes?: string | boolean, tag?: string): string => {
   if (typeof classes !== "string") return ""
 
   return cn(
@@ -321,7 +355,7 @@ const fixClasses = (classes?: string | boolean): string => {
       .map(className => className.replace(/^su-/, ""))
       // Tablesaw styled the old drupal tables; the responsive table component handles that now.
       .filter(className => className && !className.startsWith("tablesaw"))
-      .map(className => classMap[className] || className)
+      .map(className => (tag === "p" && paragraphClassMap[className]) || classMap[className] || className)
   )
 }
 

@@ -6,7 +6,6 @@
 @import "./centered-container.css";
 @import "./typography/global-message.css";
 @import "./typography/local-footer.css";
-@import "./typography/wysiwyg.css";
 
 /*
   Decanter's `@import 'tailwindcss'` lives in node_modules, so point automatic
@@ -18,6 +17,9 @@
 @theme {
   /* Decanter ships 3xl at 1700px; this project has always used 1600px. */
   --breakpoint-3xl: 1600px;
+
+  /* Decanter's em spacing stops at 1em; editor content spaces blocks 1.6em apart. */
+  --spacing-16em: 1.6em;
 
   /* Container query sizes above Tailwind's built-in 7xl (80rem). */
   --container-8xl: 80rem;
@@ -102,52 +104,11 @@
 
 /*
   Tailwind 4 puts component styles in a cascade layer that always loses to utilities. In Tailwind 3
-  these rules beat utility classes on specificity, so editor content and the footer relied on them.
-  Repeating them in the utilities layer lets specificity decide again.
+  these rules beat utility classes on specificity, so the footer relied on them. Repeating them in
+  the utilities layer lets specificity decide again. Editor content spacing lives in the wysiwyg
+  component, where it is applied to each element as utility classes.
 */
 @layer utilities {
-  .wysiwyg {
-    p,
-    ol,
-    ul,
-    dl {
-      margin-bottom: 1.6em;
-    }
-
-    li p {
-      margin-bottom: 0.4em;
-    }
-
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      margin-bottom: 0.7em;
-
-      &:not(:first-child) {
-        margin-top: 1.6em;
-      }
-    }
-
-    h2 + h3,
-    h3 + h4,
-    h4 + h5,
-    h5 + h6 {
-      &:not(:first-child) {
-        margin-top: 1em;
-      }
-    }
-
-    > :first-child {
-      margin-top: 0;
-    }
-
-    > :last-child {
-      margin-bottom: 0;
-    }
-  }
-
   .local-footer .wysiwyg {
     h2 {
       font-size: 1.5em;
