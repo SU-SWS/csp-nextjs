@@ -2,6 +2,7 @@
 
 import {HtmlHTMLAttributes} from "react"
 import {useIsClient} from "usehooks-ts"
+import {EnvelopeIcon} from "@heroicons/react/24/outline"
 
 type Props = HtmlHTMLAttributes<HTMLAnchorElement> & {
   /**
@@ -17,6 +18,7 @@ const Email = ({email, ...props}: Props) => {
   return (
     <a href={`mailto:${email}`} {...props}>
       {email}
+      <EnvelopeIcon width={20} className="ml-6 inline-block" />
     </a>
   )
 }
