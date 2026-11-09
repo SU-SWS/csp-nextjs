@@ -33,6 +33,11 @@ type Props = HTMLAttributes<HTMLElement | HTMLDivElement> & {
    * Background color for poster variant (hex color code)
    */
   bgColor?: Maybe<ImageCardBgColor>
+  /**
+   * Load the image straight from the source instead of through the image optimizer. Use for Drupal image style
+   * derivatives, which are already sized and carry an `?itok=` token.
+   */
+  imageUnoptimized?: boolean
 }
 
 export type ImageCardBgColor = "2e2d29" | "8c1515" | "620059" | "007c92" | "175e54" | "f4f4f4"
@@ -40,6 +45,7 @@ export type ImageCardBgColor = "2e2d29" | "8c1515" | "620059" | "007c92" | "175e
 const ImageCard = ({
   imageUrl,
   imageAlt,
+  imageUnoptimized,
   videoUrl,
   isArticle,
   squareImage,
@@ -78,6 +84,7 @@ const ImageCard = ({
             alt={imageAlt || ""}
             fill
             sizes="(max-width: 768px) 100vw, 1000px"
+            unoptimized={imageUnoptimized}
           />
         </div>
       )}

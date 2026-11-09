@@ -7,6 +7,7 @@ import {notFound} from "next/navigation"
 import {cacheTag} from "next/cache"
 import {isUuid} from "@lib/utils/security"
 import {cacheFailure} from "@lib/gql/gql-queries"
+import {getImageStyle} from "@lib/utils/image-style"
 
 type Props = {
   params: Promise<{uuid: string[]}>
@@ -55,9 +56,10 @@ const Page = async (props: Props) => {
             <figure key={galleryImage.uuid} className="flex grow flex-col">
               <picture className="relative block h-full w-full grow">
                 <Image
-                  src={galleryImage.suGalleryImage.url}
+                  src={getImageStyle(galleryImage.suGalleryImage, "fullStyle")?.url || galleryImage.suGalleryImage.url}
                   alt={galleryImage.suGalleryImage.alt || ""}
                   fill
+                  sizes="100vw"
                   className="object-contain"
                   unoptimized
                 />
