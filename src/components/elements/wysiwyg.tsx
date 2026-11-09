@@ -339,7 +339,7 @@ const paragraphClassMap: Record<string, string> = {
   "align-left": "float-left mr-20",
   "align-right": "float-right ml-20",
   "font-splash": cn(classMap["font-splash"], "in-[li]:rs-my-2"),
-  "intro-text": cn(classMap["intro-text"], "in-[li]:rs-mb-2"),
+  "intro-text": cn(classMap["intro-text"], "in-[li]:mb-1em"),
   "quote-text": "p-[4.8rem] type-1 border-l-3 border-fog-dark",
 }
 
