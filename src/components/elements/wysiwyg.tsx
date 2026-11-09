@@ -323,7 +323,7 @@ const classMap: Record<string, string> = {
   "align-right": "float-right ml-20 mb-20",
   "visually-hidden": "sr-only",
   "font-splash": "type-4 font-normal font-sans rs-my-2",
-  "callout-text": "font-normal type-2 font-sans",
+  "callout-text": "font-normal type-2 font-sans rs-my-2",
   "related-text": "border border-fog-dark rounded-csp-md p-40 font-normal",
   "intro-text": "type-2 font-normal font-sans rs-mb-2",
   "quote-text": "p-[4.8rem] mb-80 type-1 border-l-3 border-fog-dark",
@@ -332,14 +332,12 @@ const classMap: Record<string, string> = {
 }
 
 /**
- * Paragraph versions of classMap entries. Paragraphs keep their 1.6em bottom margin under quote and
- * alignment styles, and intro and splash margins also hold inside a list item.
+ * Paragraph versions of classMap entries. Paragraphs keep their default bottom margin under quote
+ * and alignment styles.
  */
 const paragraphClassMap: Record<string, string> = {
   "align-left": "float-left mr-20",
   "align-right": "float-right ml-20",
-  "font-splash": cn(classMap["font-splash"], "in-[li]:rs-my-2"),
-  "intro-text": cn(classMap["intro-text"], "in-[li]:mb-1em"),
   "quote-text": "p-[4.8rem] type-1 border-l-3 border-fog-dark",
 }
 
