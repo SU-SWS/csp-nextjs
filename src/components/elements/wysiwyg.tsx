@@ -65,14 +65,15 @@ const componentMap: Record<string, React.ElementType> = {
 const headingTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6"])
 
 /**
- * Vertical rhythm for editor content, on Decanter's responsive spacing scale. Applied ahead of the
- * editor's own classes, so a mapped class such as `font-splash` can replace a margin here.
+ * Default classes for editor content, with vertical rhythm on Decanter's responsive spacing scale.
+ * Applied ahead of the editor's own classes, so a mapped class such as `font-splash` can replace a
+ * margin or size here.
  *
  * H2 to H5 take their margins from the heading components. A heading directly under the level
  * above it sits closer; `h1` renders as an h2, so `[h2+&]` also follows a demoted h1.
  */
 const blockSpacing: Record<string, string> = {
-  p: "rs-mb-2 in-[li]:mb-04em",
+  p: "max-w-[100ch] text-21 leading-[1.7] rs-mb-2 in-[li]:mb-04em",
   ul: "rs-mb-2",
   ol: "rs-mb-2",
   dl: "rs-mb-2",
@@ -214,11 +215,7 @@ const createOptions = (allowedTags?: Array<string>): HTMLReactParserOptions => {
           return cleanMediaMarkup(domNode, options)
 
         case "p":
-          return (
-            <NodeName {...getNodeProps(domNode, cn("max-w-[100ch] text-21 leading-[1.7]", blockSpacing.p))}>
-              {domToReact(children, options)}
-            </NodeName>
-          )
+          return <NodeName {...getNodeProps(domNode, blockSpacing.p)}>{domToReact(children, options)}</NodeName>
 
         case "script":
           return <Script {...getNodeProps(domNode)}>{domToReact(children, options)}</Script>
