@@ -4,6 +4,7 @@ import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordCourse} from "@lib/gql/__generated__/graphql"
 import {getCspProductHref} from "@lib/utils/csp-product"
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
+import {convertHtml} from "@components/elements/wysiwyg"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordCourse
@@ -23,7 +24,11 @@ const StanfordCourseListItem = ({node, headingLevel, ...props}: Props) => {
       <ReverseVisualOrder>
         <Heading>
           {/* A plain anchor: the storefront is proxied from Salesforce, so client side routing can't render it. */}
-          {productHref ? <a href={productHref}>{node.title}</a> : <Link href={node.path}>{node.title}</Link>}
+          {productHref ? (
+            <a href={productHref}>{convertHtml(node.title)}</a>
+          ) : (
+            <Link href={node.path}>{convertHtml(node.title)}</Link>
+          )}
         </Heading>
 
         <div>
