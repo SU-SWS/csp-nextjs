@@ -2,6 +2,7 @@ import Link from "@components/elements/link"
 import {H2, H3} from "@components/elements/headers"
 import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordCourse} from "@lib/gql/__generated__/graphql"
+import {getCspProductHref} from "@lib/utils/csp-product"
 import ReverseVisualOrder from "@components/elements/reverse-visual-order"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
@@ -11,6 +12,7 @@ type Props = HtmlHTMLAttributes<HTMLDivElement> & {
 
 const StanfordCourseListItem = ({node, headingLevel, ...props}: Props) => {
   const Heading = headingLevel === "h3" ? H3 : H2
+  const productHref = getCspProductHref(node.suCourseLink?.url)
   const body = node.body?.processed
     ?.replace(/<\/?[^>]+(>|$)/g, " ")
     .replace(/ +/, " ")
@@ -20,7 +22,8 @@ const StanfordCourseListItem = ({node, headingLevel, ...props}: Props) => {
     <article {...props} aria-label={node.title}>
       <ReverseVisualOrder>
         <Heading>
-          <Link href={node.path}>{node.title}</Link>
+          {/* A plain anchor: the storefront is proxied from Salesforce, so client side routing can't render it. */}
+          {productHref ? <a href={productHref}>{node.title}</a> : <Link href={node.path}>{node.title}</Link>}
         </Heading>
 
         <div>
