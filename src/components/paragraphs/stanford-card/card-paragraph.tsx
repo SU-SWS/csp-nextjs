@@ -106,7 +106,8 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
               className={cn(
                 "rs-mt-2 items-center font-sans text-18 font-normal text-archway-dark no-underline hocus:underline",
                 {
-                  "[&_svg]:hocus:fill-text-csp-peach relative flex pr-25 text-csp-cream hocus:text-csp-peach": isPoster,
+                  "[&_svg]:hocus:fill-text-csp-peach relative mt-12 flex pr-25 text-csp-cream hocus:text-csp-peach":
+                    isPoster,
                   "text-archway-dark [&_a]:hocus:text-archway-dark": !bgColor || (isPoster && bgColor === "f4f4f4"),
                 }
               )}
