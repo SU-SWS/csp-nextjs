@@ -100,11 +100,10 @@ const HeroBanner = ({
 
       {children && (
         <div
-          className={cn("relative z-11 flex flex-col rs-gap-2", {
+          className={cn("relative z-11 flex flex-col gap-21", {
             "cc items-center justify-center rs-py-4 text-center text-white @6xl:max-w-800":
               overlayPosition === "center",
-            "justify-center rs-p-2 @6xl:my-60 @9xl:z-10 @9xl:max-w-9xl @9xl:bg-transparent":
-              overlayPosition !== "center",
+            "justify-center rs-p-2 @9xl:z-10 @9xl:max-w-9xl @9xl:bg-transparent": overlayPosition !== "center",
             "relative text-right @9xl:mr-40 @9xl:ml-auto @9xl:items-end": overlayPosition === "right",
             "@9xl:mr-auto @9xl:ml-40": overlayPosition === "left",
           })}
