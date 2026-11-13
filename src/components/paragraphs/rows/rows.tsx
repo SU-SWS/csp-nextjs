@@ -21,12 +21,12 @@ type Layout = Record<
 type Props = HTMLAttributes<HTMLDivElement> & {
   components?: Maybe<ParagraphUnion[]>
   /**
-   * Page uses a full-width layout; background sections get square corners.
+   * Render background rows with square corners instead of rounded.
    */
-  fullWidth?: boolean
+  squareCorners?: boolean
 }
 
-const Rows = async ({components, fullWidth, className, ...props}: Props) => {
+const Rows = async ({components, squareCorners, className, ...props}: Props) => {
   if (!components) return
   const layouts: Layout = {}
 
@@ -61,7 +61,7 @@ const Rows = async ({components, fullWidth, className, ...props}: Props) => {
           layout={layouts[layoutId].layout}
           layoutSettings={layouts[layoutId].config}
           items={layouts[layoutId].children}
-          squareCorners={fullWidth}
+          squareCorners={squareCorners}
         />
       ))}
     </div>
