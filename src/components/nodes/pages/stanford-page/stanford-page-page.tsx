@@ -68,7 +68,7 @@ const StanfordPagePage = ({node, isHome, ...props}: Props) => {
         <>
           {anchorPosition === "top" && <AnchorNav horizontal />}
           <Wysiwyg html={node.body?.processed} className="content-width mb-64" />
-          <Rows components={node.suPageComponents} />
+          <Rows components={node.suPageComponents} fullWidth />
         </>
       )}
     </article>

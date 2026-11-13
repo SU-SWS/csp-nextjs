@@ -20,9 +20,13 @@ type Layout = Record<
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   components?: Maybe<ParagraphUnion[]>
+  /**
+   * Page uses a full-width layout; background sections get square corners.
+   */
+  fullWidth?: boolean
 }
 
-const Rows = async ({components, className, ...props}: Props) => {
+const Rows = async ({components, fullWidth, className, ...props}: Props) => {
   if (!components) return
   const layouts: Layout = {}
 
@@ -57,6 +61,7 @@ const Rows = async ({components, className, ...props}: Props) => {
           layout={layouts[layoutId].layout}
           layoutSettings={layouts[layoutId].config}
           items={layouts[layoutId].children}
+          squareCorners={fullWidth}
         />
       ))}
     </div>
@@ -67,17 +72,20 @@ const Row = ({
   layout,
   layoutSettings,
   items,
+  squareCorners,
 }: {
   layout: LayoutParagraphBehaviors["layout_paragraphs"]["layout"]
   layoutSettings?: Record<string, unknown>
   items: ParagraphUnion[]
+  squareCorners?: boolean
 }) => {
   if (layout === "layout_paragraphs_2_column")
-    return <TwoColumn config={layoutSettings as TwoColumnConfig} items={items} />
-  if (layout === "layout_paragraphs_3_column") return <ThreeColumn config={layoutSettings} items={items} />
+    return <TwoColumn config={layoutSettings as TwoColumnConfig} items={items} squareCorners={squareCorners} />
+  if (layout === "layout_paragraphs_3_column")
+    return <ThreeColumn config={layoutSettings} items={items} squareCorners={squareCorners} />
 
   // Fall back to one column if the layout is unknown.
-  return <OneColumn config={layoutSettings} items={items} />
+  return <OneColumn config={layoutSettings} items={items} squareCorners={squareCorners} />
 }
 
 export default Rows

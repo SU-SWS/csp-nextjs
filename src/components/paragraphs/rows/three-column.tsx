@@ -7,9 +7,13 @@ import cn from "@lib/utils/className"
 type Props = {
   items: ParagraphUnion[]
   config?: LayoutParagraphBehaviors["layout_paragraphs"]["config"] & {vertical_dividers?: boolean}
+  /**
+   * Render background sections with square corners instead of rounded.
+   */
+  squareCorners?: boolean
 }
 
-const ThreeColumn = ({items, config}: Props) => {
+const ThreeColumn = ({items, config, squareCorners}: Props) => {
   const leftItems = items.filter(item => getParagraphBehaviors(item).layout_paragraphs?.region === "left")
   const mainItems = items.filter(
     item => !["left", "right"].includes(getParagraphBehaviors(item).layout_paragraphs?.region || "main")
@@ -18,8 +22,8 @@ const ThreeColumn = ({items, config}: Props) => {
   return (
     <div
       className={cn("mx-auto mb-80 h-fit", {
-        "w-49/50 rounded-csp-lg": !!config?.bg_color,
-        "px-20 py-40": !!config?.bg_color,
+        "rounded-csp-lg": !!config?.bg_color && !squareCorners,
+        "p-40": !!config?.bg_color,
         "pt-0": config?.top_padding === "none",
         "pt-80": config?.top_padding === "more",
         "mb-0": config?.bottom_margin === "none",
