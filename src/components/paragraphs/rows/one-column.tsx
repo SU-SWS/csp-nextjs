@@ -7,21 +7,25 @@ import {HTMLAttributes} from "react"
 type Props = HTMLAttributes<HTMLDivElement> & {
   items: ParagraphUnion[]
   config?: LayoutParagraphBehaviors["layout_paragraphs"]["config"]
+  /**
+   * Render background sections with square corners instead of rounded.
+   */
+  squareCorners?: boolean
 }
 
-const OneColumn = ({items, config, className, ...props}: Props) => {
+const OneColumn = ({items, config, squareCorners, className, ...props}: Props) => {
   return (
     <div
       {...props}
       className={cn(
         "@container mb-80 h-fit space-y-40",
         {
-          "mx-auto w-49/50 rounded-csp-lg": !!config?.bg_color,
-          "px-20 py-40": !!config?.bg_color,
+          "rounded-csp-lg": !!config?.bg_color && !squareCorners,
+          "p-40": !!config?.bg_color,
           "pt-0": config?.top_padding === "none",
           "pt-80": config?.top_padding === "more",
           "mb-0": config?.bottom_margin === "none",
-          "mb-[.6rem]": config?.bottom_margin === "ultra-slim",
+          "mb-6": config?.bottom_margin === "ultra-slim",
           "pb-0": config?.bottom_padding === "none",
           "bg-fog-light": config?.bg_color === "f4f4f4",
           "bg-[#ebeae4]": config?.bg_color === "ebeae5",

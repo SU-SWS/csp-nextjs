@@ -13,21 +13,25 @@ type Props = {
     column_widths: "33-67" | "67-33"
     vertical_dividers?: boolean
   }
+  /**
+   * Render background sections with square corners instead of rounded.
+   */
+  squareCorners?: boolean
 }
-const TwoColumn = ({items, config}: Props) => {
+const TwoColumn = ({items, config, squareCorners}: Props) => {
   const leftItems = items.filter(item => getParagraphBehaviors(item).layout_paragraphs?.region === "left")
   const rightItems = items.filter(item => getParagraphBehaviors(item).layout_paragraphs?.region !== "left")
 
   return (
     <div
       className={cn("mx-auto mb-80", {
-        "w-49/50 rounded-csp-lg": !!config?.bg_color,
+        "rounded-csp-lg": !!config?.bg_color && !squareCorners,
         gutters: !config?.bg_color,
-        "px-40 py-40": !!config?.bg_color,
+        "p-40": !!config?.bg_color,
         "pt-0": config?.top_padding === "none",
         "pt-80": config?.top_padding === "more",
         "mb-0": config?.bottom_margin === "none",
-        "mb-[.6rem]": config?.bottom_margin === "ultra-slim",
+        "mb-6": config?.bottom_margin === "ultra-slim",
         "pb-0": config?.bottom_padding === "none",
         "bg-fog-light": config?.bg_color === "f4f4f4",
         "bg-[#ebeae4]": config?.bg_color === "ebeae5",
