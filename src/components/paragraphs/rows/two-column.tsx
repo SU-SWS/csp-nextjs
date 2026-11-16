@@ -5,12 +5,12 @@ import cn from "@lib/utils/className"
 import {LayoutParagraphBehaviors} from "drupal"
 
 export type TwoColumnConfig = LayoutParagraphBehaviors["layout_paragraphs"]["config"] & {
-  column_widths: "33-67" | "67-33"
+  column_widths: "33-67" | "50-50" | "67-33"
 }
 type Props = {
   items: ParagraphUnion[]
   config?: LayoutParagraphBehaviors["layout_paragraphs"]["config"] & {
-    column_widths: "33-67" | "67-33"
+    column_widths: "33-67" | "50-50" | "67-33"
     vertical_dividers?: boolean
   }
   /**
@@ -43,12 +43,13 @@ const TwoColumn = ({items, config, squareCorners}: Props) => {
       data-columns="2"
     >
       <div
-        className={cn("centered grid gap-20 @6xl:grid-cols-2 @6xl:gap-40", {
+        className={cn("centered grid gap-20 @6xl:gap-40", {
+          "@6xl:grid-cols-2": !config?.column_widths || config.column_widths === "50-50",
           "@6xl:grid-cols-1-2": config?.column_widths === "33-67",
           "@6xl:grid-cols-2-1": config?.column_widths === "67-33",
-          "max-w-[1500px]": !config?.section_width || config.section_width === "full",
-          "max-w-[1300px]": config?.section_width === "wide",
-          "max-w-[1140px]": config?.section_width === "standard",
+          "max-w-15xl": !config?.section_width || config.section_width === "full",
+          "max-w-13xl": config?.section_width === "wide",
+          "max-w-1140": config?.section_width === "standard",
         })}
       >
         <OneColumn
