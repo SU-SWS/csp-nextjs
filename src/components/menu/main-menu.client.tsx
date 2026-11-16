@@ -183,7 +183,10 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
         <>
           <button
             aria-labelledby={id}
-            className="group relative right-25 col-start-10 w-fit shrink-0 rounded-full border border-transparent bg-white text-black active:text-black lg:right-0 lg:mt-5 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light hocus:bg-white hocus:text-black lg:hocus:bg-transparent lg:hocus:text-archway-light hocus-visible:border-black lg:hocus-visible:border lg:hocus-visible:border-fog-dark lg:aria-current-page:text-cardinal-red"
+            className={cn(
+              "group relative right-25 col-start-10 w-fit shrink-0 rounded-full border border-transparent bg-white text-black active:text-black lg:right-0 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light hocus:bg-white hocus:text-black lg:hocus:bg-transparent lg:hocus:text-archway-light hocus-visible:border-black lg:hocus-visible:border lg:hocus-visible:border-fog-dark lg:aria-current-page:text-cardinal-red",
+              {"lg:mt-5": level === 0}
+            )}
             ref={buttonRef}
             onClick={toggleSubmenu}
             aria-expanded={submenuOpen}
