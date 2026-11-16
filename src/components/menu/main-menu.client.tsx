@@ -169,8 +169,8 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
             "ml-12.5 pl-25 lg:ml-0 lg:border-l-0 lg:pb-5 lg:pl-0 aria-current-page:text-white lg:aria-current-page:text-cardinal-red lg:hocus:aria-current-page:text-cardinal-red data-intrail:border-transparent lg:data-intrail:border-fog-dark lg:data-intrail:text-cardinal-red lg:hocus:data-intrail:text-cardinal-red":
               level === 0,
             "pl-40 lg:pl-20 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 1,
-            "pl-56 lg:pl-20 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 2,
-            "pl-96 lg:pl-40 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 3,
+            "pl-56 lg:pl-30 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 2,
+            "pl-96 lg:pl-46 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 3,
             "ml-10 lg:ml-0 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level !== 0,
           }
         )}
