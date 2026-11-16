@@ -166,7 +166,7 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
         className={cn(
           "col-start-1 col-end-9 border-l-[6px] border-transparent py-12.5 text-white no-underline transition-all lg:gap-7.5 lg:text-17 lg:font-normal lg:text-stone-dark lg:active:text-cardinal-red hocus:text-white lg:hocus:text-stone-dark hocus-visible:border-white hocus-visible:underline",
           {
-            "ml-12.5 pl-25 lg:ml-0 lg:border-l-0 lg:pb-5 lg:pl-0 aria-current-page:text-white lg:aria-current-page:text-cardinal-red lg:hocus:aria-current-page:text-cardinal-red data-intrail:border-transparent lg:data-intrail:border-fog-dark":
+            "ml-12.5 pl-25 lg:ml-0 lg:border-l-0 lg:pb-5 lg:pl-0 aria-current-page:text-white lg:aria-current-page:text-cardinal-red lg:hocus:aria-current-page:text-cardinal-red data-intrail:border-transparent lg:data-intrail:border-fog-dark lg:data-intrail:text-cardinal-red lg:hocus:data-intrail:text-cardinal-red":
               level === 0,
             "pl-40 lg:pl-20 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 1,
             "pl-56 lg:pl-20 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 2,
