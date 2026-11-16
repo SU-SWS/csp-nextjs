@@ -87,7 +87,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
 
       <Wysiwyg
         className={cn({
-          "rs-mt-1 rs-mb-2 text-archway-light **:text-16 **:leading-normal md:**:text-19 [&_a]:hocus:text-archway-dark":
+          "rs-mt-1 text-archway-light **:text-16 **:leading-normal md:**:text-19 [&_a]:hocus:text-archway-dark":
             !isPoster,
           "text-csp-cream **:type-2 [&_a]:underline [&_a]:hocus:text-csp-cream [&_a]:hocus:no-underline": isPoster,
           "[&_a]:text-csp-peach": (isPoster && bgColor === "8c1515") || (isPoster && bgColor === "2e2d29"),
@@ -120,6 +120,7 @@ const CardParagraph = ({paragraph, ...props}: Props) => {
             <Button
               href={paragraph.suCardLink.url}
               className={cn("hocus:border-csp-digital-red-dark", {
+                "rs-mt-2": !isPoster,
                 "border-csp-digital-red-xdark bg-digital-red/80":
                   isPoster && (bgColor === "8c1515" || bgColor === "2e2d29"),
                 "border-csp-digital-red-xdark bg-cardinal-red": !bgColor || (isPoster && bgColor === "f4f4f4"),
