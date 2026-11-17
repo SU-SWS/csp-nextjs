@@ -32,6 +32,7 @@ const customTwMerge = extendTailwindMerge({
       ps: [(value: string) => value.startsWith("rs-ps-")],
       pe: [(value: string) => value.startsWith("rs-pe-")],
       gap: [{gap: ["xs", "lg", "xl", "2xl"]}],
+      "grid-cols": [{"grid-cols": [(value: string) => /^\d+(-\d+)+$/.test(value)]}],
     },
     theme: {
       radius: ["csp-xs", "csp-sm", "csp-md", "csp-lg"],
