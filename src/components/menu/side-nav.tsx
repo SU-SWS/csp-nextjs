@@ -41,7 +41,7 @@ const SideNav = ({menuItems, activeTrail, ...props}: Props) => {
     <nav aria-labelledby={`${id}-label`} ref={menuRef} {...props} className={cn("relative mb-50", props.className)}>
       <Hamburger
         ref={buttonRef}
-        className="group flex w-full items-center justify-between border border-black-20 p-10 lg:hidden"
+        className="group flex w-full items-center justify-between rounded-csp-sm border border-fog-dark p-10 lg:hidden"
         onClick={toggleMenu}
         open={menuOpen}
         aria-expanded={menuOpen}

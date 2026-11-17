@@ -72,7 +72,7 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
             <div className="order-2 mb-8 font-sans text-16 font-normal text-archway-light md:mb-9 2xl:mb-10">
               {paragraph.cspCourseCardFormat}
               {paragraph.cspCourseCardFormat && paragraph.cspCourseCardLocation && (
-                <span className="mx-15">&nbsp;|&nbsp;</span>
+                <span className="mx-6">&nbsp;|&nbsp;</span>
               )}
               {paragraph.cspCourseCardLocation}
             </div>

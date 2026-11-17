@@ -166,11 +166,11 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
         className={cn(
           "col-start-1 col-end-9 border-l-[6px] border-transparent py-12.5 text-white no-underline transition-all lg:gap-7.5 lg:text-17 lg:font-normal lg:text-stone-dark lg:active:text-cardinal-red hocus:text-white lg:hocus:text-stone-dark hocus-visible:border-white hocus-visible:underline",
           {
-            "ml-12.5 pl-25 lg:ml-0 lg:border-l-0 lg:pb-5 lg:pl-0 aria-current-page:text-white lg:aria-current-page:text-cardinal-red lg:hocus:aria-current-page:text-cardinal-red data-intrail:border-transparent lg:data-intrail:border-fog-dark":
+            "ml-12.5 pl-25 lg:ml-0 lg:border-l-0 lg:pb-5 lg:pl-0 aria-current-page:text-white lg:aria-current-page:text-cardinal-red lg:hocus:aria-current-page:text-cardinal-red data-intrail:border-transparent lg:data-intrail:border-fog-dark lg:data-intrail:text-cardinal-red lg:hocus:data-intrail:text-cardinal-red":
               level === 0,
             "pl-40 lg:pl-20 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 1,
-            "pl-56 lg:pl-20 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 2,
-            "pl-96 lg:pl-40 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 3,
+            "pl-56 lg:pl-30 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 2,
+            "pl-96 lg:pl-46 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level === 3,
             "ml-10 lg:ml-0 lg:hocus-visible:border-black-true aria-current-page:border-digital-red": level !== 0,
           }
         )}
@@ -183,7 +183,10 @@ const MenuItem = ({id, url, title, children, level}: MenuItemProps) => {
         <>
           <button
             aria-labelledby={id}
-            className="group relative right-25 col-start-10 w-fit shrink-0 rounded-full border border-transparent bg-white text-black active:text-black lg:right-0 lg:mt-5 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light hocus:bg-white hocus:text-black lg:hocus:bg-transparent lg:hocus:text-archway-light hocus-visible:border-black lg:hocus-visible:border lg:hocus-visible:border-fog-dark lg:aria-current-page:text-cardinal-red"
+            className={cn(
+              "group relative right-25 col-start-10 w-fit shrink-0 rounded-full border border-transparent bg-white text-black active:text-black lg:right-0 lg:rounded-full lg:border-transparent lg:bg-transparent lg:text-archway-light hocus:bg-white hocus:text-black lg:hocus:bg-transparent lg:hocus:text-archway-light hocus-visible:border-black lg:hocus-visible:border lg:hocus-visible:border-fog-dark lg:aria-current-page:text-cardinal-red",
+              {"lg:mt-5": level === 0}
+            )}
             ref={buttonRef}
             onClick={toggleSubmenu}
             aria-expanded={submenuOpen}

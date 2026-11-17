@@ -1,5 +1,5 @@
 import OneColumn from "@components/paragraphs/rows/one-column"
-import TwoColumn, {TwoColumnConfig} from "@components/paragraphs/rows/two-column"
+import TwoColumn from "@components/paragraphs/rows/two-column"
 import ThreeColumn from "@components/paragraphs/rows/three-column"
 import {Maybe, ParagraphStanfordLayout, ParagraphUnion} from "@lib/gql/__generated__/graphql"
 import {getParagraphBehaviors} from "@components/paragraphs/get-paragraph-behaviors"
@@ -80,7 +80,13 @@ const Row = ({
   squareCorners?: boolean
 }) => {
   if (layout === "layout_paragraphs_2_column")
-    return <TwoColumn config={layoutSettings as TwoColumnConfig} items={items} squareCorners={squareCorners} />
+    return (
+      <TwoColumn
+        config={layoutSettings as Parameters<typeof TwoColumn>[0]["config"]}
+        items={items}
+        squareCorners={squareCorners}
+      />
+    )
   if (layout === "layout_paragraphs_3_column")
     return <ThreeColumn config={layoutSettings} items={items} squareCorners={squareCorners} />
 
