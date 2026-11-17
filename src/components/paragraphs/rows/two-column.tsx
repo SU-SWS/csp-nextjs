@@ -10,7 +10,7 @@ export type TwoColumnConfig = LayoutParagraphBehaviors["layout_paragraphs"]["con
 type Props = {
   items: ParagraphUnion[]
   config?: LayoutParagraphBehaviors["layout_paragraphs"]["config"] & {
-    column_widths: "33-67" | "50-50" | "67-33"
+    column_widths: "33-67" | "67-33"
     vertical_dividers?: boolean
   }
   /**
@@ -43,8 +43,7 @@ const TwoColumn = ({items, config, squareCorners}: Props) => {
       data-columns="2"
     >
       <div
-        className={cn("centered grid gap-20 @6xl:gap-40", {
-          "@6xl:grid-cols-2": !config?.column_widths || config.column_widths === "50-50",
+        className={cn("centered grid gap-20 @6xl:grid-cols-2 @6xl:gap-40", {
           "@6xl:grid-cols-1-2": config?.column_widths === "33-67",
           "@6xl:grid-cols-2-1": config?.column_widths === "67-33",
           "max-w-15xl": !config?.section_width || config.section_width === "full",
