@@ -16,7 +16,7 @@ export const H1 = ({children, className, showTopBorder = true, ...props}: H1Prop
   return (
     <h1
       className={cn(
-        "font-serif type-4 font-normal",
+        "rs-mt-0 font-serif type-4 font-normal lg:rs-mb-6",
         {
           "before:rs-mb-1 before:block before:h-5 before:w-full before:max-w-[5rem] before:rounded-md before:bg-cardinal-red before:content-['']":
             showTopBorder,
