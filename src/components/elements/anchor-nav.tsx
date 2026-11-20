@@ -34,7 +34,8 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
   const overflowContainerRef = useRef<HTMLLIElement>(null)
   const overflowBtnRef = useRef<HTMLButtonElement>(null)
   const itemWidthsRef = useRef<number[]>([])
-  const measuredRef = useRef(false)
+  // The headings array the stored widths belong to, so a new set of headings triggers a fresh measurement.
+  const measuredRef = useRef<HeadingItem[] | null>(null)
 
   const menuButtonId = useId()
   const menuPanelId = useId()
@@ -99,8 +100,12 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
 
     const headingWidth = headingRef.current?.offsetWidth || 0
     const totalItemsWidth = widths.reduce((a, b) => a + b, 0)
-    // The "See More" item is always rendered (invisibly when unused), so it takes up room either way.
-    const overflowBtnWidth = overflowContainerRef.current?.offsetWidth ?? 80
+    // The "See More" item is always rendered (invisibly when unused), so it takes up room either way. offsetWidth
+    // leaves out its rs-mr-2 margin, so add that. The left margin is auto and only absorbs leftover space.
+    const overflowContainer = overflowContainerRef.current
+    const overflowBtnWidth = overflowContainer
+      ? overflowContainer.offsetWidth + parseFloat(getComputedStyle(overflowContainer).marginRight)
+      : 80
 
     if (headingWidth + totalItemsWidth + overflowBtnWidth <= containerWidth) {
       setVisibleCount(null)
@@ -123,45 +128,66 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
     setVisibleCount(Math.max(0, count))
   }, [horizontal])
 
-  // Reset measurements when headings change so all items render for re-measurement
-  const resetMeasurements = useCallback(() => {
-    measuredRef.current = false
-    itemWidthsRef.current = []
-    setVisibleCount(null)
-  }, [])
-
-  useEffect(() => {
-    resetMeasurements() // eslint-disable-line react-hooks/set-state-in-effect
-  }, [headings, resetMeasurements])
-
-  // Measure all item widths before paint, then calculate overflow.
+  // Reset, measure and calculate in one step. Measuring needs every item rendered, so if the list is currently
+  // sliced, clear the stored widths and render all items; the layout effect below then measures before paint.
   // Wrapped in useCallback so the direct call site in useLayoutEffect isn't a bare setState.
   const measureAndCalculate = useCallback(() => {
-    if (!listRef.current || measuredRef.current) return
+    if (!horizontal || !listRef.current || headings.length === 0) return
+    // Below the breakpoint the list is the mobile dropdown, so its widths don't apply to the horizontal bar.
+    if (window.innerWidth < ANCHOR_NAV_BREAK) return
     const items = Array.from(listRef.current.querySelectorAll<HTMLLIElement>("[data-nav-item]"))
-    if (items.length === 0 || items.length !== headings.length) return
-    itemWidthsRef.current = items.map(item => item.offsetWidth)
-    measuredRef.current = true
+
+    if (items.length !== headings.length) {
+      measuredRef.current = null
+      itemWidthsRef.current = []
+      setVisibleCount(null)
+      return
+    }
+
+    const widths = items.map(item => item.offsetWidth)
+    // Items measure 0 while the nav is hidden (e.g. during a client-side route transition). Keep nothing stored so
+    // the next layout effect or resize measures again instead of trusting empty widths.
+    if (widths.every(itemWidth => itemWidth === 0)) {
+      measuredRef.current = null
+      itemWidthsRef.current = []
+      return
+    }
+
+    itemWidthsRef.current = widths
+    measuredRef.current = headings
     calculateOverflow()
-  }, [headings.length, calculateOverflow])
+  }, [horizontal, headings, calculateOverflow])
 
   useLayoutEffect(() => {
-    if (!horizontal) return
+    if (measuredRef.current === headings) return
     measureAndCalculate()
   })
 
-  // Recalculate on container resize using stored widths (no DOM re-measurement needed)
+  // Recalculate on container resize using stored widths, or measure again if there are none yet.
   useEffect(() => {
     if (!horizontal || !navRef.current) return
 
     const observer = new ResizeObserver(() => {
       if (itemWidthsRef.current.length > 0) calculateOverflow()
+      else measureAndCalculate()
     })
 
     observer.observe(navRef.current)
     return () => observer.disconnect()
     // The nav only mounts once headings are found, so re-run to attach the observer after that.
-  }, [horizontal, calculateOverflow, headings.length])
+  }, [horizontal, calculateOverflow, measureAndCalculate])
+
+  // The first measurement can happen with the fallback font, so measure again once web fonts have loaded.
+  useEffect(() => {
+    if (!horizontal) return
+    let cancelled = false
+    document.fonts.ready.then(() => {
+      if (!cancelled) measureAndCalculate()
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [horizontal, measureAndCalculate])
 
   if (headings.length === 0) return null
 
