@@ -173,7 +173,7 @@ const AnchorNav = ({horizontal = false, ...props}: Props) => {
     <div
       ref={navRef}
       {...props}
-      className={cn("relative z-2 max-w-10xl text-16 lg:mb-50", {centered: horizontal}, props.className)}
+      className={cn("relative z-2 max-w-10xl text-16 lg:mb-50", {"mt-0 centered mb-12": horizontal}, props.className)}
     >
       <nav
         aria-labelledby="anchor-nav"
