@@ -38,7 +38,12 @@ const SideNav = ({menuItems, activeTrail, ...props}: Props) => {
   useEventListener("keydown", handleEscape, menuRef as RefObject<HTMLDivElement>)
 
   return (
-    <nav aria-labelledby={`${id}-label`} ref={menuRef} {...props} className={cn("relative mb-50", props.className)}>
+    <nav
+      aria-labelledby={`${id}-label`}
+      ref={menuRef}
+      {...props}
+      className={cn("relative mb-12 lg:mb-50", props.className)}
+    >
       <Hamburger
         ref={buttonRef}
         className="group flex w-full items-center justify-between rounded-csp-sm border border-fog-dark p-10 lg:hidden"
