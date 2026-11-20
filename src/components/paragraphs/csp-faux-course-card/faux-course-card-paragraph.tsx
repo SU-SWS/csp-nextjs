@@ -29,13 +29,16 @@ const FauxCourseCardParagraph = ({paragraph, ...props}: Props) => {
       >
         {image?.url && (
           <div className="relative m-6 mx-auto aspect-3/2 w-full max-w-[calc(100%-1.2rem)] grow self-start overflow-hidden rounded-csp-sm @7xl:mx-0 @7xl:ml-6 @7xl:max-w-400 @9xl:mr-6 @9xl:ml-6 @9xl:max-w-[54rem] @9xl:min-w-[54rem]">
-            <Image
-              src={image.url}
-              alt={image.alt || ""}
-              fill
-              className="border object-cover"
-              sizes="(max-width: 768px) 100vw, 700px"
-            />
+            <Link href={url} className="relative block h-full w-full" tabIndex={-1} aria-hidden="true">
+              <Image
+                src={image.url}
+                alt={image.alt || ""}
+                fill
+                className="border object-cover"
+                sizes="(max-width: 768px) 100vw, 700px"
+              />
+              <span className="sr-only">{paragraph.cspCourseCardTitle}</span>
+            </Link>
           </div>
         )}
 
