@@ -71,7 +71,7 @@ const Button = ({
     {
       "border border-csp-digital-red-dark bg-cardinal-red text-white hocus:bg-digital-red hocus:text-white":
         variant === "primary",
-      "border-archway-stone border text-archway-dark hocus:border-black": variant === "secondary",
+      "border border-stone text-archway-dark hocus:border-black": variant === "secondary",
       "border border-stone bg-transparent text-archway-dark hocus:bg-archway-dark hocus:text-csp-cream":
         variant === "ghost",
       "border border-csp-digital-red-dark bg-digital-red/80 text-csp-cream hocus:bg-digital-red hocus:text-csp-cream":
@@ -81,7 +81,7 @@ const Button = ({
       "rounded-full border border-fog-dark px-10 py-10 text-digital-red hocus:border-digital-red-dark hocus:bg-archway hocus:text-csp-cream":
         variant === "search",
       "py-10 pr-15 pl-20 font-sans text-18": !isSecondary && size === "default",
-      "pt-10 pr-17.5 pb-12.5 pl-20 font-sans text-18": isSecondary && size === "default",
+      "py-10 pr-17.5 pl-20 font-sans text-18": isSecondary && size === "default",
       "px-30 pt-17.5 pb-20 font-sans type-1 hocus:decoration-[.125rem] hocus:underline-offset-[.3rem]":
         !isSecondary && size === "big",
       "px-30 pt-17.5 pb-20": isSecondary && size === "big",
