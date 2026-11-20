@@ -156,6 +156,7 @@ SAML_IDP_CERT=[SAML Cert]
 SAML_PRIVATE_KEY=[SAML private key]
 SAML_SIGNING_CERT=[SAML signing cert ofr the IDP]
 JWT_SECRET=[JSON web token encryption key]
+CSP_PRODUCT_URL=[Salesforce storefront product page base url, proxied under its own path on the FE. Defaults to the dev sandbox]
 ```
 
 ## Development Workflow

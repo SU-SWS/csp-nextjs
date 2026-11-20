@@ -1,18 +1,21 @@
-import {redirect} from "next/navigation"
+import {permanentRedirect} from "next/navigation"
 import Wysiwyg from "@components/elements/wysiwyg"
 import {H1} from "@components/elements/headers"
 import {HtmlHTMLAttributes} from "react"
 import {NodeStanfordCourse} from "@lib/gql/__generated__/graphql"
+import {getCspProductHref} from "@lib/utils/csp-product"
 
 type Props = HtmlHTMLAttributes<HTMLDivElement> & {
   node: NodeStanfordCourse
 }
 
 const StanfordCoursePage = ({node, ...props}: Props) => {
-  if (node.suCourseLink?.url) redirect(node.suCourseLink?.url)
+  const url = getCspProductHref(node.suCourseLink?.url)
+  if (url) permanentRedirect(url)
   return (
     <article className="my-64 centered" {...props}>
       <H1>{node.title}</H1>
+      {node.suCourseLink?.url}
       <div className="flex flex-col gap-20">
         {node.suCourseSubject && <div>{node.suCourseSubject.name}</div>}
 

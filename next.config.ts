@@ -1,6 +1,7 @@
 import type {NextConfig} from "next"
 import {INFINITE_CACHE} from "next/dist/lib/constants"
 import {vaultEnvVars} from "./vault-envars"
+import {CSP_ORIGIN, CSP_SITE_PATH} from "./src/lib/utils/csp-product"
 
 const drupalUrl = new URL(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL as string)
 
@@ -119,6 +120,22 @@ module.exports = async (_phase: string) => {
         {
           source: `/files/:site(\\w+)/:slug(${DOCUMENT_FILE_PATH})`,
           destination: `${drupalUrl.protocol}//${drupalUrl.hostname}/sites/:site/files/:slug`,
+        },
+        // Proxy the Salesforce storefront (course product pages, plus their scripts, styles, and API calls) so the
+        // user stays on the FE domain.
+        // Skipped when the product url sits at the domain root, which would otherwise proxy the entire site.
+        ...(CSP_SITE_PATH
+          ? [
+              {
+                source: `${CSP_SITE_PATH}/:path*`,
+                destination: `${CSP_ORIGIN}${CSP_SITE_PATH}/:path*`,
+              },
+            ]
+          : []),
+        // Experience Cloud theme resources load from the domain root, outside the site path.
+        {
+          source: "/sfsites/:path*",
+          destination: `${CSP_ORIGIN}/sfsites/:path*`,
         },
       ]
     },
